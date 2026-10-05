@@ -1,6 +1,7 @@
 # Public battery field data
 
 [![CI](https://github.com/Astrolabe-Analytics/public-battery-field-data/actions/workflows/ci.yml/badge.svg)](https://github.com/Astrolabe-Analytics/public-battery-field-data/actions/workflows/ci.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23150592.svg)](https://doi.org/10.5281/zenodo.23150592)
 
 This repository provides a consistent Python interface, verification notebooks, and reproducible summary tables for 22 public battery field-data packages. Raw publisher files are not redistributed.
 
@@ -89,4 +90,4 @@ Derived outputs (previews, facts, profiles and notebooks made from a release) fo
 
 ## Citation
 
-Citation metadata is provided in [`CITATION.cff`](CITATION.cff). Cite the original dataset and paper alongside this repository when using a package.
+Cite this repository as: Masse, R. (2026). Public Battery Field Data. Zenodo. https://doi.org/10.5281/zenodo.23150592 (this DOI covers all versions; v1.0.0 is https://doi.org/10.5281/zenodo.23150593). Citation metadata is provided in [`CITATION.cff`](CITATION.cff). Cite the original dataset and paper alongside this repository when using a package.
