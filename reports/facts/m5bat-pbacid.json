@@ -1,0 +1,89 @@
+{
+  "package": "m5bat-pbacid",
+  "facts": {
+    "application": {
+      "value": "grid-scale storage",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "flooded OCSM lead-acid",
+      "basis": "stated",
+      "source": "https://doi.org/10.3390/en19174141, Section 2",
+      "note": ""
+    },
+    "units_released": {
+      "value": 1,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('m5bat-pbacid')",
+      "note": "Rule: one string; rows are its two data sources."
+    },
+    "cells_liion": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "This package is lead-acid; a lithium-ion cell count does not apply."
+    },
+    "cells_leadacid": {
+      "value": 300,
+      "basis": "stated",
+      "source": "https://doi.org/10.3390/en19174141, Section 2",
+      "note": ""
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Release contains string-level measurements, not individual cell-voltage channels."
+    },
+    "energy_mwh": {
+      "value": 1.066,
+      "basis": "stated",
+      "source": "https://doi.org/10.3390/en19174141, Section 2",
+      "note": ""
+    },
+    "energy_basis": {
+      "value": "stated",
+      "basis": "derived",
+      "source": "energy_mwh uses the stated basis",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 8.089128894465992,
+      "basis": "measured",
+      "source": "scripts/facts/m5bat-pbacid.py",
+      "note": ""
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 4.653774362,
+      "basis": "measured",
+      "source": "scripts/facts/m5bat-pbacid.py",
+      "note": ""
+    },
+    "files": {
+      "value": 1,
+      "basis": "measured",
+      "source": "scripts/facts/m5bat-pbacid.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "yes",
+      "basis": "stated",
+      "source": "fielddata/loaders/m5bat_pbacid_SCHEMA.md; released codebook defines 2345/2356 as BMS communication-error placeholders",
+      "note": "The released files contain no 2345/2356 values in the four codebook columns; the publisher replaced them with NaN (measured, source audit 2026-10-04)."
+    }
+  }
+}

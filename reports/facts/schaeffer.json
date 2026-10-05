@@ -1,0 +1,89 @@
+{
+  "package": "schaeffer",
+  "facts": {
+    "application": {
+      "value": "distributed storage",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "LFP",
+      "basis": "stated",
+      "source": "https://doi.org/10.1016/j.xcrp.2024.102258, Methods",
+      "note": ""
+    },
+    "units_released": {
+      "value": 28,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('schaeffer')",
+      "note": "Rule: one file per system."
+    },
+    "cells_liion": {
+      "value": 224,
+      "basis": "derived",
+      "source": "28 released systems x 8 series cells per system",
+      "note": ""
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 224,
+      "basis": "derived",
+      "source": "28 released systems x 8 released cell-voltage channels",
+      "note": ""
+    },
+    "energy_mwh": {
+      "value": 0.10752,
+      "basis": "derived",
+      "source": "28 systems x 24 V x 160 Ah / 1,000,000",
+      "note": ""
+    },
+    "energy_basis": {
+      "value": "computed",
+      "basis": "derived",
+      "source": "energy_mwh is computed from stated configuration",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 56.850015875732,
+      "basis": "measured",
+      "source": "scripts/facts/schaeffer.py",
+      "note": ""
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 1.668437817,
+      "basis": "measured",
+      "source": "scripts/facts/schaeffer.py",
+      "note": ""
+    },
+    "files": {
+      "value": 3,
+      "basis": "measured",
+      "source": "scripts/facts/schaeffer.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://zenodo.org/records/13715694; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

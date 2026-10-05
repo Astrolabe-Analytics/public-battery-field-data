@@ -1,0 +1,89 @@
+{
+  "package": "ku_leuven_bev",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "LFP, NCA",
+      "basis": "stated",
+      "source": "https://doi.org/10.1038/s41597-025-06148-5, Table 3 (p. 4) and p. 9",
+      "note": "Stated: BEV1 Tesla Model Y SR LFP, BEV2 Model Y LR NCA. The voltage-ratio rule agrees but cannot tell NCA from NMC: BEV1: LFP (ratio 1.020); BEV2: NMC-class (ratio 1.143)."
+    },
+    "units_released": {
+      "value": 2,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('ku_leuven_bev')",
+      "note": "Rule: one row per vehicle."
+    },
+    "cells_liion": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Released CAN signals give pack voltage only; pack topology is not stated."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No individual cell-voltage signals are released."
+    },
+    "energy_mwh": {
+      "value": 0.1393,
+      "basis": "stated",
+      "source": "https://doi.org/10.1038/s41597-025-06148-5, p. 3 and Table 3 (60.5 kWh BEV1, 78.8 kWh BEV2)",
+      "note": "Cross-check computed from the data: BEV1 60.9 kWh (median of 18 slow charges spanning at least 40 percent SOC, TotalChargeKWh counter per 100 percent SOC); BEV2 80.1 kWh (median of 13 slow charges spanning at least 40 percent SOC, TotalChargeKWh counter per 100 percent SOC)."
+    },
+    "energy_basis": {
+      "value": "stated",
+      "basis": "derived",
+      "source": "energy_mwh uses the stated basis",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 1.8261464750171115,
+      "basis": "measured",
+      "source": "scripts/facts/ku_leuven_bev.py",
+      "note": "First to last session date per vehicle, from session file names. BEV1 files run to 2025-05-27, past the paper's end of 2025-02-18, after a three-month gap; with the paper's periods the span is 1.55 vehicle-years (source audit 2026-10-04)."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 0.161636589,
+      "basis": "measured",
+      "source": "scripts/facts/ku_leuven_bev.py",
+      "note": ""
+    },
+    "files": {
+      "value": 1,
+      "basis": "measured",
+      "source": "scripts/facts/ku_leuven_bev.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.48804/8KPDTW; public data record and released documentation state no sentinel convention",
+      "note": "Odometer3B6 = 4294967.295 (0xFFFFFFFF x 0.001) observed in 13,498 rows, not documented; masked by clean=True."
+    }
+  }
+}

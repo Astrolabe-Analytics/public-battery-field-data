@@ -1,0 +1,1023 @@
+
+## rows
+      release                                     unit   rows
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021  20738
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022  20214
+bilfinger2024                        VW_FTM_JB_8A_2021  69383
+bilfinger2024                        VW_FTM_JB_8A_2023  29054
+bilfinger2024                        VW_FTM_JB_8A_2024  49557
+bilfinger2024                    VW_ID3_JB_8A_C40_2021  69339
+bilfinger2024                    VW_ID3_JB_8A_C40_2023  27902
+bilfinger2024                    VW_ID3_JB_8A_C40_2024  45331
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45  79591
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45  78460
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability  70325
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2  14953
+bilfinger2026                  Cupra_288_C10_discharge  29317
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10  17793
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6   2104
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17 262502
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside  28265
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45  15356
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45  77663
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45  76357
+bilfinger2026                     Tesla_AC_10A_C8_w_cv   3229
+bilfinger2026                     Tesla_AC_16A_C5_w_cv   2110
+bilfinger2026                     Tesla_AC_5A_C17_w_cv   6057
+bilfinger2026                     Tesla_AC_8A_C10_w_cv   3792
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv   4864
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv  20214
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 784507
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC  75133
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC  64363
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax  45331
+
+## dt_median
+      release                                     unit  dt_median
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021  10.000000
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022  10.000000
+bilfinger2024                        VW_FTM_JB_8A_2021   2.000000
+bilfinger2024                        VW_FTM_JB_8A_2023   5.010203
+bilfinger2024                        VW_FTM_JB_8A_2024   3.260285
+bilfinger2024                    VW_ID3_JB_8A_C40_2021   2.000000
+bilfinger2024                    VW_ID3_JB_8A_C40_2023   5.010203
+bilfinger2024                    VW_ID3_JB_8A_C40_2024   3.260367
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45   2.010022
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45   2.010030
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability   2.009981
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2  10.010567
+bilfinger2026                  Cupra_288_C10_discharge   2.010022
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10   2.010014
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6  10.010616
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17   0.210117
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside   2.009981
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45  10.010616
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45   2.010038
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45   2.010046
+bilfinger2026                     Tesla_AC_10A_C8_w_cv  10.000000
+bilfinger2026                     Tesla_AC_16A_C5_w_cv  10.000000
+bilfinger2026                     Tesla_AC_5A_C17_w_cv  10.000000
+bilfinger2026                     Tesla_AC_8A_C10_w_cv  10.000000
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv  10.000000
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv  10.000000
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing   2.805563
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC   2.020778
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC   2.020155
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax   3.260367
+
+## dt_p05
+      release                                     unit    dt_p05
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021 10.000000
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022 10.000000
+bilfinger2024                        VW_FTM_JB_8A_2021  2.000000
+bilfinger2024                        VW_FTM_JB_8A_2023  5.004730
+bilfinger2024                        VW_FTM_JB_8A_2024  2.275517
+bilfinger2024                    VW_ID3_JB_8A_C40_2021  2.000000
+bilfinger2024                    VW_ID3_JB_8A_C40_2023  5.004730
+bilfinger2024                    VW_ID3_JB_8A_C40_2024  2.280108
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45  2.004681
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45  2.004665
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability  2.004664
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2 10.005160
+bilfinger2026                  Cupra_288_C10_discharge  2.004681
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10  2.004664
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6 10.005266
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17  0.209347
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside  2.004664
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45 10.005242
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45  2.004673
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45  2.004705
+bilfinger2026                     Tesla_AC_10A_C8_w_cv 10.000000
+bilfinger2026                     Tesla_AC_16A_C5_w_cv 10.000000
+bilfinger2026                     Tesla_AC_5A_C17_w_cv 10.000000
+bilfinger2026                     Tesla_AC_8A_C10_w_cv 10.000000
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv 10.000000
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv 10.000000
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing  2.010071
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC  2.005123
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC  2.004951
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax  2.280108
+
+## dt_p95
+      release                                     unit    dt_p95
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021 10.000000
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022 10.000000
+bilfinger2024                        VW_FTM_JB_8A_2021  2.000000
+bilfinger2024                        VW_FTM_JB_8A_2023  5.060215
+bilfinger2024                        VW_FTM_JB_8A_2024  4.470114
+bilfinger2024                    VW_ID3_JB_8A_C40_2021  2.000000
+bilfinger2024                    VW_ID3_JB_8A_C40_2023  5.060215
+bilfinger2024                    VW_ID3_JB_8A_C40_2024  4.470581
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45  2.020360
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45  2.020270
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability  2.020123
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2 10.060726
+bilfinger2026                  Cupra_288_C10_discharge  2.020239
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10  2.020298
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6 10.060735
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17  0.264569
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside  2.020123
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45 10.060718
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45  2.024563
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45  2.020188
+bilfinger2026                     Tesla_AC_10A_C8_w_cv 10.000000
+bilfinger2026                     Tesla_AC_16A_C5_w_cv 10.000000
+bilfinger2026                     Tesla_AC_5A_C17_w_cv 10.000000
+bilfinger2026                     Tesla_AC_8A_C10_w_cv 10.000000
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv 10.000000
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv 10.000000
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 14.670885
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC  2.065514
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC  2.060091
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax  4.470581
+
+## dt_const
+      release                                     unit  dt_const
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021  1.000000
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022  1.000000
+bilfinger2024                        VW_FTM_JB_8A_2021       NaN
+bilfinger2024                        VW_FTM_JB_8A_2023       NaN
+bilfinger2024                        VW_FTM_JB_8A_2024       NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021  0.999928
+bilfinger2024                    VW_ID3_JB_8A_C40_2023  0.195656
+bilfinger2024                    VW_ID3_JB_8A_C40_2024  0.000044
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45  0.026222
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45  0.038491
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability  0.017263
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2  0.162520
+bilfinger2026                  Cupra_288_C10_discharge  0.024867
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10  0.025742
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6  0.095578
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17  0.005470
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside  0.019636
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45  0.154608
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45  0.028946
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45  0.033907
+bilfinger2026                     Tesla_AC_10A_C8_w_cv  1.000000
+bilfinger2026                     Tesla_AC_16A_C5_w_cv  1.000000
+bilfinger2026                     Tesla_AC_5A_C17_w_cv  1.000000
+bilfinger2026                     Tesla_AC_8A_C10_w_cv  1.000000
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv  1.000000
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv  1.000000
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing  0.000157
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC  0.001238
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC  0.012368
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax  0.000044
+
+## U_lin
+      release                                     unit    U_lin
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021 0.000000
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022 0.000000
+bilfinger2024                        VW_FTM_JB_8A_2021 0.989896
+bilfinger2024                        VW_FTM_JB_8A_2023 0.746937
+bilfinger2024                        VW_FTM_JB_8A_2024 0.771623
+bilfinger2024                    VW_ID3_JB_8A_C40_2021 0.989919
+bilfinger2024                    VW_ID3_JB_8A_C40_2023 0.749749
+bilfinger2024                    VW_ID3_JB_8A_C40_2024 0.772022
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45 0.754878
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45 0.752708
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability 0.754134
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2 0.752257
+bilfinger2026                  Cupra_288_C10_discharge 0.664699
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10 0.746051
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6 0.609895
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17 0.776050
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside 0.757103
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45 0.749251
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45 0.752141
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45 0.751018
+bilfinger2026                     Tesla_AC_10A_C8_w_cv 0.000000
+bilfinger2026                     Tesla_AC_16A_C5_w_cv 0.000000
+bilfinger2026                     Tesla_AC_5A_C17_w_cv 0.000000
+bilfinger2026                     Tesla_AC_8A_C10_w_cv 0.000000
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv 0.000000
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv 0.000000
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 0.770114
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC 0.750622
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC 0.757167
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax 0.772022
+
+## U_repeat
+      release                                     unit  U_repeat
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021  0.000000
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022  0.000000
+bilfinger2024                        VW_FTM_JB_8A_2021       NaN
+bilfinger2024                        VW_FTM_JB_8A_2023       NaN
+bilfinger2024                        VW_FTM_JB_8A_2024       NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021  0.000937
+bilfinger2024                    VW_ID3_JB_8A_C40_2023  0.832551
+bilfinger2024                    VW_ID3_JB_8A_C40_2024  0.851136
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45  0.837580
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45  0.834958
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability  0.836073
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2  0.837614
+bilfinger2026                  Cupra_288_C10_discharge  0.773025
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10  0.831891
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6  0.775083
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17  0.856888
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside  0.838169
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45  0.832888
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45  0.833702
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45  0.833752
+bilfinger2026                     Tesla_AC_10A_C8_w_cv  0.000000
+bilfinger2026                     Tesla_AC_16A_C5_w_cv  0.000000
+bilfinger2026                     Tesla_AC_5A_C17_w_cv  0.000000
+bilfinger2026                     Tesla_AC_8A_C10_w_cv  0.000000
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv  0.000000
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv  0.000000
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing  0.848992
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC  0.832668
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC  0.839253
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax  0.851136
+
+## U_grid025
+      release                                     unit  U_grid025
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021   0.000048
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022   0.000000
+bilfinger2024                        VW_FTM_JB_8A_2021   0.001268
+bilfinger2024                        VW_FTM_JB_8A_2023   1.000000
+bilfinger2024                        VW_FTM_JB_8A_2024   1.000000
+bilfinger2024                    VW_ID3_JB_8A_C40_2021   0.000952
+bilfinger2024                    VW_ID3_JB_8A_C40_2023   1.000000
+bilfinger2024                    VW_ID3_JB_8A_C40_2024   1.000000
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45   1.000000
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45   1.000000
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability   1.000000
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2   1.000000
+bilfinger2026                  Cupra_288_C10_discharge   0.999966
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10   1.000000
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6   1.000000
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17   1.000000
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside   1.000000
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45   1.000000
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45   1.000000
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45   1.000000
+bilfinger2026                     Tesla_AC_10A_C8_w_cv   0.000000
+bilfinger2026                     Tesla_AC_16A_C5_w_cv   0.000000
+bilfinger2026                     Tesla_AC_5A_C17_w_cv   0.000000
+bilfinger2026                     Tesla_AC_8A_C10_w_cv   0.000000
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv   0.000000
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv   0.000000
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing   1.000000
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC   1.000000
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC   1.000000
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax   1.000000
+
+## I_pos
+      release                                     unit    I_pos
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021 1.000000
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022 1.000000
+bilfinger2024                        VW_FTM_JB_8A_2021      NaN
+bilfinger2024                        VW_FTM_JB_8A_2023      NaN
+bilfinger2024                        VW_FTM_JB_8A_2024      NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021 1.000000
+bilfinger2024                    VW_ID3_JB_8A_C40_2023 1.000000
+bilfinger2024                    VW_ID3_JB_8A_C40_2024 1.000000
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45 1.000000
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45 1.000000
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability 1.000000
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2 1.000000
+bilfinger2026                  Cupra_288_C10_discharge 0.000000
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10 1.000000
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6 1.000000
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17 1.000000
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside 1.000000
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45 1.000000
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45 1.000000
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45 1.000000
+bilfinger2026                     Tesla_AC_10A_C8_w_cv 1.000000
+bilfinger2026                     Tesla_AC_16A_C5_w_cv 1.000000
+bilfinger2026                     Tesla_AC_5A_C17_w_cv 1.000000
+bilfinger2026                     Tesla_AC_8A_C10_w_cv 1.000000
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv 1.000000
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv 1.000000
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 0.196803
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC 0.999987
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC 1.000000
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax 1.000000
+
+## I_neg
+      release                                     unit    I_neg
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021 0.000000
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022 0.000000
+bilfinger2024                        VW_FTM_JB_8A_2021      NaN
+bilfinger2024                        VW_FTM_JB_8A_2023      NaN
+bilfinger2024                        VW_FTM_JB_8A_2024      NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021 0.000000
+bilfinger2024                    VW_ID3_JB_8A_C40_2023 0.000000
+bilfinger2024                    VW_ID3_JB_8A_C40_2024 0.000000
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45 0.000000
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45 0.000000
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability 0.000000
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2 0.000000
+bilfinger2026                  Cupra_288_C10_discharge 0.999966
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10 0.000000
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6 0.000000
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17 0.000000
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside 0.000000
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45 0.000000
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45 0.000000
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45 0.000000
+bilfinger2026                     Tesla_AC_10A_C8_w_cv 0.000000
+bilfinger2026                     Tesla_AC_16A_C5_w_cv 0.000000
+bilfinger2026                     Tesla_AC_5A_C17_w_cv 0.000000
+bilfinger2026                     Tesla_AC_8A_C10_w_cv 0.000000
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv 0.000000
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv 0.000000
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 0.042360
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC 0.000000
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC 0.000000
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax 0.000000
+
+## I_min
+      release                                     unit      I_min
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021    1.85310
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022    0.70200
+bilfinger2024                        VW_FTM_JB_8A_2021        NaN
+bilfinger2024                        VW_FTM_JB_8A_2023        NaN
+bilfinger2024                        VW_FTM_JB_8A_2024        NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021    3.10125
+bilfinger2024                    VW_ID3_JB_8A_C40_2023    2.05000
+bilfinger2024                    VW_ID3_JB_8A_C40_2024    2.55000
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45    2.02000
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45    2.02000
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability    2.01000
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2    0.58000
+bilfinger2026                  Cupra_288_C10_discharge  -17.76000
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10   10.42000
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6   22.79000
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17    7.67000
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside    6.02000
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45    2.02000
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45    2.01000
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45    2.01000
+bilfinger2026                     Tesla_AC_10A_C8_w_cv    2.16910
+bilfinger2026                     Tesla_AC_16A_C5_w_cv    2.49010
+bilfinger2026                     Tesla_AC_5A_C17_w_cv    2.35760
+bilfinger2026                     Tesla_AC_8A_C10_w_cv    2.51070
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv    1.11850
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv    0.70200
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing -322.52000
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC    0.00000
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC    1.05000
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax    2.55000
+
+## I_max
+      release                                     unit         I_max
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021      3.061000
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022      3.026100
+bilfinger2024                        VW_FTM_JB_8A_2021           NaN
+bilfinger2024                        VW_FTM_JB_8A_2023           NaN
+bilfinger2024                        VW_FTM_JB_8A_2024           NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021      6.584351
+bilfinger2024                    VW_ID3_JB_8A_C40_2023      4.780000
+bilfinger2024                    VW_ID3_JB_8A_C40_2024      4.050000
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45      4.520000
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45      4.320000
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability      4.800000
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2      4.330000
+bilfinger2026                  Cupra_288_C10_discharge     -0.100000
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10     16.720000
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6     28.010000
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17     10.590000
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside     11.010000
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45      5.120000
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45      4.620000
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45      4.730000
+bilfinger2026                     Tesla_AC_10A_C8_w_cv     19.088500
+bilfinger2026                     Tesla_AC_16A_C5_w_cv     30.935400
+bilfinger2026                     Tesla_AC_5A_C17_w_cv      9.547200
+bilfinger2026                     Tesla_AC_8A_C10_w_cv     15.878300
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv     11.607100
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv      3.026100
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 166272.140000
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC      5.840000
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC      5.790000
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax      4.050000
+
+## U_first
+      release                                     unit    U_first
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021 325.814810
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022 329.105860
+bilfinger2024                        VW_FTM_JB_8A_2021        NaN
+bilfinger2024                        VW_FTM_JB_8A_2023        NaN
+bilfinger2024                        VW_FTM_JB_8A_2024        NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021 359.303858
+bilfinger2024                    VW_ID3_JB_8A_C40_2023 362.500000
+bilfinger2024                    VW_ID3_JB_8A_C40_2024 361.500000
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45 358.250000
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45 360.000000
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability 361.750000
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2 366.000000
+bilfinger2026                  Cupra_288_C10_discharge        NaN
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10 363.000000
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6 367.250000
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17 367.500000
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside 365.500000
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45 365.000000
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45 361.250000
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45 362.750000
+bilfinger2026                     Tesla_AC_10A_C8_w_cv 339.041130
+bilfinger2026                     Tesla_AC_16A_C5_w_cv 339.960570
+bilfinger2026                     Tesla_AC_5A_C17_w_cv 336.641150
+bilfinger2026                     Tesla_AC_8A_C10_w_cv 339.150710
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv 327.008160
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv 329.105860
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 419.750000
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC 359.750000
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC 359.250000
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax 361.500000
+
+## U_last
+      release                                     unit    U_last
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021 365.61956
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022 386.37007
+bilfinger2024                        VW_FTM_JB_8A_2021       NaN
+bilfinger2024                        VW_FTM_JB_8A_2023       NaN
+bilfinger2024                        VW_FTM_JB_8A_2024       NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021 452.00000
+bilfinger2024                    VW_ID3_JB_8A_C40_2023 446.75000
+bilfinger2024                    VW_ID3_JB_8A_C40_2024 454.50000
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45 454.00000
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45 453.50000
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability 453.25000
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2 453.00000
+bilfinger2026                  Cupra_288_C10_discharge 363.50000
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10 454.25000
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6 456.00000
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17 453.00000
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside 456.25000
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45 454.75000
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45 451.75000
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45 454.75000
+bilfinger2026                     Tesla_AC_10A_C8_w_cv 386.67905
+bilfinger2026                     Tesla_AC_16A_C5_w_cv 386.74001
+bilfinger2026                     Tesla_AC_5A_C17_w_cv 386.62424
+bilfinger2026                     Tesla_AC_8A_C10_w_cv 386.41370
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv 364.48514
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv 386.37007
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 451.75000
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC 455.75000
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC 454.00000
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax 454.50000
+
+## U_min
+      release                                     unit      U_min
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021 325.675075
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022 329.075140
+bilfinger2024                        VW_FTM_JB_8A_2021        NaN
+bilfinger2024                        VW_FTM_JB_8A_2023        NaN
+bilfinger2024                        VW_FTM_JB_8A_2024        NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021 359.303858
+bilfinger2024                    VW_ID3_JB_8A_C40_2023 362.500000
+bilfinger2024                    VW_ID3_JB_8A_C40_2024 361.500000
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45 358.250000
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45 360.000000
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability 361.750000
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2 366.000000
+bilfinger2026                  Cupra_288_C10_discharge 363.500000
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10 363.000000
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6 367.250000
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17 367.500000
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside 365.500000
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45 365.000000
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45 361.000000
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45 362.750000
+bilfinger2026                     Tesla_AC_10A_C8_w_cv 339.041130
+bilfinger2026                     Tesla_AC_16A_C5_w_cv 339.960570
+bilfinger2026                     Tesla_AC_5A_C17_w_cv 336.595230
+bilfinger2026                     Tesla_AC_8A_C10_w_cv 338.817940
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv 327.008160
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv 329.075140
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 348.500000
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC 359.750000
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC 359.250000
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax 361.500000
+
+## U_max
+      release                                     unit      U_max
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021  365.61956
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022  386.37007
+bilfinger2024                        VW_FTM_JB_8A_2021        NaN
+bilfinger2024                        VW_FTM_JB_8A_2023        NaN
+bilfinger2024                        VW_FTM_JB_8A_2024        NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021  452.00000
+bilfinger2024                    VW_ID3_JB_8A_C40_2023  446.75000
+bilfinger2024                    VW_ID3_JB_8A_C40_2024  454.50000
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45  454.00000
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45  453.50000
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability  453.50000
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2  453.00000
+bilfinger2026                  Cupra_288_C10_discharge  452.00000
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10  454.50000
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6  456.00000
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17  453.25000
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside  456.25000
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45  454.75000
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45  451.75000
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45  455.00000
+bilfinger2026                     Tesla_AC_10A_C8_w_cv  386.67905
+bilfinger2026                     Tesla_AC_16A_C5_w_cv  386.74001
+bilfinger2026                     Tesla_AC_5A_C17_w_cv  386.62424
+bilfinger2026                     Tesla_AC_8A_C10_w_cv  386.41370
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv  364.59065
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv  386.37007
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 1023.50000
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC  455.75000
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC  454.00000
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax  454.50000
+
+## I_med_rising
+      release                                     unit  I_med_rising
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021      2.887300
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022      2.710195
+bilfinger2024                        VW_FTM_JB_8A_2021           NaN
+bilfinger2024                        VW_FTM_JB_8A_2023           NaN
+bilfinger2024                        VW_FTM_JB_8A_2024           NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021      3.694180
+bilfinger2024                    VW_ID3_JB_8A_C40_2023      3.540000
+bilfinger2024                    VW_ID3_JB_8A_C40_2024      3.350000
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45      3.360000
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45      3.440000
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability      3.790000
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2      3.570000
+bilfinger2026                  Cupra_288_C10_discharge    -14.280000
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10     14.370000
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6     23.890000
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17      9.280000
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside      8.870000
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45      3.520000
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45      3.480000
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45      3.490000
+bilfinger2026                     Tesla_AC_10A_C8_w_cv      3.477450
+bilfinger2026                     Tesla_AC_16A_C5_w_cv      3.651350
+bilfinger2026                     Tesla_AC_5A_C17_w_cv      8.840300
+bilfinger2026                     Tesla_AC_8A_C10_w_cv      4.262400
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv     11.320400
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv      2.710195
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing      3.670000
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC      3.450000
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC      4.070000
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax      3.350000
+
+## I_med_falling
+      release                                     unit  I_med_falling
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021            NaN
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022            NaN
+bilfinger2024                        VW_FTM_JB_8A_2021            NaN
+bilfinger2024                        VW_FTM_JB_8A_2023            NaN
+bilfinger2024                        VW_FTM_JB_8A_2024            NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021            NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2023            NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2024            NaN
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45            NaN
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45            NaN
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability            NaN
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2            NaN
+bilfinger2026                  Cupra_288_C10_discharge      -12.79000
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10            NaN
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6            NaN
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17            NaN
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside            NaN
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45            NaN
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45            NaN
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45            NaN
+bilfinger2026                     Tesla_AC_10A_C8_w_cv       18.55850
+bilfinger2026                     Tesla_AC_16A_C5_w_cv       19.99845
+bilfinger2026                     Tesla_AC_5A_C17_w_cv            NaN
+bilfinger2026                     Tesla_AC_8A_C10_w_cv       14.40055
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv       10.94730
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv            NaN
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing        0.00000
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC            NaN
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC            NaN
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax            NaN
+
+## Q_end
+      release                                     unit         Q_end
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021    161.572470
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022    156.200783
+bilfinger2024                        VW_FTM_JB_8A_2021           NaN
+bilfinger2024                        VW_FTM_JB_8A_2023           NaN
+bilfinger2024                        VW_FTM_JB_8A_2024           NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021    149.539731
+bilfinger2024                    VW_ID3_JB_8A_C40_2023    136.558147
+bilfinger2024                    VW_ID3_JB_8A_C40_2024    146.144179
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45    151.016010
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45    152.033458
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability    151.338093
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2    148.602680
+bilfinger2026                  Cupra_288_C10_discharge           NaN
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10    149.042975
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6    148.498592
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17    145.281986
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside    148.498091
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45    151.364562
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45    150.595616
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45    151.177596
+bilfinger2026                     Tesla_AC_10A_C8_w_cv    152.418898
+bilfinger2026                     Tesla_AC_16A_C5_w_cv    151.819294
+bilfinger2026                     Tesla_AC_5A_C17_w_cv    151.677414
+bilfinger2026                     Tesla_AC_8A_C10_w_cv    151.443012
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv    148.575937
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv    156.200783
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 209525.163686
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC    146.867438
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC    146.789100
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax    146.144179
+
+## Qint_end
+      release                                     unit      Qint_end
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021    161.572470
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022    156.200783
+bilfinger2024                        VW_FTM_JB_8A_2021           NaN
+bilfinger2024                        VW_FTM_JB_8A_2023           NaN
+bilfinger2024                        VW_FTM_JB_8A_2024           NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021    149.539731
+bilfinger2024                    VW_ID3_JB_8A_C40_2023    136.558147
+bilfinger2024                    VW_ID3_JB_8A_C40_2024    146.144179
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45    151.016010
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45    152.033458
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability    151.338093
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2    148.602680
+bilfinger2026                  Cupra_288_C10_discharge           NaN
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10    149.042975
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6    148.498592
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17    145.281986
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside    148.498091
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45    151.364562
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45    150.595616
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45    151.177596
+bilfinger2026                     Tesla_AC_10A_C8_w_cv    152.418898
+bilfinger2026                     Tesla_AC_16A_C5_w_cv    151.819294
+bilfinger2026                     Tesla_AC_5A_C17_w_cv    151.677414
+bilfinger2026                     Tesla_AC_8A_C10_w_cv    151.302330
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv    148.575937
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv    156.200783
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 209525.163686
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC    146.867438
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC    146.789100
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax    146.144179
+
+## Q_res_maxabs
+      release                                     unit  Q_res_maxabs
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021  0.000000e+00
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022  0.000000e+00
+bilfinger2024                        VW_FTM_JB_8A_2021           NaN
+bilfinger2024                        VW_FTM_JB_8A_2023           NaN
+bilfinger2024                        VW_FTM_JB_8A_2024           NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021  0.000000e+00
+bilfinger2024                    VW_ID3_JB_8A_C40_2023  0.000000e+00
+bilfinger2024                    VW_ID3_JB_8A_C40_2024  0.000000e+00
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45  0.000000e+00
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45  0.000000e+00
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability  0.000000e+00
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2  0.000000e+00
+bilfinger2026                  Cupra_288_C10_discharge  0.000000e+00
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10  0.000000e+00
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6  0.000000e+00
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17  0.000000e+00
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside  0.000000e+00
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45  0.000000e+00
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45  0.000000e+00
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45  0.000000e+00
+bilfinger2026                     Tesla_AC_10A_C8_w_cv  0.000000e+00
+bilfinger2026                     Tesla_AC_16A_C5_w_cv  0.000000e+00
+bilfinger2026                     Tesla_AC_5A_C17_w_cv  0.000000e+00
+bilfinger2026                     Tesla_AC_8A_C10_w_cv  1.620926e-14
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv  0.000000e+00
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv  0.000000e+00
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing  0.000000e+00
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC  0.000000e+00
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC  0.000000e+00
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax  0.000000e+00
+
+## Q_res0
+      release                                     unit   Q_res0
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021 0.000000
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022 0.000000
+bilfinger2024                        VW_FTM_JB_8A_2021      NaN
+bilfinger2024                        VW_FTM_JB_8A_2023      NaN
+bilfinger2024                        VW_FTM_JB_8A_2024      NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021 0.000000
+bilfinger2024                    VW_ID3_JB_8A_C40_2023 0.000000
+bilfinger2024                    VW_ID3_JB_8A_C40_2024 0.000000
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45 0.000000
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45 0.000000
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability 0.000000
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2 0.000000
+bilfinger2026                  Cupra_288_C10_discharge 0.000000
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10 0.000000
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6 0.000000
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17 0.000000
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside 0.000000
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45 0.000000
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45 0.000000
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45 0.000000
+bilfinger2026                     Tesla_AC_10A_C8_w_cv 0.000000
+bilfinger2026                     Tesla_AC_16A_C5_w_cv 0.000000
+bilfinger2026                     Tesla_AC_5A_C17_w_cv 0.000000
+bilfinger2026                     Tesla_AC_8A_C10_w_cv 0.140682
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv 0.000000
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv 0.000000
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 0.000000
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC 0.000000
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC 0.000000
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax 0.000000
+
+## Q_res_vs_filtered_maxabs
+      release                                     unit  Q_res_vs_filtered_maxabs
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021                  0.850239
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022                  0.807644
+bilfinger2024                        VW_FTM_JB_8A_2021                       NaN
+bilfinger2024                        VW_FTM_JB_8A_2023                       NaN
+bilfinger2024                        VW_FTM_JB_8A_2024                       NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021                  0.822753
+bilfinger2024                    VW_ID3_JB_8A_C40_2023                  0.754571
+bilfinger2024                    VW_ID3_JB_8A_C40_2024                  0.868472
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45                  0.824855
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45                  0.858016
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability                  0.827397
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2                  0.833988
+bilfinger2026                  Cupra_288_C10_discharge                  0.000000
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10                  0.815956
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6                  0.846433
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17                  0.807271
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside                  0.813889
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45                  0.845520
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45                  0.824972
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45                  0.837060
+bilfinger2026                     Tesla_AC_10A_C8_w_cv                  0.845587
+bilfinger2026                     Tesla_AC_16A_C5_w_cv                  0.938869
+bilfinger2026                     Tesla_AC_5A_C17_w_cv                  0.792992
+bilfinger2026                     Tesla_AC_8A_C10_w_cv                  0.822581
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv                  0.763455
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv                  0.807644
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing              36995.192509
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC                  0.818374
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC                  0.817973
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax                  0.868472
+
+## E_kWh_window
+      release                                     unit  E_kWh_window
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021     55.795236
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022     54.031895
+bilfinger2024                        VW_FTM_JB_8A_2021           NaN
+bilfinger2024                        VW_FTM_JB_8A_2023           NaN
+bilfinger2024                        VW_FTM_JB_8A_2024           NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021     57.910262
+bilfinger2024                    VW_ID3_JB_8A_C40_2023     54.008850
+bilfinger2024                    VW_ID3_JB_8A_C40_2024     55.912929
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45     57.552573
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45     58.428250
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability     58.401574
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2     58.016133
+bilfinger2026                  Cupra_288_C10_discharge           NaN
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10     57.648578
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6     57.141280
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17     57.268888
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside     56.960366
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45     58.219184
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45     58.772886
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45     57.726906
+bilfinger2026                     Tesla_AC_10A_C8_w_cv     53.992805
+bilfinger2026                     Tesla_AC_16A_C5_w_cv     53.856685
+bilfinger2026                     Tesla_AC_5A_C17_w_cv     53.294670
+bilfinger2026                     Tesla_AC_8A_C10_w_cv     53.484603
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv     52.600692
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv     54.031895
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 110781.791823
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC     55.607268
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC     56.314982
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax     55.912929
+
+## Q_Ah_window
+      release                                     unit   Q_Ah_window
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021    157.867627
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022    152.939800
+bilfinger2024                        VW_FTM_JB_8A_2021           NaN
+bilfinger2024                        VW_FTM_JB_8A_2023           NaN
+bilfinger2024                        VW_FTM_JB_8A_2024           NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021    142.728042
+bilfinger2024                    VW_ID3_JB_8A_C40_2023    133.576400
+bilfinger2024                    VW_ID3_JB_8A_C40_2024    137.758613
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45    141.975250
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45    144.117026
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability    144.052724
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2    143.014821
+bilfinger2026                  Cupra_288_C10_discharge           NaN
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10    141.888124
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6    140.395455
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17    140.968043
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside    140.173509
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45    143.506968
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45    144.934293
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45    142.352655
+bilfinger2026                     Tesla_AC_10A_C8_w_cv    152.138712
+bilfinger2026                     Tesla_AC_16A_C5_w_cv    151.601529
+bilfinger2026                     Tesla_AC_5A_C17_w_cv    150.564218
+bilfinger2026                     Tesla_AC_8A_C10_w_cv    150.862683
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv    147.656403
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv    152.939800
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 209520.550612
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC    136.973748
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC    138.725120
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax    137.758613
+
+## cellV_lin
+      release                                     unit  cellV_lin
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021   0.497975
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022   0.483624
+bilfinger2024                        VW_FTM_JB_8A_2021        NaN
+bilfinger2024                        VW_FTM_JB_8A_2023        NaN
+bilfinger2024                        VW_FTM_JB_8A_2024        NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021   0.989227
+bilfinger2024                    VW_ID3_JB_8A_C40_2023   0.608172
+bilfinger2024                    VW_ID3_JB_8A_C40_2024   0.402347
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45   0.672191
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45   0.693900
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability   0.696415
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2   0.360845
+bilfinger2026                  Cupra_288_C10_discharge   0.489084
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10   0.688494
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6   0.373454
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17   0.961341
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside   0.690833
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45   0.414355
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45   0.708644
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45   0.685731
+bilfinger2026                     Tesla_AC_10A_C8_w_cv   0.316393
+bilfinger2026                     Tesla_AC_16A_C5_w_cv   0.271347
+bilfinger2026                     Tesla_AC_5A_C17_w_cv   0.342197
+bilfinger2026                     Tesla_AC_8A_C10_w_cv   0.365963
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv   0.270259
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv   0.483624
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing   0.484599
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC   0.601949
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC   0.616010
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax   0.402347
+
+## cellV_repeat
+      release                                     unit  cellV_repeat
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021      0.002266
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022      0.005195
+bilfinger2024                        VW_FTM_JB_8A_2021           NaN
+bilfinger2024                        VW_FTM_JB_8A_2023           NaN
+bilfinger2024                        VW_FTM_JB_8A_2024           NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021      0.000721
+bilfinger2024                    VW_ID3_JB_8A_C40_2023      0.768145
+bilfinger2024                    VW_ID3_JB_8A_C40_2024      0.590029
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45      0.794849
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45      0.812450
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability      0.813677
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2      0.596108
+bilfinger2026                  Cupra_288_C10_discharge      0.645893
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10      0.810252
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6      0.511650
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17      0.980671
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside      0.810643
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45      0.638229
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45      0.821779
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45      0.807022
+bilfinger2026                     Tesla_AC_10A_C8_w_cv      0.000000
+bilfinger2026                     Tesla_AC_16A_C5_w_cv      0.000000
+bilfinger2026                     Tesla_AC_5A_C17_w_cv      0.000000
+bilfinger2026                     Tesla_AC_8A_C10_w_cv      0.000000
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv      0.000000
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv      0.005195
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing      0.662723
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC      0.765147
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC      0.773624
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax      0.590029
+
+## start_utc
+      release                                     unit                     start_utc
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021                           NaN
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022                           NaN
+bilfinger2024                        VW_FTM_JB_8A_2021                           NaN
+bilfinger2024                        VW_FTM_JB_8A_2023 2023-06-16 13:46:44.518832445
+bilfinger2024                        VW_FTM_JB_8A_2024 2024-04-22 08:37:50.119777679
+bilfinger2024                    VW_ID3_JB_8A_C40_2021                           NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2023                           NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2024                           NaN
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45                           NaN
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45                           NaN
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability                           NaN
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2                           NaN
+bilfinger2026                  Cupra_288_C10_discharge                           NaN
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10                           NaN
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6                           NaN
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17                           NaN
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside                           NaN
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45                           NaN
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45                           NaN
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45                           NaN
+bilfinger2026                     Tesla_AC_10A_C8_w_cv                           NaN
+bilfinger2026                     Tesla_AC_16A_C5_w_cv                           NaN
+bilfinger2026                     Tesla_AC_5A_C17_w_cv                           NaN
+bilfinger2026                     Tesla_AC_8A_C10_w_cv                           NaN
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv                           NaN
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv                           NaN
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing                           NaN
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC                           NaN
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC                           NaN
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax                           NaN
+
+## end_utc
+      release                                     unit                       end_utc
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021                           NaN
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022                           NaN
+bilfinger2024                        VW_FTM_JB_8A_2021                           NaN
+bilfinger2024                        VW_FTM_JB_8A_2023 2023-06-18 06:14:30.963620186
+bilfinger2024                        VW_FTM_JB_8A_2024 2024-04-24 08:07:52.886425018
+bilfinger2024                    VW_ID3_JB_8A_C40_2021                           NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2023                           NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2024                           NaN
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45                           NaN
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45                           NaN
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability                           NaN
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2                           NaN
+bilfinger2026                  Cupra_288_C10_discharge                           NaN
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10                           NaN
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6                           NaN
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17                           NaN
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside                           NaN
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45                           NaN
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45                           NaN
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45                           NaN
+bilfinger2026                     Tesla_AC_10A_C8_w_cv                           NaN
+bilfinger2026                     Tesla_AC_16A_C5_w_cv                           NaN
+bilfinger2026                     Tesla_AC_5A_C17_w_cv                           NaN
+bilfinger2026                     Tesla_AC_8A_C10_w_cv                           NaN
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv                           NaN
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv                           NaN
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing                           NaN
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC                           NaN
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC                           NaN
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax                           NaN
+
+## date_min
+      release                                     unit                      date_min
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021                           NaN
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022                           NaN
+bilfinger2024                        VW_FTM_JB_8A_2021                           NaN
+bilfinger2024                        VW_FTM_JB_8A_2023                           NaN
+bilfinger2024                        VW_FTM_JB_8A_2024                           NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021           2021-02-05 09:43:24
+bilfinger2024                    VW_ID3_JB_8A_C40_2023 2023-06-16 13:49:40.089178368
+bilfinger2024                    VW_ID3_JB_8A_C40_2024 2024-04-22 08:37:52.605304241
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45 2022-11-16 17:34:23.107848192
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45 2022-11-29 15:07:04.968119296
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability 2022-12-03 15:02:10.618097664
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2 2022-12-09 15:54:26.274031616
+bilfinger2026                  Cupra_288_C10_discharge 2022-12-14 16:36:59.526629448
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10 2022-12-13 10:11:41.807655811
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6 2022-12-15 09:05:27.691639900
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17 2022-12-09 15:43:30.904104948
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside 2022-12-11 10:49:32.905515909
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45 2022-11-23 14:03:37.289256334
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45 2022-11-25 13:39:24.828220160
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45 2022-11-11 19:08:04.942540800
+bilfinger2026                     Tesla_AC_10A_C8_w_cv                           NaN
+bilfinger2026                     Tesla_AC_16A_C5_w_cv                           NaN
+bilfinger2026                     Tesla_AC_5A_C17_w_cv                           NaN
+bilfinger2026                     Tesla_AC_8A_C10_w_cv                           NaN
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv                           NaN
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv                           NaN
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 2024-04-30 15:40:48.609684944
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC 2024-05-22 13:28:19.194813967
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC 2024-06-14 15:39:37.792204142
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax 2024-04-22 08:37:52.605304241
+
+## date_max
+      release                                     unit                      date_max
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2021                           NaN
+bilfinger2024                Tesla_JB_8A_CEE7_C57_2022                           NaN
+bilfinger2024                        VW_FTM_JB_8A_2021                           NaN
+bilfinger2024                        VW_FTM_JB_8A_2023                           NaN
+bilfinger2024                        VW_FTM_JB_8A_2024                           NaN
+bilfinger2024                    VW_ID3_JB_8A_C40_2021           2021-02-07 00:15:18
+bilfinger2024                    VW_ID3_JB_8A_C40_2023 2023-06-18 04:50:26.484341248
+bilfinger2024                    VW_ID3_JB_8A_C40_2024 2024-04-24 04:07:08.974159241
+bilfinger2026                 Cupra_204_JB_8A_CEE7_C45 2022-11-18 14:14:53.182466048
+bilfinger2026                 Cupra_213_JB_8A_CEE7_C45 2022-12-01 10:57:26.751798272
+bilfinger2026   Cupra_213_JB_8A_CEE7_C45_repeatability 2022-12-05 06:23:09.909770240
+bilfinger2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2 2022-12-11 09:30:01.538861056
+bilfinger2026                  Cupra_288_C10_discharge 2022-12-15 08:59:35.182059526
+bilfinger2026               Cupra_288_JB_10A_CEE16_C10 2022-12-13 20:08:06.029228926
+bilfinger2026                Cupra_288_JB_32A_CEE32_C6 2022-12-15 14:56:26.515283108
+bilfinger2026                Cupra_288_JB_6A_CEE16_C17 2022-12-10 07:31:14.080833673
+bilfinger2026        Cupra_288_JB_6A_CEE16_C17_outside 2022-12-12 02:36:56.233864069
+bilfinger2026                 Cupra_288_JB_8A_CEE7_C45 2022-11-25 08:51:19.544384718
+bilfinger2026                 Cupra_349_JB_8A_CEE7_C45 2022-11-27 09:06:38.327315200
+bilfinger2026                 Cupra_397_JB_8A_CEE7_C45 2022-11-13 13:48:33.501024256
+bilfinger2026                     Tesla_AC_10A_C8_w_cv                           NaN
+bilfinger2026                     Tesla_AC_16A_C5_w_cv                           NaN
+bilfinger2026                     Tesla_AC_5A_C17_w_cv                           NaN
+bilfinger2026                     Tesla_AC_8A_C10_w_cv                           NaN
+bilfinger2026       Tesla_JB_6A_CEE16_C13_outside_w_cv                           NaN
+bilfinger2026           Tesla_JB_6A_CEE7_C57_2022_w_cv                           NaN
+bilfinger2026             VW_ID3_FTM_8A_CEE7_Balancing 2024-06-17 07:50:26.336959839
+bilfinger2026          VW_ID3_FTM_8A_CEE7_RelaxHighSOC 2024-05-24 07:47:30.599763393
+bilfinger2026           VW_ID3_FTM_8A_CEE7_RelaxLowSOC 2024-06-16 03:52:41.769659758
+bilfinger2026           VW_ID3_FTM_JB_8A_CEE7_preRelax 2024-04-24 04:07:08.974159241

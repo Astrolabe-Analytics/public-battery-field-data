@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13.14"
+          cache: pip
+      - name: Install pinned dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run tests
+        run: python -m pytest -q
+      - name: Check for private paths and internal wording
+        run: python scripts/leak_check.py
+      - name: Check every notebook
+        shell: bash
+        run: |
+          find notebooks -name '*.ipynb' -print0 | sort -z | while IFS= read -r -d '' notebook; do
+            python scripts/check_notebook.py "$notebook"
+          done
+      - name: Check deterministic rebuild
+        run: |
+          python scripts/rebuild.py
+          git diff --exit-code

@@ -1,0 +1,95 @@
+{
+  "package": "evbattery",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "NMC-class",
+      "basis": "derived",
+      "source": "scripts/facts/_extra.py chemistry rule: 99th percentile of released cell voltage (<3.70 V LFP, >3.95 V NMC-class)",
+      "note": "Snippet maximum cell voltage, 99th percentile per archive: battery_dataset1.tar.gz 4.164 V, battery_dataset2.tar.gz 4.147 V, battery_dataset3.tar.gz 4.300 V."
+    },
+    "units_released": {
+      "value": 464,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('evbattery')",
+      "note": "Rule: labeled vehicles with at least one snippet. Vehicles with at least one snippet; the label tables list 465 cars, and battery_dataset3.tar.gz car 545 has no snippets."
+    },
+    "cells_liion": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Released snippets do not provide a physical pack-topology field."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Snippets carry only the maximum and minimum cell voltage, not individual cells."
+    },
+    "energy_mwh": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The release does not provide a complete nominal pack-energy rating or configuration from which to compute one."
+    },
+    "energy_basis": {
+      "value": "none",
+      "basis": "derived",
+      "source": "energy_mwh is not available",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Released snippets have relative sample positions but no calendar timestamps."
+    },
+    "obs_hours": {
+      "value": 57265.42222222222,
+      "basis": "measured",
+      "source": "scripts/facts/_snippet_scan.py (cached in reports/facts/_cache/)",
+      "note": "Lower bound over battery_dataset1.tar.gz, battery_dataset2.tar.gz; battery_dataset3.tar.gz is left out because it is the same fleet as zhang2023 brand 2. Each snippet's clock restarts at zero, so overlapping snippets count once per charge segment. Snippet clocks step by exactly 10 in every archive. The paper (arXiv:2201.12358v3, Sec. 3) says timestamps were randomly shifted and scaled for anonymization, but on the shared fleet the charge per snippet agrees with zhang2023, whose 10 s sampling is stated (SI Note 2, p. 11), to a median ratio of 0.9994, so hours are counted at 10 s per step."
+    },
+    "size_gb": {
+      "value": 1.408209405,
+      "basis": "measured",
+      "source": "scripts/facts/evbattery.py",
+      "note": ""
+    },
+    "files": {
+      "value": 3,
+      "basis": "measured",
+      "source": "scripts/facts/evbattery.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.6084/m9.figshare.23301881; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  },
+  "overlap_identifiers": {
+    "value": 49,
+    "basis": "measured",
+    "source": "scripts/facts/_overlap_scan.py -> reports/facts/_cache/zhang2023_evbattery_overlap.json",
+    "note": "Content match, not vehicle numbers: 49 vehicles confirmed one-to-one between zhang2023 battery_brand2 and evbattery battery_dataset3 (all vehicles with data in each archive; 44 by identical snippets, 5 by tolerance matching with agreeing charging-session numbers); no snippets shared between any other archives; none matched under the same number. The confirmed vehicles count once in the unit total."
+  }
+}

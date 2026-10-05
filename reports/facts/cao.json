@@ -1,0 +1,89 @@
+{
+  "package": "cao",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "DTI: NMC-class; QAS: LFP; GIS: unknown",
+      "basis": "derived",
+      "source": "fielddata/specs.py cao groups (cell-voltage range rule over released vin_2 cell voltages)",
+      "note": "Inferred from measured cell-voltage ranges; the Zenodo record, released archives, and paper do not name the chemistry."
+    },
+    "units_released": {
+      "value": 514,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('cao')",
+      "note": "Rule: one row per vehicle."
+    },
+    "cells_liion": {
+      "value": 50030,
+      "basis": "derived",
+      "source": "DTI vehicles x 85 plus QAS vehicles x 110; GIS excluded because its channel meaning is unresolved",
+      "note": ""
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 50030,
+      "basis": "derived",
+      "source": "DTI vehicles x 85 plus QAS vehicles x 110; GIS excluded because its channel meaning is unresolved",
+      "note": ""
+    },
+    "energy_mwh": {
+      "value": 15.107,
+      "basis": "derived",
+      "source": "https://doi.org/10.1038/s41467-025-56832-8, Supplementary Information, Note S5, p. 24 (one frame every 30 s)",
+      "note": "Estimate by coulomb counting at the stated 30 s spacing, times mean pack voltage (sum of series cell voltages): DTI 44.7 kWh per vehicle (median of 73 of 80 vehicles with a usable charge or discharge of at least 20 percent SOC), times 80 vehicles; QAS 29.3 kWh per vehicle (median of 393 of 393 vehicles with a usable charge or discharge of at least 20 percent SOC), times 393 vehicles. GIS (41 vehicles) excluded because its channel layout is unresolved. Present usable energy, not the nameplate rating."
+    },
+    "energy_basis": {
+      "value": "computed",
+      "basis": "derived",
+      "source": "energy_mwh is computed from the released data",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Released tensors contain no timestamps."
+    },
+    "obs_hours": {
+      "value": 151899.95,
+      "basis": "derived",
+      "source": "https://doi.org/10.1038/s41467-025-56832-8, Supplementary Information, Note S5, p. 24 (one frame every 30 s)",
+      "note": "All released rows (DTI, QAS and GIS) times the stated 30 s frame spacing; the release itself has no timestamps."
+    },
+    "size_gb": {
+      "value": 38.063456304,
+      "basis": "measured",
+      "source": "scripts/facts/cao.py",
+      "note": ""
+    },
+    "files": {
+      "value": 7,
+      "basis": "measured",
+      "source": "scripts/facts/cao.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.5281/zenodo.10656500; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

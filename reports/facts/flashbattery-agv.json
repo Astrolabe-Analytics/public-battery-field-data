@@ -1,0 +1,89 @@
+{
+  "package": "flashbattery-agv",
+  "facts": {
+    "application": {
+      "value": "industrial and robotics",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "lithium-ion",
+      "basis": "stated",
+      "source": "https://doi.org/10.1109/CCNC51644.2023.10060391, p. 1 (Flash Battery lithium-ion packs in AGV applications)",
+      "note": ""
+    },
+    "units_released": {
+      "value": 10,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('flashbattery-agv')",
+      "note": "Rule: one row per pack. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Per-cycle aggregate release does not expose pack topology."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Per-cycle aggregate release has no cell channels."
+    },
+    "energy_mwh": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No pack energy rating is present in the aggregate CSV."
+    },
+    "energy_basis": {
+      "value": "none",
+      "basis": "derived",
+      "source": "energy_mwh is not available",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 2.1464750171115674,
+      "basis": "measured",
+      "source": "scripts/facts/flashbattery-agv.py",
+      "note": ""
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 0.002268752,
+      "basis": "measured",
+      "source": "scripts/facts/flashbattery-agv.py",
+      "note": ""
+    },
+    "files": {
+      "value": 2,
+      "basis": "measured",
+      "source": "scripts/facts/flashbattery-agv.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "yes",
+      "basis": "stated",
+      "source": "https://doi.org/10.1109/CCNC51644.2023.10060391, Sec. IV, p. 3 (reset date 1st January 2000, temperatures -40 \u00b0C and 215 \u00b0C)",
+      "note": "Documented for the fleet data the release is drawn from; the release contains none of them (dates 2019-12-16 to 2022-02-07, temperatures 10 to 48 \u00b0C, no missing values; scripts/checks/source_audit/changan_cloverleaf_fei_agv/flashbattery_agv_audit_checks.py). The paper says its data were filtered and missing values imputed; whether the release was is not stated."
+    }
+  }
+}

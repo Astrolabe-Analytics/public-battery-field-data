@@ -1,0 +1,38 @@
+labels: ['FB-0', 'FB-1', 'FB-2', 'FB-3', 'FB-4', 'FB-5', 'FB-6', 'FB-7', 'FB-8', 'FB-9']
+   unit  cycles  first_date   last_date
+0  FB-0    4221  2019-12-16  2021-06-16
+1  FB-1    5843  2019-12-16  2022-02-07
+2  FB-2    6421  2019-12-16  2022-02-07
+3  FB-3    5946  2019-12-16  2022-02-07
+4  FB-4    6026  2019-12-16  2022-02-07
+5  FB-5    5688  2019-12-16  2022-02-07
+6  FB-6    5642  2019-12-16  2022-02-07
+7  FB-7    6014  2019-12-16  2022-02-07
+8  FB-8    5860  2019-12-16  2022-02-07
+9  FB-9    6219  2019-12-16  2022-02-07
+rows: 57880
+
+[1] counter step between consecutive rows of one pack:
+  step == 1: 988  step > 1: 56882  step == 0: 0  step < 0: 0
+  step quantiles (5, 25, 50, 75, 95, 99%): [2.0, 2.0, 2.0, 2.0, 3.0, 4.0]
+
+[2] cycletime: min 0 max 14400 median 6600.0
+  rows with cycletime == 0: 1
+  share of cycletime values that are multiples of 60: 1.0
+  cycletime > 7200: 25091  > 14400: 0
+  dQ per row (Ah) quantiles: [2.0, 5.0, 7.0, 10.0, 15.0]  dQ < 0 rows: 0
+  current if seconds (A) quantiles: [2.31, 3.58, 4.33, 5.11, 7.5]  share 5..100 A: 0.287
+  current if minutes (A) quantiles: [0.038, 0.06, 0.072, 0.085, 0.125]  share 5..100 A: 0.0001
+  paper Sec. V selection (average current >= 5 A with cycletime in s, cycletime <= 120 min), share kept per pack: {'FB-0': 0.237, 'FB-1': 0.244, 'FB-2': 0.256, 'FB-3': 0.178, 'FB-4': 0.243, 'FB-5': 0.257, 'FB-6': 0.248, 'FB-7': 0.232, 'FB-8': 0.212, 'FB-9': 0.235}  all packs: 0.234
+  share of consecutive equal totaldischarge steps among rows with both steps: 0.088
+
+[4] sentinels: date 2000-01-01: 0  min date: 2019-12-16  max date: 2022-02-07
+  mintemperature: min 10 max 40; == -40: 0; == 215: 0; missing: 0
+  maxtemperature: min 11 max 48; == -40: 0; == 215: 0; missing: 0
+  missing values per column: {'date': 0, 'counter': 0, 'cycletime': 0, 'totaldischarge': 0, 'mintemperature': 0, 'maxtemperature': 0, 'unit': 0}
+  consecutive rows with both temperatures unchanged: 7405 of 57870
+  rows whose totaldischarge is exactly the mean of its neighbours (prev != next): 5069 of 57860
+  rows with totaldischarge step 0 (no discharge recorded): 157
+  totaldischarge integer-valued: True ; temperatures integer-valued: True
+
+[5] rows with maxtemperature < mintemperature: 0 ; equal: 2

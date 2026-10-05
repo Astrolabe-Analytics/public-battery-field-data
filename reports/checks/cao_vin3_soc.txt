@@ -1,0 +1,22 @@
+DTI: 80 vehicles, 3,334,960 of 3,337,273 rows used (rows with a placeholder value left out)
+  vin_3 cell mean matches pack SOC (correlation >= 0.99 and median ratio within 1 percent of 1): 73 of 80 vehicles
+    correlation: minimum -0.6714, median 0.9999; median ratio: 1.0000 to 1.0000
+  cell = pack SOC + offset, absolute error: largest per-vehicle median 0, largest per-vehicle 99th percentile 46.7
+  per-cell SOC spread within a row (row standard deviation, median per vehicle): 0 to 2.13e-14, fleet median 1.42e-14
+  vin_3 trailing columns 1, 2 and 4 are exact copies of vin_2's temperature, SOC and current: 80 of 80 vehicles
+  vin_3 trailing column 3 (the extra one): 0 to 2223; vehicles where it holds one value: 1 of 80
+  vin_2 deviation vs cell minus row mean, correlation: -0.000 to 0.000, median -0.000 (0 vehicles undefined)
+  vin_2 deviation vs cell minus the authors' weighted mode, correlation: -0.001 to 0.000, median -0.000 (0 vehicles undefined)
+  vin_2 deviation spread across cells (row standard deviation, median per vehicle): 0 to 2.78e-17, fleet median 1.39e-17
+  per-cell part of the vin_2 voltage deviation vs per-cell part of the vin_3 SOC deviation, correlation: -0.000 to 0.000, quartiles -0.000 / -0.000 / 0.000 (0 vehicles undefined)
+QAS: 393 vehicles, 12,898,063 of 14,319,036 rows used (rows with a placeholder value left out)
+  vin_3 cell mean matches pack SOC (correlation >= 0.99 and median ratio within 1 percent of 1): 359 of 393 vehicles
+    correlation: minimum 0.4341, median 0.9992; median ratio: 0.9763 to 1.3798
+  cell = pack SOC + offset, absolute error: largest per-vehicle median 1.9e-05, largest per-vehicle 99th percentile 0.0011
+  per-cell SOC spread within a row (row standard deviation, median per vehicle): 0.000971 to 0.268, fleet median 0.00547
+  vin_3 trailing columns 1, 2 and 4 are exact copies of vin_2's temperature, SOC and current: 393 of 393 vehicles
+  vin_3 trailing column 3 (the extra one): 65535 to 65535; vehicles where it holds one value: 393 of 393
+  vin_2 deviation vs cell minus row mean, correlation: -0.160 to 0.718, median 0.041 (0 vehicles undefined)
+  vin_2 deviation vs cell minus the authors' weighted mode, correlation: -0.160 to 0.720, median 0.040 (0 vehicles undefined)
+  vin_2 deviation spread across cells (row standard deviation, median per vehicle): 1.99e-05 to 0.05, fleet median 0.000303
+  per-cell part of the vin_2 voltage deviation vs per-cell part of the vin_3 SOC deviation, correlation: 0.003 to 0.957, quartiles 0.048 / 0.290 / 0.423 (0 vehicles undefined)

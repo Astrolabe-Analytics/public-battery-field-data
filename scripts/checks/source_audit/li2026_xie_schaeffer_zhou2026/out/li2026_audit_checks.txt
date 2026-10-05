@@ -1,0 +1,67 @@
+li2026 audit checks, raw data (clean=False). Groups: 90; periods: ['real_world_02-03', 'real_world_03_04', 'real_world_05_06']
+
+[3] Column names across all 90 groups (600 files): 482 distinct; columns other than cell_NNN_V, cell_NNN_T, cur, unit: none
+
+[1a] Current across the 30 groups within each period (aligned on sample index), compared with battery_01
+  real_world_02-03: groups with cur identical to battery_01 at every sample: 30/30; max |cur - cur_battery_01| over all groups = 0.000 A; median over groups of mean |diff| = 0.000 A; min correlation with battery_01 = 1.0000; cur range -133.2 to 141.4 A
+  real_world_03_04: groups with cur identical to battery_01 at every sample: 30/30; max |cur - cur_battery_01| over all groups = 0.000 A; median over groups of mean |diff| = 0.000 A; min correlation with battery_01 = 1.0000; cur range -132.1 to 140.4 A
+  real_world_05_06: groups with cur identical to battery_01 at every sample: 30/30; max |cur - cur_battery_01| over all groups = 0.000 A; median over groups of mean |diff| = 0.000 A; min correlation with battery_01 = 1.0000; cur range -129.9 to 141.4 A
+
+[1c] Live voltage channels (more than one distinct value and not all zero), per period
+  real_world_02-03: live 240/240; NaN voltage samples 0; zero voltage samples 0
+  real_world_03_04: live 240/240; NaN voltage samples 0; zero voltage samples 0
+  real_world_05_06: live 240/240; NaN voltage samples 0; zero voltage samples 0
+
+[1b] Correlation between periods of per-cell mean voltage offset from its group median (mV), mean temperature rank within its group, and mean temperature
+  v_offset_mV: Pearson
+period            real_world_02-03  real_world_03_04  real_world_05_06
+period                                                                
+real_world_02-03             1.000             0.983             0.631
+real_world_03_04             0.983             1.000             0.600
+real_world_05_06             0.631             0.600             1.000
+  v_offset_mV: Spearman
+period            real_world_02-03  real_world_03_04  real_world_05_06
+period                                                                
+real_world_02-03             1.000             0.982             0.764
+real_world_03_04             0.982             1.000             0.730
+real_world_05_06             0.764             0.730             1.000
+  t_rank: Pearson
+period            real_world_02-03  real_world_03_04  real_world_05_06
+period                                                                
+real_world_02-03             1.000             0.997             0.276
+real_world_03_04             0.997             1.000             0.261
+real_world_05_06             0.276             0.261             1.000
+  t_rank: Spearman
+period            real_world_02-03  real_world_03_04  real_world_05_06
+period                                                                
+real_world_02-03             1.000             0.995             0.259
+real_world_03_04             0.995             1.000             0.249
+real_world_05_06             0.259             0.249             1.000
+  t_mean: Pearson
+period            real_world_02-03  real_world_03_04  real_world_05_06
+period                                                                
+real_world_02-03             1.000             0.998             0.124
+real_world_03_04             0.998             1.000             0.108
+real_world_05_06             0.124             0.108             1.000
+  t_mean: Spearman
+period            real_world_02-03  real_world_03_04  real_world_05_06
+period                                                                
+real_world_02-03             1.000             0.997             0.118
+real_world_03_04             0.997             1.000             0.101
+real_world_05_06             0.118             0.101             1.000
+
+[2] Group mean cell voltage change over stretches of constant current sign (runs of at least 30 samples)
+  cur < -5 A: 1020 runs; voltage fell in 0.0%; median change 211.7 mV over median 844 samples
+  cur > +5 A: 1290 runs; voltage fell in 96.7%; median change -167.7 mV over median 720 samples
+
+[4] Jumps at file boundaries compared with in-file sample-to-sample steps
+  boundaries: 510; in-file steps: 2228430
+  |dV| group-mean voltage: in-file median 0.25 mV, p99 9.62 mV; boundary median 0.37 mV, p99 8.92 mV; share of boundary steps above in-file p99 0.6%
+  |dI|: in-file median 1.90 A, p99 56.60 A; boundary median 1.40 A, p99 39.60 A; share of boundary steps above in-file p99 0.0%
+  current: 2357 distinct values; share of samples with cur exactly 0: 0.9%; share of consecutive samples with identical cur: 2.3%
+  samples per group summed over periods: 74301; 1,203 h / that = 58.3 s per sample
+
+[6] Raw ranges per period
+  real_world_02-03: voltage 3.117 to 3.604 V (outside 2.2 to 3.8 V: 0); temperature 24.0 to 44.0 (outside 0 to 60: 0)
+  real_world_03_04: voltage 3.119 to 3.602 V (outside 2.2 to 3.8 V: 0); temperature 23.0 to 45.0 (outside 0 to 60: 0)
+  real_world_05_06: voltage 3.073 to 3.566 V (outside 2.2 to 3.8 V: 0); temperature 21.0 to 41.0 (outside 0 to 60: 0)

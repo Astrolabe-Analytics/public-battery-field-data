@@ -1,0 +1,95 @@
+{
+  "package": "m5bat-2023-04",
+  "facts": {
+    "application": {
+      "value": "grid-scale storage",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "LMO/NMC; LFP; LTO; OCSM; OPzV",
+      "basis": "stated",
+      "source": "https://doi.org/10.3390/en15041342 (Jacqu\u00e9, K. et al., Energies 15, 1342, 2022), Sec. 2.1.2: the lithium units 5 to 8 are an LMO/NMC blend; other units from https://doi.org/10.18154/RWTH-2024-04895, p. 3 unit table",
+      "note": ""
+    },
+    "units_released": {
+      "value": 10,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('m5bat-2023-04')",
+      "note": "Rule: battery units; the plant connection point is not a unit. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": 24672,
+      "basis": "derived",
+      "source": "https://doi.org/10.18154/RWTH-2024-04895, p. 3 table wiring: LMO 4 x 192s16p, LFP 240s10p, LTO 312s32p",
+      "note": ""
+    },
+    "cells_leadacid": {
+      "value": 1222,
+      "basis": "derived",
+      "source": "https://doi.org/10.18154/RWTH-2024-04895, p. 3 table wiring: Pb2 300s1p, Pb3 308s2p, Pb4 306s1p",
+      "note": "Pb1 (300s1p) excluded; it is counted under m5bat-pbacid."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Unit CSVs carry unit-level voltage, current, power and SOC only."
+    },
+    "energy_mwh": {
+      "value": 6.714,
+      "basis": "derived",
+      "source": "https://doi.org/10.18154/RWTH-2024-04895, p. 3 table (Pb1 630 kW / 1066 kWh; overall M5BAT 6.19 MW / 7.78 MWh); 7.78 MWh overall stated minus Pb1's stated 1.066 MWh, which is counted under m5bat-pbacid",
+      "note": ""
+    },
+    "energy_basis": {
+      "value": "stated",
+      "basis": "derived",
+      "source": "energy_mwh is the report's stated overall rating minus Pb1's stated rating (both stated values)",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 0.739219427332877,
+      "basis": "measured",
+      "source": "scripts/facts/m5bat-2023-04.py",
+      "note": "First to last DateAndTime per battery unit CSV (BESS.csv, the grid connection point, excluded): Batt1.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt10.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt2.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt3.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt4.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt5.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt6.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt7.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt8.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt9.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00. Batt1 (Pb1) is subtracted because it is package m5bat-pbacid, whose span already covers April 2023."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 0.101712838,
+      "basis": "measured",
+      "source": "scripts/facts/m5bat-2023-04.py",
+      "note": ""
+    },
+    "files": {
+      "value": 1,
+      "basis": "measured",
+      "source": "scripts/facts/m5bat-2023-04.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://publications.rwth-aachen.de/record/985923; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  },
+  "overlap_identifiers": {
+    "value": 1,
+    "basis": "measured",
+    "source": "scripts/facts/m5bat-2023-04.py (identity check in reports/facts/_cache/m5bat_pb1_identity.json)",
+    "note": "Unit Pb1 of the M5BAT plant is the string released separately as m5bat-pbacid; the data confirm it (see the identity check). It is counted once. Batt1 voltage correlates 0.997 with m5bat-pbacid's string voltage on 2023-04-10 (UTC) (Batt2: 0.409)."
+  }
+}

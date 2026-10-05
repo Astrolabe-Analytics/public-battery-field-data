@@ -1,0 +1,3 @@
+number,record_time,soc,pack_voltage,charge_current,max_cell_voltage,min_cell_voltage,max_temperature,min_temperature,available_energy,available_capacity
+1,20200101000000,50,350,-20,4.1,3.9,30,20,40,80
+2,20200101000010,51,351,-19,4.1,3.9,31,21,1000001,79

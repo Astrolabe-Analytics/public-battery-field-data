@@ -1,0 +1,13 @@
+packs 20, rows 16100728
+number is 0..n-1 in file order: 20 of 20 packs; file rows time-sorted: 20
+sessions (gap > 10 s): 86625, with >= 100 rows: 54921
+session-start hour histogram (clock value as released): 0:4355, 1:4317, 2:4102, 3:3615, 4:3151, 5:2649, 6:2726, 7:2425, 8:1966, 9:1872, 10:2207, 11:2870, 12:3293, 13:4274, 14:4650, 15:4734, 16:4856, 17:4510, 18:3989, 19:3917, 20:4270, 21:3829, 22:3599, 23:4449
+pack_voltage/90 at SOC 45-55 %: median over packs 3.762 V (range 3.759 to 3.768); |I|<=10 A rows 9696, median over packs with rows 3.714 V
+(max+min cell)/2 at SOC 45-55 %: median over packs 3.766 V
+available_capacity vs soc within sessions (>=100 rows, dSOC >= 10): 51853 sessions, median r per pack 1.000 to 1.000, fraction r > 0.9 per pack 1.000 to 1.000
+available_energy vs soc: median r per pack 1.000 to 1.000, fraction r > 0.9 per pack 1.000 to 1.000
+available_capacity/(soc/100) median per pack 126.4 to 133.9 Ah; available_energy/(soc/100) 42.00 to 44.53 kWh
+max available_capacity 136.16 Ah, max available_energy 45.29 kWh
+Q/dSOC sessions (authors' filters, dSOC >= 20): 31238, median per pack 120.5 to 125.0 Ah
+monthly medians: Q/dSOC minus available_capacity/(soc/100) at session end: median -3.85 Ah over 571 pack-months; correlation 0.334
+charge_current rows < 0: 15897589, = 0: 203105, > 0: 34

@@ -1,0 +1,26 @@
+BEV1 driving, speed > 80 km/h: current rows < 0: 29094, > 0: 160259, median 62.0 A
+BEV2 driving, speed > 80 km/h: current rows < 0: 39259, > 0: 341553, median 55.7 A
+BEV1 driving: 16 files dated outside the paper period (2025-05-23 to 2025-05-27), 16 with the file date inside their own Timestamp range, rows 21057
+BEV1 parking: 19 files dated outside the paper period (2025-05-23 to 2025-05-27), 19 with the file date inside their own Timestamp range, rows 1293
+BEV1 slow charging: 1 files dated outside the paper period (2025-05-26 to 2025-05-26), 1 with the file date inside their own Timestamp range, rows 82
+BEV1 fast charging: 8 sessions, 8 with SOC rising > 1 point; in those, charging-on rows with current < 0: 11403, > 0: 6; per-session median current range -333.5 to -176.8 A
+BEV1 slow charging: 42 sessions, 39 with SOC rising > 1 point; in those, charging-on rows with current < 0: 231811, > 0: 11384; per-session median current range -29.6 to 4.8 A
+BEV2 fast charging: 17 sessions, 17 with SOC rising > 1 point; in those, charging-on rows with current < 0: 31676, > 0: 9; per-session median current range -347.5 to -101.3 A
+BEV2 slow charging: 67 sessions, 62 with SOC rising > 1 point; in those, charging-on rows with current < 0: 349730, > 0: 699; per-session median current range -29.8 to -1.9 A
+BEV1 slow charging: Odometer3B6 == 4294967.295 in 1993 of 1993 non-null rows
+BEV1 fast charging: Odometer3B6 == 4294967.295 in 2758 of 2758 non-null rows
+BEV1 driving: Odometer3B6 == 4294967.295 in 592 of 590909 non-null rows
+BEV1 parking: Odometer3B6 == 4294967.295 in 853 of 853 non-null rows
+BEV2 slow charging: Odometer3B6 == 4294967.295 in 360 of 361 non-null rows
+BEV2 fast charging: Odometer3B6 == 4294967.295 in 5716 of 5716 non-null rows
+BEV2 driving: Odometer3B6 == 4294967.295 in 1005 of 1425728 non-null rows
+BEV2 parking: Odometer3B6 == 4294967.295 in 221 of 222 non-null rows
+unit          type  files    rows                     first                      last  median_step_s  share_step_1s
+BEV1 slow charging     42  335790 2024-07-25 07:53:11+00:00 2025-05-26 16:13:41+00:00            1.0       0.999768
+BEV1 fast charging      8   14990 2024-08-10 06:39:51+00:00 2024-12-08 15:44:40+00:00            1.0       0.760707
+BEV1       driving    382  773172 2024-07-24 06:12:26+00:00 2025-05-27 06:55:14+00:00            1.0       0.999470
+BEV1       parking    308 3089836 2024-07-23 17:52:51+00:00 2025-05-27 12:08:58+00:00            1.0       0.997595
+BEV2 slow charging     67  366547 2024-05-08 14:02:36+00:00 2025-04-17 19:27:59+00:00            1.0       0.999629
+BEV2 fast charging     17   36831 2024-05-18 17:03:18+00:00 2025-04-06 17:04:00+00:00            1.0       0.862181
+BEV2       driving   1014 1637083 2024-05-16 16:04:42+00:00 2025-04-30 06:43:04+00:00            1.0       0.999330
+BEV2       parking    472  468668 2024-05-08 14:00:23+00:00 2025-03-29 15:00:15+00:00            1.0       0.998487

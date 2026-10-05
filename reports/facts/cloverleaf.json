@@ -1,0 +1,89 @@
+{
+  "package": "cloverleaf",
+  "facts": {
+    "application": {
+      "value": "distributed storage",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "NMC-class",
+      "basis": "derived",
+      "source": "scripts/facts/_extra.py chemistry rule: 99th percentile of released cell voltage (<3.70 V LFP, >3.95 V NMC-class)",
+      "note": "Released pack-summary Vcmax, 99th percentile 4.071 V over 3 packs."
+    },
+    "units_released": {
+      "value": 3,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('cloverleaf')",
+      "note": "Rule: one battery pack per pack sheet (each with its own serial number, inverter and state of health); the typical-day sheet is not a unit."
+    },
+    "cells_liion": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The released workbooks provide pack and cell-summary signals but do not state physical cell count."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The release provides Vcell average, minimum, maximum, and difference summaries, not individual cell channels."
+    },
+    "energy_mwh": {
+      "value": 0.0797,
+      "basis": "derived",
+      "source": "scripts/facts/cloverleaf.py",
+      "note": "Computed from the data: 65.7 Ah over a 71 percent SOC swing (coulomb counting, typical-day sheet), divided by SOH 0.89, times mean pack voltage 360 V, times 3 HV packs. An 84 kWh figure used earlier, attributed to a trade-press article (pv-magazine, 21 January 2022) that was not checked, agrees within about 5 percent. Assumes the released SOC and SOH are accurate BMS estimates and that the three packs are identical; no source states the pack rating (the Zenodo record 10.5281/zenodo.6373656 description defines no columns)."
+    },
+    "energy_basis": {
+      "value": "computed",
+      "basis": "derived",
+      "source": "energy_mwh is computed from the released data",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 1.0019773366795954,
+      "basis": "measured",
+      "source": "scripts/facts/cloverleaf.py",
+      "note": "First to last workbook timestamp of each HV pack sheet, summed over 3 packs (each pack is a unit)."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 0.007593131,
+      "basis": "measured",
+      "source": "scripts/facts/cloverleaf.py",
+      "note": ""
+    },
+    "files": {
+      "value": 1,
+      "basis": "measured",
+      "source": "scripts/facts/cloverleaf.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.5281/zenodo.6373656; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

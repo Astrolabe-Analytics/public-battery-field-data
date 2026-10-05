@@ -1,0 +1,81 @@
+[files] raw 118, cleaned 119
+             member_cleaned  first_day   last_day member_raw    _merge
+20171113-20171124SecCsv.csv 2017-11-13 2017-11-24        NaN left_only
+[codes] 12 per-second signals (renamed from codes via NAMES): {'battery_active_power': 'kW', 'battery_dc_voltage': 'V', 'battery_dc_current': 'A', 'grid_point_voltage': 'V', 'grid_point_active_power': 'kW', 'pv_active_power': 'kW', 'battery_active_power_setpoint': 'kW', 'battery_soc': '%', 'pv1_active_power': 'kW', 'pv2_active_power': 'kW', 'pv3_active_power': 'kW', 'pv4_active_power': 'kW'}
+[codes] 20104 (irradiance) present: False
+[scan] cleaned 2015-11-13 rows 1036800 -999999 0
+[scan] cleaned 2017-03-13 rows 1036800 -999999 0
+
+[cleaned] files 119, rows 104,544,000, first 2015-01-01, last 2018-04-24 23:59:59
+  n_m999999: 0
+  n_p999999: 0
+  rows_with_m999999: 0
+  n_blank: 5,453,495
+  dc_current_m680_m450: 0
+  dc_voltage_zero: 2,552
+  soc_gt100: 2,337,042
+  soc_zero: 0
+  pv_total_negative: 89,526
+  files with -999999: 0
+Empty DataFrame
+Columns: [first_day, n_m999999, rows_with_m999999]
+Index: []
+  per-signal -999999 counts: {'battery_active_power': 0, 'battery_dc_voltage': 0, 'battery_dc_current': 0, 'grid_point_voltage': 0, 'grid_point_active_power': 0, 'pv_active_power': 0, 'battery_active_power_setpoint': 0, 'battery_soc': 0, 'pv1_active_power': 0, 'pv2_active_power': 0, 'pv3_active_power': 0, 'pv4_active_power': 0}
+  ranges excluding +-999999:
+    battery_active_power: -89.550003 to 91.800003
+    battery_dc_voltage: 0.0 to 423.821259
+    battery_dc_current: -260.5625 to 345.5625
+    grid_point_voltage: 6077.25 to 7017.75
+    grid_point_active_power: 0.0 to 2400.0
+    pv_active_power: -2.88 to 90.959999
+    battery_active_power_setpoint: -90.0 to 90.0
+    battery_soc: 30.120001 to 322.290009
+    pv1_active_power: 0.0 to 57.91
+    pv2_active_power: 0.0 to 28.280001
+    pv3_active_power: 0.0 to 10.02
+    pv4_active_power: 0.0 to 4.12
+
+[raw] files 118, rows 103,507,200, first 2015-01-01, last 2018-04-24 23:59:59
+  n_m999999: 1,243,210
+  n_p999999: 0
+  rows_with_m999999: 105,026
+  n_blank: 0
+  dc_current_m680_m450: 1,811,739
+  dc_voltage_zero: 21,997
+  soc_gt100: 2,337,042
+  soc_zero: 1
+  pv_total_negative: 960,266
+  files with -999999: 5
+ first_day  n_m999999  rows_with_m999999
+2015-11-13     629021              52446
+2016-11-13     579418              48298
+2017-01-13        918                 88
+2017-02-13        690                 64
+2017-03-13      33163               4130
+  per-signal -999999 counts: {'battery_active_power': 104933, 'battery_dc_voltage': 104933, 'battery_dc_current': 104933, 'grid_point_voltage': 104933, 'grid_point_active_power': 104933, 'pv_active_power': 104933, 'battery_active_power_setpoint': 104933, 'battery_soc': 104933, 'pv1_active_power': 100936, 'pv2_active_power': 100939, 'pv3_active_power': 100935, 'pv4_active_power': 100936}
+  ranges excluding +-999999:
+    battery_active_power: -89.550003 to 91.800003
+    battery_dc_voltage: 0.0 to 423.821259
+    battery_dc_current: -679.19104 to 345.5625
+    grid_point_voltage: 0.0 to 7017.75
+    grid_point_active_power: 0.0 to 2400.0
+    pv_active_power: -4.32 to 90.959999
+    battery_active_power_setpoint: -90.0 to 90.0
+    battery_soc: 0.0 to 322.290009
+    pv1_active_power: 0.0 to 57.91
+    pv2_active_power: 0.0 to 28.280001
+    pv3_active_power: 0.0 to 10.02
+    pv4_active_power: 0.0 to 4.12
+
+[maintenance days, raw] -999999 counts per day and column
+  2015-11-13: rows 86400, rows with any -999999 2174, per column min 2141 max 2173, dc_voltage==0 11065, soc==0 0
+  2015-11-14: rows 86400, rows with any -999999 50272, per column min 50265 max 50272, dc_voltage==0 0, soc==0 0
+  2016-11-18: rows 86400, rows with any -999999 1353, per column min 1344 max 1353, dc_voltage==0 8380, soc==0 0
+  2016-11-19: rows 86400, rows with any -999999 46945, per column min 46935 max 46945, dc_voltage==0 0, soc==0 1
+  2017-11-17: no raw rows
+  2017-11-18: no raw rows
+
+[sign] raw 2017-07-10 to 2017-07-16, rows with an error code dropped
+  minutes 10079; corr(current, dSOC/min) -0.954; corr(power, dSOC/min) -0.952; corr(current, power) 0.997
+  weekday 13:00-16:00: mean current 99.6 A, mean power 30.0 kW, SOC change -27.47 %/day-window
+  00:00-06:00: mean current -33.3 A, mean power -13.3 kW, SOC change 17.68 %/day-window

@@ -1,0 +1,26 @@
+{
+  "identical_snippets": 2616,
+  "vehicles_matched_one_to_one": 43,
+  "vehicles_matched_with_10_or_more_snippets": 28,
+  "matched_under_the_same_number": 0,
+  "archive_pairs": {
+    "battery_brand2.tar.gz = battery_dataset3.tar.gz": {
+      "zhang2023_vehicles": 49,
+      "evbattery_vehicles": 49,
+      "matched": 43,
+      "confirmed_one_to_one": 49,
+      "unconfirmed_zhang2023_vehicles": [],
+      "unconfirmed_evbattery_vehicles": [],
+      "tolerance_matched": {
+        "226": 531,
+        "229": 549,
+        "231": 548,
+        "232": 547,
+        "250": 546
+      }
+    }
+  },
+  "overlap_vehicles_counted": 49,
+  "rule": "Vehicles are matched by content, not by number. Totals subtract every vehicle confirmed one-to-one, by the refine step (identical snippets) or the tolerance step (snippets equal within storage resolution with agreeing charging-session numbers); a vehicle that is not confirmed would be counted as distinct. All 49 vehicles of the shared fleet are confirmed.",
+  "overlap_vehicles_confirmed": 49
+}

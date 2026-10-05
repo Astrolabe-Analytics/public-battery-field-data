@@ -1,0 +1,89 @@
+{
+  "package": "zhou2026",
+  "facts": {
+    "application": {
+      "value": "passenger EV, bus",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": "The release holds two NMC passenger cars (vehicle45, vehicle69) and one LFP bus (LFP01): https://doi.org/10.1038/s41560-026-02131-5, SI Supplementary Table 1 p. 16, and TotalCells 95 / 156 (measured)."
+    },
+    "chemistry": {
+      "value": "NMC and LFP",
+      "basis": "stated",
+      "source": "https://doi.org/10.1038/s41560-026-02131-5, Methods",
+      "note": ""
+    },
+    "units_released": {
+      "value": 3,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('zhou2026')",
+      "note": "Rule: one row per vin. Measured in scripts/facts/_extra.py."
+    },
+    "cells_liion": {
+      "value": 346,
+      "basis": "derived",
+      "source": "one cell per released cell-voltage channel (TotalCells per vin)",
+      "note": ""
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 346,
+      "basis": "measured",
+      "source": "scripts/facts/zhou2026.py",
+      "note": "Maximum TotalCells per vin; CellVoltages carries one value per cell."
+    },
+    "energy_mwh": {
+      "value": 0.209,
+      "basis": "stated",
+      "source": "https://doi.org/10.1038/s41560-026-02131-5, SI Note 1 p. 5 and Supplementary Table 1 p. 16",
+      "note": "Nominal pack energies 52 kWh (NMC car, 1P95S, two cars) and 105 kWh (LFP bus, 1P156S). Coulomb counting on the data gives LFP01 108.9 kWh (median of 1405 charges); vehicle45 46.8 kWh (median of 871 charges); vehicle69 47.5 kWh (median of 873 charges)."
+    },
+    "energy_basis": {
+      "value": "stated",
+      "basis": "derived",
+      "source": "energy_mwh uses the stated basis",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 10.417240823129768,
+      "basis": "measured",
+      "source": "scripts/facts/zhou2026.py",
+      "note": "First to last Timestamp per vin (LFP01: 2019-05-05 12:09:30 to 2023-12-12 23:36:03, 156 cells; vehicle45: 2019-05-09 16:13:24 to 2022-04-04 18:38:56, 95 cells; vehicle69: 2019-05-09 16:20:03 to 2022-04-04 23:59:57, 95 cells); this is not the paper fleet."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used because calendar spans are measurable; the cadence is stated (nominal 0.1 Hz, paper p. 2)."
+    },
+    "size_gb": {
+      "value": 2.15283929,
+      "basis": "measured",
+      "source": "scripts/facts/zhou2026.py",
+      "note": ""
+    },
+    "files": {
+      "value": 1,
+      "basis": "measured",
+      "source": "scripts/facts/zhou2026.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://1drv.ms/u/c/909aeacce295a32a/IQCsGxZgHovYTqJEXhfqRIIZAWASy12k6Urytil7VPa0LJY?e=ISLuvO; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

@@ -1,0 +1,14 @@
+Documentation licence
+
+Except where a source or figure caption states otherwise, the text, tables,
+and figures in this repository are licensed under the Creative Commons
+Attribution 4.0 International licence (CC BY 4.0).
+
+You may share and adapt this material for any purpose, provided that you give
+appropriate credit, link to the licence, and indicate whether changes were
+made. Full terms: https://creativecommons.org/licenses/by/4.0/legalcode
+
+This licence does not apply to third-party datasets, papers, or other source
+material referenced by the repository. Those materials remain subject to the
+terms stated by their publishers and data records. See `fielddata/registry.py`
+for package-specific licences and source URLs.

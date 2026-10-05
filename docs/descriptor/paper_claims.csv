@@ -1,0 +1,24 @@
+package,field,paper_value,statement,source,locator,qualification
+bilfinger2024,units_released,2,"two BEVs, a 2021 VW ID.3 and a 2020 Tesla Model 3",https://doi.org/10.1016/j.etran.2024.100356,p. 2,
+bilfinger2026,units_released,7,"six VW Group vehicles (five Cupra Born, one ID.3) plus a Tesla Model 3",https://doi.org/10.1016/j.etran.2026.100589,"pp. 1, 3",The ID.3 and the Tesla are the two bilfinger2024 vehicles. They count once in the unit total; observation time outside the bilfinger2024 range still counts.
+cao,units_released,515,515 vehicles,https://doi.org/10.1038/s41467-025-56832-8,p. 1,"The release has 514 vehicle folders (80 DTI, 393 QAS, 41 GIS); which vehicle is missing is not stated."
+changan,units_released,300,"300 EVs with NCM cells, 96 in series",https://doi.org/10.1038/s41467-025-56485-7,p. 4,
+deng,units_released,20,20 electric vehicles over about 29 months,https://doi.org/10.1016/j.apenergy.2023.120954,p. 1,
+evbattery,units_released,464,464 EVs from three manufacturers,https://arxiv.org/abs/2201.12358,p. 2,The label table lists 465 cars; car 545 in battery_dataset3 has no snippets. The 49 vehicles of battery_dataset3 are the same vehicles as zhang2023 battery_brand2 (matched by content) and count once in the unit total.
+flashbattery-agv,units_released,10,10 batteries in the same application and location,https://doi.org/10.1109/CCNC51644.2023.10060391,p. 5,
+ku_leuven_bev,units_released,2,two BEVs,https://doi.org/10.1038/s41597-025-06148-5,p. 3,
+li2026,cell_channels_measured,200,200 continuously operating cells monitored for 1203 h,https://doi.org/10.1016/j.xcrp.2026.103210,p. 3,The release holds 240 numbered cell channels in one station-level set and no calendar timestamps.
+m5bat-2023-04,units_released,10,ten battery units plus the plant connection point,https://doi.org/10.18154/RWTH-2024-04895,p. 3,The plant connection point file is not counted as a unit.
+m5bat-2023-04,energy_mwh,7.78,M5BAT overall 6.19 MW / 7.78 MWh,https://doi.org/10.18154/RWTH-2024-04895,p. 3,"The release value excludes the Pb1 string (1.066 MWh), which is released separately as m5bat-pbacid and counted there."
+m5bat-pbacid,cells_leadacid,300,300 cells in series (300S/1P),https://doi.org/10.3390/en19174141,p. 4,"A defective cell was bypassed on 10 August 2023, leaving 299 in service."
+ppl,cell_channels_measured,4760,"4,760 cells in a series-parallel arrangement",https://doi.org/10.1109/ACCESS.2026.3693606,p. 3,"The release has one system-level series, not individual cells: average cell voltage throughout, and maximum and minimum cell voltage only for 2017 to 2021. The file format changed in 2022 and dropped the cell extremes and module temperatures, adding DC voltage, current and energy counters."
+ppl,span_unit_years,9,nine years of cell-level data,https://doi.org/10.1109/ACCESS.2026.3693606,p. 2,The release spans 8.3 years from its first to its last record.
+rwth-android,units_released,33,33 mobile devices,https://doi.org/10.18154/RWTH-2025-00754,p. 2,
+rwth-home,units_released,21,21 privately operated lithium-ion systems,https://doi.org/10.1038/s41560-024-01620-9,p. 1,
+rwth-home,span_unit_years,106,about 106 system years,https://doi.org/10.1038/s41560-024-01620-9,"pp. 1, 2","The release value is first to last monthly file per system, summed over the 21 systems."
+tsukuba,units_released,1,one lead-acid battery of 326 kWh rated capacity,https://doi.org/10.1038/sdata.2019.20,p. 3,The paper gives no cell count.
+tumftm,units_released,7,seven vehicles in public road traffic,https://doi.org/10.1016/j.etran.2025.100518,p. 1,
+xie,units_released,271,pilot dataset of 271 devices,https://doi.org/10.1016/j.xcrp.2026.103154,"supplemental mmc2, p. 4",
+xie,cells_liion,5234,"5,234 cells in the pilot dataset",https://doi.org/10.1016/j.xcrp.2026.103154,"supplemental mmc2, p. 4","Counted from cell-voltage channels with data in the 271 device files; the released cell table lists 5,248 rows for 5,234 distinct cells."
+zhang2023,units_released,347,charging snippets from 347 EVs,https://doi.org/10.1038/s41467-023-41226-5,p. 1,The label tables list 348 cars; car 230 in battery_brand2 has no snippets.
+zhou2026,units_released,133,116 passenger cars and 17 buses,https://doi.org/10.1038/s41560-026-02131-5,p. 1,"The public release holds three vehicles (LFP01, vehicle45 and vehicle69), each split across 20 parquet files."

@@ -1,0 +1,11 @@
+{
+  "package": "zhang2023",
+  "archive": "battery_brand3.tar.gz",
+  "snippets": 29598,
+  "other_files": 0,
+  "vehicles": 100,
+  "observation_seconds_union": 37885440.0,
+  "observation_seconds_sum": 37885440.0,
+  "cadence_s": 10.0,
+  "vmax_p99": 4.2241
+}

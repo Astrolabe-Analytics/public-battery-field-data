@@ -1,0 +1,119 @@
+{
+  "package": "bilfinger2026",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "NMC and LFP",
+      "basis": "stated",
+      "source": "https://doi.org/10.1016/j.etran.2026.100589, vehicle descriptions",
+      "note": ""
+    },
+    "units_released": {
+      "value": 7,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('bilfinger2026')",
+      "note": "Rule: distinct vehicles among vehicle files. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": 1402,
+      "basis": "derived",
+      "source": "https://doi.org/10.1016/j.etran.2026.100589, p. 3, Sec. 2.1 and p. 12, Table 1: CUPRA Born and VW ID.3 108s2p NMC pouch (216 cells each), Tesla Model 3 SR+ 106s1p LFP (106 cells); vehicles counted: Cupra 204, Cupra 213, Cupra 288, Cupra 349, Cupra 397, Tesla Model 3 SR+, VW ID.3",
+      "note": ""
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 754,
+      "basis": "measured",
+      "source": "scripts/facts/bilfinger2026.py",
+      "note": "Cell-voltage columns per vehicle: Cupra 204 108, Cupra 213 108, Cupra 288 108, Cupra 349 108, Cupra 397 108, Tesla Model 3 SR+ 106, VW ID.3 108."
+    },
+    "energy_mwh": {
+      "value": 0.4005,
+      "basis": "stated",
+      "source": "https://doi.org/10.1016/j.etran.2026.100589, vehicle descriptions",
+      "note": ""
+    },
+    "energy_basis": {
+      "value": "stated",
+      "basis": "derived",
+      "source": "energy_mwh uses the stated basis",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 0.2606976341869154,
+      "basis": "measured",
+      "source": "scripts/facts/bilfinger2026.py",
+      "note": "First to last measurement date per vehicle (Cupra 204 2022-11-16 to 2022-11-18, Cupra 213 2022-11-29 to 2022-12-11, Cupra 288 2022-11-23 to 2022-12-15, Cupra 349 2022-11-25 to 2022-11-27, Cupra 397 2022-11-11 to 2022-11-13, VW ID.3 2024-04-22 to 2024-06-17); Tesla files carry no timestamps and are left out. This is the calendar span between discrete charge tests, not continuous telemetry."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 0.299787786,
+      "basis": "measured",
+      "source": "scripts/facts/bilfinger2026.py",
+      "note": ""
+    },
+    "files": {
+      "value": 1,
+      "basis": "measured",
+      "source": "scripts/facts/bilfinger2026.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://mediatum.ub.tum.de/1840112; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  },
+  "overlap_cell_channels_measured": {
+    "value": 214,
+    "basis": "measured",
+    "source": "scripts/facts/bilfinger2026.py",
+    "note": "Vehicles also in bilfinger2024, shown by identical cell-voltage recordings: Tesla Model 3 SR+, VW ID.3. The bilfinger2026 row counts all seven vehicles; totals subtract the shared vehicles once."
+  },
+  "overlap_cells_liion": {
+    "value": 322,
+    "basis": "derived",
+    "source": "https://doi.org/10.1016/j.etran.2024.100356, Appendix A Table 1",
+    "note": "Vehicles also in bilfinger2024, shown by identical cell-voltage recordings: Tesla Model 3 SR+, VW ID.3. The bilfinger2026 row counts all seven vehicles; totals subtract the shared vehicles once."
+  },
+  "overlap_energy_mwh": {
+    "value": 0.1105,
+    "basis": "stated",
+    "source": "https://doi.org/10.1016/j.etran.2024.100356, vehicle descriptions (VW ID.3 58 kWh, Tesla Model 3 SR+ 52.5 kWh net)",
+    "note": "Vehicles also in bilfinger2024, shown by identical cell-voltage recordings: Tesla Model 3 SR+, VW ID.3. The bilfinger2026 row counts all seven vehicles; totals subtract the shared vehicles once."
+  },
+  "overlap_identifiers": {
+    "value": 2,
+    "basis": "measured",
+    "source": "scripts/facts/bilfinger2026.py",
+    "note": "Vehicles also in bilfinger2024, shown by identical cell-voltage recordings: Tesla Model 3 SR+, VW ID.3. The bilfinger2026 row counts all seven vehicles; totals subtract the shared vehicles once."
+  },
+  "overlap_span_unit_years": {
+    "value": 0.004960971964122748,
+    "basis": "measured",
+    "source": "scripts/facts/bilfinger2026.py",
+    "note": "Time inside both releases' date ranges for the shared vehicles: VW ID.3 0.0050 years."
+  }
+}

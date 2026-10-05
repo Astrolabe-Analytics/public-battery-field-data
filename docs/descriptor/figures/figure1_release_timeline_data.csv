@@ -1,0 +1,23 @@
+package,year,level,service_class,year_source
+tsukuba,2019,0,distributed storage,paper: Vink et al. Sci. Data 2019 (10.1038/sdata.2019.20)
+evbattery,2022,0,passenger EV,paper: arXiv:2201.12358 (January 2022)
+cloverleaf,2022,1,distributed storage,data record: Zenodo 6373656 published 2022-03-21 (no paper)
+deng,2023,0,passenger EV,paper: Appl. Energy 2023 (10.1016/j.apenergy.2023.120954)
+zhang2023,2023,1,passenger EV,paper: Nat. Commun. 2023 (10.1038/s41467-023-41226-5)
+flashbattery-agv,2023,2,industrial and robotics,paper: IEEE CCNC 2023 (10.1109/CCNC51644.2023.10060391)
+bilfinger2024,2024,0,passenger EV,paper: eTransportation 2024 (10.1016/j.etran.2024.100356)
+fei_bus,2024,1,bus,data record: Mendeley Data j9ky68gnd3 version 1 published 2024-12-26 (no paper; version 3 held
+m5bat-2023-04,2024,2,grid-scale storage,report: RWTH Publications 2024 (10.18154/RWTH-2024-04895)
+rwth-home,2024,3,distributed storage,paper: Nat. Energy 2024 (10.1038/s41560-024-01620-9)
+schaeffer,2024,4,distributed storage,paper: Cell Rep. Phys. Sci. 2024 (10.1016/j.xcrp.2024.102258)
+cao,2025,0,passenger EV,paper: Nat. Commun. 2025 (10.1038/s41467-025-56832-8)
+changan,2025,1,passenger EV,paper: Nat. Commun. 2025 (10.1038/s41467-025-56485-7)
+ku_leuven_bev,2025,2,passenger EV,paper: Sci. Data 2025 (10.1038/s41597-025-06148-5)
+tumftm,2025,3,passenger EV,paper: eTransportation 2025 (10.1016/j.etran.2025.100518)
+rwth-android,2025,4,consumer electronics,data paper: RWTH Publications 2025 (10.18154/RWTH-2025-00754); the held export is dated 2026-04
+bilfinger2026,2026,0,passenger EV,paper: eTransportation 2026 (10.1016/j.etran.2026.100589)
+zhou2026,2026,1,passenger EV,paper: Nat. Energy 2026 (10.1038/s41560-026-02131-5)
+xie,2026,2,light electric mobility,paper: Cell Rep. Phys. Sci. 2026 (10.1016/j.xcrp.2026.103154)
+li2026,2026,3,grid-scale storage,paper: Cell Rep. Phys. Sci. 2026 (10.1016/j.xcrp.2026.103210)
+m5bat-pbacid,2026,4,grid-scale storage,paper: Energies 2026 (10.3390/en19174141)
+ppl,2026,5,grid-scale storage,paper: IEEE Access 2026 (10.1109/ACCESS.2026.3693606)

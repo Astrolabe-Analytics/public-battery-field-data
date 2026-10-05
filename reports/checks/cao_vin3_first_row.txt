@@ -1,0 +1,2 @@
+DTI: 80 vehicles; first row at 1/100 of the onboard SOC in 80; per-cell SOC -5.827e-50 to 100 percent without the first row, -5.827e-50 to 100 with it
+QAS: 393 vehicles; first row at 1/100 of the onboard SOC in 393; per-cell SOC -36.86 to 225.5 percent without the first row, -36.86 to 225.5 with it

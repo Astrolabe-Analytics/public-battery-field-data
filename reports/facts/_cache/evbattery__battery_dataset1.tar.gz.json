@@ -1,0 +1,11 @@
+{
+  "package": "evbattery",
+  "archive": "battery_dataset1.tar.gz",
+  "snippets": 629121,
+  "other_files": 0,
+  "vehicles": 217,
+  "observation_seconds_union": 124286720.0,
+  "observation_seconds_sum": 805274880.0,
+  "cadence_s": 10.0,
+  "vmax_p99": 4.164
+}

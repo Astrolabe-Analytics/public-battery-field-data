@@ -1,0 +1,55 @@
+xie audit checks, raw data (clean=False). Device files: 271; device-table rows: 291; cell-table rows: 5248
+
+[8] Members under predefinedDataset/processedData/ and top level
+  predefinedDataset/processedData/predefinedFeatures.json
+  predefinedDataset/processedData/predefined_device_cell_level.csv
+  predefinedDataset/processedData/predefined_device_records.csv
+  other members outside predefinedDataset/data/: ['fullDataset', 'fullDataset/cellFeature.csv', 'fullDataset/deviceFeature.csv', 'fullDataset/fullDataset.json', 'predefinedDataset']
+
+[7] Device table
+  rows whose file is not released: 0; released files without a row: 0
+  filenames with more than one row: 18 (20 extra rows); rows per repeated filename: {2: 16, 3: 2}
+  repeated filenames whose rows carry different labels: 18/18; whose feature values differ between rows: 0
+  label sets of repeated filenames: {'1,4': 9, '3,4': 4, '1,3': 2, '2,3,4': 1, '1,2': 1, '1,3,4': 1}
+  any repeated filename with label 5 among its rows: False
+  distinct devices with label 5 only: 188; devices with any fault code: 83; devices per code (a device counts once per code): {1: 22, 2: 27, 3: 26, 4: 28, 5: 188}
+
+[1] Cell labels against device labels
+  devices whose set of device-table codes equals the set of non-5 cell codes (5 if none): 270/271
+  device code 1: 22 devices; their fault-cell codes: {1: 22, 2: 1, 3: 3, 4: 11}
+  device code 2: 27 devices; their fault-cell codes: {1: 1, 2: 27, 3: 1, 4: 1}
+  device code 3: 26 devices; their fault-cell codes: {1: 3, 2: 1, 3: 26, 4: 6}
+  device code 4: 28 devices; their fault-cell codes: {1: 10, 2: 1, 3: 6, 4: 28}
+  fault cells per code (unique filename, cell index, code): {1: 24, 2: 28, 3: 35, 4: 29} (paper Table 1: MSC 26, low capacity 31, high SOC 34, low SOC 18)
+  cell-table rows sharing a filename and cell index: 28 rows; distinct physical cells in the table: 5234
+  label pairs on those cells: {'1,4': 10, '1,3': 2, '2,4': 1, '1,2': 1}
+
+[6] Cell counts
+  columns with any positive value: 5241; authors' rule: 5234; distinct cells in the cell table: 5234 (paper Table 1: 5,234)
+  devices where positive-column count differs from the cell table: 1
+    d01d1f73bbae4b2dbb0d83d4b22c421a: positive 20, authors' rule 13, table 13
+  devices where the authors' rule differs from the cell table: 0
+  cells per device (cell table): {13: 1, 16: 41, 17: 5, 20: 224}
+
+[4] Row-to-row intervals over all devices
+  intervals: 20509; median 0.08 h; share under 60 s 29.7%; 60 s to 2 h 41.3%; over 2 h 28.9%
+  share 10 to 30 s 17.5%; share 50 to 70 min 3.8%; zero intervals 0.0%
+  histogram (s): dateTime; [0.0, 1.0)              383; [1.0, 10.0)            1832; [10.0, 30.0)           3593; [30.0, 60.0)            289; [60.0, 600.0)          5803; [600.0, 3000.0)        1363; [3000.0, 4200.0)        777; [4200.0, 7200.0)        533; [7200.0, 21600.0)      2700; [21600.0, 43200.0)     2708; [43200.0, 86400.0)      408; [86400.0, 604800.0)     120; [604800.0, inf)           0
+  median over devices of each device's median interval: 7.00 h
+  first and last timestamp over all devices (UTC as parsed): 2024-10-03 16:00:05.271000+00:00 to 2024-10-10 15:59:19.205000+00:00
+  rows per device: min 10, median 29, max 5543; total 20780
+
+[5] Current sign and temperature
+  steps from a rest row (|totalCurrent| <= 0.1) to the next row within 120 s: 18872
+  totalCurrent at the later row in (-inf, -50]: 65 steps on 27 devices; median cell voltage rose in 21.5%, fell in 76.9%; median change -38.5 mV
+  totalCurrent at the later row in (-50, -2]: 606 steps on 119 devices; median cell voltage rose in 4.5%, fell in 94.7%; median change -57.5 mV
+  totalCurrent at the later row in (-2, -0.1]: 78 steps on 39 devices; median cell voltage rose in 20.5%, fell in 74.4%; median change -18.8 mV
+  totalCurrent at the later row in (-0.1, 0.1]: 17703 steps on 269 devices; median cell voltage rose in 17.6%, fell in 30.1%; median change 0.0 mV
+  totalCurrent at the later row in (0.1, 2]: 30 steps on 25 devices; median cell voltage rose in 60.0%, fell in 40.0%; median change 23.5 mV
+  totalCurrent at the later row in (2, 50]: 382 steps on 154 devices; median cell voltage rose in 86.4%, fell in 13.6%; median change 53.8 mV
+  totalCurrent at the later row in (50, inf]: 8 steps on 6 devices; median cell voltage rose in 12.5%, fell in 87.5%; median change -28.5 mV
+  nonzero totalCurrent: 1857 values; quantiles 0.1 %, 1 %, 50 %, 99 %, 99.9 %: [-3892.04, -3197.28, -1.52, 24.87, 816.19]; |value| > 100: 122
+  totalCurrent: min -4053.0, max 1265.0, share > 0 3.1%, share < 0 5.9%, share 0 91.1%
+  temperatures: min 0.0, max 57.0, outside -20 to 60: 0 of 103900
+  batCoreTempCount values: {5.0: 14412, 0.0: 3428, 4.0: 2199, 6.0: 741}
+  positive cell voltages: min 886.0, max 3772.0; outside 2,500 to 3,630 mV: 176 of 341127

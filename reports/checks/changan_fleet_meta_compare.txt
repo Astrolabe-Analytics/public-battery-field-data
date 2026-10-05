@@ -1,0 +1,16 @@
+rows: held 300, rebuilt 300, in both 300
+sessions candidates (vehicles matching exactly): {'runs': 1, 'sessions_g300_m1': 1, 'sessions_g300_m6': 3, 'sessions_g300_m30': 0, 'sessions_g600_m1': 0, 'sessions_g600_m6': 2, 'sessions_g600_m30': 0, 'sessions_g1800_m1': 0, 'sessions_g1800_m6': 1, 'sessions_g1800_m30': 1}
+column           max abs diff  vehicles differing
+rows                        0                   0
+files                       0                   0
+span_days                   0                   0
+odo_start                   0                   0
+odo_end                     0                   0
+dt_median                   0                   0
+i_res                       0                   0
+soc_mean                    0                   0
+pct_charging      3.55271e-15                   0
+t_min_seen                  0                   0
+t_max_seen                  0                   0
+sessions                47361                 297
+unit-years: held 975.3548, rebuilt 975.3548

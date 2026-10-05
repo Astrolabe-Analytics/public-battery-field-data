@@ -1,0 +1,13 @@
+devices 33, rows 7407934; index dtype(s) ['datetime64[ns]'], tz ['None']
+first timestamp 2025-10-24 08:52:25.581000, last 2026-03-31 23:59:58.297000
+devices with rows before 2026-01-14: 5 (214351 rows); after 2026-04-15: 0
+devices with rows before 2026-01-14: 469f71d3 Pixel 5 1746 rows, first 2025-10-24 08:52:25.581000; 74aa21e0 Pixel 8 Pro 209116 rows, first 2025-10-24 13:11:57.777000; a98b038a SM-P610 1795 rows, first 2026-01-13 18:58:17.113000; abb7aad6 Pixel 10 Pro 1596 rows, first 2026-01-13 19:30:35.716000; c9b51797 OPD2415 98 rows, first 2026-01-13 18:54:39.077000
+cell_id: nunique per file [1]; equals the file hash in 33 files; file pairs sharing a cell_id 0
+cadence: median step per device 10.0 to 3599.8 s (median 10.0); p95 10 to 5404 s
+nominal_capacity == 0 on 7 devices; device medians 0.00 to 12.14 Ah
+medians: voltage_cell 3.843 to 4.419 V; |current| 0.000 to 0.517 A; charge_counter 1.872 to 8.343 Ah; temperature_cell 16.0 to 29.7 C
+current sign while charging (status 2): devices with median > 0: 22 , < 0: 8, no rows: 3
+current sign while discharging (status 3): devices with median > 0: 9 , < 0: 23, no rows: 1
+devices whose current is positive while discharging: 03b3c5a4 OnePlus OPD2415 (chg median -3.596 A, dis median 0.416 A); 0b754700 Xiaomi M2012K11AG (chg median -1.021 A, dis median 0.029 A); 335eb00d OnePlus ONEPLUS A6013 (chg median -0.655 A, dis median 0.060 A); 3d0a4f35 Xiaomi 25010PN30G (chg median -1.917 A, dis median 0.610 A); 6f05cbd5 Xiaomi M2012K11AG (chg median -0.789 A, dis median 0.022 A); 94a4e9f4 Xiaomi 2406APNFAG (chg median -0.515 A, dis median 0.147 A); bcff6a53 OnePlus CPH2581 (chg median -1.683 A, dis median 0.085 A); c9b51797 OnePlus OPD2415 (chg median nan A, dis median 0.015 A); fe369d67 OnePlus CPH2581 (chg median -1.443 A, dis median 0.071 A)
+current_avg sign: devices with discharging median > 0: 2, < 0: 21, no valid rows: 10
+value -2147.483648 (Integer.MIN_VALUE/1e6) rows per column: current_avg: 363776 rows on 10 devices

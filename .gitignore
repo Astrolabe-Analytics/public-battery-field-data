@@ -1,0 +1,16 @@
+.venv/
+*.egg-info/
+__pycache__/
+.ipynb_checkpoints/
+data/
+*.log
+$tmp/
+Claude outputs/
+.env
+*.pdf
+config/local.toml
+secrets*
+reports/notebooks/*.html
+
+# verify writes its run log here (see fielddata/verify.py)
+reports/local/

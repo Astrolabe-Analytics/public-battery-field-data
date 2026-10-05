@@ -1,0 +1,89 @@
+{
+  "package": "tsukuba",
+  "facts": {
+    "application": {
+      "value": "distributed storage",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "lead-acid",
+      "basis": "stated",
+      "source": "https://doi.org/10.1038/sdata.2019.20, system description",
+      "note": ""
+    },
+    "units_released": {
+      "value": 1,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('tsukuba')",
+      "note": "Rule: one building microgrid."
+    },
+    "cells_liion": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "This package is lead-acid; a lithium-ion cell count does not apply."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The paper gives the battery as 326 kWh rated capacity and 90 kW maximum (p. 3) but no cell count; the release has system-level signals only."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Released tables contain system-level battery measurements, not individual cell channels."
+    },
+    "energy_mwh": {
+      "value": 0.326,
+      "basis": "stated",
+      "source": "https://doi.org/10.1038/sdata.2019.20, system description",
+      "note": ""
+    },
+    "energy_basis": {
+      "value": "stated",
+      "basis": "derived",
+      "source": "energy_mwh uses the stated basis",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 3.3100616016427105,
+      "basis": "stated",
+      "source": "https://doi.org/10.1038/sdata.2019.20, data coverage",
+      "note": ""
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 2.725973323,
+      "basis": "measured",
+      "source": "scripts/facts/tsukuba.py",
+      "note": ""
+    },
+    "files": {
+      "value": 1,
+      "basis": "measured",
+      "source": "scripts/facts/tsukuba.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "yes",
+      "basis": "stated",
+      "source": "https://doi.org/10.1038/sdata.2019.20, p. 6-7, Known issues",
+      "note": "Error code -999,999 on and before the maintenance days (14 Nov 2015, 19 Nov 2016, 18 Nov 2017) and on other days; battery DC voltage 0 on maintenance days; DC current between -680 and -450 A out of range; all blanked in the cleaned files (paper p. 6-7). Raw files hold 1,243,210 values of -999,999 and no +999,999 (scripts/checks/source_audit/tsukuba_tumftm_ppl/check_tsukuba_audit.py)."
+    }
+  }
+}

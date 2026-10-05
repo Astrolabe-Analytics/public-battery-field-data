@@ -1,0 +1,20 @@
+package,first_author,et_al,year,venue,doi_or_url
+bilfinger2024,Bilfinger,yes,2024,eTransportation,https://doi.org/10.1016/j.etran.2024.100356
+bilfinger2026,Bilfinger,yes,2026,eTransportation,https://doi.org/10.1016/j.etran.2026.100589
+cao,Cao,yes,2025,Nature Communications,https://doi.org/10.1038/s41467-025-56832-8
+changan,Liu,yes,2025,Nature Communications,https://doi.org/10.1038/s41467-025-56485-7
+deng,Deng,yes,2023,Applied Energy,https://doi.org/10.1016/j.apenergy.2023.120954
+evbattery,He,yes,2022,arXiv,https://arxiv.org/abs/2201.12358
+flashbattery-agv,Zarfati,and Bedogni,2023,IEEE CCNC,https://doi.org/10.1109/CCNC51644.2023.10060391
+ku_leuven_bev,Yasko,yes,2025,Scientific Data,https://doi.org/10.1038/s41597-025-06148-5
+li2026,Li,yes,2026,Cell Reports Physical Science,https://doi.org/10.1016/j.xcrp.2026.103210
+m5bat-pbacid,Zurmühlen,"Koltermann and Sauer",2026,Energies,https://doi.org/10.3390/en19174141
+ppl,Kyeremeh,yes,2026,IEEE Access,https://doi.org/10.1109/ACCESS.2026.3693606
+rwth-android,Laufen,yes,2026,RWTH Publications,https://doi.org/10.18154/RWTH-2025-00754
+rwth-home,Figgener,yes,2024,Nature Energy,https://doi.org/10.1038/s41560-024-01620-9
+schaeffer,Schaeffer,yes,2024,Cell Reports Physical Science,https://doi.org/10.1016/j.xcrp.2024.102258
+tsukuba,Vink,"Ankyu and Koyama",2019,Scientific Data,https://doi.org/10.1038/sdata.2019.20
+tumftm,Schreiber,yes,2025,eTransportation,https://doi.org/10.1016/j.etran.2025.100518
+xie,Xie,yes,2026,Cell Reports Physical Science,https://doi.org/10.1016/j.xcrp.2026.103154
+zhang2023,Zhang,yes,2023,Nature Communications,https://doi.org/10.1038/s41467-023-41226-5
+zhou2026,Zhou,yes,2026,Nature Energy,https://doi.org/10.1038/s41560-026-02131-5

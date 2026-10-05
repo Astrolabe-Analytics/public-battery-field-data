@@ -1,0 +1,89 @@
+{
+  "package": "ppl",
+  "facts": {
+    "application": {
+      "value": "grid-scale storage",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "lithium-ion",
+      "basis": "stated",
+      "source": "https://doi.org/10.1109/ACCESS.2026.3693606, Section II",
+      "note": ""
+    },
+    "units_released": {
+      "value": 1,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('ppl')",
+      "note": "Rule: one system."
+    },
+    "cells_liion": {
+      "value": 4760,
+      "basis": "stated",
+      "source": "https://doi.org/10.1109/ACCESS.2026.3693606, system description",
+      "note": ""
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 4760,
+      "basis": "measured",
+      "source": "scripts/checks/source_audit/tsukuba_tumftm_ppl/check_ppl_audit.py (RARD logs in cell_level/20180701-0731.zip, 15 Jul 2018, and 20250101_0131.zip, 15 Jan 2025, read through fielddata.loaders.ppl.cell_level_preview)",
+      "note": "Individual voltages for all 4,760 cells (238 per rack row, 20 racks), each logged every 100 s, are in the RARD logs of the publisher's cell-level share linked from the repository's Cell_Level_Data file; the annual ESS CSVs hold only system-level averages and extremes. Two days checked."
+    },
+    "energy_mwh": {
+      "value": 2.0,
+      "basis": "stated",
+      "source": "https://doi.org/10.1109/ACCESS.2026.3693606, Section II",
+      "note": ""
+    },
+    "energy_basis": {
+      "value": "stated",
+      "basis": "derived",
+      "source": "energy_mwh uses the stated basis",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 8.251768195300023,
+      "basis": "measured",
+      "source": "scripts/facts/ppl.py",
+      "note": ""
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 67.593890528,
+      "basis": "measured",
+      "source": "scripts/facts/ppl.py",
+      "note": ""
+    },
+    "files": {
+      "value": 126,
+      "basis": "measured",
+      "source": "scripts/facts/ppl.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://github.com/PPLResearch/BESS-Analysis; public data record and released documentation state no sentinel convention",
+      "note": "Zeros in SOH, cell voltages, AvgSOC and module temperatures during outages are observed placeholders, not documented by the publisher; clean=True masks them (source audit 2026-10-04)."
+    }
+  }
+}

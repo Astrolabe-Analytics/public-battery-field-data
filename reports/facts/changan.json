@@ -1,0 +1,89 @@
+{
+  "package": "changan",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "NCM",
+      "basis": "stated",
+      "source": "https://doi.org/10.1038/s41467-025-56485-7, p. 4, Results ('300 EVs equipped with NCM lithium-ion batteries')",
+      "note": ""
+    },
+    "units_released": {
+      "value": 300,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('changan')",
+      "note": "Rule: one RAR per vehicle. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": 28800,
+      "basis": "derived",
+      "source": "300 released vehicles x 96 series cells stated in the paper",
+      "note": "96 series positions per pack as stated (paper p. 4); any parallel cells within a position are not stated."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 28800,
+      "basis": "measured",
+      "source": "scripts/facts/changan.py",
+      "note": "Entries in the batteryvoltage field of the first rows with a live pack voltage, per vehicle file in the split RAW_DATA archive: {96: 300}."
+    },
+    "energy_mwh": {
+      "value": 16.2936,
+      "basis": "derived",
+      "source": "300 vehicles x 96 cells x 155 Ah x 3.65 V / 1,000,000",
+      "note": "155 Ah and 96S are stated (paper p. 4, Results); the 3.65 V nominal cell voltage is our assumption for NCM, not stated in the paper, SI or peer review file."
+    },
+    "energy_basis": {
+      "value": "computed",
+      "basis": "derived",
+      "source": "energy_mwh is computed from stated configuration",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 975.3548001432302,
+      "basis": "derived",
+      "source": "fielddata.loaders.changan.fleet() (data/fleet_meta.csv, per-vehicle first-to-last terminaltime, made by this collection from the raw files)",
+      "note": "About 3.25 years per vehicle, consistent with the paper's three years; not re-measured from the split archive for v1.0. Timestamps were adjusted into seconds by the publisher for privacy (SI Note 2); this assumes the adjustment preserves durations."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Spans of the relative timestamps are measurable (no calendar dates); observation-hours are not substituted for unit-years."
+    },
+    "size_gb": {
+      "value": 79.685897024,
+      "basis": "measured",
+      "source": "scripts/facts/changan.py",
+      "note": ""
+    },
+    "files": {
+      "value": 608,
+      "basis": "measured",
+      "source": "scripts/facts/changan.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "http://ivstskl.changan.com.cn/?p=2697; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

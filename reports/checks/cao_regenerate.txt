@@ -1,0 +1,30 @@
+DTI: 80 vehicles, vin_1 has as many rows as vin_2 in 80
+  vin_2 col 0: best single match {'temperature': np.int64(20), 'current': np.int64(17), 'cell min': np.int64(16)}, its R^2 median 0.000; joint fit on volt_modepi, current and pack SOC R^2 median 0.000 (10th percentile 0.000)
+  vin_2 col 1: best single match {'cell max': np.int64(59), 'cell mean': np.int64(8), 'cell median': np.int64(5)}, its R^2 median 0.960; joint fit on volt_modepi, current and pack SOC R^2 median 0.997 (10th percentile 0.995)
+  vin_3 col 0: best single match {'cell max': np.int64(62), 'cell mean': np.int64(6), 'cell SOC mean': np.int64(5)}, its R^2 median 0.957; joint fit on volt_modepi, current and pack SOC R^2 median 0.957 (10th percentile 0.677)
+  vin_3 col 1: best single match {'cell min': np.int64(59), 'volt_modepi': np.int64(11), 'cell SOC mean': np.int64(6)}, its R^2 median 0.406; joint fit on volt_modepi, current and pack SOC R^2 median 0.547 (10th percentile 0.462)
+  vin_1 col 0: best match {'temperature': np.int64(79), 'constant': np.int64(1)}, R^2 median 1.0000 (10th percentile 1.0000); non-decreasing share max 1.000; constant in 1 vehicles (values [0.0])
+  vin_1 col 1: best match {'pack SOC': np.int64(79), 'none': np.int64(1)}, R^2 median 1.0000 (10th percentile 1.0000); non-decreasing share max 0.919
+  vin_1 col 2: best match {'vin_3 col 1': np.int64(73), 'current': np.int64(2), 'cell min': np.int64(2)}, R^2 median 0.7763 (10th percentile 0.6549); non-decreasing share max 1.000; constant in 1 vehicles (values [0.0]); where unmatched (75 vehicles): at its minimum while charging median 0.750 against 0.515 overall, R^2 with |current| median 0.089
+  vin_1 col 3: best match {'cell sum': np.int64(45), 'cell max': np.int64(14), 'volt_modepi': np.int64(11)}, R^2 median 0.9959 (10th percentile 0.9883); non-decreasing share max 0.867; where unmatched (1 vehicles): at its minimum while charging median 0.000 against 0.017 overall, R^2 with |current| median 0.695
+  vin_1 col 4: best match {'current': np.int64(79), 'none': np.int64(1)}, R^2 median 1.0000 (10th percentile 1.0000); non-decreasing share max 1.000
+  vin_1 col 5: best match {'volt_modepi': np.int64(79), 'none': np.int64(1)}, R^2 median 1.0000 (10th percentile 1.0000); non-decreasing share max 0.796
+  vin_1 col 6: best match {'vin_3 col 0 (next row)': np.int64(79), 'none': np.int64(1)}, R^2 median 1.0000 (10th percentile 0.9998); non-decreasing share max 0.870
+  dU vs dSOC, per-row correlation of the per-cell parts: median over vehicles nan, 10th to 90th percentile nan to nan (80 vehicles undefined)
+  dU regenerated with a fitted OCV curve: per-row correlation median nan (10th to 90th percentile nan to nan); median absolute error 0.1 against a median |dU| of 0.1
+  DTI extra column: best correlate {'vin_1 col 2': np.int64(79)}, |r| median 1.000; non-decreasing share median 0.723, max 1.000
+    integers in 80 of 80 vehicles, maximum 2223; share of rows at zero, median over vehicles: at rest 0.859, discharging 0.007, charging 0.750
+QAS: 393 vehicles, vin_1 has as many rows as vin_2 in 393
+  vin_2 col 0: best single match {'current': np.int64(359), 'cell min': np.int64(19), 'cell SOC mean': np.int64(5)}, its R^2 median 0.501; joint fit on volt_modepi, current and pack SOC R^2 median 0.553 (10th percentile 0.001)
+  vin_2 col 1: best single match {'cell median': np.int64(233), 'volt_modepi': np.int64(82), 'cell mean': np.int64(30)}, its R^2 median 0.756; joint fit on volt_modepi, current and pack SOC R^2 median 0.998 (10th percentile 0.997)
+  vin_3 col 0: best single match {'current': np.int64(298), 'temperature': np.int64(53), 'pack SOC': np.int64(26)}, its R^2 median 0.441; joint fit on volt_modepi, current and pack SOC R^2 median 0.584 (10th percentile 0.200)
+  vin_3 col 1: best single match {'current': np.int64(297), 'temperature': np.int64(56), 'pack SOC': np.int64(36)}, its R^2 median 0.444; joint fit on volt_modepi, current and pack SOC R^2 median 0.561 (10th percentile 0.179)
+  vin_1 col 0: best match {'temperature': np.int64(393)}, R^2 median 1.0000 (10th percentile 1.0000); non-decreasing share max 0.982
+  vin_1 col 1: best match {'pack SOC': np.int64(393)}, R^2 median 1.0000 (10th percentile 1.0000); non-decreasing share max 0.982
+  vin_1 col 2: best match {'constant': np.int64(393)}, R^2 median nan (10th percentile nan); non-decreasing share max 1.000; constant in 393 vehicles (values [0.0])
+  vin_1 col 3: best match {'cell sum': np.int64(337), 'volt_modepi': np.int64(56)}, R^2 median 1.0000 (10th percentile 1.0000); non-decreasing share max 0.728
+  vin_1 col 4: best match {'current': np.int64(393)}, R^2 median 1.0000 (10th percentile 1.0000); non-decreasing share max 0.879
+  vin_1 col 5: best match {'volt_modepi': np.int64(393)}, R^2 median 1.0000 (10th percentile 1.0000); non-decreasing share max 0.717
+  vin_1 col 6: best match {'vin_3 col 0 (next row)': np.int64(372), 'vin_3 col 1': np.int64(18), 'vin_3 col 1 (next row)': np.int64(3)}, R^2 median 0.9998 (10th percentile 0.9992); non-decreasing share max 0.701
+  dU vs dSOC, per-row correlation of the per-cell parts: median over vehicles 0.946, 10th to 90th percentile 0.806 to 0.995 (0 vehicles undefined)
+  dU regenerated with a fitted OCV curve: per-row correlation median 0.885 (10th to 90th percentile 0.591 to 0.981); median absolute error 0.000477 against a median |dU| of 0.000138

@@ -1,0 +1,14 @@
+unit                           vin1        vin5       vin12       vin19
+rows                        101.000     161.000     329.000      71.000
+share_SOHOCV_gt_1.05          0.069       0.019       0.468       0.085
+share_SOH_gt_1                0.000       0.000       0.015       0.000
+spearman_SOH_mileage         -0.295       0.293      -0.742      -0.090
+spearman_SOHOCV_mileage      -0.255      -0.037      -0.577      -0.358
+spearman_SOH_SOHOCV           0.647       0.626       0.426       0.717
+mileage_decreases             8.000       5.000      20.000       5.000
+mileage_increases            69.000     100.000     270.000      49.000
+largest_decrease_km      218170.300  200580.200  245215.500   96097.400
+first_mileage             41366.100  222179.800   22378.400   31366.400
+last_mileage              39433.700  216174.700   21812.500   28759.000
+min_mileage                 443.300      51.700    2082.900   20613.000
+max_mileage              241514.600  243601.100  262626.600  119122.500

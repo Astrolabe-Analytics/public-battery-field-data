@@ -1,0 +1,61 @@
+                unit         kind                                    averaging_note  rows
+0  SNAM HV - 2100173         pack  All values are average values over 20000 seconds   521
+1  SNAM HV - 2100177         pack  All values are average values over 20000 seconds   520
+2  SNAM HV - 2100179         pack  All values are average values over 20000 seconds   520
+3        typical day  typical day    All values are average values over 172 seconds   489
+
+== SNAM HV - 2100173: 521 rows; units row: {'SOH': '%', 'SOC': '%', 'Vcdif': 'Volt', 'Vcavg': 'Volt', 'Vcmax': 'Volt', 'Vcmin': 'Volt', 'Vpack': 'Volt', 'Ipack': 'Ampere'}
+corr(Ipack, next dSOC) = 0.726; rows Ipack>0.5 A: 208, of which SOC rises: 172, falls: 36; rows Ipack<-0.5 A: 220, of which SOC rises: 37, falls: 183
+offset date - UTC(epoch_ms), hours, by month:
+         min  max  count
+date                    
+2021-09  0.0  0.0    129
+2021-10  0.0  0.0    134
+2021-11  0.0  0.0    128
+2021-12  0.0  0.0    129
+2022-01  0.0  0.0      1
+first rows:                          epoch_ms                 utc
+date                                                 
+2021-09-01 00:46:40  1.630457e+12 2021-09-01 00:46:40
+2021-09-01 06:20:00  1.630477e+12 2021-09-01 06:20:00
+
+== SNAM HV - 2100177: 520 rows; units row: {'SOH': '%', 'SOC': '%', 'Vcdif': 'Volt', 'Vcavg': 'Volt', 'Vcmax': 'Volt', 'Vcmin': 'Volt', 'Vpack': 'Volt', 'Ipack': 'Ampere'}
+corr(Ipack, next dSOC) = 0.725; rows Ipack>0.5 A: 207, of which SOC rises: 172, falls: 35; rows Ipack<-0.5 A: 220, of which SOC rises: 37, falls: 183
+offset date - UTC(epoch_ms), hours, by month:
+         min  max  count
+date                    
+2021-09  0.0  0.0    129
+2021-10  0.0  0.0    134
+2021-11  0.0  0.0    127
+2021-12  0.0  0.0    129
+2022-01  0.0  0.0      1
+first rows:                          epoch_ms                 utc
+date                                                 
+2021-09-01 00:46:40  1.630457e+12 2021-09-01 00:46:40
+2021-09-01 06:20:00  1.630477e+12 2021-09-01 06:20:00
+
+== SNAM HV - 2100179: 520 rows; units row: {'SOH': '%', 'SOC': '%', 'Vcdif': 'Volt', 'Vcavg': 'Volt', 'Vcmax': 'Volt', 'Vcmin': 'Volt', 'Vpack': 'Volt', 'Ipack': 'Ampere'}
+corr(Ipack, next dSOC) = 0.717; rows Ipack>0.5 A: 204, of which SOC rises: 171, falls: 33; rows Ipack<-0.5 A: 226, of which SOC rises: 48, falls: 178
+offset date - UTC(epoch_ms), hours, by month:
+         min  max  count
+date                    
+2021-09  0.0  0.0    128
+2021-10  0.0  0.0    134
+2021-11  0.0  0.0    128
+2021-12  0.0  0.0    129
+2022-01  0.0  0.0      1
+first rows:                          epoch_ms                 utc
+date                                                 
+2021-09-01 00:46:40  1.630457e+12 2021-09-01 00:46:40
+2021-09-01 06:20:00  1.630477e+12 2021-09-01 06:20:00
+
+== typical day: 489 rows; units row: {'SOH': '%', 'SOC': '%', 'Vcdif': 'Volt', 'Vcavg': 'Volt', 'Vcmax': 'Volt', 'Vcmin': 'Volt', 'Vpack': 'Volt', 'Ipack': 'Ampere'}
+corr(Ipack, next dSOC) = 0.731; rows Ipack>0.5 A: 100, of which SOC rises: 99, falls: 1; rows Ipack<-0.5 A: 112, of which SOC rises: 1, falls: 109
+offset date - UTC(epoch_ms), hours, by month:
+         min  max  count
+date                    
+2022-01  1.0  1.0    489
+first rows:                          epoch_ms                 utc
+date                                                 
+2022-01-01 00:01:26  1.640992e+12 2021-12-31 23:01:26
+2022-01-01 00:04:18  1.640992e+12 2021-12-31 23:04:18

@@ -1,0 +1,89 @@
+{
+  "package": "xie",
+  "facts": {
+    "application": {
+      "value": "light electric mobility",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "LFP",
+      "basis": "stated",
+      "source": "https://doi.org/10.1016/j.xcrp.2026.103154, Methods",
+      "note": ""
+    },
+    "units_released": {
+      "value": 271,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('xie')",
+      "note": "Rule: one file per device."
+    },
+    "cells_liion": {
+      "value": 5241,
+      "basis": "derived",
+      "source": "one cell per measured cell-voltage channel in the released device files",
+      "note": "5,241 released cell-voltage channels. The paper's 5,234 (https://doi.org/10.1016/j.xcrp.2026.103154, Table 1, p. 3) is the authors' feature-extraction count: dataProcess.ipynb get_device_voltages keeps columns with sum >= 1,000 and std > 0, which drops 7 constant-voltage cells of device d01d1f73; the released cell table holds 5,234 distinct cells in 5,248 rows (14 cells carry two labels)."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 5241,
+      "basis": "measured",
+      "source": "scripts/facts/xie.py",
+      "note": "Cell-voltage columns with at least one positive value, summed over 271 device files."
+    },
+    "energy_mwh": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The release does not provide a complete nominal pack-energy rating or configuration from which to compute one."
+    },
+    "energy_basis": {
+      "value": "none",
+      "basis": "derived",
+      "source": "energy_mwh is not available",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 4.83804057111441,
+      "basis": "measured",
+      "source": "scripts/facts/xie.py",
+      "note": "Sum of first-to-last dateTime over 271 device files in predefinedDataset/data."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 0.155934713,
+      "basis": "measured",
+      "source": "scripts/facts/xie.py",
+      "note": ""
+    },
+    "files": {
+      "value": 3,
+      "basis": "measured",
+      "source": "scripts/facts/xie.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://zenodo.org/records/18328701; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

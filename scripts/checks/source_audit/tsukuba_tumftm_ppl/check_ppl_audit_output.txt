@@ -1,0 +1,162 @@
+[1 grid] per annual file
+  2017: rows 87780, first 2017-11-01 01:00:00, last 2017-12-31 23:59:00, duplicate stamps 0, steps != 60 s 0, NaT 0
+  2018: rows 525600, first 2018-01-01 00:00:00, last 2018-12-31 23:59:00, duplicate stamps 0, steps != 60 s 0, NaT 0
+  2019: rows 525600, first 2019-01-01 00:00:00, last 2019-12-31 23:59:00, duplicate stamps 0, steps != 60 s 0, NaT 0
+  2020: rows 527040, first 2020-01-01 00:00:00, last 2020-12-31 23:59:00, duplicate stamps 0, steps != 60 s 0, NaT 0
+  2021: rows 525301, first 2021-01-01 00:00:00, last 2021-12-31 19:00:00, duplicate stamps 0, steps != 60 s 0, NaT 0
+  2022: rows 525601, first 2022-01-01 00:00:00, last 2023-01-01 00:00:00, duplicate stamps 0, steps != 60 s 0, NaT 0
+  2023: rows 525601, first 2023-01-01 00:00:00, last 2024-01-01 00:00:00, duplicate stamps 0, steps != 60 s 0, NaT 0
+  2024: rows 527041, first 2024-01-01 00:00:00, last 2025-01-01 00:00:00, duplicate stamps 0, steps != 60 s 0, NaT 0
+  2025: rows 570241, first 2025-01-01 00:00:00, last 2026-02-01 00:00:00, duplicate stamps 0, steps != 60 s 0, NaT 0
+  rows in the 02:00-02:59 hour on spring-forward days, and rows in 01:00-01:59 on fall-back days:
+    2018: 2018-03-11 02:xx rows 60; 2018-11-04 01:xx rows 60
+    2019: 2019-03-10 02:xx rows 60; 2019-11-03 01:xx rows 60
+    2020: 2020-03-08 02:xx rows 60; 2020-11-01 01:xx rows 60
+    2021: 2021-03-14 02:xx rows 60; 2021-11-07 01:xx rows 60
+    2022: 2022-03-13 02:xx rows 60; 2022-11-06 01:xx rows 60
+    2023: 2023-03-12 02:xx rows 60; 2023-11-05 01:xx rows 60
+    2024: 2024-03-10 02:xx rows 60; 2024-11-03 01:xx rows 60
+    2025: 2025-03-09 02:xx rows 60; 2025-11-02 01:xx rows 60
+
+[2a] hour of the daily maximum container temperature, July days, median and quartiles
+  2018 Container1.Temp: days 31, median hour 13.2, quartiles 0.0-14.7
+  2018 Container2.Temp: days 31, median hour 12.2, quartiles 0.0-14.2
+  2019 Container1.Temp: days 31, median hour 8.5, quartiles 7.8-9.9
+  2019 Container2.Temp: days 31, median hour 0.2, quartiles 0.1-0.4
+  2020 Container1.Temp: days 31, median hour 0.1, quartiles 0.0-8.9
+  2020 Container2.Temp: days 31, median hour 0.1, quartiles 0.0-2.4
+  2021 Container1.Temp: days 31, median hour 0.0, quartiles 0.0-0.0
+  2021 Container2.Temp: days 31, median hour 0.0, quartiles 0.0-0.0
+  2022 Container1.Temp: days 31, median hour 0.1, quartiles 0.0-0.3
+  2022 Container2.Temp: days 31, median hour 0.2, quartiles 0.1-4.8
+  2023 Container1.Temp: days 31, median hour 0.5, quartiles 0.2-0.7
+  2023 Container2.Temp: days 31, median hour 12.8, quartiles 10.5-15.2
+  2024 Container1.Temp: days 31, median hour 10.8, quartiles 8.3-12.6
+  2024 Container2.Temp: days 31, median hour 9.2, quartiles 2.1-11.9
+  2025 Container1.Temp: days 31, median hour 10.0, quartiles 9.5-11.4
+  2025 Container2.Temp: days 31, median hour 10.3, quartiles 9.1-11.7
+
+[2b] PSmoothing (PV smoothing) minutes by hour of day, summed over years: first and last hour with at least 1 % of the busiest hour, and the weighted mean hour
+  Jun-Jul: minutes 366, active hours 7 to 16, mean hour 12.59
+  Dec-Jan: minutes 35300, active hours 0 to 23, mean hour 11.65
+  reference: solar noon at Burgin about 17.65 UTC = 12.65 EST = 13.65 EDT; sunset UTC 25.07 (21 Jun), 22.40 (21 Dec)
+
+[2c] full-power discharges from >= 85 % to <= 15 % AvgSOC, start time vs sunset
+ year  power_sign               start                 end  minutes  soc_start  soc_end  sunset_utc_h  start_h  sunset_local_h  after_sunset_if_local  after_sunset_if_utc
+ 2018           1 2018-01-05 13:42:00 2018-01-05 15:34:00      113      93.15     7.95         22.55    13.70           17.55                  False                False
+ 2018           1 2018-07-27 12:20:00 2018-07-27 14:26:00      127      98.50     2.12         24.89    12.33           20.89                  False                False
+ 2018           1 2018-08-28 08:55:00 2018-08-28 10:49:00      115      94.41     6.15         24.27     8.92           20.27                  False                False
+ 2018           1 2018-08-28 16:58:00 2018-08-28 19:24:00      147      94.59     5.91         24.27    16.97           20.27                  False                False
+ 2018           1 2018-11-05 13:52:00 2018-11-05 15:47:00      116      94.47     6.04         22.63    13.87           17.63                  False                False
+ 2018           1 2018-11-06 22:35:00 2018-11-07 00:30:00      116      94.52     5.85         22.61    22.58           17.61                   True                False
+ 2018           1 2018-11-07 16:13:00 2018-11-07 18:02:00      110      94.67     5.37         22.60    16.22           17.60                  False                False
+ 2018           1 2018-12-16 10:01:00 2018-12-16 11:50:00      110      94.19     5.55         22.36    10.02           17.36                  False                False
+ 2020           1 2020-04-16 14:43:00 2020-04-16 16:18:00       96      89.51    11.07         24.25    14.72           20.25                  False                False
+ 2020           1 2020-10-19 10:12:00 2020-10-19 11:46:00       95      89.44    10.66         22.94    10.20           18.94                  False                False
+ 2020           1 2020-12-25 07:29:00 2020-12-25 09:05:00       97      89.29    11.42         22.43     7.48           17.43                  False                False
+ 2020           1 2020-12-26 08:51:00 2020-12-26 10:23:00       93      89.18    10.75         22.44     8.85           17.44                  False                False
+ 2021           1 2021-01-22 14:37:00 2021-01-22 16:10:00       94      89.47    10.70         22.83    14.62           17.83                  False                False
+ 2021           1 2021-02-17 15:58:00 2021-02-17 17:24:00       87      87.02    12.24         23.31    15.97           18.31                  False                False
+ 2021           1 2021-04-22 10:12:00 2021-04-22 11:44:00       93      89.74    12.25         24.33    10.20           20.33                  False                False
+ 2021           1 2021-06-01 12:15:00 2021-06-01 13:44:00       90      88.79    10.67         24.90    12.25           20.90                  False                False
+ 2021           1 2021-11-23 10:32:00 2021-11-23 12:04:00       93      89.61    10.71         22.40    10.53           17.40                  False                False
+ 2022           1 2022-02-28 11:03:00 2022-02-28 12:33:00       91      89.12    10.81         23.51    11.05           18.51                  False                False
+ 2022           1 2022-07-06 11:00:00 2022-07-06 12:28:00       89      89.50    11.01         25.07    11.00           21.07                  False                False
+ 2022           1 2022-07-09 11:31:00 2022-07-09 13:00:00       90      90.71    11.45         25.06    11.52           21.06                  False                False
+ 2022           1 2022-07-25 15:31:00 2022-07-25 16:58:00       88      89.67    10.83         24.92    15.52           20.92                  False                False
+ 2022           1 2022-08-16 08:18:00 2022-08-16 09:46:00       89      90.64    11.24         24.54     8.30           20.54                  False                False
+ 2022           1 2022-09-06 11:49:00 2022-09-06 13:17:00       89      89.46    11.19         24.05    11.82           20.05                  False                False
+ 2022           1 2022-10-06 07:10:00 2022-10-06 08:37:00       88      89.78    11.68         23.27     7.17           19.27                  False                False
+ 2022           1 2022-11-14 09:35:00 2022-11-14 11:05:00       91      90.16    10.53         22.50     9.58           17.50                  False                False
+ 2023           1 2023-06-27 08:29:00 2023-06-27 09:54:00       86      89.68    11.33         25.08     8.48           21.08                  False                False
+ 2023           1 2023-08-31 09:50:00 2023-08-31 11:18:00       89      89.40    11.01         24.20     9.83           20.20                  False                False
+ 2024           1 2024-12-16 12:41:00 2024-12-16 14:03:00       83      89.86    11.29         22.37    12.68           17.37                  False                False
+ 2025           1 2025-01-03 15:30:00 2025-01-03 16:51:00       82      88.84    11.44         22.52    15.50           17.52                  False                False
+ 2025           1 2025-01-14 12:47:00 2025-01-14 14:09:00       83      89.05    11.35         22.69    12.78           17.69                  False                False
+  discharges 30; start after sunset if timestamps are local: 1; if UTC: 0
+
+[2d] last rows of 2021 and first rows of 2022
+                     AvgSOC   SOH  PowerReal  Mode  Running  CellVoltAvg  Container1.Temp
+Timestamp                                                                                
+2021-12-31 18:58:00    88.0  90.5        0.0  Idle        1         4.02        17.000000
+2021-12-31 18:59:00    88.0  90.5        0.0  Idle        1         4.02        17.815962
+2021-12-31 19:00:00    88.0  90.5        0.0  Idle        1         4.02        18.000000
+                        AvgSOC   SOH  PowerReal       Mode  Running  CellVoltAvg  Container1.Temp
+Timestamp                                                                                        
+2022-01-01 00:00:00  66.033974  90.5      110.0  TargetSOC        1     3.781499             18.0
+2022-01-01 00:01:00  65.979980  90.5      110.0  TargetSOC        1     3.780250             18.0
+2022-01-01 00:02:00  65.849915  90.5      110.0  TargetSOC        1     3.780000             18.0
+
+[3a zeros and outages] per year (raw)
+  2017: rows 87780, SOH==0 63750, AvgSOC==0 63750, CellVoltAvg==0 63750, Container1.Temp==0 8652, ModuleTempMax==0 63750, Running==0 84347, Running NaN 0, blank AvgSOC 0
+  2018: rows 525600, SOH==0 75428, AvgSOC==0 31843, CellVoltAvg==0 75420, Container1.Temp==0 0, ModuleTempMax==0 75428, Running==0 239512, Running NaN 0, blank AvgSOC 0
+  2019: rows 525600, SOH==0 313533, AvgSOC==0 103577, CellVoltAvg==0 313533, Container1.Temp==0 2025, ModuleTempMax==0 313533, Running==0 322901, Running NaN 0, blank AvgSOC 0
+  2020: rows 527040, SOH==0 49396, AvgSOC==0 41096, CellVoltAvg==0 49393, Container1.Temp==0 0, ModuleTempMax==0 49396, Running==0 54378, Running NaN 1, blank AvgSOC 1
+  2021: rows 525301, SOH==0 177260, AvgSOC==0 171357, CellVoltAvg==0 177259, Container1.Temp==0 0, ModuleTempMax==0 177260, Running==0 181313, Running NaN 0, blank AvgSOC 0
+  2022: rows 525601, SOH==0 76939, AvgSOC==0 11713, CellVoltAvg==0 76938, Container1.Temp==0 0, DCVoltage==0 76939, Running==0 84935, Running NaN 0, blank AvgSOC 0
+  2023: rows 525601, SOH==0 38632, AvgSOC==0 38530, CellVoltAvg==0 38634, Container1.Temp==0 0, DCVoltage==0 38632, Running==0 189118, Running NaN 0, blank AvgSOC 0
+  2024: rows 527041, SOH==0 150244, AvgSOC==0 150281, CellVoltAvg==0 150244, Container1.Temp==0 0, DCVoltage==0 150244, Running==0 155002, Running NaN 0, blank AvgSOC 0
+  2025: rows 570241, SOH==0 13114, AvgSOC==0 3142, CellVoltAvg==0 13115, Container1.Temp==0 0, DCVoltage==0 13114, Running==0 18359, Running NaN 36359, blank AvgSOC 36381
+  longest runs of SOH == 0 (rows, all years):
+              start                 end  rows  days
+2019-07-05 13:39:00 2019-09-04 10:01:00 87623  60.8
+2024-01-12 12:45:00 2024-03-11 08:07:00 84683  58.8
+2019-05-14 08:16:00 2019-07-02 11:49:00 70774  49.1
+2021-07-20 10:14:00 2021-09-07 08:30:00 70457  48.9
+2019-12-12 09:44:00 2020-01-29 11:08:00 69205  48.1
+2024-09-24 16:29:00 2024-11-08 14:47:00 64699  44.9
+2017-11-04 06:53:00 2017-12-18 13:22:00 63750  44.3
+2022-03-19 07:44:00 2022-04-19 07:17:00 44614  31.0
+  longest runs of CellVoltAvg == 0 (rows, all years):
+              start                 end  rows  days
+2019-07-05 13:39:00 2019-09-04 10:02:00 87624  60.9
+2024-01-12 12:45:00 2024-03-11 08:07:00 84683  58.8
+2019-05-14 08:16:00 2019-07-02 11:49:00 70774  49.1
+2021-07-20 10:14:00 2021-09-07 08:30:00 70457  48.9
+2019-12-12 09:44:00 2020-01-29 11:08:00 69205  48.1
+2024-09-24 16:29:00 2024-11-08 14:47:00 64699  44.9
+2017-11-04 06:53:00 2017-12-18 13:22:00 63750  44.3
+2022-03-19 07:45:00 2022-04-19 07:17:00 44613  31.0
+  longest runs of Running == 0 (rows, all years):
+              start                 end   rows  days
+2023-03-08 08:48:00 2023-05-30 11:11:00 119664  83.1
+2019-04-22 09:07:00 2019-07-05 13:35:00 106829  74.2
+2017-11-03 10:13:00 2018-01-06 09:03:00  92091  64.0
+2019-07-05 13:38:00 2019-09-04 10:03:00  87626  60.9
+2024-01-12 12:44:00 2024-03-11 08:13:00  84690  58.8
+2021-07-20 10:12:00 2021-09-07 08:31:00  70460  48.9
+2019-12-12 09:43:00 2020-01-29 11:08:00  69206  48.1
+2023-11-15 17:45:00 2024-01-02 10:23:00  68679  47.7
+  longest runs of unchanged AvgSOC (non-zero), all years:
+              start                 end  rows  days  value
+2018-10-05 11:50:00 2018-10-24 09:28:00 27219 18.90  37.50
+2018-06-06 08:26:00 2018-06-12 06:43:00  8538  5.93  55.00
+2018-11-15 11:38:00 2018-11-21 05:20:00  8263  5.74  91.50
+2018-06-16 00:00:00 2018-06-21 10:02:00  7803  5.42  54.50
+2018-05-04 06:00:00 2018-05-09 09:44:00  7425  5.16  88.00
+2018-07-06 07:15:00 2018-07-11 08:47:00  7293  5.06  50.50
+2018-02-16 14:32:00 2018-02-21 08:59:00  6868  4.77  51.00
+2018-05-20 15:12:00 2018-05-25 08:16:00  6785  4.71  21.00
+  rows with Running == 0 while |PowerReal| > 50 kW: 2721
+
+[3b linear fill] share of minutes whose value lies on the straight line between its neighbours while the value changes
+  2017: AvgSOC 0.62, CellVoltAvg 1.00, Container1.Temp 0.93
+  2018: AvgSOC 0.42, CellVoltAvg 0.72, Container1.Temp 0.19
+  2019: AvgSOC 0.25, CellVoltAvg 0.65, Container1.Temp 0.00
+  2020: AvgSOC 0.00, CellVoltAvg 0.56, Container1.Temp 0.00
+  2021: AvgSOC 0.00, CellVoltAvg 0.61, Container1.Temp 0.02
+  2022: AvgSOC 0.00, CellVoltAvg 0.65, Container1.Temp 0.00
+  2023: AvgSOC 0.22, CellVoltAvg 0.85, Container1.Temp 0.43
+  2024: AvgSOC 0.01, CellVoltAvg 0.66, Container1.Temp 0.00
+  2025: AvgSOC 0.01, CellVoltAvg 0.65, Container1.Temp 0.02
+
+[4 sign]
+  2018-2020: minutes with |PowerReal| > 50 kW and SOC moving 410679; corr(PowerReal, dSOC) -0.624; share with sign(PowerReal) == sign(dSOC) 0.053
+  2022-2025: corr(PowerReal, dSOC) -0.686; corr(DCCurrent, dSOC) 0.685; corr(PowerReal, DCCurrent) -0.999; share sign(PowerReal) == sign(dSOC) 0.001
+
+[5 cell-level share]
+  zips held: 110, 66.6 GB, first 20161201-1231.zip, last 20260201_0228.zip
+  20180701-0731.zip: 667 members; log types {'Bank1': 91, 'Bank1_Racks': 91, 'Bank2': 91, 'Bank2_Racks': 91, 'Section': 91, 'PLC1': 73, 'PLC2': 73, 'RARD': 46, 'EventLog': 15, 'PCS_EventLog': 5}
+  20180715/JXB_BSC_RARD_20180715.csv: rows 17280, columns 395, cell-voltage columns 238, temperature columns 34, (bank, rack) pairs 20, time step between rows 5 s, median revisit per rack 100 s, first 2018-07-15 00:00:00, last 2018-07-15 23:59:58
+  20250101_0131.zip: 696 members; log types {'Bank1': 93, 'Bank1Racks': 93, 'Bank2': 93, 'Bank2Racks': 93, 'PLC1': 93, 'PLC2': 93, 'Section': 93, 'Rard': 31, 'Event': 14}
+  20250115/JXB_BSC_Rard_20250115.csv: rows 17272, columns 395, cell-voltage columns 238, temperature columns 34, (bank, rack) pairs 20, time step between rows 5 s, median revisit per rack 100 s, first 2025-01-15 00:00:04, last 2025-01-15 23:59:57

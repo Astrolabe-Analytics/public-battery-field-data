@@ -1,0 +1,8 @@
+vehicles: cache 514, rerun 514, in both 514
+row counts identical: True
+vehicles with a usable estimate identical: True
+largest per-vehicle kWh difference: 2.13e-14
+DTI: 80 vehicles, 73 usable, median kWh cache 44.730, rerun 44.730
+QAS: 393 vehicles, 393 usable, median kWh cache 29.596, rerun 29.596
+GIS: 41 vehicles, 0 usable, median kWh cache nan, rerun nan
+total MWh: cache 15.21, rerun 15.21

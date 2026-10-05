@@ -1,0 +1,89 @@
+{
+  "package": "fei_bus",
+  "facts": {
+    "application": {
+      "value": "bus",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Released summary CSVs do not state chemistry."
+    },
+    "units_released": {
+      "value": 4,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('fei_bus')",
+      "note": "Rule: one file per bus. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Released summary CSVs do not state cell topology."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Released files contain bus-level summary values, not cell channels."
+    },
+    "energy_mwh": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No pack rating is present in the summary CSVs."
+    },
+    "energy_basis": {
+      "value": "none",
+      "basis": "derived",
+      "source": "energy_mwh is not available",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Released summary CSVs contain no calendar timestamps."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 1.5547e-05,
+      "basis": "measured",
+      "source": "scripts/facts/fei_bus.py",
+      "note": ""
+    },
+    "files": {
+      "value": 4,
+      "basis": "measured",
+      "source": "scripts/facts/fei_bus.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.17632/j9ky68gnd3.3; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

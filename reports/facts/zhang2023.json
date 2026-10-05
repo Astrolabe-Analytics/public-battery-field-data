@@ -1,0 +1,89 @@
+{
+  "package": "zhang2023",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "NMC-class",
+      "basis": "derived",
+      "source": "scripts/facts/_extra.py chemistry rule: 99th percentile of released cell voltage (<3.70 V LFP, >3.95 V NMC-class)",
+      "note": "Snippet maximum cell voltage, 99th percentile per archive: battery_brand1.tar.gz 4.121 V, battery_brand2.tar.gz 4.301 V, battery_brand3.tar.gz 4.224 V."
+    },
+    "units_released": {
+      "value": 347,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('zhang2023')",
+      "note": "Rule: labeled vehicles with at least one snippet. Vehicles with at least one snippet; the label tables list 348 cars, and battery_brand2.tar.gz car 230 has no snippets."
+    },
+    "cells_liion": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Released snippets do not provide a physical pack-topology field."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Snippets carry only the maximum and minimum cell voltage, not individual cells."
+    },
+    "energy_mwh": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The release does not provide a complete nominal pack-energy rating or configuration from which to compute one."
+    },
+    "energy_basis": {
+      "value": "none",
+      "basis": "derived",
+      "source": "energy_mwh is not available",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Released snippets have relative sample positions but no calendar timestamps."
+    },
+    "obs_hours": {
+      "value": 45030.044444444444,
+      "basis": "measured",
+      "source": "scripts/facts/_snippet_scan.py (cached in reports/facts/_cache/)",
+      "note": "Lower bound: union of snippet time ranges per vehicle and charge segment. In brand 3 snippet clocks run through the segment, so the union is exact; in brands 1 and 2 each snippet's clock restarts at zero, so overlapping snippets count once per segment. The plain sum of snippet durations is 249,096 h, an upper bound."
+    },
+    "size_gb": {
+      "value": 1.484381511,
+      "basis": "measured",
+      "source": "scripts/facts/zhang2023.py",
+      "note": ""
+    },
+    "files": {
+      "value": 3,
+      "basis": "measured",
+      "source": "scripts/facts/zhang2023.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.6084/m9.figshare.23659323; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

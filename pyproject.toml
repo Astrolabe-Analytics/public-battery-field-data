@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "public-battery-field-data"
+version = "1.0.0"
+requires-python = ">=3.12"
+dependencies = [
+  "numpy==2.5.3",
+  "pandas==3.0.5",
+  "pyarrow==25.0.1",
+  "certifi==2026.07.22",
+]
+
+[project.optional-dependencies]
+# needed by some loaders: RAR (deng, xie, changan) via libarchive, deflate64 zips (m5bat-2023-04, tsukuba),
+# Excel workbooks (cloverleaf, rwth-home metadata)
+archives = [
+  "libarchive-c==5.3",
+  "inflate64==1.0.4",
+  "openpyxl==3.1.5",
+]
+
+[tool.setuptools.packages.find]
+include = ["fielddata*"]

@@ -1,0 +1,81 @@
+== vin1: cached
+                 neg      pos  zero
+chargestatus                       
+1             435417      513     6
+3             550561  2717905  9675
+4               1243    94829   414
+255               51        0     0
+                 rows  totalvoltage_zero  speed_gt0  median_current  median_speed  median_soc
+chargestatus                                                                                 
+1              435936                  0      15610           -49.8           0.0        74.0
+3             3278141                  0    2157441             3.6          11.5        72.0
+4               96486                  0        896             2.5           0.0        97.0
+255                51                 51          0         -1000.0           0.0         4.0
+                                            value
+rows                                      3810614
+batteryvoltage_missing                     143719
+probetemperatures_missing                  143719
+batteryvoltage_with_empty_entry                 0
+probetemperatures_with_empty_entry              0
+maxvoltagebattery_gt10                          0
+cell_values_gt10                                0
+median_maxvoltagebattery_V                  3.925
+maxvoltagebattery_values                  3810563
+median_cell_V                                 3.9
+cell_values                             352021920
+batteryvoltage_entries_per_row      {96: 3666895}
+probetemperatures_entries_per_row   {32: 3666895}
+== vin2: cached
+              missing     neg     pos  zero
+chargestatus                               
+-1.0              177       0       0     0
+ 0.0                0       0       0   169
+ 1.0                0   76266      50     0
+ 3.0                0  147096  571183  1713
+ 4.0                0     179    1202    24
+ 255.0              0      55       0     0
+                rows  totalvoltage_zero  speed_gt0  median_current  median_speed  median_soc
+chargestatus                                                                                
+-1.0             177                  0          1             NaN           0.0         NaN
+ 0.0             169                169         54             0.0           0.0         0.0
+ 1.0           76316                  0          0           -73.8           0.0        80.0
+ 3.0          719992                  1     472482             1.9          16.8        69.0
+ 4.0            1405                  0          0             0.4           0.0       100.0
+ 255.0            55                 55          0         -1000.0           0.0         4.0
+                            value
+rows                       798114
+batteryvoltage_missing      53989
+probetemperatures_missing   53989
+== vin3: cached
+              missing     neg      pos  zero
+chargestatus                                
+-1.0              366       0        0     0
+ 0.0                0       0        0   421
+ 1.0                0  324345       73     2
+ 3.0                1  536877  1687114  5246
+ 4.0                0     638     1333   112
+ 255.0              0      22        0     0
+                 rows  totalvoltage_zero  speed_gt0  median_current  median_speed  median_soc
+chargestatus                                                                                 
+-1.0              366                  0          4             NaN           0.0         NaN
+ 0.0              421                421         55             0.0           0.0         0.0
+ 1.0           324420                  0          0           -49.2           0.0        72.0
+ 3.0          2229238                  0    1755322             3.1          22.5        68.0
+ 4.0             2083                  0          0             0.4           0.0        97.0
+ 255.0             22                 22          0         -1000.0           0.0         4.0
+                             value
+rows                       2556550
+batteryvoltage_missing      153362
+probetemperatures_missing   153362
+== vin1 rows with totalcurrent == -1000, chargestatus 255 or totalvoltage 0
+   vehicle_rows  chargestatus  current_is_minus1000  voltage_is_zero  rows soc_values  speed_gt0 maxtemp_values  minvoltagebattery_zero
+0       3810614           255                  True             True    51        [4]          0          [-40]                      51
+== vin2 rows with totalcurrent == -1000, chargestatus 255 or totalvoltage 0
+   vehicle_rows  chargestatus  current_is_minus1000  voltage_is_zero  rows soc_values  speed_gt0 maxtemp_values  minvoltagebattery_zero
+0        798114           0.0                 False             True   169      [0.0]         54          [0.0]                     169
+1        798114           3.0                 False             True     1     [99.0]          0        [-40.0]                       1
+2        798114         255.0                  True             True    55      [4.0]          0        [-40.0]                      55
+== vin3 rows with totalcurrent == -1000, chargestatus 255 or totalvoltage 0
+   vehicle_rows  chargestatus  current_is_minus1000  voltage_is_zero  rows soc_values  speed_gt0 maxtemp_values  minvoltagebattery_zero
+0       2556550           0.0                 False             True   421      [0.0]         55          [0.0]                     421
+1       2556550         255.0                  True             True    22      [4.0]          0        [-40.0]                      22

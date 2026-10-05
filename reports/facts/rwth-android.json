@@ -1,0 +1,89 @@
+{
+  "package": "rwth-android",
+  "facts": {
+    "application": {
+      "value": "consumer electronics",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "Li-ion; Li-poly; Unknown",
+      "basis": "stated",
+      "source": "device-reported battery_technology field in the released tables",
+      "note": ""
+    },
+    "units_released": {
+      "value": 33,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('rwth-android')",
+      "note": "Rule: one file per device. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": 33,
+      "basis": "derived",
+      "source": "one released cell_id telemetry table per device parquet",
+      "note": "Assumes one cell per device (the data paper says most devices have a single cell); one cell_id per file measured."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 33,
+      "basis": "derived",
+      "source": "one voltage_cell channel per released device parquet",
+      "note": ""
+    },
+    "energy_mwh": {
+      "value": 0.000666,
+      "basis": "derived",
+      "source": "scripts/facts/rwth-android.py",
+      "note": "Sum over 33 devices of nominal_capacity (Ah, data paper p. 4) times median cell voltage; for 10 devices without a usable nominal_capacity (7 report 0 and 3 leave it empty), the charge counter near full charge is used."
+    },
+    "energy_basis": {
+      "value": "computed",
+      "basis": "derived",
+      "source": "energy_mwh is computed from the released data",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 3.538390672136031,
+      "basis": "measured",
+      "source": "scripts/facts/rwth-android.py",
+      "note": "The held archive is the portal export Dataset_from_Mobile_Battery_Data_Explorer_2026-04.zip, not the section under 10.18154/RWTH-2025-00754: it includes 214,351 rows from 5 devices before the paper's 2026-01-14 start and ends 2026-03-31 (3.09 device-years without those rows)."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 0.076060541,
+      "basis": "measured",
+      "source": "scripts/facts/rwth-android.py",
+      "note": ""
+    },
+    "files": {
+      "value": 1,
+      "basis": "measured",
+      "source": "scripts/facts/rwth-android.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://publications.rwth-aachen.de/record/1002905; public data record and released documentation state no sentinel convention",
+      "note": "current_avg = -2147.483648 (Integer.MIN_VALUE x 1e-6) on every row of 10 devices, observed, masked by clean=True; nominal_capacity 0 on 7 devices, left as released (source audit 2026-10-04)."
+    }
+  }
+}

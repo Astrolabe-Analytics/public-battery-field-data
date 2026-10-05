@@ -1,0 +1,191 @@
+
+[value_ids present per vehicle]
+unit                                     CUP1     CUP2    CUP3     CUP4     CUP5       ID1       ID2
+value_id variable_name                                                                              
+4        vehicle_speed                2150504   756739  217344  1079914   841741   4537006   7689927
+15       ambient_air_temp               51637    25437    6434    32869    20288    283059    197214
+43       interior_temp                      0        0       0        0        0     45696         0
+56       hv_aux_power                  512018   251621   64713   324957   200807   2548507   1821868
+900      hv_soc                        126742    53088   13764    68326    45145    821873    539521
+961      temp_rear_motor_stator        104932    51644   13252    66362    41139    436873    487870
+1200     hv_battery_voltage           5282082  2386969  619997  3085181  1978897  29383790  23318912
+1205     ptc1_current                       0        0       0        0        0    273222         0
+1207     ptc_voltage                        0        0       0        0        0    267237         0
+1208     hv_temp_min                     2596     1184     404     1957     1418     25450     23055
+1209     hv_temp_max                     2287     2161     326     1231     1161     21908     25815
+1265     rear_motor_rotor_temp         105039    51477   13266    66406    41105    461016    487691
+1269     coolant_temp_inverter_inlet   104902    51490   13256    66413    41142    547130    487632
+1272     hv_battery_temp_inlet         108803    55796   11980    74921    46696    376303    470411
+1273     hv_battery_temp_outlet        107950    55882   12128    74934    46442    372630    470302
+[value_ids in value_overview.csv with no rows in any vehicle] [1206, 1288, 1289, 1290, 1291, 1292, 1293, 1294, 1295, 1299, 1300, 1301, 1302, 1303]
+[value_ids >= 1288 with rows] []
+
+[per-vehicle bounds, timestamps from 2030 on excluded]
+                       first                    last      rows  rows_2030_on  rows_after_2023_04_01     years
+unit                                                                                                         
+CUP1 2022-11-15 09:37:08.846 2023-04-24 15:10:02.500   8659492           812                1552690  0.438689
+CUP2 2022-11-21 08:43:12.514 2023-05-04 21:36:48.278   3743488             0                  71733  0.450478
+CUP3 2022-11-17 09:35:16.957 2023-04-23 12:23:51.029    986864             0                  54406  0.430163
+CUP4 2022-11-15 09:42:31.880 2023-04-14 14:23:20.269   4943471             0                 459358  0.411212
+CUP5 2022-11-10 17:06:10.156 2023-04-23 18:38:08.398   3305981             0                 489259  0.449182
+ID1  2021-02-01 20:20:34.114 2023-06-13 07:50:10.952  40401700             0                1917273  2.358601
+ID2  2021-07-26 14:16:10.139 2023-10-10 10:55:11.233  36020218             0                  90777  2.206326
+  summed span 6.745 unit-years
+  CUP1: value_ids with rows after 2023-04-01: [4, 15, 56, 900, 961, 1200, 1208, 1209, 1265, 1269, 1272, 1273]; last per id: {15: '2023-04-13', 4: '2023-04-24', 1200: '2023-04-24', 1208: '2023-04-13', 1209: '2023-04-13', 56: '2023-04-13', 961: '2023-04-13', 1265: '2023-04-13', 1269: '2023-04-13', 1272: '2023-04-13', 1273: '2023-04-13', 900: '2023-04-24'}
+  CUP2: value_ids with rows after 2023-04-01: [4, 15, 56, 900, 961, 1200, 1208, 1209, 1265, 1269, 1272, 1273]; last per id: {15: '2023-04-21', 4: '2023-04-21', 1200: '2023-04-21', 1208: '2023-04-21', 1209: '2023-04-21', 56: '2023-04-21', 961: '2023-05-04', 1265: '2023-05-04', 1269: '2023-04-21', 1272: '2023-04-21', 1273: '2023-04-21', 900: '2023-04-21'}
+  CUP3: value_ids with rows after 2023-04-01: [4, 15, 56, 900, 961, 1200, 1208, 1209, 1265, 1269, 1272, 1273]; last per id: {15: '2023-04-06', 4: '2023-04-23', 1200: '2023-04-23', 1208: '2023-04-06', 1209: '2023-04-06', 56: '2023-04-06', 961: '2023-04-06', 1265: '2023-04-06', 1269: '2023-04-06', 1272: '2023-04-06', 1273: '2023-04-06', 900: '2023-04-23'}
+  CUP4: value_ids with rows after 2023-04-01: [4, 15, 56, 900, 961, 1200, 1208, 1209, 1265, 1269, 1272, 1273]; last per id: {15: '2023-04-06', 4: '2023-04-14', 1200: '2023-04-14', 1208: '2023-04-06', 1209: '2023-04-06', 56: '2023-04-06', 961: '2023-04-06', 1265: '2023-04-06', 1269: '2023-04-06', 1272: '2023-04-06', 1273: '2023-04-06', 900: '2023-04-14'}
+  CUP5: value_ids with rows after 2023-04-01: [4, 15, 56, 900, 961, 1200, 1208, 1209, 1265, 1269, 1272, 1273]; last per id: {15: '2023-04-14', 4: '2023-04-23', 1200: '2023-04-23', 1208: '2023-04-14', 1209: '2023-04-14', 56: '2023-04-14', 961: '2023-04-14', 1265: '2023-04-14', 1269: '2023-04-14', 1272: '2023-04-14', 1273: '2023-04-14', 900: '2023-04-23'}
+
+
+
+[2087 rows]
+unit  value_id               variable_name  rows_2030_on  years_2087            time_max_raw
+CUP1        15            ambient_air_temp             6      2087.0 2087-03-07 15:46:35.678
+CUP1         4               vehicle_speed           223      2087.0 2087-03-07 15:46:37.899
+CUP1      1200          hv_battery_voltage           467      2087.0 2087-03-07 15:46:37.885
+CUP1        56                hv_aux_power            51      2087.0 2087-03-07 15:46:37.640
+CUP1       961      temp_rear_motor_stator             9      2087.0 2087-03-07 15:46:32.079
+CUP1      1265       rear_motor_rotor_temp            10      2087.0 2087-03-07 15:46:37.043
+CUP1      1269 coolant_temp_inverter_inlet            11      2087.0 2087-03-07 15:46:37.132
+CUP1      1272       hv_battery_temp_inlet            15      2087.0 2087-03-07 15:46:37.376
+CUP1      1273      hv_battery_temp_outlet            10      2087.0 2087-03-07 15:46:37.361
+CUP1       900                      hv_soc            10      2087.0 2087-03-07 15:46:37.499
+  total rows dated 2030 or later: 812
+
+[value ranges, raw, and median spacing between rows of one signal]
+unit  value_id               variable_name  value_min  value_max  median_spacing_s
+CUP1        15            ambient_air_temp     -10.50      19.50           10.0080
+CUP1         4               vehicle_speed       0.00     393.47            0.2200
+CUP1      1200          hv_battery_voltage       0.00    8588.00            0.1240
+CUP1      1208                 hv_temp_min       0.00      30.99          180.2590
+CUP1      1209                 hv_temp_max       3.19      33.09           70.1315
+CUP1        56                hv_aux_power       0.00   25400.00            1.0200
+CUP1       961      temp_rear_motor_stator      -1.75      68.53            5.0140
+CUP1      1265       rear_motor_rotor_temp      -1.63     101.34            5.0140
+CUP1      1269 coolant_temp_inverter_inlet      -2.27      32.04            5.0140
+CUP1      1272       hv_battery_temp_inlet       0.00    1023.98            5.0190
+CUP1      1273      hv_battery_temp_outlet       0.00    1023.98            5.0190
+CUP1       900                      hv_soc       3.60      97.20            5.0100
+CUP2        15            ambient_air_temp      -5.00      22.00           10.0080
+CUP2         4               vehicle_speed       0.00     361.47            0.2200
+CUP2      1200          hv_battery_voltage       0.00    3701.80            0.1130
+CUP2      1208                 hv_temp_min       0.00      23.59          170.3390
+CUP2      1209                 hv_temp_max       3.49      23.29           10.0140
+CUP2        56                hv_aux_power       0.00   25400.00            1.0200
+CUP2       961      temp_rear_motor_stator      -4.47      52.54            5.0140
+CUP2      1265       rear_motor_rotor_temp      -4.47      94.23            5.0140
+CUP2      1269 coolant_temp_inverter_inlet     -24.22      30.96            5.0140
+CUP2      1272       hv_battery_temp_inlet       0.00    1023.84            5.0190
+CUP2      1273      hv_battery_temp_outlet       0.00    1023.98            5.0190
+CUP2       900                      hv_soc       5.20      96.40            5.0100
+CUP3        15            ambient_air_temp       0.00      19.50           10.0080
+CUP3         4               vehicle_speed       0.00     375.45            0.2200
+CUP3      1200          hv_battery_voltage       0.00     455.00            0.1130
+CUP3      1208                 hv_temp_min       0.00      20.19           10.0680
+CUP3      1209                 hv_temp_max       5.99      18.39           10.0640
+CUP3        56                hv_aux_power       0.00   25400.00            1.0200
+CUP3       961      temp_rear_motor_stator       0.00      44.11            5.0140
+CUP3      1265       rear_motor_rotor_temp       0.00      82.04            5.0140
+CUP3      1269 coolant_temp_inverter_inlet       0.00      31.40            5.0140
+CUP3      1272       hv_battery_temp_inlet       0.00    1021.03            5.0180
+CUP3      1273      hv_battery_temp_outlet       0.00    1023.95            5.0170
+CUP3       900                      hv_soc       5.20      98.40            5.0100
+CUP4        15            ambient_air_temp      -6.50      20.50           10.0080
+CUP4         4               vehicle_speed       0.00     425.98            0.2200
+CUP4      1200          hv_battery_voltage       0.00    3706.30            0.1130
+CUP4      1208                 hv_temp_min       0.00      27.59           80.3170
+CUP4      1209                 hv_temp_max       5.19      27.59          171.0165
+CUP4        56                hv_aux_power       0.00   25400.00            1.0200
+CUP4       961      temp_rear_motor_stator      -1.55      45.60            5.0140
+CUP4      1265       rear_motor_rotor_temp     -11.82      85.67            5.0140
+CUP4      1269 coolant_temp_inverter_inlet       0.00      31.05            5.0140
+CUP4      1272       hv_battery_temp_inlet       0.00    1023.00            5.0190
+CUP4      1273      hv_battery_temp_outlet       0.00    1023.00            5.0190
+CUP4       900                      hv_soc       5.20      97.60            5.0100
+CUP5        15            ambient_air_temp     -11.00      19.50           10.0080
+CUP5         4               vehicle_speed       0.00     327.68            0.2200
+CUP5      1200          hv_battery_voltage       0.00    3693.10            0.1180
+CUP5      1208                 hv_temp_min       0.00      20.99           60.7190
+CUP5      1209                 hv_temp_max       4.69      21.89           20.0195
+CUP5        56                hv_aux_power       0.00   25400.00            1.0200
+CUP5       961      temp_rear_motor_stator      -2.48      41.58            5.0140
+CUP5      1265       rear_motor_rotor_temp      -2.40      74.38            5.0140
+CUP5      1269 coolant_temp_inverter_inlet      -1.53      30.95            5.0140
+CUP5      1272       hv_battery_temp_inlet       0.00    1023.00            5.0190
+CUP5      1273      hv_battery_temp_outlet       0.00    1023.00            5.0190
+CUP5       900                      hv_soc       4.40      96.80            5.0100
+ ID1        15            ambient_air_temp      -9.50      39.50           10.0080
+ ID1         4               vehicle_speed       0.00     356.85            0.2200
+ ID1      1200          hv_battery_voltage       0.00    8642.50            0.1420
+ ID1      1205                ptc1_current       0.00      63.50            1.0410
+ ID1      1207                 ptc_voltage       0.00     652.78            1.0430
+ ID1      1208                 hv_temp_min       0.00      44.00           10.0260
+ ID1      1209                 hv_temp_max       0.00      75.20           10.0650
+ ID1        43               interior_temp      -0.20      61.20           10.0120
+ ID1        56                hv_aux_power       0.00   25400.00            1.0200
+ ID1       961      temp_rear_motor_stator      -6.14      88.04            5.0140
+ ID1      1265       rear_motor_rotor_temp      -6.04     111.57            5.0140
+ ID1      1269 coolant_temp_inverter_inlet     -30.68      48.13            5.0130
+ ID1      1272       hv_battery_temp_inlet       0.00    1023.98            5.0150
+ ID1      1273      hv_battery_temp_outlet       0.00    1023.98            5.0150
+ ID1       900                      hv_soc       0.00     101.60            5.0130
+ ID2        15            ambient_air_temp      -9.50      37.50           10.0080
+ ID2         4               vehicle_speed       0.00     428.68            0.2200
+ ID2      1200          hv_battery_voltage       0.00    8628.25            0.1200
+ ID2      1208                 hv_temp_min      -0.20      43.40           50.0285
+ ID2      1209                 hv_temp_max       0.00      45.00           30.0710
+ ID2        56                hv_aux_power       0.00   25400.00            1.0200
+ ID2       961      temp_rear_motor_stator      -6.42      65.82            5.0140
+ ID2      1265       rear_motor_rotor_temp      -6.36     108.94            5.0140
+ ID2      1269 coolant_temp_inverter_inlet     -17.22      51.25            5.0140
+ ID2      1272       hv_battery_temp_inlet       0.00    1023.98            5.0160
+ ID2      1273      hv_battery_temp_outlet       0.00    1023.97            5.0160
+ ID2       900                      hv_soc       6.00      98.00            5.0100
+
+[hv_soc 900: share of rows below 4 % and above 96 %, raw]
+  CUP1: rows 126742, min 3.6, max 97.2, <4 %: 9, >96 %: 268
+  CUP2: rows 53088, min 5.2, max 96.4, <4 %: 0, >96 %: 24
+  CUP3: rows 13764, min 5.2, max 98.4, <4 %: 0, >96 %: 224
+  CUP4: rows 68326, min 5.2, max 97.6, <4 %: 0, >96 %: 414
+  CUP5: rows 45145, min 4.4, max 96.8, <4 %: 0, >96 %: 64
+  ID1: rows 821873, min 0.0, max 101.6, <4 %: 1171, >96 %: 281767
+  ID2: rows 539521, min 6.0, max 98.0, <4 %: 0, >96 %: 798
+
+[rows outside value_overview.csv min_val..max_val, raw; most frequent offending values]
+  CUP1 4 vehicle_speed [0.0, 254.0]: 2 of 2150504 rows; top {355.52: 1, 393.47: 1}
+  CUP1 56 hv_aux_power [-20000.0, 20000.0]: 63 of 512018 rows; top {25400.0: 63}
+  CUP1 1200 hv_battery_voltage [0.0, 1000.0]: 5 of 5282082 rows; top {8588.0: 1, 3666.6: 1, 3666.1: 1}
+  CUP1 1272 hv_battery_temp_inlet [-40.0, 200.0]: 819 of 108803 rows; top {1023.0: 374, 1022.0: 282, 540.03: 5}
+  CUP1 1273 hv_battery_temp_outlet [-40.0, 200.0]: 838 of 107950 rows; top {1023.0: 375, 1022.0: 288, 271.2: 6}
+  CUP2 4 vehicle_speed [0.0, 254.0]: 1 of 756739 rows; top {361.47: 1}
+  CUP2 56 hv_aux_power [-20000.0, 20000.0]: 55 of 251621 rows; top {25400.0: 55}
+  CUP2 1200 hv_battery_voltage [0.0, 1000.0]: 4 of 2386969 rows; top {3691.1: 1, 3701.8: 1, 3667.1: 1}
+  CUP2 1272 hv_battery_temp_inlet [-40.0, 200.0]: 563 of 55796 rows; top {1023.0: 401, 1022.0: 64, 1019.0: 60}
+  CUP2 1273 hv_battery_temp_outlet [-40.0, 200.0]: 595 of 55882 rows; top {1023.0: 414, 1022.0: 70, 1019.0: 64}
+  CUP3 4 vehicle_speed [0.0, 254.0]: 2 of 217344 rows; top {375.45: 1, 357.48: 1}
+  CUP3 56 hv_aux_power [-20000.0, 20000.0]: 11 of 64713 rows; top {25400.0: 11}
+  CUP3 1272 hv_battery_temp_inlet [-40.0, 200.0]: 43 of 11980 rows; top {271.28: 2, 271.31: 2, 271.33: 2}
+  CUP3 1273 hv_battery_temp_outlet [-40.0, 200.0]: 34 of 12128 rows; top {271.39: 2, 600.03: 2, 260.48: 1}
+  CUP4 4 vehicle_speed [0.0, 254.0]: 3 of 1079914 rows; top {425.98: 1, 377.92: 1, 343.73: 1}
+  CUP4 56 hv_aux_power [-20000.0, 20000.0]: 39 of 324957 rows; top {25400.0: 39}
+  CUP4 1200 hv_battery_voltage [0.0, 1000.0]: 5 of 3085181 rows; top {3703.8: 1, 3665.8: 1, 3700.1: 1}
+  CUP4 1272 hv_battery_temp_inlet [-40.0, 200.0]: 82 of 74921 rows; top {1023.0: 58, 1022.0: 24}
+  CUP4 1273 hv_battery_temp_outlet [-40.0, 200.0]: 79 of 74934 rows; top {1023.0: 49, 1022.0: 30}
+  CUP5 4 vehicle_speed [0.0, 254.0]: 1 of 841741 rows; top {327.68: 1}
+  CUP5 56 hv_aux_power [-20000.0, 20000.0]: 45 of 200807 rows; top {25400.0: 45}
+  CUP5 1200 hv_battery_voltage [0.0, 1000.0]: 4 of 1978897 rows; top {3636.6: 1, 3693.1: 1, 3675.6: 1}
+  CUP5 1272 hv_battery_temp_inlet [-40.0, 200.0]: 72 of 46696 rows; top {1023.0: 44, 1021.0: 20, 1022.0: 8}
+  CUP5 1273 hv_battery_temp_outlet [-40.0, 200.0]: 74 of 46442 rows; top {1023.0: 48, 1021.0: 20, 1022.0: 6}
+  ID1 4 vehicle_speed [0.0, 254.0]: 807 of 4537006 rows; top {255.0: 803, 327.68: 3, 356.85: 1}
+  ID1 56 hv_aux_power [-20000.0, 20000.0]: 79 of 2548507 rows; top {25400.0: 79}
+  ID1 900 hv_soc [0.0, 100.0]: 2 of 821873 rows; top {101.6: 2}
+  ID1 1200 hv_battery_voltage [0.0, 1000.0]: 22 of 29383790 rows; top {1023.5: 4, 3674.6: 1, 3698.8: 1}
+  ID1 1272 hv_battery_temp_inlet [-40.0, 200.0]: 3718 of 376303 rows; top {1023.0: 2400, 271.56: 85, 271.58: 55}
+  ID1 1273 hv_battery_temp_outlet [-40.0, 200.0]: 3644 of 372630 rows; top {1023.0: 2188, 271.56: 110, 592.03: 59}
+  ID2 4 vehicle_speed [0.0, 254.0]: 12 of 7689927 rows; top {327.68: 8, 368.38: 1, 428.68: 1}
+  ID2 56 hv_aux_power [-20000.0, 20000.0]: 102 of 1821868 rows; top {25400.0: 102}
+  ID2 1200 hv_battery_voltage [0.0, 1000.0]: 25 of 23318912 rows; top {3690.6: 2, 3668.6: 1, 3692.3: 1}
+  ID2 1272 hv_battery_temp_inlet [-40.0, 200.0]: 4606 of 470411 rows; top {1023.0: 3292, 528.03: 44, 1022.0: 32}
+  ID2 1273 hv_battery_temp_outlet [-40.0, 200.0]: 4407 of 470302 rows; top {1023.0: 3122, 528.03: 36, 271.08: 32}
+  total rows outside the stated range: 20863

@@ -1,0 +1,19 @@
+* text=auto eol=lf
+*.bat text eol=crlf
+
+*.gif binary
+*.gz binary
+*.ico binary
+*.jpeg binary
+*.jpg binary
+*.pdf binary
+*.pkl binary
+*.png binary
+*.pptx binary
+*.pyc binary
+*.rar binary
+*.tar binary
+*.xlsx binary
+*.xls binary
+*.zip binary
+*.parquet binary

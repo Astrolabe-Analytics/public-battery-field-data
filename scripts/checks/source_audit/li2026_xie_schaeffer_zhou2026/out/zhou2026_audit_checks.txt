@@ -1,0 +1,82 @@
+zhou2026 audit checks, raw data (clean=False).
+
+== LFP01: 5,118,176 rows, 2019-05-05 12:09:30 to 2023-12-12 23:36:03
+  [2] unparsable timestamps: 0; duplicate timestamps: 881 (0.02%); fully duplicated rows (timestamp and all scalar columns): 881
+  [2] steps between distinct timestamps: median 10 s; exactly 10 s 77.5%; histogram [0.0, 9.0): 6767; [9.0, 10.0): 204; [10.0, 11.0): 3965852; [11.0, 20.0): 2457; [20.0, 21.0): 1117505; [21.0, 60.0): 11246; [60.0, 300.0): 5591; [300.0, 3600.0): 4387; [3600.0, 86400.0): 3237; [86400.0, inf): 48
+  [2] NaN per column: none; SOC <= 0: 0; TotalVoltage <= 0: 0
+  [2] MaxCellVoltage: rows inside a run of three equal nonzero 10-s steps (linear-interpolation signature): 96,184 of 5,118,174 (1.88%)
+  [5] VehicleStatus values: {1: 4301834, 2: 816342}
+  [5] ChargingStatus values: {1: 791627, 3: 4326549}
+  [2] share of rows with ChargingStatus == 1: 15.5%
+  [4] ChargingStatus == 1: 791,627 rows, TotalCurrent < 0 in 99.5%, > 0 in 0.0%; median -74.4
+  [4] VehicleStatus == 1, not charging, Speed > 0: 2,900,612 rows, TotalCurrent > 0 in 66.0%, < 0 in 33.6%; median 9.2
+  [4] consecutive 10-s rows with SOC change: SOC rose with TotalCurrent < -5 in 76.7%; SOC fell with TotalCurrent > 5 in 97.7%
+  [5] MaxCellVoltage: median 3311, 1st percentile 3222, 99th 3443, min 0, max 3663
+  [5] MinCellVoltage: median 3296, 1st percentile 3194, 99th 3423, min 0, max 3578
+  [5] TotalVoltage: median 515.2, 1st percentile 500.2, 99th 535.3, min 98.5, max 564.3
+  [5] TotalCurrent: median 1.1, 1st percentile -115.9, 99th 163.1, min -213.9, max 256.7
+  [5] SOC: median 72, 1st percentile 31, 99th 99, min 17, max 100
+  [5] MaxTemp: median 255, 1st percentile 21, 99th 255, min 0, max 255
+  [5] MinTemp: median 32, 1st percentile 17, 99th 42, min 0, max 48
+  [5] Speed: median 7.9, 1st percentile 0, 99th 57.8, min 0, max 72.3
+  [5] Mileage: median 203555, 1st percentile 8420.7, 99th 335088, min 4467.6, max 338232
+  [5] TotalCells values: {156: 5118176}; TotalPacks values: {1: 5118176}
+  [6] partition 0 (255,909 rows): entries in CellVoltages {156: 255909}; in CellTemperatures {28: 201216, 26: 54693}; TotalCells {156: 255909}
+  [6] partition 0: expanded cell temperatures 0 to 255; expanded cell voltages 0 to 3656, median 3303
+  [6] partition 0: probe values equal to 255: 402,402 of 7,165,452; MaxTemp equal to 255: 201,201 of 255,909
+  [6] partition 0, rows with MaxTemp != 255: max probe value - 40 equals MaxTemp in 0.0%, equals MaxTemp without offset in 100.0%; min probe value - 40 equals MinTemp in 0.0%
+  [6] partition 0: max cell voltage in CellVoltages equals MaxCellVoltage in 100.0%; min equals MinCellVoltage in 100.0%
+
+== vehicle45: 6,103,094 rows, 2019-05-09 16:13:24 to 2022-04-04 18:38:56
+  [2] unparsable timestamps: 0; duplicate timestamps: 0 (0.00%); fully duplicated rows (timestamp and all scalar columns): 0
+  [2] steps between distinct timestamps: median 10 s; exactly 10 s 99.8%; histogram [0.0, 9.0): 0; [9.0, 10.0): 2; [10.0, 11.0): 6090638; [11.0, 20.0): 1800; [20.0, 21.0): 2056; [21.0, 60.0): 1505; [60.0, 300.0): 1968; [300.0, 3600.0): 3520; [3600.0, 86400.0): 1579; [86400.0, inf): 25
+  [2] NaN per column: {'MaxTemp': 10}; SOC <= 0: 11; TotalVoltage <= 0: 123
+  [2] MaxCellVoltage: rows inside a run of three equal nonzero 10-s steps (linear-interpolation signature): 209,460 of 6,103,092 (3.43%)
+  [5] VehicleStatus values: {1: 3859340, 2: 2233123, 3: 10577, 254: 54}
+  [5] ChargingStatus values: {1: 1768870, 3: 4324206, 4: 10018}
+  [2] share of rows with ChargingStatus == 1: 29.0%
+  [4] ChargingStatus == 1: 1,768,870 rows, TotalCurrent < 0 in 100.0%, > 0 in 0.0%; median -17.3
+  [4] VehicleStatus == 1, not charging, Speed > 0: 2,658,520 rows, TotalCurrent > 0 in 80.4%, < 0 in 19.2%; median 9.1
+  [4] consecutive 10-s rows with SOC change: SOC rose with TotalCurrent < -5 in 95.5%; SOC fell with TotalCurrent > 5 in 97.3%
+  [5] MaxCellVoltage: median 3847, 1st percentile 3525, 99th 4226, min 3373, max 4256
+  [5] MinCellVoltage: median 3825, 1st percentile 3503, 99th 4204, min 2982, max 4236
+  [5] TotalVoltage: median 364.6, 1st percentile 333.9, 99th 400.9, min 0, max 403.8
+  [5] TotalCurrent: median 0.5, 1st percentile -51.1, 99th 62.007, min -225.1, max 340.6
+  [5] SOC: median 69, 1st percentile 13, 99th 99, min 0, max 100
+  [5] MaxTemp: median 27, 1st percentile 16, 99th 36, min -40, max 42
+  [5] MinTemp: median 24, 1st percentile 13, 99th 34, min -40, max 39
+  [5] Speed: median 0, 1st percentile 0, 99th 75.5, min 0, max 117.8
+  [5] Mileage: median 181727, 1st percentile 76275.2, 99th 248562, min 73695.4, max 250427
+  [5] TotalCells values: {95: 6103094}; TotalPacks values: {1: 6103094}
+  [6] partition 0 (305,155 rows): entries in CellVoltages {95: 305155}; in CellTemperatures {34: 305155}; TotalCells {95: 305155}
+  [6] partition 0: expanded cell temperatures 60 to 255; expanded cell voltages 3406 to 4255, median 3850
+  [6] partition 0: probe values equal to 255: 1 of 10,375,270; MaxTemp equal to 255: 0 of 305,155
+  [6] partition 0, rows with MaxTemp != 255: max probe value - 40 equals MaxTemp in 100.0%, equals MaxTemp without offset in 0.0%; min probe value - 40 equals MinTemp in 100.0%
+  [6] partition 0: max cell voltage in CellVoltages equals MaxCellVoltage in 100.0%; min equals MinCellVoltage in 100.0%
+
+== vehicle69: 5,015,309 rows, 2019-05-09 16:20:03 to 2022-04-04 23:59:57
+  [2] unparsable timestamps: 0; duplicate timestamps: 0 (0.00%); fully duplicated rows (timestamp and all scalar columns): 0
+  [2] steps between distinct timestamps: median 10 s; exactly 10 s 99.9%; histogram [0.0, 9.0): 59; [9.0, 10.0): 1; [10.0, 11.0): 5008625; [11.0, 20.0): 909; [20.0, 21.0): 1673; [21.0, 60.0): 1153; [60.0, 300.0): 629; [300.0, 3600.0): 731; [3600.0, 86400.0): 1484; [86400.0, inf): 44
+  [2] NaN per column: none; SOC <= 0: 107; TotalVoltage <= 0: 33
+  [2] MaxCellVoltage: rows inside a run of three equal nonzero 10-s steps (linear-interpolation signature): 163,897 of 5,015,307 (3.27%)
+  [5] VehicleStatus values: {1: 3189637, 2: 1810918, 3: 14750, 254: 4}
+  [5] ChargingStatus values: {1: 1698344, 3: 3309378, 4: 7587}
+  [2] share of rows with ChargingStatus == 1: 33.9%
+  [4] ChargingStatus == 1: 1,698,344 rows, TotalCurrent < 0 in 100.0%, > 0 in 0.0%; median -17.4
+  [4] VehicleStatus == 1, not charging, Speed > 0: 2,096,994 rows, TotalCurrent > 0 in 65.8%, < 0 in 33.3%; median 3.9
+  [4] consecutive 10-s rows with SOC change: SOC rose with TotalCurrent < -5 in 82.7%; SOC fell with TotalCurrent > 5 in 94.9%
+  [5] MaxCellVoltage: median 3801, 1st percentile 3501, 99th 4224, min 3306, max 4257
+  [5] MinCellVoltage: median 3779, 1st percentile 3473, 99th 4203, min 3089, max 4239
+  [5] TotalVoltage: median 360.1, 1st percentile 331.3, 99th 400.4, min 0, max 403.4
+  [5] TotalCurrent: median 0, 1st percentile -97.2, 99th 136.1, min -215.4, max 353.2
+  [5] SOC: median 63, 1st percentile 9, 99th 99, min 0, max 100
+  [5] MaxTemp: median 29, 1st percentile 16, 99th 38, min 1, max 45
+  [5] MinTemp: median 26, 1st percentile 13, 99th 35, min -40, max 42
+  [5] Speed: median 0, 1st percentile 0, 99th 83.4, min 0, max 117.4
+  [5] Mileage: median 165598, 1st percentile 68062.9, 99th 263480, min 66112.9, max 265130
+  [5] TotalCells values: {95: 5015309}; TotalPacks values: {1: 5015309}
+  [6] partition 0 (250,766 rows): entries in CellVoltages {95: 250766}; in CellTemperatures {34: 250766}; TotalCells {95: 250766}
+  [6] partition 0: expanded cell temperatures 58 to 82; expanded cell voltages 3386 to 4255, median 3879
+  [6] partition 0: probe values equal to 255: 0 of 8,526,044; MaxTemp equal to 255: 0 of 250,766
+  [6] partition 0, rows with MaxTemp != 255: max probe value - 40 equals MaxTemp in 100.0%, equals MaxTemp without offset in 0.0%; min probe value - 40 equals MinTemp in 100.0%
+  [6] partition 0: max cell voltage in CellVoltages equals MaxCellVoltage in 100.0%; min equals MinCellVoltage in 100.0%

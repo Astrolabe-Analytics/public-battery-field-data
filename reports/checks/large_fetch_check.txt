@@ -1,0 +1,33 @@
+cao (zenodo, https://doi.org/10.5281/zenodo.10656500)
+  planned: 7 files, 38.063 GB; held: 8 files, 38.063 GB
+  planned files missing from the holdings: 0
+  planned files held with a different size: 0
+  planned text files held with Windows line endings only: 0
+  planned files with no size from the publisher: 0
+  held files the fetch would not download: 1 (for example code/MCDL-Online-Fault-Diagnosis_github_v1.0.0_2024-09-28_ede1f2c70f43.zip)
+  smallest planned file downloaded to a scratch folder: GIS.zip (389,438,075 bytes)
+    publisher checksum: matched
+    identical to the held copy (SHA-256): yes
+    scratch copy deleted: yes
+ppl (github, https://github.com/PPLResearch/BESS-Analysis)
+  planned: 14 files, 0.949 GB; held: 126 files, 67.594 GB
+  planned files missing from the holdings: 0
+  planned files held with a different size: 0
+  planned text files held with Windows line endings only: 3 (BESS-Analysis/.gitattributes, BESS-Analysis/Cell_Level_Data, BESS-Analysis/README.md)
+  planned files with no size from the publisher: 0
+  held files the fetch would not download: 112 (for example ESS_snapshot_20260825.json, cell_level/20161201-1231.zip, cell_level/20170101-0131.zip)
+  smallest planned file downloaded to a scratch folder: BESS-Analysis/.gitattributes (42 bytes)
+    publisher checksum: own-hash only
+    identical to the held copy (SHA-256): yes apart from Windows line endings in the held copy
+    scratch copy deleted: yes
+rwth-home (zenodo, https://doi.org/10.5281/zenodo.12091223)
+  planned: 22 files, 21.124 GB; held: 22 files, 21.124 GB
+  planned files missing from the holdings: 0
+  planned files held with a different size: 0
+  planned text files held with Windows line endings only: 0
+  planned files with no size from the publisher: 0
+  held files the fetch would not download: 0
+  smallest planned file downloaded to a scratch folder: Metadata_and_Code.zip (31,123 bytes)
+    publisher checksum: matched
+    identical to the held copy (SHA-256): yes
+    scratch copy deleted: yes

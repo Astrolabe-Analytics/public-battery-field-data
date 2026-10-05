@@ -1,0 +1,3 @@
+Timestamp,AvgSOC,SOH,PowerReal,Running,CellVoltAvg
+2020-01-01 00:00:00,50,98,10,1,3.7
+2020-01-01 00:01:00,51,98,1000001,1,3.8

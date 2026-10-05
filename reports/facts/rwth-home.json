@@ -1,0 +1,89 @@
+{
+  "package": "rwth-home",
+  "facts": {
+    "application": {
+      "value": "distributed storage",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "LFP (8 systems); LMO/NMC blend (6 systems); NMC (7 systems, two high-nickel)",
+      "basis": "stated",
+      "source": "Metadata_and_Code.zip/00_Data/00_Metadata/Metadata_Systems.xlsx (released with the data), Chemistry_detail; https://doi.org/10.1038/s41560-024-01620-9, p. 1439 and SI Note 1",
+      "note": ""
+    },
+    "units_released": {
+      "value": 21,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('rwth-home')",
+      "note": "Rule: one archive per system. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": 12036,
+      "basis": "stated",
+      "source": "Metadata_and_Code.zip/00_Data/00_Metadata/Metadata_Systems.xlsx (released with the data)",
+      "note": "Sum of Cell_number over 21 systems."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Monthly CSVs carry pack voltage, current, power and temperatures only."
+    },
+    "energy_mwh": {
+      "value": 0.15263,
+      "basis": "stated",
+      "source": "Metadata_and_Code.zip/00_Data/00_Metadata/Metadata_Systems.xlsx (released with the data; https://doi.org/10.1038/s41560-024-01620-9)",
+      "note": ""
+    },
+    "energy_basis": {
+      "value": "stated",
+      "basis": "derived",
+      "source": "energy_mwh uses the stated basis",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 120.06297056810403,
+      "basis": "measured",
+      "source": "scripts/facts/rwth-home.py",
+      "note": "First to last monthly file per system (from the file names), summed over 21 systems. First-to-last includes data gaps; the paper states about 106 system-years."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 21.124435825,
+      "basis": "measured",
+      "source": "scripts/facts/rwth-home.py",
+      "note": ""
+    },
+    "files": {
+      "value": 22,
+      "basis": "measured",
+      "source": "scripts/facts/rwth-home.py",
+      "note": "1,269 monthly CSVs held vs 1,270 stated (SI Note 2, p. 3)."
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.5281/zenodo.12091223; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

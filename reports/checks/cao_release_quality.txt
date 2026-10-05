@@ -1,0 +1,13 @@
+DTI: 80 vehicles, 3,337,273 rows
+  placeholder codes: 0 values in 0 vehicles
+  current at or below -900 A: 0 rows in 0 vehicles
+  zero cell voltages: 4 values in 1 rows of 1 vehicles
+  blow-ups (|value| > 1e6 in model-output columns): 0 rows in 0 vehicles, 0 values in vin_2 and 0 in vin_3, minimum nan; first blow-up row is row 0 in 0 of them
+  voltage-deviation minimum in the first row: 80 of 80 vehicles
+  vin_2 column 1 minus the highest cell, median per vehicle: 37 to 126 (10th to 90th percentile), fleet median 95
+QAS: 393 vehicles, 14,319,036 rows
+  placeholder codes: 386,281 values in 352 vehicles
+  current at or below -900 A: 1,775,068 rows in 352 vehicles
+  zero cell voltages: 433 values in 335 rows of 5 vehicles
+  blow-ups (|value| > 1e6 in model-output columns): 546 rows in 90 vehicles, 9,061 values in vin_2 and 0 in vin_3, minimum -5.09e+12; first blow-up row is row 0 in 0 of them
+  voltage-deviation minimum in the first row: 0 of 393 vehicles

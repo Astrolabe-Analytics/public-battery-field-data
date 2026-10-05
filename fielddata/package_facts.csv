@@ -1,0 +1,309 @@
+package,field,value,basis,source,note
+bilfinger2024,application,passenger EV,derived,classification mapping required by the facts audit brief,
+bilfinger2024,chemistry,NMC and LFP,stated,"https://doi.org/10.1016/j.etran.2024.100356, vehicle descriptions",
+bilfinger2024,units_released,2,measured,fielddata/counting.py over fielddata.systems('bilfinger2024'),Rule: distinct vehicles among vehicle files. Released unit identifiers require package-specific inspection.
+bilfinger2024,cells_liion,322,derived,"https://doi.org/10.1016/j.etran.2024.100356, Sec. 3.1 and Appendix A Table 1: VW ID.3 108s2p NMC pouch (216 cells), Tesla Model 3 SR+ 106s1p LFP (106 cells); vehicles counted: Tesla Model 3 SR+, VW ID.3",
+bilfinger2024,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+bilfinger2024,cell_channels_measured,214,measured,scripts/facts/bilfinger2024.py,"Cell-voltage columns per vehicle: Tesla Model 3 SR+ 106, VW ID.3 108."
+bilfinger2024,energy_mwh,0.1105,stated,"https://doi.org/10.1016/j.etran.2024.100356, vehicle descriptions",
+bilfinger2024,energy_basis,stated,derived,energy_mwh uses the stated basis,
+bilfinger2024,span_unit_years,3.213597516102587,measured,scripts/facts/bilfinger2024.py,"First to last measurement date per vehicle (VW ID.3 2021-02-05 to 2024-04-24); Tesla files carry no timestamps and are left out. This is the calendar span between discrete charge tests, not continuous telemetry. Paper Table 2 (https://doi.org/10.1016/j.etran.2024.100356, p. 12) dates the measurements 2021-02-08 to 2024-05-22; the 2024 file is the paper's ID.Software 3.2 charge (59.44 kWh charged in the data, 59.40 kWh in Sec. 4.5) but is dated 2024-04-22 to 04-24 in the data."
+bilfinger2024,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+bilfinger2024,size_gb,0.302304324,measured,scripts/facts/bilfinger2024.py,
+bilfinger2024,files,1,measured,scripts/facts/bilfinger2024.py,
+bilfinger2024,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+bilfinger2024,sentinels_documented,no,stated,https://mediatum.ub.tum.de/1737452; public data record and released documentation state no sentinel convention,
+bilfinger2026,application,passenger EV,derived,classification mapping required by the facts audit brief,
+bilfinger2026,chemistry,NMC and LFP,stated,"https://doi.org/10.1016/j.etran.2026.100589, vehicle descriptions",
+bilfinger2026,units_released,7,measured,fielddata/counting.py over fielddata.systems('bilfinger2026'),Rule: distinct vehicles among vehicle files. Released unit identifiers require package-specific inspection.
+bilfinger2026,cells_liion,1402,derived,"https://doi.org/10.1016/j.etran.2026.100589, p. 3, Sec. 2.1 and p. 12, Table 1: CUPRA Born and VW ID.3 108s2p NMC pouch (216 cells each), Tesla Model 3 SR+ 106s1p LFP (106 cells); vehicles counted: Cupra 204, Cupra 213, Cupra 288, Cupra 349, Cupra 397, Tesla Model 3 SR+, VW ID.3",
+bilfinger2026,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+bilfinger2026,cell_channels_measured,754,measured,scripts/facts/bilfinger2026.py,"Cell-voltage columns per vehicle: Cupra 204 108, Cupra 213 108, Cupra 288 108, Cupra 349 108, Cupra 397 108, Tesla Model 3 SR+ 106, VW ID.3 108."
+bilfinger2026,energy_mwh,0.4005,stated,"https://doi.org/10.1016/j.etran.2026.100589, vehicle descriptions",
+bilfinger2026,energy_basis,stated,derived,energy_mwh uses the stated basis,
+bilfinger2026,span_unit_years,0.2606976341869154,measured,scripts/facts/bilfinger2026.py,"First to last measurement date per vehicle (Cupra 204 2022-11-16 to 2022-11-18, Cupra 213 2022-11-29 to 2022-12-11, Cupra 288 2022-11-23 to 2022-12-15, Cupra 349 2022-11-25 to 2022-11-27, Cupra 397 2022-11-11 to 2022-11-13, VW ID.3 2024-04-22 to 2024-06-17); Tesla files carry no timestamps and are left out. This is the calendar span between discrete charge tests, not continuous telemetry."
+bilfinger2026,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+bilfinger2026,size_gb,0.299787786,measured,scripts/facts/bilfinger2026.py,
+bilfinger2026,files,1,measured,scripts/facts/bilfinger2026.py,
+bilfinger2026,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+bilfinger2026,sentinels_documented,no,stated,https://mediatum.ub.tum.de/1840112; public data record and released documentation state no sentinel convention,
+cao,application,passenger EV,derived,classification mapping required by the facts audit brief,
+cao,chemistry,DTI: NMC-class; QAS: LFP; GIS: unknown,derived,fielddata/specs.py cao groups (cell-voltage range rule over released vin_2 cell voltages),"Inferred from measured cell-voltage ranges; the Zenodo record, released archives, and paper do not name the chemistry."
+cao,units_released,514,measured,fielddata/counting.py over fielddata.systems('cao'),Rule: one row per vehicle.
+cao,cells_liion,50030,derived,DTI vehicles x 85 plus QAS vehicles x 110; GIS excluded because its channel meaning is unresolved,
+cao,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+cao,cell_channels_measured,50030,derived,DTI vehicles x 85 plus QAS vehicles x 110; GIS excluded because its channel meaning is unresolved,
+cao,energy_mwh,15.107,derived,"https://doi.org/10.1038/s41467-025-56832-8, Supplementary Information, Note S5, p. 24 (one frame every 30 s)","Estimate by coulomb counting at the stated 30 s spacing, times mean pack voltage (sum of series cell voltages): DTI 44.7 kWh per vehicle (median of 73 of 80 vehicles with a usable charge or discharge of at least 20 percent SOC), times 80 vehicles; QAS 29.3 kWh per vehicle (median of 393 of 393 vehicles with a usable charge or discharge of at least 20 percent SOC), times 393 vehicles. GIS (41 vehicles) excluded because its channel layout is unresolved. Present usable energy, not the nameplate rating."
+cao,energy_basis,computed,derived,energy_mwh is computed from the released data,
+cao,span_unit_years,,not_in_release,,Released tensors contain no timestamps.
+cao,obs_hours,151899.95,derived,"https://doi.org/10.1038/s41467-025-56832-8, Supplementary Information, Note S5, p. 24 (one frame every 30 s)","All released rows (DTI, QAS and GIS) times the stated 30 s frame spacing; the release itself has no timestamps."
+cao,size_gb,38.063456304,measured,scripts/facts/cao.py,
+cao,files,7,measured,scripts/facts/cao.py,
+cao,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+cao,sentinels_documented,no,stated,https://doi.org/10.5281/zenodo.10656500; public data record and released documentation state no sentinel convention,
+changan,application,passenger EV,derived,classification mapping required by the facts audit brief,
+changan,chemistry,NCM,stated,"https://doi.org/10.1038/s41467-025-56485-7, p. 4, Results ('300 EVs equipped with NCM lithium-ion batteries')",
+changan,units_released,300,measured,fielddata/counting.py over fielddata.systems('changan'),Rule: one RAR per vehicle. Released unit identifiers require package-specific inspection.
+changan,cells_liion,28800,derived,300 released vehicles x 96 series cells stated in the paper,96 series positions per pack as stated (paper p. 4); any parallel cells within a position are not stated.
+changan,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+changan,cell_channels_measured,28800,measured,scripts/facts/changan.py,"Entries in the batteryvoltage field of the first rows with a live pack voltage, per vehicle file in the split RAW_DATA archive: {96: 300}."
+changan,energy_mwh,16.2936,derived,"300 vehicles x 96 cells x 155 Ah x 3.65 V / 1,000,000","155 Ah and 96S are stated (paper p. 4, Results); the 3.65 V nominal cell voltage is our assumption for NCM, not stated in the paper, SI or peer review file."
+changan,energy_basis,computed,derived,energy_mwh is computed from stated configuration,
+changan,span_unit_years,975.3548001432302,derived,"fielddata.loaders.changan.fleet() (data/fleet_meta.csv, per-vehicle first-to-last terminaltime, made by this collection from the raw files)","About 3.25 years per vehicle, consistent with the paper's three years; not re-measured from the split archive for v1.0. Timestamps were adjusted into seconds by the publisher for privacy (SI Note 2); this assumes the adjustment preserves durations."
+changan,obs_hours,,not_in_release,,Spans of the relative timestamps are measurable (no calendar dates); observation-hours are not substituted for unit-years.
+changan,size_gb,79.685897024,measured,scripts/facts/changan.py,
+changan,files,608,measured,scripts/facts/changan.py,
+changan,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+changan,sentinels_documented,no,stated,http://ivstskl.changan.com.cn/?p=2697; public data record and released documentation state no sentinel convention,
+cloverleaf,application,distributed storage,derived,classification mapping required by the facts audit brief,
+cloverleaf,chemistry,NMC-class,derived,"scripts/facts/_extra.py chemistry rule: 99th percentile of released cell voltage (<3.70 V LFP, >3.95 V NMC-class)","Released pack-summary Vcmax, 99th percentile 4.071 V over 3 packs."
+cloverleaf,units_released,3,measured,fielddata/counting.py over fielddata.systems('cloverleaf'),"Rule: one battery pack per pack sheet (each with its own serial number, inverter and state of health); the typical-day sheet is not a unit."
+cloverleaf,cells_liion,,not_in_release,,The released workbooks provide pack and cell-summary signals but do not state physical cell count.
+cloverleaf,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+cloverleaf,cell_channels_measured,,not_in_release,,"The release provides Vcell average, minimum, maximum, and difference summaries, not individual cell channels."
+cloverleaf,energy_mwh,0.0797,derived,scripts/facts/cloverleaf.py,"Computed from the data: 65.7 Ah over a 71 percent SOC swing (coulomb counting, typical-day sheet), divided by SOH 0.89, times mean pack voltage 360 V, times 3 HV packs. An 84 kWh figure used earlier, attributed to a trade-press article (pv-magazine, 21 January 2022) that was not checked, agrees within about 5 percent. Assumes the released SOC and SOH are accurate BMS estimates and that the three packs are identical; no source states the pack rating (the Zenodo record 10.5281/zenodo.6373656 description defines no columns)."
+cloverleaf,energy_basis,computed,derived,energy_mwh is computed from the released data,
+cloverleaf,span_unit_years,1.0019773366795954,measured,scripts/facts/cloverleaf.py,"First to last workbook timestamp of each HV pack sheet, summed over 3 packs (each pack is a unit)."
+cloverleaf,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+cloverleaf,size_gb,0.007593131,measured,scripts/facts/cloverleaf.py,
+cloverleaf,files,1,measured,scripts/facts/cloverleaf.py,
+cloverleaf,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+cloverleaf,sentinels_documented,no,stated,https://doi.org/10.5281/zenodo.6373656; public data record and released documentation state no sentinel convention,
+deng,application,passenger EV,derived,classification mapping required by the facts audit brief,
+deng,chemistry,NMC,stated,"https://github.com/BatICM/battery-charging-data-of-on-road-electric-vehicles, README, section 'battery pack information update' (""equipped with CATL NCM batteries"")",Stated by the data record (CATL NCM). The paper does not name it.
+deng,units_released,20,measured,fielddata/counting.py over fielddata.systems('deng'),Rule: one archive per pack.
+deng,cells_liion,1800,derived,20 release packs x 90 series cells stated in the release metadata,
+deng,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+deng,cell_channels_measured,,not_in_release,,"The charging CSVs expose pack extrema, not individual cell channels."
+deng,energy_mwh,0.95265,derived,"20 packs x 90 cells x 145 Ah x 3.65 V / 1,000,000","The 3.65 V cell voltage is assumed, not stated; measured mid-SOC voltage is 3.71 V at low current and 3.76 V under charge (source audit 2026-10-04), which would give 0.966 MWh at 3.7 V."
+deng,energy_basis,computed,derived,energy_mwh is computed from stated configuration,
+deng,span_unit_years,46.19301848049281,measured,scripts/facts/deng.py,
+deng,obs_hours,,not_in_release,,Calendar spans are measurable; sampled rows are charging-only and not continuous watched time.
+deng,size_gb,0.230024681,measured,scripts/facts/deng.py,
+deng,files,20,measured,scripts/facts/deng.py,
+deng,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+deng,sentinels_documented,no,stated,https://github.com/BatICM/battery-charging-data-of-on-road-electric-vehicles; public data record and released documentation state no sentinel convention,
+evbattery,application,passenger EV,derived,classification mapping required by the facts audit brief,
+evbattery,chemistry,NMC-class,derived,"scripts/facts/_extra.py chemistry rule: 99th percentile of released cell voltage (<3.70 V LFP, >3.95 V NMC-class)","Snippet maximum cell voltage, 99th percentile per archive: battery_dataset1.tar.gz 4.164 V, battery_dataset2.tar.gz 4.147 V, battery_dataset3.tar.gz 4.300 V."
+evbattery,units_released,464,measured,fielddata/counting.py over fielddata.systems('evbattery'),"Rule: labeled vehicles with at least one snippet. Vehicles with at least one snippet; the label tables list 465 cars, and battery_dataset3.tar.gz car 545 has no snippets."
+evbattery,cells_liion,,not_in_release,,Released snippets do not provide a physical pack-topology field.
+evbattery,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+evbattery,cell_channels_measured,,not_in_release,,"Snippets carry only the maximum and minimum cell voltage, not individual cells."
+evbattery,energy_mwh,,not_in_release,,The release does not provide a complete nominal pack-energy rating or configuration from which to compute one.
+evbattery,energy_basis,none,derived,energy_mwh is not available,
+evbattery,span_unit_years,,not_in_release,,Released snippets have relative sample positions but no calendar timestamps.
+evbattery,obs_hours,57265.42222222222,measured,scripts/facts/_snippet_scan.py (cached in reports/facts/_cache/),"Lower bound over battery_dataset1.tar.gz, battery_dataset2.tar.gz; battery_dataset3.tar.gz is left out because it is the same fleet as zhang2023 brand 2. Each snippet's clock restarts at zero, so overlapping snippets count once per charge segment. Snippet clocks step by exactly 10 in every archive. The paper (arXiv:2201.12358v3, Sec. 3) says timestamps were randomly shifted and scaled for anonymization, but on the shared fleet the charge per snippet agrees with zhang2023, whose 10 s sampling is stated (SI Note 2, p. 11), to a median ratio of 0.9994, so hours are counted at 10 s per step."
+evbattery,size_gb,1.408209405,measured,scripts/facts/evbattery.py,
+evbattery,files,3,measured,scripts/facts/evbattery.py,
+evbattery,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+evbattery,sentinels_documented,no,stated,https://doi.org/10.6084/m9.figshare.23301881; public data record and released documentation state no sentinel convention,
+fei_bus,application,bus,derived,classification mapping required by the facts audit brief,
+fei_bus,chemistry,,not_in_release,,Released summary CSVs do not state chemistry.
+fei_bus,units_released,4,measured,fielddata/counting.py over fielddata.systems('fei_bus'),Rule: one file per bus. Released unit identifiers require package-specific inspection.
+fei_bus,cells_liion,,not_in_release,,Released summary CSVs do not state cell topology.
+fei_bus,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+fei_bus,cell_channels_measured,,not_in_release,,"Released files contain bus-level summary values, not cell channels."
+fei_bus,energy_mwh,,not_in_release,,No pack rating is present in the summary CSVs.
+fei_bus,energy_basis,none,derived,energy_mwh is not available,
+fei_bus,span_unit_years,,not_in_release,,Released summary CSVs contain no calendar timestamps.
+fei_bus,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+fei_bus,size_gb,1.5547e-05,measured,scripts/facts/fei_bus.py,
+fei_bus,files,4,measured,scripts/facts/fei_bus.py,
+fei_bus,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+fei_bus,sentinels_documented,no,stated,https://doi.org/10.17632/j9ky68gnd3.3; public data record and released documentation state no sentinel convention,
+flashbattery-agv,application,industrial and robotics,derived,classification mapping required by the facts audit brief,
+flashbattery-agv,chemistry,lithium-ion,stated,"https://doi.org/10.1109/CCNC51644.2023.10060391, p. 1 (Flash Battery lithium-ion packs in AGV applications)",
+flashbattery-agv,units_released,10,measured,fielddata/counting.py over fielddata.systems('flashbattery-agv'),Rule: one row per pack. Released unit identifiers require package-specific inspection.
+flashbattery-agv,cells_liion,,not_in_release,,Per-cycle aggregate release does not expose pack topology.
+flashbattery-agv,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+flashbattery-agv,cell_channels_measured,,not_in_release,,Per-cycle aggregate release has no cell channels.
+flashbattery-agv,energy_mwh,,not_in_release,,No pack energy rating is present in the aggregate CSV.
+flashbattery-agv,energy_basis,none,derived,energy_mwh is not available,
+flashbattery-agv,span_unit_years,2.1464750171115674,measured,scripts/facts/flashbattery-agv.py,
+flashbattery-agv,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+flashbattery-agv,size_gb,0.002268752,measured,scripts/facts/flashbattery-agv.py,
+flashbattery-agv,files,2,measured,scripts/facts/flashbattery-agv.py,
+flashbattery-agv,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+flashbattery-agv,sentinels_documented,yes,stated,"https://doi.org/10.1109/CCNC51644.2023.10060391, Sec. IV, p. 3 (reset date 1st January 2000, temperatures -40 °C and 215 °C)","Documented for the fleet data the release is drawn from; the release contains none of them (dates 2019-12-16 to 2022-02-07, temperatures 10 to 48 °C, no missing values; scripts/checks/source_audit/changan_cloverleaf_fei_agv/flashbattery_agv_audit_checks.py). The paper says its data were filtered and missing values imputed; whether the release was is not stated."
+ku_leuven_bev,application,passenger EV,derived,classification mapping required by the facts audit brief,
+ku_leuven_bev,chemistry,"LFP, NCA",stated,"https://doi.org/10.1038/s41597-025-06148-5, Table 3 (p. 4) and p. 9","Stated: BEV1 Tesla Model Y SR LFP, BEV2 Model Y LR NCA. The voltage-ratio rule agrees but cannot tell NCA from NMC: BEV1: LFP (ratio 1.020); BEV2: NMC-class (ratio 1.143)."
+ku_leuven_bev,units_released,2,measured,fielddata/counting.py over fielddata.systems('ku_leuven_bev'),Rule: one row per vehicle.
+ku_leuven_bev,cells_liion,,not_in_release,,Released CAN signals give pack voltage only; pack topology is not stated.
+ku_leuven_bev,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+ku_leuven_bev,cell_channels_measured,,not_in_release,,No individual cell-voltage signals are released.
+ku_leuven_bev,energy_mwh,0.1393,stated,"https://doi.org/10.1038/s41597-025-06148-5, p. 3 and Table 3 (60.5 kWh BEV1, 78.8 kWh BEV2)","Cross-check computed from the data: BEV1 60.9 kWh (median of 18 slow charges spanning at least 40 percent SOC, TotalChargeKWh counter per 100 percent SOC); BEV2 80.1 kWh (median of 13 slow charges spanning at least 40 percent SOC, TotalChargeKWh counter per 100 percent SOC)."
+ku_leuven_bev,energy_basis,stated,derived,energy_mwh uses the stated basis,
+ku_leuven_bev,span_unit_years,1.8261464750171115,measured,scripts/facts/ku_leuven_bev.py,"First to last session date per vehicle, from session file names. BEV1 files run to 2025-05-27, past the paper's end of 2025-02-18, after a three-month gap; with the paper's periods the span is 1.55 vehicle-years (source audit 2026-10-04)."
+ku_leuven_bev,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+ku_leuven_bev,size_gb,0.161636589,measured,scripts/facts/ku_leuven_bev.py,
+ku_leuven_bev,files,1,measured,scripts/facts/ku_leuven_bev.py,
+ku_leuven_bev,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+ku_leuven_bev,sentinels_documented,no,stated,https://doi.org/10.48804/8KPDTW; public data record and released documentation state no sentinel convention,"Odometer3B6 = 4294967.295 (0xFFFFFFFF x 0.001) observed in 13,498 rows, not documented; masked by clean=True."
+li2026,application,grid-scale storage,derived,classification mapping required by the facts audit brief,
+li2026,chemistry,LFP,stated,"https://doi.org/10.1016/j.xcrp.2026.103210, experimental system",
+li2026,units_released,1,measured,fielddata/counting.py over fielddata.systems('li2026'),Rule: one series string: in each period the current is identical in all 30 eight-cell groups (scripts/checks/source_audit/li2026_xie_schaeffer_zhou2026/check_li2026_audit.py); the paper refers to stations in the plural and gives no count. Released unit identifiers require package-specific inspection.
+li2026,cells_liion,240,derived,one cell per measured cell channel in the release,"The paper states 200 cells; the release holds 240 cell channels, and the release value is used in every total."
+li2026,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+li2026,cell_channels_measured,240,measured,scripts/facts/li2026.py,
+li2026,energy_mwh,0.156,derived,"240 measured cell channels x 200 Ah x 3.25 V / 1,000,000; cell rating from https://doi.org/10.1016/j.xcrp.2026.103210, supplemental Table S1 (mmc1 p. 2, energy storage station column)","The paper states 200 cells, which would give 0.130 MWh; the release holds 240 cell channels, so 240 is used."
+li2026,energy_basis,computed,derived,energy_mwh is computed from stated configuration,
+li2026,span_unit_years,,not_in_release,,Filenames use sample indices and the release has no calendar timestamps.
+li2026,obs_hours,1203,stated,"https://doi.org/10.1016/j.xcrp.2026.103210, dataset description",
+li2026,size_gb,0.019211856,measured,scripts/facts/li2026.py,
+li2026,files,1,measured,scripts/facts/li2026.py,
+li2026,fault_onset_timestamp,no,stated,"the release contains no labels; the paper reports ESC, SDF and ICF events in the station data (https://doi.org/10.1016/j.xcrp.2026.103210, p. 3-4)",
+li2026,sentinels_documented,no,stated,https://zenodo.org/records/18471156; public data record and released documentation state no sentinel convention,
+m5bat-2023-04,application,grid-scale storage,derived,classification mapping required by the facts audit brief,
+m5bat-2023-04,chemistry,LMO/NMC; LFP; LTO; OCSM; OPzV,stated,"https://doi.org/10.3390/en15041342 (Jacqué, K. et al., Energies 15, 1342, 2022), Sec. 2.1.2: the lithium units 5 to 8 are an LMO/NMC blend; other units from https://doi.org/10.18154/RWTH-2024-04895, p. 3 unit table",
+m5bat-2023-04,units_released,10,measured,fielddata/counting.py over fielddata.systems('m5bat-2023-04'),Rule: battery units; the plant connection point is not a unit. Released unit identifiers require package-specific inspection.
+m5bat-2023-04,cells_liion,24672,derived,"https://doi.org/10.18154/RWTH-2024-04895, p. 3 table wiring: LMO 4 x 192s16p, LFP 240s10p, LTO 312s32p",
+m5bat-2023-04,cells_leadacid,1222,derived,"https://doi.org/10.18154/RWTH-2024-04895, p. 3 table wiring: Pb2 300s1p, Pb3 308s2p, Pb4 306s1p",Pb1 (300s1p) excluded; it is counted under m5bat-pbacid.
+m5bat-2023-04,cell_channels_measured,,not_in_release,,"Unit CSVs carry unit-level voltage, current, power and SOC only."
+m5bat-2023-04,energy_mwh,6.714,derived,"https://doi.org/10.18154/RWTH-2024-04895, p. 3 table (Pb1 630 kW / 1066 kWh; overall M5BAT 6.19 MW / 7.78 MWh); 7.78 MWh overall stated minus Pb1's stated 1.066 MWh, which is counted under m5bat-pbacid",
+m5bat-2023-04,energy_basis,stated,derived,energy_mwh is the report's stated overall rating minus Pb1's stated rating (both stated values),
+m5bat-2023-04,span_unit_years,0.739219427332877,measured,scripts/facts/m5bat-2023-04.py,"First to last DateAndTime per battery unit CSV (BESS.csv, the grid connection point, excluded): Batt1.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt10.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt2.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt3.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt4.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt5.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt6.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt7.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt8.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00; Batt9.csv 2023-04-01 00:00:00+00:00 to 2023-04-30 23:59:59+00:00. Batt1 (Pb1) is subtracted because it is package m5bat-pbacid, whose span already covers April 2023."
+m5bat-2023-04,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+m5bat-2023-04,size_gb,0.101712838,measured,scripts/facts/m5bat-2023-04.py,
+m5bat-2023-04,files,1,measured,scripts/facts/m5bat-2023-04.py,
+m5bat-2023-04,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+m5bat-2023-04,sentinels_documented,no,stated,https://publications.rwth-aachen.de/record/985923; public data record and released documentation state no sentinel convention,
+m5bat-pbacid,application,grid-scale storage,derived,classification mapping required by the facts audit brief,
+m5bat-pbacid,chemistry,flooded OCSM lead-acid,stated,"https://doi.org/10.3390/en19174141, Section 2",
+m5bat-pbacid,units_released,1,measured,fielddata/counting.py over fielddata.systems('m5bat-pbacid'),Rule: one string; rows are its two data sources.
+m5bat-pbacid,cells_liion,,not_in_release,,This package is lead-acid; a lithium-ion cell count does not apply.
+m5bat-pbacid,cells_leadacid,300,stated,"https://doi.org/10.3390/en19174141, Section 2",
+m5bat-pbacid,cell_channels_measured,,not_in_release,,"Release contains string-level measurements, not individual cell-voltage channels."
+m5bat-pbacid,energy_mwh,1.066,stated,"https://doi.org/10.3390/en19174141, Section 2",
+m5bat-pbacid,energy_basis,stated,derived,energy_mwh uses the stated basis,
+m5bat-pbacid,span_unit_years,8.089128894465992,measured,scripts/facts/m5bat-pbacid.py,
+m5bat-pbacid,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+m5bat-pbacid,size_gb,4.653774362,measured,scripts/facts/m5bat-pbacid.py,
+m5bat-pbacid,files,1,measured,scripts/facts/m5bat-pbacid.py,
+m5bat-pbacid,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+m5bat-pbacid,sentinels_documented,yes,stated,fielddata/loaders/m5bat_pbacid_SCHEMA.md; released codebook defines 2345/2356 as BMS communication-error placeholders,"The released files contain no 2345/2356 values in the four codebook columns; the publisher replaced them with NaN (measured, source audit 2026-10-04)."
+ppl,application,grid-scale storage,derived,classification mapping required by the facts audit brief,
+ppl,chemistry,lithium-ion,stated,"https://doi.org/10.1109/ACCESS.2026.3693606, Section II",
+ppl,units_released,1,measured,fielddata/counting.py over fielddata.systems('ppl'),Rule: one system.
+ppl,cells_liion,4760,stated,"https://doi.org/10.1109/ACCESS.2026.3693606, system description",
+ppl,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+ppl,cell_channels_measured,4760,measured,"scripts/checks/source_audit/tsukuba_tumftm_ppl/check_ppl_audit.py (RARD logs in cell_level/20180701-0731.zip, 15 Jul 2018, and 20250101_0131.zip, 15 Jan 2025, read through fielddata.loaders.ppl.cell_level_preview)","Individual voltages for all 4,760 cells (238 per rack row, 20 racks), each logged every 100 s, are in the RARD logs of the publisher's cell-level share linked from the repository's Cell_Level_Data file; the annual ESS CSVs hold only system-level averages and extremes. Two days checked."
+ppl,energy_mwh,2.0,stated,"https://doi.org/10.1109/ACCESS.2026.3693606, Section II",
+ppl,energy_basis,stated,derived,energy_mwh uses the stated basis,
+ppl,span_unit_years,8.251768195300023,measured,scripts/facts/ppl.py,
+ppl,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+ppl,size_gb,67.593890528,measured,scripts/facts/ppl.py,
+ppl,files,126,measured,scripts/facts/ppl.py,
+ppl,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+ppl,sentinels_documented,no,stated,https://github.com/PPLResearch/BESS-Analysis; public data record and released documentation state no sentinel convention,"Zeros in SOH, cell voltages, AvgSOC and module temperatures during outages are observed placeholders, not documented by the publisher; clean=True masks them (source audit 2026-10-04)."
+rwth-android,application,consumer electronics,derived,classification mapping required by the facts audit brief,
+rwth-android,chemistry,Li-ion; Li-poly; Unknown,stated,device-reported battery_technology field in the released tables,
+rwth-android,units_released,33,measured,fielddata/counting.py over fielddata.systems('rwth-android'),Rule: one file per device. Released unit identifiers require package-specific inspection.
+rwth-android,cells_liion,33,derived,one released cell_id telemetry table per device parquet,Assumes one cell per device (the data paper says most devices have a single cell); one cell_id per file measured.
+rwth-android,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+rwth-android,cell_channels_measured,33,derived,one voltage_cell channel per released device parquet,
+rwth-android,energy_mwh,0.000666,derived,scripts/facts/rwth-android.py,"Sum over 33 devices of nominal_capacity (Ah, data paper p. 4) times median cell voltage; for 10 devices without a usable nominal_capacity (7 report 0 and 3 leave it empty), the charge counter near full charge is used."
+rwth-android,energy_basis,computed,derived,energy_mwh is computed from the released data,
+rwth-android,span_unit_years,3.538390672136031,measured,scripts/facts/rwth-android.py,"The held archive is the portal export Dataset_from_Mobile_Battery_Data_Explorer_2026-04.zip, not the section under 10.18154/RWTH-2025-00754: it includes 214,351 rows from 5 devices before the paper's 2026-01-14 start and ends 2026-03-31 (3.09 device-years without those rows)."
+rwth-android,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+rwth-android,size_gb,0.076060541,measured,scripts/facts/rwth-android.py,
+rwth-android,files,1,measured,scripts/facts/rwth-android.py,
+rwth-android,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+rwth-android,sentinels_documented,no,stated,https://publications.rwth-aachen.de/record/1002905; public data record and released documentation state no sentinel convention,"current_avg = -2147.483648 (Integer.MIN_VALUE x 1e-6) on every row of 10 devices, observed, masked by clean=True; nominal_capacity 0 on 7 devices, left as released (source audit 2026-10-04)."
+rwth-home,application,distributed storage,derived,classification mapping required by the facts audit brief,
+rwth-home,chemistry,"LFP (8 systems); LMO/NMC blend (6 systems); NMC (7 systems, two high-nickel)",stated,"Metadata_and_Code.zip/00_Data/00_Metadata/Metadata_Systems.xlsx (released with the data), Chemistry_detail; https://doi.org/10.1038/s41560-024-01620-9, p. 1439 and SI Note 1",
+rwth-home,units_released,21,measured,fielddata/counting.py over fielddata.systems('rwth-home'),Rule: one archive per system. Released unit identifiers require package-specific inspection.
+rwth-home,cells_liion,12036,stated,Metadata_and_Code.zip/00_Data/00_Metadata/Metadata_Systems.xlsx (released with the data),Sum of Cell_number over 21 systems.
+rwth-home,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+rwth-home,cell_channels_measured,,not_in_release,,"Monthly CSVs carry pack voltage, current, power and temperatures only."
+rwth-home,energy_mwh,0.15263,stated,Metadata_and_Code.zip/00_Data/00_Metadata/Metadata_Systems.xlsx (released with the data; https://doi.org/10.1038/s41560-024-01620-9),
+rwth-home,energy_basis,stated,derived,energy_mwh uses the stated basis,
+rwth-home,span_unit_years,120.06297056810403,measured,scripts/facts/rwth-home.py,"First to last monthly file per system (from the file names), summed over 21 systems. First-to-last includes data gaps; the paper states about 106 system-years."
+rwth-home,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+rwth-home,size_gb,21.124435825,measured,scripts/facts/rwth-home.py,
+rwth-home,files,22,measured,scripts/facts/rwth-home.py,"1,269 monthly CSVs held vs 1,270 stated (SI Note 2, p. 3)."
+rwth-home,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+rwth-home,sentinels_documented,no,stated,https://doi.org/10.5281/zenodo.12091223; public data record and released documentation state no sentinel convention,
+schaeffer,application,distributed storage,derived,classification mapping required by the facts audit brief,
+schaeffer,chemistry,LFP,stated,"https://doi.org/10.1016/j.xcrp.2024.102258, Methods",
+schaeffer,units_released,28,measured,fielddata/counting.py over fielddata.systems('schaeffer'),Rule: one file per system.
+schaeffer,cells_liion,224,derived,28 released systems x 8 series cells per system,
+schaeffer,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+schaeffer,cell_channels_measured,224,derived,28 released systems x 8 released cell-voltage channels,
+schaeffer,energy_mwh,0.10752,derived,"28 systems x 24 V x 160 Ah / 1,000,000",
+schaeffer,energy_basis,computed,derived,energy_mwh is computed from stated configuration,
+schaeffer,span_unit_years,56.850015875732,measured,scripts/facts/schaeffer.py,
+schaeffer,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+schaeffer,size_gb,1.668437817,measured,scripts/facts/schaeffer.py,
+schaeffer,files,3,measured,scripts/facts/schaeffer.py,
+schaeffer,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+schaeffer,sentinels_documented,no,stated,https://zenodo.org/records/13715694; public data record and released documentation state no sentinel convention,
+tsukuba,application,distributed storage,derived,classification mapping required by the facts audit brief,
+tsukuba,chemistry,lead-acid,stated,"https://doi.org/10.1038/sdata.2019.20, system description",
+tsukuba,units_released,1,measured,fielddata/counting.py over fielddata.systems('tsukuba'),Rule: one building microgrid.
+tsukuba,cells_liion,,not_in_release,,This package is lead-acid; a lithium-ion cell count does not apply.
+tsukuba,cells_leadacid,,not_in_release,,The paper gives the battery as 326 kWh rated capacity and 90 kW maximum (p. 3) but no cell count; the release has system-level signals only.
+tsukuba,cell_channels_measured,,not_in_release,,"Released tables contain system-level battery measurements, not individual cell channels."
+tsukuba,energy_mwh,0.326,stated,"https://doi.org/10.1038/sdata.2019.20, system description",
+tsukuba,energy_basis,stated,derived,energy_mwh uses the stated basis,
+tsukuba,span_unit_years,3.3100616016427105,stated,"https://doi.org/10.1038/sdata.2019.20, data coverage",
+tsukuba,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+tsukuba,size_gb,2.725973323,measured,scripts/facts/tsukuba.py,
+tsukuba,files,1,measured,scripts/facts/tsukuba.py,
+tsukuba,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+tsukuba,sentinels_documented,yes,stated,"https://doi.org/10.1038/sdata.2019.20, p. 6-7, Known issues","Error code -999,999 on and before the maintenance days (14 Nov 2015, 19 Nov 2016, 18 Nov 2017) and on other days; battery DC voltage 0 on maintenance days; DC current between -680 and -450 A out of range; all blanked in the cleaned files (paper p. 6-7). Raw files hold 1,243,210 values of -999,999 and no +999,999 (scripts/checks/source_audit/tsukuba_tumftm_ppl/check_tsukuba_audit.py)."
+tumftm,application,passenger EV,derived,classification mapping required by the facts audit brief,
+tumftm,chemistry,NMC,stated,"https://doi.org/10.1016/j.etran.2025.100518, p. 3, Section 2.2 (seven vehicles, 108s2p NMC pouch cells, 58 kWh net)",
+tumftm,units_released,7,measured,fielddata/counting.py over fielddata.systems('tumftm'),Rule: one file per vehicle. Released unit identifiers require package-specific inspection.
+tumftm,cells_liion,1512,derived,"https://doi.org/10.1016/j.etran.2025.100518, p. 3, Section 2.2 (seven vehicles, 108s2p NMC pouch cells, 58 kWh net); 7 vehicles x 216 cells",
+tumftm,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+tumftm,cell_channels_measured,,not_in_release,,"The parquets hold 15 named UDS signals with rows; no individual cell-voltage channel, and the computed cell_voltage_max/min (value_id 1293/1294) have no rows."
+tumftm,energy_mwh,0.406,stated,"https://doi.org/10.1016/j.etran.2025.100518, p. 3, Section 2.2 (seven vehicles, 108s2p NMC pouch cells, 58 kWh net); 7 vehicles x 58 kWh net",
+tumftm,energy_basis,stated,derived,energy_mwh uses the stated basis,
+tumftm,span_unit_years,6.744650672199407,measured,scripts/facts/tumftm.py,"The 812 rows dated 2087-03-07 in CUP1, observed in the data and not described by the authors, are excluded."
+tumftm,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+tumftm,size_gb,0.858449033,measured,scripts/facts/tumftm.py,
+tumftm,files,328,measured,scripts/facts/tumftm.py,
+tumftm,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+tumftm,sentinels_documented,no,stated,https://github.com/tumftm/electric-vehicle-uds-dataset; public data record and released documentation state no sentinel convention,
+xie,application,light electric mobility,derived,classification mapping required by the facts audit brief,
+xie,chemistry,LFP,stated,"https://doi.org/10.1016/j.xcrp.2026.103154, Methods",
+xie,units_released,271,measured,fielddata/counting.py over fielddata.systems('xie'),Rule: one file per device.
+xie,cells_liion,5241,derived,one cell per measured cell-voltage channel in the released device files,"5,241 released cell-voltage channels. The paper's 5,234 (https://doi.org/10.1016/j.xcrp.2026.103154, Table 1, p. 3) is the authors' feature-extraction count: dataProcess.ipynb get_device_voltages keeps columns with sum >= 1,000 and std > 0, which drops 7 constant-voltage cells of device d01d1f73; the released cell table holds 5,234 distinct cells in 5,248 rows (14 cells carry two labels)."
+xie,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+xie,cell_channels_measured,5241,measured,scripts/facts/xie.py,"Cell-voltage columns with at least one positive value, summed over 271 device files."
+xie,energy_mwh,,not_in_release,,The release does not provide a complete nominal pack-energy rating or configuration from which to compute one.
+xie,energy_basis,none,derived,energy_mwh is not available,
+xie,span_unit_years,4.83804057111441,measured,scripts/facts/xie.py,Sum of first-to-last dateTime over 271 device files in predefinedDataset/data.
+xie,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+xie,size_gb,0.155934713,measured,scripts/facts/xie.py,
+xie,files,3,measured,scripts/facts/xie.py,
+xie,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+xie,sentinels_documented,no,stated,https://zenodo.org/records/18328701; public data record and released documentation state no sentinel convention,
+zhang2023,application,passenger EV,derived,classification mapping required by the facts audit brief,
+zhang2023,chemistry,NMC-class,derived,"scripts/facts/_extra.py chemistry rule: 99th percentile of released cell voltage (<3.70 V LFP, >3.95 V NMC-class)","Snippet maximum cell voltage, 99th percentile per archive: battery_brand1.tar.gz 4.121 V, battery_brand2.tar.gz 4.301 V, battery_brand3.tar.gz 4.224 V."
+zhang2023,units_released,347,measured,fielddata/counting.py over fielddata.systems('zhang2023'),"Rule: labeled vehicles with at least one snippet. Vehicles with at least one snippet; the label tables list 348 cars, and battery_brand2.tar.gz car 230 has no snippets."
+zhang2023,cells_liion,,not_in_release,,Released snippets do not provide a physical pack-topology field.
+zhang2023,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+zhang2023,cell_channels_measured,,not_in_release,,"Snippets carry only the maximum and minimum cell voltage, not individual cells."
+zhang2023,energy_mwh,,not_in_release,,The release does not provide a complete nominal pack-energy rating or configuration from which to compute one.
+zhang2023,energy_basis,none,derived,energy_mwh is not available,
+zhang2023,span_unit_years,,not_in_release,,Released snippets have relative sample positions but no calendar timestamps.
+zhang2023,obs_hours,45030.044444444444,measured,scripts/facts/_snippet_scan.py (cached in reports/facts/_cache/),"Lower bound: union of snippet time ranges per vehicle and charge segment. In brand 3 snippet clocks run through the segment, so the union is exact; in brands 1 and 2 each snippet's clock restarts at zero, so overlapping snippets count once per segment. The plain sum of snippet durations is 249,096 h, an upper bound."
+zhang2023,size_gb,1.484381511,measured,scripts/facts/zhang2023.py,
+zhang2023,files,3,measured,scripts/facts/zhang2023.py,
+zhang2023,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+zhang2023,sentinels_documented,no,stated,https://doi.org/10.6084/m9.figshare.23659323; public data record and released documentation state no sentinel convention,
+zhou2026,application,"passenger EV, bus",derived,classification mapping required by the facts audit brief,"The release holds two NMC passenger cars (vehicle45, vehicle69) and one LFP bus (LFP01): https://doi.org/10.1038/s41560-026-02131-5, SI Supplementary Table 1 p. 16, and TotalCells 95 / 156 (measured)."
+zhou2026,chemistry,NMC and LFP,stated,"https://doi.org/10.1038/s41560-026-02131-5, Methods",
+zhou2026,units_released,3,measured,fielddata/counting.py over fielddata.systems('zhou2026'),Rule: one row per vin. Measured in scripts/facts/_extra.py.
+zhou2026,cells_liion,346,derived,one cell per released cell-voltage channel (TotalCells per vin),
+zhou2026,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+zhou2026,cell_channels_measured,346,measured,scripts/facts/zhou2026.py,Maximum TotalCells per vin; CellVoltages carries one value per cell.
+zhou2026,energy_mwh,0.209,stated,"https://doi.org/10.1038/s41560-026-02131-5, SI Note 1 p. 5 and Supplementary Table 1 p. 16","Nominal pack energies 52 kWh (NMC car, 1P95S, two cars) and 105 kWh (LFP bus, 1P156S). Coulomb counting on the data gives LFP01 108.9 kWh (median of 1405 charges); vehicle45 46.8 kWh (median of 871 charges); vehicle69 47.5 kWh (median of 873 charges)."
+zhou2026,energy_basis,stated,derived,energy_mwh uses the stated basis,
+zhou2026,span_unit_years,10.417240823129768,measured,scripts/facts/zhou2026.py,"First to last Timestamp per vin (LFP01: 2019-05-05 12:09:30 to 2023-12-12 23:36:03, 156 cells; vehicle45: 2019-05-09 16:13:24 to 2022-04-04 18:38:56, 95 cells; vehicle69: 2019-05-09 16:20:03 to 2022-04-04 23:59:57, 95 cells); this is not the paper fleet."
+zhou2026,obs_hours,,not_in_release,,"Observation-hours are not used because calendar spans are measurable; the cadence is stated (nominal 0.1 Hz, paper p. 2)."
+zhou2026,size_gb,2.15283929,measured,scripts/facts/zhou2026.py,
+zhou2026,files,1,measured,scripts/facts/zhou2026.py,
+zhou2026,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+zhou2026,sentinels_documented,no,stated,https://1drv.ms/u/c/909aeacce295a32a/IQCsGxZgHovYTqJEXhfqRIIZAWASy12k6Urytil7VPa0LJY?e=ISLuvO; public data record and released documentation state no sentinel convention,

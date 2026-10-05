@@ -1,0 +1,89 @@
+{
+  "package": "tumftm",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "NMC",
+      "basis": "stated",
+      "source": "https://doi.org/10.1016/j.etran.2025.100518, p. 3, Section 2.2 (seven vehicles, 108s2p NMC pouch cells, 58 kWh net)",
+      "note": ""
+    },
+    "units_released": {
+      "value": 7,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('tumftm')",
+      "note": "Rule: one file per vehicle. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": 1512,
+      "basis": "derived",
+      "source": "https://doi.org/10.1016/j.etran.2025.100518, p. 3, Section 2.2 (seven vehicles, 108s2p NMC pouch cells, 58 kWh net); 7 vehicles x 216 cells",
+      "note": ""
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The parquets hold 15 named UDS signals with rows; no individual cell-voltage channel, and the computed cell_voltage_max/min (value_id 1293/1294) have no rows."
+    },
+    "energy_mwh": {
+      "value": 0.406,
+      "basis": "stated",
+      "source": "https://doi.org/10.1016/j.etran.2025.100518, p. 3, Section 2.2 (seven vehicles, 108s2p NMC pouch cells, 58 kWh net); 7 vehicles x 58 kWh net",
+      "note": ""
+    },
+    "energy_basis": {
+      "value": "stated",
+      "basis": "derived",
+      "source": "energy_mwh uses the stated basis",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 6.744650672199407,
+      "basis": "measured",
+      "source": "scripts/facts/tumftm.py",
+      "note": "The 812 rows dated 2087-03-07 in CUP1, observed in the data and not described by the authors, are excluded."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 0.858449033,
+      "basis": "measured",
+      "source": "scripts/facts/tumftm.py",
+      "note": ""
+    },
+    "files": {
+      "value": 328,
+      "basis": "measured",
+      "source": "scripts/facts/tumftm.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://github.com/tumftm/electric-vehicle-uds-dataset; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

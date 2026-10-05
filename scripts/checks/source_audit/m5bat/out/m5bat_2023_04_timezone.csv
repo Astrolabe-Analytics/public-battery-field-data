@@ -1,0 +1,52 @@
+pair,lag_s,r,n_rows
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",-7200,-0.0026059455605693255,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",-3600,-0.0436203029768474,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",0,0.9999999990578171,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",3600,0.01833485699002884,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",7200,0.02228723636513204,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",-10,0.23810869331825732,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",-9,0.2513431473779122,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",-8,0.2667336263582841,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",-7,0.28514404924067166,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",-6,0.30760727454678416,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",-5,0.3355092145924462,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",-4,0.371337615478153,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",-3,0.4204457139268799,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",-2,0.4948998909930921,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",-1,0.6286426535200458,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",1,0.6273765575148949,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",2,0.4933095272291961,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",3,0.41854801690116505,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",4,0.369164155624469,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",5,0.33307017958148816,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",6,0.3049474730101628,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",7,0.28229819350771207,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",8,0.2637298887502315,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",9,0.24818134873800968,2589753
+"frequency: BESS Grid_frequency/1000 vs pbacid frequency_Hz_bsc, April 2023",10,0.23479632717925952,2589753
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",-7200,0.07000772570927209,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",-3600,0.12446890008233524,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",0,0.9967056939747685,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",3600,0.11717059350202623,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",7200,0.058551476050583966,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",-10,0.9632143804891438,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",-9,0.9665855826360377,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",-8,0.969902988532294,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",-7,0.9732170448292626,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",-6,0.9768069019376343,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",-5,0.9800874142356978,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",-4,0.9833178055977826,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",-3,0.986503625130644,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",-2,0.989925825138634,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",-1,0.9933460808928674,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",1,0.9968758470181086,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",2,0.993884103429705,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",3,0.99046795675873,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",4,0.9869105214390562,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",5,0.9837575599483698,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",6,0.9805326382297685,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",7,0.9773073547240458,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",8,0.9742189248863178,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",9,0.9708828355594216,86400
+"voltage: Batt1 U_DC_Batt/10 vs pbacid voltage_bat_V_bms, 2023-04-10",10,0.9675397902667513,86400
+"voltage: median(Batt1 U/10 - pbacid voltage_bat_V_bms), V, 2023-04-10, lag 0",0,0.39999999999997726,86400

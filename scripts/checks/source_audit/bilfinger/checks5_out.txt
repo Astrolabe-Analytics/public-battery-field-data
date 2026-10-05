@@ -1,0 +1,11 @@
+bilfinger2024 Tesla Model 3 SR+ files with date: 0 None None years 0.0000
+bilfinger2024 VW ID.3 files with date: 3 2021-02-05 09:43:24 2024-04-24 04:07:08.974159241 years 3.2136
+bilfinger2024 sum of per-vehicle spans 3.2136 years vehicles 2
+bilfinger2026 Cupra 204 files with date: 1 2022-11-16 17:34:23.107848192 2022-11-18 14:14:53.182466048 years 0.0051
+bilfinger2026 Cupra 213 files with date: 3 2022-11-29 15:07:04.968119296 2022-12-11 09:30:01.538861056 years 0.0322
+bilfinger2026 Cupra 288 files with date: 6 2022-11-23 14:03:37.289256334 2022-12-15 14:56:26.515283108 years 0.0603
+bilfinger2026 Cupra 349 files with date: 1 2022-11-25 13:39:24.828220160 2022-11-27 09:06:38.327315200 years 0.0050
+bilfinger2026 Cupra 397 files with date: 1 2022-11-11 19:08:04.942540800 2022-11-13 13:48:33.501024256 years 0.0049
+bilfinger2026 Tesla Model 3 SR+ files with date: 0 None None years 0.0000
+bilfinger2026 VW ID.3 files with date: 4 2024-04-22 08:37:52.605304241 2024-06-17 07:50:26.336959839 years 0.1532
+bilfinger2026 sum of per-vehicle spans 0.2607 years vehicles 7

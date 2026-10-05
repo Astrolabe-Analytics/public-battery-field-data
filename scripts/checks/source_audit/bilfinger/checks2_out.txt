@@ -1,0 +1,74 @@
+## 1 duplicates
+VW_ID3_JB_8A_C40_2024 vs VW_ID3_FTM_JB_8A_CEE7_preRelax rows 45331 45331 common cols 139 identical on common cols: True only in 2024: [] only in 2026: []
+Tesla_JB_8A_CEE7_C57_2022 vs Tesla_JB_6A_CEE7_C57_2022_w_cv rows 20214 20214 common cols 118 identical on common cols: True only in 2024: [] only in 2026: ['pack_temp_min', 'pack_temp_max']
+
+## 2 full-range energy (kWh) and charge (Ah), integral of U*I and I over the whole file
+VW_ID3_JB_8A_C40_2021 E_full=60.64 kWh Q_end=149.54 Ah U 359.30-452.00 V SOC 0.0-95.6 hours 38.5
+VW_ID3_JB_8A_C40_2023 E_full=55.10 kWh Q_end=136.56 Ah U 362.50-446.75 V SOC 0.0-96.0 hours 39.0
+VW_ID3_JB_8A_C40_2024 E_full=59.44 kWh Q_end=146.14 Ah U 361.50-454.50 V SOC 0.0-96.0 hours 43.5
+Tesla_JB_8A_CEE7_C57_2021 E_full=57.03 kWh Q_end=161.57 Ah U 325.68-365.62 V SOC 1.2-100.0 hours 57.6
+Tesla_JB_8A_CEE7_C57_2022 E_full=55.13 kWh Q_end=156.20 Ah U 329.08-386.37 V SOC 0.8-100.0 hours 56.1
+VW_ID3_FTM_8A_CEE7_RelaxHighSOC E_full=59.80 kWh date 2024-05-22 13:28:19.194813967 2024-05-24 07:47:30.599763393
+VW_ID3_FTM_8A_CEE7_RelaxLowSOC E_full=59.66 kWh date 2024-06-14 15:39:37.792204142 2024-06-16 03:52:41.769659758
+
+## 3 date vs unix time
+VW_ID3_JB_8A_C40_2023 date - to_datetime(time, unit=s) [s]: min -0.000000 max 0.000000
+VW_FTM_JB_8A_2024 raw unix range as UTC 2024-04-22 08:37:50.119777679 2024-04-24 08:07:52.886425018 | vehicle date range 2024-04-22 08:37:52.605304241 2024-04-24 04:07:08.974159241
+VW_ID3_JB_8A_C40_2021 columns time (int) first/last 8 138722 date first 2021-02-05 09:43:24
+
+## 4 discharge file
+rows 29317 NaN per column: {'I': 1, 'U': 1, 'SOC': 1, 'Q': 29316, 'time_h': 0}
+I range -17.75999999999999 -0.09999999999990905 U first/last 452.0 363.5 SOC first/last 96.0 0.0
+Q first/last/min 0.0 nan 0.0
+discharged energy between 370 and 450 V: 54.75 kWh, charge nan Ah (paper Table 2(c) dch: 54.8 kWh, 135.5 Ah; Q column is NaN after row 0)
+mean |power| above 5 pct SOC (kW): 5.01
+
+## 5 Balancing file out-of-range values
+rows 784507 U>500: 157 U<300: 0 U value counts above 500: {1023.5: 157}
+|I|>500: 65 I>500 values: {166272.14: 65} I<-100: 1339 {'count': 1339.0, 'mean': -178.94534727408515, 'std': 34.761472439377485, 'min': -322.52, '25%': -192.9000000000001, '50%': -177.9000000000001, '75%': -164.69500000000005, 'max': -101.01999999999998}
+rows with U>500 or |I|>500: 216 dates of first/last: 2024-05-02 10:11:02.358969688 2024-05-21 10:02:47.699005127
+same rows? U>500 & |I|>500: 6
+I percentiles {0.001: -174.5948199999999, 0.01: -1.6700000000000728, 0.5: 0.0, 0.99: 4.3599999999999, 0.999: 4.569999999999936}
+SOC range 0.0 101.6 SOC>100: 276
+cell voltage range 3.19 5.094 cells >5 V: 1579 values >5 V: {5.094: 1579}
+temperature range 18.0 87.5
+2024 Tesla_JB_8A_CEE7_C57_2021 U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 2.892-3.648
+2024 Tesla_JB_8A_CEE7_C57_2022 U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 2.980-3.741
+2024 VW_ID3_JB_8A_C40_2021 U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.247-4.188
+2024 VW_ID3_JB_8A_C40_2023 U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.309-4.139
+2024 VW_ID3_JB_8A_C40_2024 U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.302-4.211
+2026 Cupra_204_JB_8A_CEE7_C45 U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.291-4.211
+2026 Cupra_213_JB_8A_CEE7_C45 U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.281-4.205
+2026 Cupra_213_JB_8A_CEE7_C45_repeatability U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.294-4.205
+2026 Cupra_213_JB_8A_CEE7_C45_repeatability_2 U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.367-4.199
+2026 Cupra_288_C10_discharge U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.320-4.187
+2026 Cupra_288_JB_10A_CEE16_C10 U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.292-4.210
+2026 Cupra_288_JB_32A_CEE32_C6 U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.354-4.226
+2026 Cupra_288_JB_6A_CEE16_C17 U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.382-4.197
+2026 Cupra_288_JB_6A_CEE16_C17_outside U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.332-4.229
+2026 Cupra_288_JB_8A_CEE7_C45 U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.330-4.214
+2026 Cupra_349_JB_8A_CEE7_C45 U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.304-4.189
+2026 Cupra_397_JB_8A_CEE7_C45 U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.324-4.220
+2026 Tesla_AC_10A_C8_w_cv U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.106-3.801
+2026 Tesla_AC_16A_C5_w_cv U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.106-3.802
+2026 Tesla_AC_5A_C17_w_cv U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.079-3.800
+2026 Tesla_AC_8A_C10_w_cv U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.110-3.800
+2026 Tesla_JB_6A_CEE16_C13_outside_w_cv U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 2.968-3.705
+2026 Tesla_JB_6A_CEE7_C57_2022_w_cv U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 2.980-3.741
+2026 VW_ID3_FTM_8A_CEE7_Balancing U>500: 157 |I|>500: 65 cellV>5: 1579 cellV<2: 0 cellV range 3.190-5.094
+2026 VW_ID3_FTM_8A_CEE7_RelaxHighSOC U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.268-4.223
+2026 VW_ID3_FTM_8A_CEE7_RelaxLowSOC U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.241-4.206
+2026 VW_ID3_FTM_JB_8A_CEE7_preRelax U>500: 0 |I|>500: 0 cellV>5: 0 cellV<2: 0 cellV range 3.302-4.211
+
+## 6 Tesla cell voltage knots
+rows 20214 slope changes 19013 knot spacing s: median 10.0 p10 10.0 p90 10.0
+distinct cell_voltage_0 decimals sample [3.09456913 3.09502735 3.09547211 3.09590085 3.09631102 3.09670005
+ 3.09706655 3.09741382]
+U share of rows with slope change 0.9999010586722074
+I share of rows with slope change 0.9997031760166222
+SOC share of rows with slope change 0.14628475314138717
+
+## 7 VW 2021 vehicle vs raw log
+rows 69339 69383 matched 69339 max |U - hv_battery_voltage| 0.0 max |I - hv_battery_current| 0.0 max |SOC - hv_soc| 0.0
+raw 2021 columns ['TIMESTAMP', 'hv_battery_voltage', 'hv_battery_current', 'hv_soc']
+raw 2021 I min (before start of vehicle file) -1.1784885083434347 vehicle I min 3.1012499183416367

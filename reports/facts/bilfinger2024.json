@@ -1,0 +1,89 @@
+{
+  "package": "bilfinger2024",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "NMC and LFP",
+      "basis": "stated",
+      "source": "https://doi.org/10.1016/j.etran.2024.100356, vehicle descriptions",
+      "note": ""
+    },
+    "units_released": {
+      "value": 2,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('bilfinger2024')",
+      "note": "Rule: distinct vehicles among vehicle files. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": 322,
+      "basis": "derived",
+      "source": "https://doi.org/10.1016/j.etran.2024.100356, Sec. 3.1 and Appendix A Table 1: VW ID.3 108s2p NMC pouch (216 cells), Tesla Model 3 SR+ 106s1p LFP (106 cells); vehicles counted: Tesla Model 3 SR+, VW ID.3",
+      "note": ""
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 214,
+      "basis": "measured",
+      "source": "scripts/facts/bilfinger2024.py",
+      "note": "Cell-voltage columns per vehicle: Tesla Model 3 SR+ 106, VW ID.3 108."
+    },
+    "energy_mwh": {
+      "value": 0.1105,
+      "basis": "stated",
+      "source": "https://doi.org/10.1016/j.etran.2024.100356, vehicle descriptions",
+      "note": ""
+    },
+    "energy_basis": {
+      "value": "stated",
+      "basis": "derived",
+      "source": "energy_mwh uses the stated basis",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 3.213597516102587,
+      "basis": "measured",
+      "source": "scripts/facts/bilfinger2024.py",
+      "note": "First to last measurement date per vehicle (VW ID.3 2021-02-05 to 2024-04-24); Tesla files carry no timestamps and are left out. This is the calendar span between discrete charge tests, not continuous telemetry. Paper Table 2 (https://doi.org/10.1016/j.etran.2024.100356, p. 12) dates the measurements 2021-02-08 to 2024-05-22; the 2024 file is the paper's ID.Software 3.2 charge (59.44 kWh charged in the data, 59.40 kWh in Sec. 4.5) but is dated 2024-04-22 to 04-24 in the data."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 0.302304324,
+      "basis": "measured",
+      "source": "scripts/facts/bilfinger2024.py",
+      "note": ""
+    },
+    "files": {
+      "value": 1,
+      "basis": "measured",
+      "source": "scripts/facts/bilfinger2024.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://mediatum.ub.tum.de/1737452; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

@@ -1,0 +1,144 @@
+
+===== evbattery battery_dataset1.tar.gz: snippets 629,121, vehicles 217, rows 80,527,488
+index: vehicles 217 snippets 629121 label1 vehicles (index) 31 label1 with snippets 31 count mismatches []
+label from metadata: vehicles with label 1: 0 mixed labels within vehicle: 0
+metadata label == index label for all vehicles: False
+current rows <0 / >0 / ==0: 80527488 0 0 neg share 1.000000
+snippets with all current<0: 629121 with any current>0: 0
+dt top: [[10.0, 79898367]] total 79898367
+per-snippet median dt quantiles 1/50/99%: 10 / 10 / 10 | dt_min min 10.0 dt_max max 10.0
+snippet duration (ts1-ts0) 1/50/99%: 1270 / 1270 / 1270 | ts0 1/50/99%: 0 / 0 / 0
+snippets with ts0 == 0: 629121
+soc col2 range 1/50/99%: 7.267 / 63.3 / 97.47 13.93 / 69.93 / 99.2 | min 0.0 max 100.0 | soc1>=soc0 share 1.0000 soc1>soc0 share 0.9953
+temp max col5 1/50/99%: 10 / 26 / 44 temp min col6: 5 / 23 / 39 | abs min/max -14.0 51.0
+volt col0 mean 1/50/99%: 3.57 / 3.86 / 4.144 | min 3.0477272727272724 max 4.161363636363636
+cell mean (max+min)/2 1/50/99%: 3.567 / 3.854 / 4.138 | max_single max 4.168 min_single min 2.697
+volt minus cell mean (snippet means) 1/50/99%: -0.001104 / 0.003054 / 0.05775 | ratio volt/cell 0.9997 / 1.001 / 1.015
+mileage 1/50/99%: 2929 / 1.155e+05 / 2.175e+05 | min 0.0 max 267790.4064
+capacity values: {'zero': 279380, 'positive': 349741} | meta keys {'label': 629121, 'car': 629121, 'charge_segment': 629121, 'mileage': 629121, 'capacity': 629121}
+capacity>0 count 349741 range 26.64146083333333 46.17242 | distinct zero-count 279380 nan 0
+vehicles with any capacity>0: 100
+implied capacity |I|dt/dSOC (dSOC>=5%, n=163428) Ah 1/10/50/90/99%: 61.41 / 90.23 / 125.4 / 150.6 / 169.4
+ratio implied/label (n=46504) 1/10/25/50/75/90/99%: 1.574 / 2.004 / 2.295 / 2.631 / 2.964 / 3.267 / 3.675
+per-vehicle median ratio over 94 vehicles 1/10/50/90/99%: 0.9819 / 2.352 / 2.598 / 2.848 / 3.164
+per-vehicle median implied capacity (214 vehicles) min/10/50/90/max: 32.34 / 104.9 / 128.6 / 142 / 147.7
+per-vehicle fit volt ~ cell (snippet means): slope 1/50/99% 0.9276 / 1.007 / 1.065 | intercept -0.1806 / -0.02392 / 0.3151 | r2 0.5929 / 0.9999 / 1
+within-snippet slope: per-vehicle median 1/50/99% 0.9859 / 1.004 / 1.038 | per-vehicle IQR 50% 0.00902 / 0.02795 / 0.239 | within-snippet r median 0.9784 / 0.9969 / 0.9998
+
+===== evbattery battery_dataset2.tar.gz: snippets 472,829, vehicles 198, rows 60,522,112
+index: vehicles 198 snippets 472829 label1 vehicles (index) 1 label1 with snippets 1 count mismatches []
+label from metadata: vehicles with label 1: 0 mixed labels within vehicle: 0
+metadata label == index label for all vehicles: False
+current rows <0 / >0 / ==0: 60522112 0 0 neg share 1.000000
+snippets with all current<0: 472829 with any current>0: 0
+dt top: [[10.0, 60049283]] total 60049283
+per-snippet median dt quantiles 1/50/99%: 10 / 10 / 10 | dt_min min 10.0 dt_max max 10.0
+snippet duration (ts1-ts0) 1/50/99%: 1270 / 1270 / 1270 | ts0 1/50/99%: 0 / 0 / 0
+snippets with ts0 == 0: 472829
+soc col2 range 1/50/99%: 12.4 / 60.4 / 92.4 16.4 / 65.6 / 99.2 | min 0.0 max 100.0 | soc1>=soc0 share 1.0000 soc1>soc0 share 0.9947
+temp max col5 1/50/99%: 13 / 26 / 44 temp min col6: 7 / 23 / 38 | abs min/max -4.0 53.0
+volt col0 mean 1/50/99%: 3.591 / 3.88 / 4.129 | min 3.123076923076923 max 4.408791208791208
+cell mean (max+min)/2 1/50/99%: 3.579 / 3.865 / 4.116 | max_single max 4.216 min_single min 2.952
+volt minus cell mean (snippet means) 1/50/99%: 0.0008958 / 0.009992 / 0.06841 | ratio volt/cell 1 / 1.003 / 1.018
+mileage 1/50/99%: 3378 / 4.374e+04 / 8.966e+04 | min 4.3296 max 133130.02560000002
+capacity values: {'positive': 203207, 'zero': 269622} | meta keys {'label': 472829, 'car': 472829, 'charge_segment': 472829, 'mileage': 472829, 'capacity': 472829}
+capacity>0 count 203207 range 33.12285749999999 46.23096466666667 | distinct zero-count 269622 nan 0
+vehicles with any capacity>0: 83
+implied capacity |I|dt/dSOC (dSOC>=5%, n=144286) Ah 1/10/50/90/99%: 37.07 / 51.35 / 105.2 / 202.1 / 264.9
+ratio implied/label (n=45629) 1/10/25/50/75/90/99%: 0.9916 / 1.224 / 1.608 / 2.081 / 2.615 / 2.897 / 3.091
+per-vehicle median ratio over 83 vehicles 1/10/50/90/99%: 1.061 / 1.747 / 2.091 / 2.277 / 2.704
+per-vehicle median implied capacity (198 vehicles) min/10/50/90/max: 42.39 / 83.4 / 102.9 / 140.1 / 192
+per-vehicle fit volt ~ cell (snippet means): slope 1/50/99% 0.9917 / 1.005 / 1.068 | intercept -0.2253 / -0.006768 / 0.05013 | r2 0.9482 / 0.9999 / 1
+within-snippet slope: per-vehicle median 1/50/99% 0.9917 / 1.001 / 1.043 | per-vehicle IQR 50% 0.0142 / 0.02447 / 0.08831 | within-snippet r median 0.9704 / 0.9944 / 0.9995
+
+===== evbattery battery_dataset3.tar.gz: snippets 176,327, vehicles 49, rows 22,569,856
+index: vehicles 50 snippets 176327 label1 vehicles (index) 16 label1 with snippets 16 count mismatches []
+label from metadata: vehicles with label 1: 0 mixed labels within vehicle: 0
+metadata label == index label for all vehicles: False
+current rows <0 / >0 / ==0: 12913084 0 9656772 neg share 0.572139
+snippets with all current<0: 86905 with any current>0: 0
+dt top: [[10.0, 22393529]] total 22393529
+per-snippet median dt quantiles 1/50/99%: 10 / 10 / 10 | dt_min min 10.0 dt_max max 10.0
+snippet duration (ts1-ts0) 1/50/99%: 1270 / 1270 / 1270 | ts0 1/50/99%: 0 / 0 / 0
+snippets with ts0 == 0: 176327
+soc col2 range 1/50/99%: 13.2 / 82.4 / 100 17.2 / 86.8 / 100 | min 0.0 max 100.0 | soc1>=soc0 share 0.9806 soc1>soc0 share 0.5528
+temp max col5 1/50/99%: 4 / 28 / 44 temp min col6: -0.7656 / 25 / 41 | abs min/max -39.0 48.0
+volt col0 mean 1/50/99%: 3.531 / 4.084 / 4.278 | min 3.170833333333333 max 4.297916666666667
+cell mean (max+min)/2 1/50/99%: 3.53 / 4.076 / 4.281 | max_single max 4.33 min_single min 2.753
+volt minus cell mean (snippet means) 1/50/99%: -0.01592 / 0.002423 / 0.06033 | ratio volt/cell 0.996 / 1.001 / 1.015
+mileage 1/50/99%: 82.37 / 4.897e+04 / 2.026e+05 | min 0.0 max 1107295.2
+capacity values: {'zero': 143353, 'positive': 32974} | meta keys {'label': 176327, 'car': 176327, 'charge_segment': 176327, 'mileage': 176327, 'capacity': 176327}
+capacity>0 count 32974 range 24.276323 43.39637000000001 | distinct zero-count 143353 nan 0
+vehicles with any capacity>0: 8
+implied capacity |I|dt/dSOC (dSOC>=5%, n=16825) Ah 1/10/50/90/99%: 0.7489 / 58.06 / 152.6 / 184.7 / 209.4
+ratio implied/label (n=705) 1/10/25/50/75/90/99%: 0.00909 / 0.2293 / 0.4952 / 2.187 / 3.001 / 3.108 / 3.308
+per-vehicle median ratio over 8 vehicles 1/10/50/90/99%: 0.2819 / 0.3669 / 1.741 / 3.058 / 3.128
+per-vehicle median implied capacity (44 vehicles) min/10/50/90/max: 0 / 23.27 / 140.3 / 177 / 180.3
+per-vehicle fit volt ~ cell (snippet means): slope 1/50/99% 0.9789 / 1.003 / 1.038 | intercept -0.1489 / -0.01027 / 0.0806 | r2 0.9824 / 0.9998 / 1
+within-snippet slope: per-vehicle median 1/50/99% 0.4969 / 0.9963 / 1.118 | per-vehicle IQR 50% 5.643e-12 / 0.3645 / 2.096 | within-snippet r median 0.9668 / 0.9987 / 1
+
+===== zhang2023 battery_brand1.tar.gz: snippets 476,739, vehicles 198, rows 61,022,592
+index: vehicles 198 snippets 476739 label1 vehicles (index) 30 label1 with snippets 30 count mismatches []
+label from metadata: vehicles with label 1: 0 mixed labels within vehicle: 0
+metadata label == index label for all vehicles: False
+current rows <0 / >0 / ==0: 61011400 11189 3 neg share 0.999817
+snippets with all current<0: 466070 with any current>0: 10666
+dt top: [[10.0, 60545853]] total 60545853
+per-snippet median dt quantiles 1/50/99%: 10 / 10 / 10 | dt_min min 10.0 dt_max max 10.0
+snippet duration (ts1-ts0) 1/50/99%: 1270 / 1270 / 1270 | ts0 1/50/99%: 0 / 0 / 0
+snippets with ts0 == 0: 476739
+soc col2 range 1/50/99%: 5.053 / 53.02 / 88.38 11.5 / 59.17 / 94.28 | min 0.0 max 100.0 | soc1>=soc0 share 1.0000 soc1>soc0 share 0.9995
+temp max col5 1/50/99%: 11 / 26 / 44 temp min col6: 5 / 23 / 39 | abs min/max -34.6 50.0
+volt col0 mean 1/50/99%: -1.294e-13 / 3.816e-17 / 1.292e-13 | min -9.892578124999424 max 9.109785778216294
+cell mean (max+min)/2 1/50/99%: 3.553 / 3.761 / 4.061 | max_single max 4.1640625 min_single min 2.568229166666667
+volt minus cell mean (snippet means) 1/50/99%: -4.061 / -3.761 / -3.553 | ratio volt/cell -3.526e-14 / 1.039e-17 / 3.515e-14
+mileage 1/50/99%: 71.54 / 1621 / 2995 | min 14.57 max 3709.3676490625003
+capacity values: {} | meta keys {'label': 476739, 'car': 476739, 'charge_segment': 476739, 'mileage': 476739}
+implied capacity |I|dt/dSOC (dSOC>=5%, n=79672) Ah 1/10/50/90/99%: 71.01 / 118.3 / 140.2 / 154.2 / 169.8
+per-vehicle median implied capacity (197 vehicles) min/10/50/90/max: 33.5 / 120.5 / 139.9 / 146.5 / 150.4
+per-vehicle fit volt ~ cell (snippet means): slope 1/50/99% -3.748e-14 / 6.184e-16 / 4.86e-14 | intercept -1.848e-13 / -2.615e-15 / 1.462e-13 | r2 4.487e-07 / 0.000308 / 0.04108
+within-snippet slope: per-vehicle median 1/50/99% 15.88 / 85.28 / 207.3 | per-vehicle IQR 50% 8.396 / 66.5 / 232.9 | within-snippet r median 0.9832 / 0.9972 / 0.9998
+
+===== zhang2023 battery_brand2.tar.gz: snippets 194,245, vehicles 49, rows 24,863,360
+index: vehicles 50 snippets 194245 label1 vehicles (index) 16 label1 with snippets 16 count mismatches []
+label from metadata: vehicles with label 1: 0 mixed labels within vehicle: 0
+metadata label == index label for all vehicles: False
+current rows <0 / >0 / ==0: 15117819 5 9745536 neg share 0.608036
+snippets with all current<0: 103611 with any current>0: 5
+dt top: [[10.0, 24669115]] total 24669115
+per-snippet median dt quantiles 1/50/99%: 10 / 10 / 10 | dt_min min 10.0 dt_max max 10.0
+snippet duration (ts1-ts0) 1/50/99%: 1270 / 1270 / 1270 | ts0 1/50/99%: 0 / 0 / 0
+snippets with ts0 == 0: 194245
+soc col2 range 1/50/99%: 13.2 / 80.38 / 100 17.2 / 85.19 / 100 | min 0.0 max 100.0 | soc1>=soc0 share 0.9828 soc1>soc0 share 0.6095
+temp max col5 1/50/99%: 4 / 28 / 45 temp min col6: -1 / 25 / 41 | abs min/max -39.0 48.0
+volt col0 mean 1/50/99%: 2.885 / 3.4 / 3.605 | min 2.545 max 3.625
+cell mean (max+min)/2 1/50/99%: 3.527 / 4.054 / 4.278 | max_single max 4.328125 min_single min 2.7544921875
+volt minus cell mean (snippet means) 1/50/99%: -0.6808 / -0.6544 / -0.6049 | ratio volt/cell 0.8176 / 0.8382 / 0.8532
+mileage 1/50/99%: 18.22 / 432.3 / 2524 | min 14.57 max 13817.389027598416
+capacity values: {} | meta keys {'label': 194245, 'car': 194245, 'charge_segment': 194245, 'mileage': 194245}
+implied capacity |I|dt/dSOC (dSOC>=5%, n=20291) Ah 1/10/50/90/99%: 0.8504 / 56.15 / 152.7 / 184.4 / 205.1
+per-vehicle median implied capacity (44 vehicles) min/10/50/90/max: 0 / 17.82 / 140.5 / 179.1 / 247.4
+per-vehicle fit volt ~ cell (snippet means): slope 1/50/99% 0.8726 / 0.9624 / 1.007 | intercept -0.6877 / -0.5084 / -0.1318 | r2 0.9805 / 0.9998 / 1
+within-snippet slope: per-vehicle median 1/50/99% 0.8533 / 0.96 / 0.992 | per-vehicle IQR 50% 0.002998 / 0.05375 / 1.049 | within-snippet r median 0.9658 / 0.9954 / 1
+
+===== zhang2023 battery_brand3.tar.gz: snippets 29,598, vehicles 100, rows 3,788,544
+index: vehicles 100 snippets 29598 label1 vehicles (index) 9 label1 with snippets 9 count mismatches []
+label from metadata: vehicles with label 1: 0 mixed labels within vehicle: 0
+metadata label == index label for all vehicles: False
+current rows <0 / >0 / ==0: 3788544 0 0 neg share 1.000000
+snippets with all current<0: 29598 with any current>0: 0
+dt top: [[10.0, 3758946]] total 3758946
+per-snippet median dt quantiles 1/50/99%: 10 / 10 / 10 | dt_min min 10.0 dt_max max 10.0
+snippet duration (ts1-ts0) 1/50/99%: 1270 / 1270 / 1270 | ts0 1/50/99%: 1 / 2561 / 2.048e+04
+snippets with ts0 == 0: 0
+soc col2 range 1/50/99%: 8 / 64.1 / 96 18 / 75 / 98 | min 0.0 max 99.1 | soc1>=soc0 share 1.0000 soc1>soc0 share 0.9999
+temp max col5 1/50/99%: 10 / 26 / 37 temp min col6: 6 / 21.1 / 34 | abs min/max -4.0 39.0
+volt col0 mean 1/50/99%: 38.57 / 42.2 / 44.9 | min 36.20217999999999 max 46.172
+cell mean (max+min)/2 1/50/99%: 3.604 / 3.938 / 4.191 | max_single max 4.2309 min_single min 3.3384
+volt minus cell mean (snippet means) 1/50/99%: 34.97 / 38.26 / 40.71 | ratio volt/cell 10.69 / 10.71 / 10.75
+mileage 1/50/99%: 1015 / 1.452e+04 / 4.115e+04 | min 0.0 max 44362.376520000005
+capacity values: {} | meta keys {'label': 29598, 'car': 29598, 'charge_segment': 29598, 'mileage': 29598}
+implied capacity |I|dt/dSOC (dSOC>=5%, n=23024) Ah 1/10/50/90/99%: 87.68 / 104.8 / 125 / 138.4 / 150.5
+per-vehicle median implied capacity (100 vehicles) min/10/50/90/max: 113.5 / 120.8 / 126.4 / 135.1 / 153.6
+per-vehicle fit volt ~ cell (snippet means): slope 1/50/99% 10.56 / 10.74 / 10.98 | intercept -0.945 / -0.08967 / 0.5583 | r2 0.9994 / 1 / 1
+within-snippet slope: per-vehicle median 1/50/99% 10.62 / 10.71 / 10.86 | per-vehicle IQR 50% 0.1198 / 0.2664 / 0.902 | within-snippet r median 0.9798 / 0.9973 / 0.9998

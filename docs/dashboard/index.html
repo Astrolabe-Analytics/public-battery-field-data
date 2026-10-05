@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Battery Field Data Releases</title>
+<meta name="description" content="Twenty-two public battery field-data releases: what they contain, how to download them, and how to load them.">
+<style>
+:root{--bg:#ffffff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--soft:#f6f8fa;--accent:#1f6feb;--ok:#1a7f37;--bad:#cf222e}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--soft:#161b22;--accent:#4493f8;--ok:#3fb950;--bad:#f85149}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1180px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:1.9rem;line-height:1.2;margin:.2em 0 .4em}h2{margin-top:2.2em;font-size:1.35rem}h3{margin:0;font-size:1.15rem}h4{margin:1.1em 0 .3em;font-size:.95rem}
+a{color:var(--accent)}.muted{color:var(--muted)}
+.lede{font-size:1.08rem;max-width:62ch}
+ol.steps{padding-left:1.3em;max-width:70ch}ol.steps li{margin:.35em 0}
+code,pre{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.86rem}
+pre{background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:10px 12px;overflow-x:auto;white-space:pre}
+p code{background:var(--soft);padding:1px 4px;border-radius:4px}
+.controls{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin:12px 0}
+.controls input,.controls select{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);min-width:0}
+.controls input{flex:1 1 220px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+td[data-sort]{font-variant-numeric:tabular-nums}
+th{background:var(--soft);position:sticky;top:0;white-space:nowrap}
+th button{all:unset;cursor:pointer;font-weight:600}th button:focus-visible{outline:2px solid var(--accent)}
+th[aria-sort=ascending] button::after{content:" \25B2";font-size:.7em}th[aria-sort=descending] button::after{content:" \25BC";font-size:.7em}
+tbody tr:hover{background:var(--soft)}
+.note{font-size:.85rem;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,520px),1fr));gap:16px}
+.card{border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
+.card header p{margin:.2em 0 0;font-size:.9rem}
+.badge{display:inline-block;font-size:.8rem;font-weight:600;padding:2px 8px;border-radius:999px;border:1px solid var(--line)}
+.badge.ok{color:var(--ok);border-color:var(--ok)}.badge.bad{color:var(--bad);border-color:var(--bad)}
+.status{margin:.6em 0;font-size:.9rem}
+figure{margin:12px 0 0}figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+figcaption{font-size:.82rem;color:var(--muted)}
+.withheld{font-size:.9rem;color:var(--muted);border:1px dashed var(--line);border-radius:6px;padding:10px;margin-top:12px}
+</style></head>
+<body><main>
+<h1>Public battery field data</h1>
+<p class="lede">22 public releases of battery data recorded in real use: cars, buses, light electric vehicles, home and grid storage, phones and factory robots. Each was published by its authors with a paper or data record. This collection does not copy their files. It tells you where to download each release and gives one Python loader per release, so every release can be read the same way.</p>
+<h2>Get started</h2>
+<ol class="steps">
+<li>Install Python 3.13 or newer from <a href="https://www.python.org/downloads/">python.org</a>. The Python that comes with macOS is too old.</li>
+<li>Get the code, make a virtual environment and install:<pre><code>git clone https://github.com/Astrolabe-Analytics/public-battery-field-data.git
+cd public-battery-field-data
+python3 -m venv .venv
+source .venv/bin/activate          # on Windows: .venv\Scripts\activate
+python -m pip install -r requirements.txt
+python -m pip install -e .</code></pre>On a Mac, the first <code>git</code> command may offer to install Apple's command line tools, which takes several minutes. To skip git, use Code &gt; Download ZIP on the GitHub page and unzip it.</li>
+<li>Choose where the data goes. Copy the example settings file:<pre><code>cp config/local.example.toml config/local.toml      # on Windows: copy config\local.example.toml config\local.toml</code></pre>Then open <code>config/local.toml</code> and replace the whole placeholder path <code>PATH_TO_PUBLIC_BATTERY_DATA_HOLDINGS</code> with your folder, keeping the quotes, for example <code>data_root = "~/battery-data"</code>. If you skip this, downloads go to a <code>data</code> folder inside the repository.</li>
+<li>Download one release (each card below says how), then check it by name:<pre><code>python -m fielddata.doctor tsukuba</code></pre>Without a name, doctor checks all 22 releases and lists every one you have not downloaded.</li>
+<li>Open the quick-start notebook and run it from the top. It is set to tsukuba, a single building battery that downloads automatically (2.7 GB); change <code>RELEASE</code> to the one you downloaded.<pre><code>jupyter lab notebooks/quickstart.ipynb</code></pre>In JupyterLab, choose Run &gt; Restart Kernel and Run All Cells (or the double-arrow button in the notebook toolbar).</li>
+</ol>
+<h2>All releases</h2>
+<p class="note">Values are the paper's Tables 1 and 2, generated from the repository. Licenses marked * restrict commercial use; ** state no license. Service time is unit-years where the release has timestamps, otherwise a lower bound in hours. Where a release's count differs from its paper, the paper's count is in brackets. Download says how each release downloads as of October 2026: one command, manual in a web browser, or partly manual (ppl, whose cell-level data is on a Box share).</p>
+<div class="controls"><input id="q" type="search" placeholder="Search releases, countries, chemistries" aria-label="Search releases">
+<select id="app" aria-label="Application"><option value="">All applications</option><option value="bus">bus</option><option value="consumer electronics">consumer electronics</option><option value="distributed storage">distributed storage</option><option value="grid-scale storage">grid-scale storage</option><option value="industrial and robotics">industrial and robotics</option><option value="light electric mobility">light electric mobility</option><option value="passenger EV">passenger EV</option><option value="passenger EV, bus">passenger EV, bus</option></select>
+<select id="lic" aria-label="License"><option value="">All licenses</option><option value="open">Open licenses</option><option value="non-commercial">Non-commercial (*)</option><option value="unstated">No license stated (**)</option></select>
+<span id="count" class="note" aria-live="polite"></span></div>
+<div class="tablewrap"><table id="releases"><thead><tr><th scope="col" data-col="0"><button type="button">Year</button></th><th scope="col" data-col="1"><button type="button">Reference</button></th><th scope="col" data-col="2"><button type="button">Release</button></th><th scope="col" data-col="3"><button type="button">Application</button></th><th scope="col" data-col="4"><button type="button">Country</button></th><th scope="col" data-col="5"><button type="button">Chemistry</button></th><th scope="col" data-col="6"><button type="button">Units</button></th><th scope="col" data-col="7"><button type="button">Cells</button></th><th scope="col" data-col="8"><button type="button">Service time</button></th><th scope="col" data-col="9"><button type="button">Energy, MWh</button></th><th scope="col" data-col="10"><button type="button">Size, GB</button></th><th scope="col" data-col="11"><button type="button">License</button></th><th scope="col" data-col="12"><button type="button">Download</button></th><th scope="col" data-col="13"><button type="button">Data</button></th><th scope="col" data-col="14"><button type="button">Code</button></th></tr></thead><tbody><tr data-app="distributed storage" data-lic="open"><td data-sort="2019.0">2019</td><td><a href="https://doi.org/10.1038/sdata.2019.20" rel="noopener">Vink, Ankyu and Koyama, Scientific Data</a></td><td><a href="#tsukuba">tsukuba</a></td><td>distributed storage</td><td>Japan</td><td>lead-acid</td><td data-sort="1.0">1</td><td>not in release</td><td data-sort="3.3">3.3 unit-years</td><td data-sort="0.326">0.326 (stated)</td><td data-sort="2.73">2.73</td><td>CC0 1.0</td><td>one command</td><td><a href="https://springernature.figshare.com/articles/dataset/7403954" rel="noopener">figshare</a></td><td>in deposit</td></tr><tr data-app="distributed storage" data-lic="open"><td data-sort="2022.0">2022</td><td>data record only</td><td><a href="#cloverleaf">cloverleaf</a></td><td>distributed storage</td><td>Belgium</td><td>NMC-class</td><td data-sort="3.0">3</td><td>not in release</td><td data-sort="1.0">1.0 unit-years</td><td data-sort="0.08">0.08 (computed)</td><td data-sort="0.0">&lt;0.01</td><td>CC BY 4.0</td><td>one command</td><td><a href="https://doi.org/10.5281/zenodo.6373656" rel="noopener">Zenodo</a></td><td>none</td></tr><tr data-app="passenger EV" data-lic="non-commercial"><td data-sort="2022.0">2022</td><td><a href="https://arxiv.org/abs/2201.12358" rel="noopener">He et al., arXiv</a></td><td><a href="#evbattery">evbattery</a></td><td>passenger EV</td><td>China</td><td>NMC-class</td><td data-sort="464.0">464</td><td>not in release</td><td data-sort="6.532626055213324">at least 57,265 h</td><td>not available</td><td data-sort="1.41">1.41</td><td>CC BY-NC-SA 4.0 *</td><td>one command</td><td><a href="https://doi.org/10.6084/m9.figshare.23301881" rel="noopener">figshare</a></td><td><a href="https://github.com/thinkenergy/dynamic_vae" rel="noopener">GitHub</a></td></tr><tr data-app="passenger EV" data-lic="open"><td data-sort="2023.0">2023</td><td><a href="https://doi.org/10.1016/j.apenergy.2023.120954" rel="noopener">Deng et al., Applied Energy</a></td><td><a href="#deng">deng</a></td><td>passenger EV</td><td>China</td><td>NMC</td><td data-sort="20.0">20</td><td data-sort="1800.0">1,800 Li-ion</td><td data-sort="46.2">46.2 unit-years</td><td data-sort="0.953">0.953 (computed)</td><td data-sort="0.23">0.23</td><td>MIT (repository)</td><td>one command</td><td><a href="https://github.com/BatICM/battery-charging-data-of-on-road-electric-vehicles" rel="noopener">GitHub</a></td><td><a href="https://github.com/BatICM/battery-charging-data-of-on-road-electric-vehicles" rel="noopener">GitHub</a></td></tr><tr data-app="industrial and robotics" data-lic="open"><td data-sort="2023.0">2023</td><td><a href="https://doi.org/10.1109/CCNC51644.2023.10060391" rel="noopener">Zarfati and Bedogni, IEEE CCNC</a></td><td><a href="#flashbattery-agv">flashbattery-agv</a></td><td>industrial and robotics</td><td>Italy</td><td>Li-ion</td><td data-sort="10.0">10</td><td>not in release</td><td data-sort="2.1">2.1 unit-years</td><td>not available</td><td data-sort="0.0">&lt;0.01</td><td>CC BY 4.0</td><td>one command</td><td><a href="https://zenodo.org/records/7748947" rel="noopener">Zenodo</a></td><td>none</td></tr><tr data-app="passenger EV" data-lic="open"><td data-sort="2023.0">2023</td><td><a href="https://doi.org/10.1038/s41467-023-41226-5" rel="noopener">Zhang et al., Nature Communications</a></td><td><a href="#zhang2023">zhang2023</a></td><td>passenger EV</td><td>China</td><td>NMC-class</td><td data-sort="347.0">347</td><td>not in release</td><td data-sort="5.136892539356605">at least 45,030 h</td><td>not available</td><td data-sort="1.48">1.48</td><td>CC BY 4.0</td><td>one command</td><td><a href="https://doi.org/10.6084/m9.figshare.23659323" rel="noopener">figshare</a></td><td><a href="https://github.com/962086838/Battery_fault_detection" rel="noopener">GitHub</a></td></tr><tr data-app="passenger EV" data-lic="open"><td data-sort="2024.0">2024</td><td><a href="https://doi.org/10.1016/j.etran.2024.100356" rel="noopener">Bilfinger et al., eTransportation</a></td><td><a href="#bilfinger2024">bilfinger2024</a></td><td>passenger EV</td><td>Germany</td><td>NMC, LFP</td><td data-sort="2.0">2</td><td data-sort="322.0">322 Li-ion</td><td data-sort="3.2">3.2 unit-years</td><td data-sort="0.111">0.111 (stated)</td><td data-sort="0.3">0.30</td><td>CC BY 4.0</td><td>manual (browser)</td><td><a href="https://mediatum.ub.tum.de/1737452" rel="noopener">mediaTUM</a></td><td><a href="https://github.com/TUMFTM/Battery-Pack-Diagnostics" rel="noopener">GitHub</a></td></tr><tr data-app="bus" data-lic="open"><td data-sort="2024.0">2024</td><td>data record only</td><td><a href="#fei_bus">fei_bus</a></td><td>bus</td><td>not stated</td><td>not stated</td><td data-sort="4.0">4</td><td>not in release</td><td>no timestamps</td><td>not available</td><td data-sort="0.0">&lt;0.01</td><td>CC BY 4.0</td><td>manual (browser)</td><td><a href="https://doi.org/10.17632/j9ky68gnd3.3" rel="noopener">Mendeley Data</a></td><td>none</td></tr><tr data-app="grid-scale storage" data-lic="open"><td data-sort="2024.0">2024</td><td><a href="https://doi.org/10.18154/RWTH-2024-04895" rel="noopener">Evaluation operation report, RWTH Publications</a></td><td><a href="#m5bat-2023-04">m5bat-2023-04</a></td><td>grid-scale storage</td><td>Germany</td><td>LMO/NMC, LFP, LTO, lead-acid</td><td data-sort="10.0">10</td><td data-sort="24672.0">24,672 Li-ion; 1,222 lead-acid</td><td data-sort="0.7">0.7 unit-years</td><td data-sort="6.714">6.714 (stated)</td><td data-sort="0.1">0.10</td><td>CC BY 4.0</td><td>manual (browser)</td><td><a href="https://publications.rwth-aachen.de/record/985923" rel="noopener">RWTH Publications</a></td><td>none</td></tr><tr data-app="distributed storage" data-lic="open"><td data-sort="2024.0">2024</td><td><a href="https://doi.org/10.1038/s41560-024-01620-9" rel="noopener">Figgener et al., Nature Energy</a></td><td><a href="#rwth-home">rwth-home</a></td><td>distributed storage</td><td>Germany</td><td>LFP, LMO/NMC, NMC</td><td data-sort="21.0">21</td><td data-sort="12036.0">12,036 Li-ion</td><td data-sort="120.1">120.1 unit-years</td><td data-sort="0.153">0.153 (stated)</td><td data-sort="21.12">21.12</td><td>CC BY 4.0</td><td>one command</td><td><a href="https://doi.org/10.5281/zenodo.12091223" rel="noopener">Zenodo</a></td><td><a href="https://doi.org/10.5281/zenodo.12091223" rel="noopener">Zenodo</a></td></tr><tr data-app="distributed storage" data-lic="non-commercial"><td data-sort="2024.0">2024</td><td><a href="https://doi.org/10.1016/j.xcrp.2024.102258" rel="noopener">Schaeffer et al., Cell Reports Physical Science</a></td><td><a href="#schaeffer">schaeffer</a></td><td>distributed storage</td><td>not stated</td><td>LFP</td><td data-sort="28.0">28</td><td data-sort="224.0">224 Li-ion</td><td data-sort="56.9">56.9 unit-years</td><td data-sort="0.108">0.108 (computed)</td><td data-sort="1.67">1.67</td><td>CC BY-NC 4.0 *</td><td>one command</td><td><a href="https://zenodo.org/records/13715694" rel="noopener">Zenodo</a></td><td><a href="https://github.com/JoachimSchaeffer/BattGP" rel="noopener">GitHub</a></td></tr><tr data-app="passenger EV" data-lic="open"><td data-sort="2025.0">2025</td><td><a href="https://doi.org/10.1038/s41467-025-56832-8" rel="noopener">Cao et al., Nature Communications</a></td><td><a href="#cao">cao</a></td><td>passenger EV</td><td>China</td><td>NMC-class, LFP</td><td data-sort="514.0">514</td><td data-sort="50030.0">50,030 Li-ion</td><td data-sort="17.32831394022359">at least 151,900 h</td><td data-sort="15.107">15.107 (computed)</td><td data-sort="38.06">38.06</td><td>CC BY 4.0</td><td>one command</td><td><a href="https://doi.org/10.5281/zenodo.10656500" rel="noopener">Zenodo</a></td><td><a href="https://doi.org/10.5281/zenodo.14555916" rel="noopener">Zenodo</a></td></tr><tr data-app="passenger EV" data-lic="non-commercial"><td data-sort="2025.0">2025</td><td><a href="https://doi.org/10.1038/s41467-025-56485-7" rel="noopener">Liu et al., Nature Communications</a></td><td><a href="#changan">changan</a></td><td>passenger EV</td><td>China</td><td>NMC</td><td data-sort="300.0">300</td><td data-sort="28800.0">28,800 Li-ion</td><td data-sort="975.4">975.4 unit-years</td><td data-sort="16.294">16.294 (computed)</td><td data-sort="79.69">79.69</td><td>CC BY-NC-SA 4.0 *</td><td>manual (browser)</td><td><a href="http://ivstskl.changan.com.cn/?p=2697" rel="noopener">Changan portal</a></td><td><a href="https://github.com/HoraceLiu1010/Multi-modal-SOH-estimation" rel="noopener">GitHub</a></td></tr><tr data-app="passenger EV" data-lic="open"><td data-sort="2025.0">2025</td><td><a href="https://doi.org/10.1038/s41597-025-06148-5" rel="noopener">Yasko et al., Scientific Data</a></td><td><a href="#ku_leuven_bev">ku_leuven_bev</a></td><td>passenger EV</td><td>Belgium</td><td>LFP, NCA</td><td data-sort="2.0">2</td><td>not in release</td><td data-sort="1.8">1.8 unit-years</td><td data-sort="0.139">0.139 (stated)</td><td data-sort="0.16">0.16</td><td>CC BY 4.0</td><td>manual (browser)</td><td><a href="https://doi.org/10.48804/8KPDTW" rel="noopener">KU Leuven RDR</a></td><td><a href="https://github.com/mayasko/BEV-data" rel="noopener">GitHub</a></td></tr><tr data-app="passenger EV" data-lic="non-commercial"><td data-sort="2025.0">2025</td><td><a href="https://doi.org/10.1016/j.etran.2025.100518" rel="noopener">Schreiber et al., eTransportation</a></td><td><a href="#tumftm">tumftm</a></td><td>passenger EV</td><td>Germany</td><td>NMC</td><td data-sort="7.0">7</td><td data-sort="1512.0">1,512 Li-ion</td><td data-sort="6.7">6.7 unit-years</td><td data-sort="0.406">0.406 (stated)</td><td data-sort="0.86">0.86</td><td>CC BY-NC 4.0 *</td><td>one command</td><td><a href="https://github.com/tumftm/electric-vehicle-uds-dataset" rel="noopener">GitHub</a></td><td><a href="https://github.com/tumftm/electric-vehicle-uds-dataset" rel="noopener">GitHub</a></td></tr><tr data-app="passenger EV" data-lic="open"><td data-sort="2026.0">2026</td><td><a href="https://doi.org/10.1016/j.etran.2026.100589" rel="noopener">Bilfinger et al., eTransportation</a></td><td><a href="#bilfinger2026">bilfinger2026</a></td><td>passenger EV</td><td>Germany</td><td>NMC, LFP</td><td data-sort="7.0">7</td><td data-sort="1402.0">1,402 Li-ion</td><td data-sort="0.3">0.3 unit-years</td><td data-sort="0.401">0.401 (stated)</td><td data-sort="0.3">0.30</td><td>CC BY 4.0</td><td>manual (browser)</td><td><a href="https://mediatum.ub.tum.de/1840112" rel="noopener">mediaTUM</a></td><td><a href="https://github.com/TUMFTM/EV_DVA_robustness" rel="noopener">GitHub</a></td></tr><tr data-app="grid-scale storage" data-lic="open"><td data-sort="2026.0">2026</td><td><a href="https://doi.org/10.1016/j.xcrp.2026.103210" rel="noopener">Li et al., Cell Reports Physical Science</a></td><td><a href="#li2026">li2026</a></td><td>grid-scale storage</td><td>not stated</td><td>LFP</td><td data-sort="1.0">1</td><td data-sort="240.0">240 Li-ion (paper: 200)</td><td data-sort="0.13723477070499657">1,203 h</td><td data-sort="0.156">0.156 (computed)</td><td data-sort="0.02">0.02</td><td>CC BY 4.0</td><td>one command</td><td><a href="https://zenodo.org/records/18471156" rel="noopener">Zenodo</a></td><td><a href="https://github.com/Cuadger/DDP-based-dowm-sampling" rel="noopener">GitHub</a></td></tr><tr data-app="grid-scale storage" data-lic="open"><td data-sort="2026.0">2026</td><td><a href="https://doi.org/10.3390/en19174141" rel="noopener">Zurmühlen, Koltermann and Sauer, Energies</a></td><td><a href="#m5bat-pbacid">m5bat-pbacid</a></td><td>grid-scale storage</td><td>Germany</td><td>lead-acid</td><td data-sort="1.0">1</td><td data-sort="300.0">300 lead-acid</td><td data-sort="8.1">8.1 unit-years</td><td data-sort="1.066">1.066 (stated)</td><td data-sort="4.65">4.65</td><td>CC BY 4.0</td><td>manual (browser)</td><td><a href="https://publications.rwth-aachen.de/record/1038622" rel="noopener">RWTH Publications</a></td><td>none</td></tr><tr data-app="grid-scale storage" data-lic="unstated"><td data-sort="2026.0">2026</td><td><a href="https://doi.org/10.1109/ACCESS.2026.3693606" rel="noopener">Kyeremeh et al., IEEE Access</a></td><td><a href="#ppl">ppl</a></td><td>grid-scale storage</td><td>United States</td><td>Li-ion</td><td data-sort="1.0">1</td><td data-sort="4760.0">4,760 Li-ion</td><td data-sort="8.3">8.3 unit-years</td><td data-sort="2.0">2 (stated)</td><td data-sort="67.59">67.59</td><td>unstated **</td><td>partly manual</td><td><a href="https://github.com/PPLResearch/BESS-Analysis" rel="noopener">GitHub</a></td><td><a href="https://github.com/PPLResearch/BESS-Analysis" rel="noopener">GitHub</a></td></tr><tr data-app="consumer electronics" data-lic="open"><td data-sort="2026.0">2026</td><td><a href="https://doi.org/10.18154/RWTH-2025-00754" rel="noopener">Laufen et al., RWTH Publications</a></td><td><a href="#rwth-android">rwth-android</a></td><td>consumer electronics</td><td>Germany</td><td>Li-ion</td><td data-sort="33.0">33</td><td data-sort="33.0">33 Li-ion</td><td data-sort="3.5">3.5 unit-years</td><td data-sort="0.001">0.001 (computed)</td><td data-sort="0.08">0.08</td><td>CC BY 4.0</td><td>manual (browser)</td><td><a href="https://publications.rwth-aachen.de/record/1002905" rel="noopener">RWTH Publications</a></td><td>none</td></tr><tr data-app="light electric mobility" data-lic="open"><td data-sort="2026.0">2026</td><td><a href="https://doi.org/10.1016/j.xcrp.2026.103154" rel="noopener">Xie et al., Cell Reports Physical Science</a></td><td><a href="#xie">xie</a></td><td>light electric mobility</td><td>not stated</td><td>LFP</td><td data-sort="271.0">271</td><td data-sort="5241.0">5,241 Li-ion (paper: 5,234)</td><td data-sort="4.8">4.8 unit-years</td><td>not available</td><td data-sort="0.16">0.16</td><td>CC BY 4.0 (data); MIT (code)</td><td>one command</td><td><a href="https://zenodo.org/records/18328701" rel="noopener">Zenodo</a></td><td><a href="https://zenodo.org/records/18327925" rel="noopener">Zenodo</a></td></tr><tr data-app="passenger EV, bus" data-lic="unstated"><td data-sort="2026.0">2026</td><td><a href="https://doi.org/10.1038/s41560-026-02131-5" rel="noopener">Zhou et al., Nature Energy</a></td><td><a href="#zhou2026">zhou2026</a></td><td>passenger EV, bus</td><td>China</td><td>NMC, LFP</td><td data-sort="3.0">3</td><td data-sort="346.0">346 Li-ion</td><td data-sort="10.4">10.4 unit-years</td><td data-sort="0.209">0.209 (stated)</td><td data-sort="2.15">2.15</td><td>unstated (data); MIT (code) **</td><td>manual (browser)</td><td><a href="https://1drv.ms/u/c/909aeacce295a32a/IQCsGxZgHovYTqJEXhfqRIIZAWASy12k6Urytil7VPa0LJY?e=ISLuvO" rel="noopener">OneDrive</a></td><td><a href="https://github.com/Rico-dicp/Ev-battery-cell-to-cell-inconsistency" rel="noopener">GitHub</a></td></tr></tbody></table></div>
+<h2>Release by release</h2>
+<p class="note">22 of 22 loaders loaded their quick-start slice on the full holdings (2026-10-02, 2026-10-03). Each preview is drawn from the release by its loader. Where a release restricts commercial use or states no license, the preview says so.</p>
+<div class="cards"><article class="card" id="tsukuba" data-app="distributed storage" data-lic="open">
+<header><h3>tsukuba</h3><p class="muted">Multiyear microgrid data from a research building in Tsukuba, Japan</p></header>
+<p>Field data from 1 home or building storage system in Japan with lead-acid cells, released with Vink, Ankyu and Koyama, Scientific Data. The release covers 3.3 unit-years of operation and about 0.326 MWh of battery energy (stated).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">691,200 rows, 12 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>One command</strong> (as of October 2026), from figshare:</p><pre><code>python -m fielddata.fetch tsukuba</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;tsukuba&#x27;, start=&#x27;2016-06-01&#x27;, end=&#x27;2016-06-08&#x27;)
+frame.head()</code></pre>
+<figure><img src="img/tsukuba.png" alt="battery_dc_voltage stays between 316.6 and 401.1 (raw data)" loading="lazy" width="704" height="286"><figcaption>battery_dc_voltage stays between 316.6 and 401.1 (raw data). One unit, quick-start slice, one point in every 173 drawn. <a href="img/tsukuba.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="cloverleaf" data-app="distributed storage" data-lic="open">
+<header><h3>cloverleaf</h3><p class="muted">Monitoring data second-life battery at Cloverleaf</p></header>
+<p>Field data from 3 second-life battery packs of one building storage system in Belgium with NMC-class cells, released with a public data record. The release covers 1.0 unit-years of operation and about 0.08 MWh of battery energy (computed).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">521 rows, 10 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>One command</strong> (as of October 2026), from Zenodo:</p><pre><code>python -m fielddata.fetch cloverleaf</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;cloverleaf&#x27;, unit=&#x27;SNAM HV - 2100173&#x27;)
+frame.head()</code></pre>
+<figure><img src="img/cloverleaf.png" alt="Vpack stays between 349 and 398.1 (raw data)" loading="lazy" width="704" height="286"><figcaption>Vpack stays between 349 and 398.1 (raw data). One unit, quick-start slice. <a href="img/cloverleaf.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="evbattery" data-app="passenger EV" data-lic="non-commercial">
+<header><h3>evbattery</h3><p class="muted">EVBattery - Large-Scale EV Dataset for Battery Health &amp; Capacity</p></header>
+<p>Field data from 464 passenger electric vehicles in China with NMC-class cells, released with He et al., arXiv. The release covers at least 57,265 h of operation.</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">258,176 rows, 14 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>One command</strong> (as of October 2026), from figshare:</p><pre><code>python -m fielddata.fetch evbattery</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;evbattery&#x27;, unit=&#x27;battery_dataset1:0&#x27;)
+frame.head()</code></pre>
+<figure><img src="img/evbattery.png" alt="volt stays between 3.636 and 3.912 (raw data)" loading="lazy" width="704" height="286"><figcaption>volt stays between 3.636 and 3.912 (raw data). One unit, quick-start slice. <a href="img/evbattery.csv">Plotted data (CSV)</a>. The figure and CSV are derived from this release and carry its license, CC BY-NC-SA 4.0, for non-commercial use only.</figcaption></figure>
+</article><article class="card" id="deng" data-app="passenger EV" data-lic="open">
+<header><h3>deng</h3><p class="muted">Prognostics of battery capacity based on charging data for on-road vehicles</p></header>
+<p>Field data from 20 passenger electric vehicles in China with NMC cells, released with Deng et al., Applied Energy. The release covers 46.2 unit-years of operation and about 0.953 MWh of battery energy (computed).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">854,591 rows, 11 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>One command</strong> (as of October 2026), from GitHub:</p><pre><code>python -m fielddata.fetch deng</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;deng&#x27;, pack=&#x27;#1&#x27;)
+frame.head()</code></pre>
+<figure><img src="img/deng.png" alt="pack_voltage stays between 314.7 and 386.2 (raw data)" loading="lazy" width="704" height="286"><figcaption>pack_voltage stays between 314.7 and 386.2 (raw data). One unit, quick-start slice, one point in every 214 drawn. <a href="img/deng.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="flashbattery-agv" data-app="industrial and robotics" data-lic="open">
+<header><h3>flashbattery-agv</h3><p class="muted">Automated Battery Power Fade Estimation for Fast Charge/Discharge</p></header>
+<p>Field data from 10 automated guided vehicle packs in Italy with Li-ion cells, released with Zarfati and Bedogni, IEEE CCNC. The release covers 2.1 unit-years of operation.</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">4,221 rows, 6 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>One command</strong> (as of October 2026), from Zenodo:</p><pre><code>python -m fielddata.fetch flashbattery-agv</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;flashbattery-agv&#x27;, unit=&#x27;FB-0&#x27;)
+frame.head()</code></pre>
+<figure><img src="img/flashbattery-agv.png" alt="cycletime stays between 0 and 1.44e+04 (raw data)" loading="lazy" width="704" height="286"><figcaption>cycletime stays between 0 and 1.44e+04 (raw data). One unit, quick-start slice, one point in every 2 drawn. <a href="img/flashbattery-agv.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="zhang2023" data-app="passenger EV" data-lic="open">
+<header><h3>zhang2023</h3><p class="muted">Realistic fault detection of Li-ion battery via dynamical deep learning approach</p></header>
+<p>Field data from 347 passenger electric vehicles in China with NMC-class cells, released with Zhang et al., Nature Communications. The release covers at least 45,030 h of operation.</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">350,208 rows, 13 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>One command</strong> (as of October 2026), from figshare:</p><pre><code>python -m fielddata.fetch zhang2023</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;zhang2023&#x27;, unit=&#x27;battery_brand1:1&#x27;)
+frame.head()</code></pre>
+<figure><img src="img/zhang2023.png" alt="max_single_volt stays between 3.534 and 3.609 (raw data)" loading="lazy" width="704" height="286"><figcaption>max_single_volt stays between 3.534 and 3.609 (raw data). One unit, quick-start slice. <a href="img/zhang2023.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="bilfinger2024" data-app="passenger EV" data-lic="open">
+<header><h3>bilfinger2024</h3><p class="muted">Battery pack diagnostics for EVs: Transfer of differential voltage and incremental capacity</p></header>
+<p>Field data from 2 passenger electric vehicles in Germany with NMC, LFP cells, released with Bilfinger et al., eTransportation. The release covers 3.2 unit-years of operation and about 0.111 MWh of battery energy (stated).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">20,738 rows, 118 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>Manual, in a web browser</strong> (as of October 2026), from mediaTUM. The fetch command prints these steps:</p><pre><code>bilfinger2024 requires a manual download.
+1. Open https://mediatum.ub.tum.de/1737452
+2. Download the data files listed below. Do not download papers.
+   - data.zip (about 0.3 GB)
+   Note: data.zip is the &quot;Download all&quot; zip of the mediaTUM data-server share linked from the record.
+3. Save the files under data/Battery pack diagnostics for electric vehicles - Transfer of differential voltage and incremental capacity analysis from cell to vehicle level/data
+4. Run python -m fielddata.verify bilfinger2024 to check the saved files.</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;bilfinger2024&#x27;, unit=&#x27;Tesla_JB_8A_CEE7_C57_2021&#x27;)
+frame.head()</code></pre>
+<figure><img src="img/bilfinger2024.png" alt="U stays between 325.7 and 365.6 (raw data)" loading="lazy" width="704" height="286"><figcaption>U stays between 325.7 and 365.6 (raw data). One unit, quick-start slice, one point in every 6 drawn. <a href="img/bilfinger2024.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="fei_bus" data-app="bus" data-lic="open">
+<header><h3>fei_bus</h3><p class="muted">Real EV dataset - Commercial Electric Buses</p></header>
+<p>Field data from 4 electric buses (country not stated), released with a public data record. The release has no timestamps, so the time it covers is not known.</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">101 rows, 4 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>Manual, in a web browser</strong> (as of October 2026), from Mendeley Data. The fetch command prints these steps:</p><pre><code>fei_bus requires a manual download.
+1. Open https://doi.org/10.17632/j9ky68gnd3.3
+2. Download the data files listed below. Do not download papers.
+   - vin1.csv (2,366 bytes)
+   - vin5.csv (3,791 bytes)
+   - vin12.csv (7,723 bytes)
+   - vin19.csv (1,667 bytes)
+3. Save the files under data/Real EV dataset - Commercial Electric Buses/data
+4. Run python -m fielddata.verify fei_bus to check the saved files.</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;fei_bus&#x27;, unit=&#x27;vin1&#x27;)
+frame.head()</code></pre>
+<figure><img src="img/fei_bus.png" alt="SOH stays between 0.4782 and 0.9703 (raw data)" loading="lazy" width="704" height="286"><figcaption>SOH stays between 0.4782 and 0.9703 (raw data). One unit, quick-start slice. <a href="img/fei_bus.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="m5bat-2023-04" data-app="grid-scale storage" data-lic="open">
+<header><h3>m5bat-2023-04</h3><p class="muted">M5BAT Large-Scale Battery Storage System: Evaluation Operation Report 04/2023</p></header>
+<p>Field data from 10 grid-scale storage units in Germany with LMO/NMC, LFP, LTO, lead-acid cells, released with Evaluation operation report, RWTH Publications. The release covers 0.7 unit-years of operation and about 6.714 MWh of battery energy (stated).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">2,592,000 rows, 13 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>Manual, in a web browser</strong> (as of October 2026), from RWTH Publications. The fetch command prints these steps:</p><pre><code>m5bat-2023-04 requires a manual download.
+1. Open https://publications.rwth-aachen.de/record/985923
+2. Download the data files listed below. Do not download papers.
+   - M5BAT_04-2023_RAW.zip (about 0.1 GB)
+   Note: RWTH Publications needs a web browser; its download links do not work from a script.
+3. Save the files under data/M5BAT Large-Scale Battery Storage System Dataset - Evaluation Operation Report 04-2023/data
+4. Run python -m fielddata.verify m5bat-2023-04 to check the saved files.</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;m5bat-2023-04&#x27;, unit=&#x27;Batt2&#x27;)
+frame.head()</code></pre>
+<figure><img src="img/m5bat-2023-04.png" alt="U_DC_Batt stays between 5597 and 7171 (raw data)" loading="lazy" width="704" height="286"><figcaption>U_DC_Batt stays between 5597 and 7171 (raw data). One unit, quick-start slice, one point in every 648 drawn. <a href="img/m5bat-2023-04.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="rwth-home" data-app="distributed storage" data-lic="open">
+<header><h3>rwth-home</h3><p class="muted">Multi-year field measurements of home storage systems &amp; capacity estimation</p></header>
+<p>Field data from 21 home or building storage systems in Germany with LFP, LMO/NMC, NMC cells, released with Figgener et al., Nature Energy. The release covers 120.1 unit-years of operation and about 0.153 MWh of battery energy (stated).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">521,849 rows, 7 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>One command</strong> (as of October 2026), from Zenodo:</p><pre><code>python -m fielddata.fetch rwth-home</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;rwth-home&#x27;, unit=&#x27;01&#x27;, month=&#x27;2019-06&#x27;)
+frame.head()</code></pre>
+<figure><img src="img/rwth-home.png" alt="V_in_V stays between 131.2 and 165.3 (raw data)" loading="lazy" width="704" height="286"><figcaption>V_in_V stays between 131.2 and 165.3 (raw data). One unit, quick-start slice, one point in every 131 drawn. <a href="img/rwth-home.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="schaeffer" data-app="distributed storage" data-lic="non-commercial">
+<header><h3>schaeffer</h3><p class="muted">Gaussian process-based online health monitoring and fault analysis from field data</p></header>
+<p>Field data from 28 home or building storage systems (country not stated) with LFP cells, released with Schaeffer et al., Cell Reports Physical Science. The release covers 56.9 unit-years of operation and about 0.108 MWh of battery energy (computed).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">500,000 rows, 26 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>One command</strong> (as of October 2026), from Zenodo:</p><pre><code>python -m fielddata.fetch schaeffer</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = next(fielddata.load(&#x27;schaeffer&#x27;, system=1, chunksize=500000))
+frame.head()</code></pre>
+<figure><img src="img/schaeffer.png" alt="U_Battery stays between 24.14 and 28.47 (raw data)" loading="lazy" width="704" height="286"><figcaption>U_Battery stays between 24.14 and 28.47 (raw data). One unit, quick-start slice, one point in every 125 drawn. <a href="img/schaeffer.csv">Plotted data (CSV)</a>. The figure and CSV are derived from this release and carry its license, CC BY-NC 4.0, for non-commercial use only.</figcaption></figure>
+</article><article class="card" id="cao" data-app="passenger EV" data-lic="open">
+<header><h3>cao</h3><p class="muted">Model-Constrained Deep Learning for Online Fault Diagnosis in Li-ion Batteries over Stochastic Conditions</p></header>
+<p>Field data from 514 passenger electric vehicles in China with NMC-class, LFP cells, released with Cao et al., Nature Communications. The release covers at least 151,900 h of operation and about 15.107 MWh of battery energy (computed).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-03</span> <span class="muted">43,546 rows, 225 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>One command</strong> (as of October 2026), from Zenodo:</p><pre><code>python -m fielddata.fetch cao</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;cao&#x27;, brand=&#x27;QAS&#x27;, vehicle=&#x27;0&#x27;, names=&#x27;inferred&#x27;, clean=True)
+frame.head()</code></pre><p><a href="https://github.com/Astrolabe-Analytics/public-battery-field-data/blob/main/notebooks/cao_in_depth.ipynb" rel="noopener">In-depth notebook</a>: a worked example of a release published without column names, units or timestamps.</p>
+<figure><img src="img/cao.png" alt="cell_v_001 stays between 2.844 and 3.611 (cleaned data)" loading="lazy" width="704" height="286"><figcaption>cell_v_001 stays between 2.844 and 3.611 (cleaned data). One unit, quick-start slice, one point in every 11 drawn. <a href="img/cao.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="changan" data-app="passenger EV" data-lic="non-commercial">
+<header><h3>changan</h3><p class="muted">Multi-modal framework for battery SOH evaluation using open-source EV data</p></header>
+<p>Field data from 300 passenger electric vehicles in China with NMC cells, released with Liu et al., Nature Communications. The release covers 975.4 unit-years of operation and about 16.294 MWh of battery energy (computed).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">200,000 rows, 13 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>Manual, in a web browser</strong> (as of October 2026), from Changan portal. The fetch command prints these steps:</p><pre><code>changan requires a manual download.
+1. Open http://ivstskl.changan.com.cn/?p=2697
+2. Download the data files listed below. Do not download papers.
+   - raw/RAW_DATA.z01 (about 51.5 GB)
+   - raw/RAW_DATA.zip (about 22.8 GB)
+   Note: the two files are one split zip of about 74 GB (RAW_DATA.z01 51.5 GB, RAW_DATA.zip 22.8 GB); check you have the space first.
+   Note: save both in a subfolder named raw inside the folder in step 3 (create it), and do not unzip them.
+3. Save the files under data/Multi-modal framework for battery state of health evaluation using open-source electric vehicle data/data
+4. Run python -m fielddata.verify changan to check the saved files.</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;changan&#x27;, unit=&#x27;vin1&#x27;, nrows=200000, clean=True)
+frame.head()</code></pre>
+<figure><img src="img/changan.png" alt="totalvoltage stays between 330 and 406.9 (cleaned data)" loading="lazy" width="704" height="286"><figcaption>totalvoltage stays between 330 and 406.9 (cleaned data). One unit, quick-start slice, one point in every 50 drawn. <a href="img/changan.csv">Plotted data (CSV)</a>. The figure and CSV are derived from this release and carry its license, CC BY-NC-SA 4.0, for non-commercial use only.</figcaption></figure>
+</article><article class="card" id="ku_leuven_bev" data-app="passenger EV" data-lic="open">
+<header><h3>ku_leuven_bev</h3><p class="muted">Unveiling Energy Dynamics of Battery Electric Vehicle Using High-Resolution Data</p></header>
+<p>Field data from 2 passenger electric vehicles in Belgium with LFP, NCA cells, released with Yasko et al., Scientific Data. The release covers 1.8 unit-years of operation and about 0.139 MWh of battery energy (stated).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">773,172 rows, 36 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>Manual, in a web browser</strong> (as of October 2026), from KU Leuven RDR. The fetch command prints these steps:</p><pre><code>ku_leuven_bev requires a manual download.
+1. Open https://doi.org/10.48804/8KPDTW
+2. Download the data files listed below. Do not download papers.
+   - doi-10.48804-8kpdtw.zip (about 0.2 GB)
+   Note: the zip is Dataverse&#x27;s &quot;Access dataset &gt; Download ZIP&quot; on the KU Leuven RDR page.
+3. Save the files under data/Unveiling Energy Dynamics of Battery Electric Vehicle Using High-Resolution Data/data
+4. Run python -m fielddata.verify ku_leuven_bev to check the saved files.</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;ku_leuven_bev&#x27;, unit=&#x27;BEV1&#x27;, session_type=&#x27;driving&#x27;)
+frame.head()</code></pre>
+<figure><img src="img/ku_leuven_bev.png" alt="BattVoltage132 stays between 285.8 and 386.7 (raw data)" loading="lazy" width="704" height="286"><figcaption>BattVoltage132 stays between 285.8 and 386.7 (raw data). One unit, quick-start slice, one point in every 194 drawn. <a href="img/ku_leuven_bev.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="tumftm" data-app="passenger EV" data-lic="non-commercial">
+<header><h3>tumftm</h3><p class="muted">Lab-to-field gap in battery aging: Mismatch of operating conditions</p></header>
+<p>Field data from 7 passenger electric vehicles in Germany with NMC cells, released with Schreiber et al., eTransportation. The release covers 6.7 unit-years of operation and about 0.406 MWh of battery energy (stated).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">5,282,082 rows, 6 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>One command</strong> (as of October 2026), from GitHub:</p><pre><code>python -m fielddata.fetch tumftm</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;tumftm&#x27;, unit=&#x27;CUP1&#x27;, value_id=1200, clean=True)
+frame.head()</code></pre>
+<figure><img src="img/tumftm.png" alt="value stays between 0 and 8588 (cleaned data)" loading="lazy" width="704" height="286"><figcaption>value stays between 0 and 8588 (cleaned data). One unit, quick-start slice, one point in every 1,321 drawn. <a href="img/tumftm.csv">Plotted data (CSV)</a>. The figure and CSV are derived from this release and carry its license, CC BY-NC 4.0, for non-commercial use only.</figcaption></figure>
+</article><article class="card" id="bilfinger2026" data-app="passenger EV" data-lic="open">
+<header><h3>bilfinger2026</h3><p class="muted">Battery pack diagnostics for EVs: Robustness of SOH and differential voltage</p></header>
+<p>Field data from 7 passenger electric vehicles in Germany with NMC, LFP cells, released with Bilfinger et al., eTransportation. The release covers 0.3 unit-years of operation and about 0.401 MWh of battery energy (stated).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">79,591 rows, 117 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>Manual, in a web browser</strong> (as of October 2026), from mediaTUM. The fetch command prints these steps:</p><pre><code>bilfinger2026 requires a manual download.
+1. Open https://mediatum.ub.tum.de/1840112
+2. Download the data files listed below. Do not download papers.
+   - data.zip (about 0.3 GB)
+   Note: data.zip is the &quot;Download all&quot; zip of the mediaTUM data-server share linked from the record.
+3. Save the files under data/Battery pack diagnostics for electric vehicles - Robustness of the state of health measurement and differential voltage analysis at the vehicle level/data
+4. Run python -m fielddata.verify bilfinger2026 to check the saved files.</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;bilfinger2026&#x27;, unit=&#x27;Cupra_204_JB_8A_CEE7_C45&#x27;)
+frame.head()</code></pre>
+<figure><img src="img/bilfinger2026.png" alt="U stays between 358.2 and 454 (raw data)" loading="lazy" width="704" height="286"><figcaption>U stays between 358.2 and 454 (raw data). One unit, quick-start slice, one point in every 20 drawn. <a href="img/bilfinger2026.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="li2026" data-app="grid-scale storage" data-lic="open">
+<header><h3>li2026</h3><p class="muted">Large language model-based fault diagnosis for Li-ion batteries in cloud-edge systems</p></header>
+<p>Field data from 1 grid-scale storage unit (country not stated) with LFP cells, released with Li et al., Cell Reports Physical Science. The release covers 1,203 h of operation and about 0.156 MWh of battery energy (computed).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">31,960 rows, 18 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>One command</strong> (as of October 2026), from Zenodo:</p><pre><code>python -m fielddata.fetch li2026</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;li2026&#x27;, unit=&#x27;real_world_02-03/battery_01&#x27;)
+frame.head()</code></pre>
+<figure><img src="img/li2026.png" alt="cell_001_V stays between 3.131 and 3.436 (raw data)" loading="lazy" width="704" height="286"><figcaption>cell_001_V stays between 3.131 and 3.436 (raw data). One unit, quick-start slice, one point in every 8 drawn. <a href="img/li2026.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="m5bat-pbacid" data-app="grid-scale storage" data-lic="open">
+<header><h3>m5bat-pbacid</h3><p class="muted">Operational Degradation of Flooded Lead-Acid Under FCR: Long-Term Evidence</p></header>
+<p>Field data from 1 grid-scale storage unit in Germany with lead-acid cells, released with Zurmühlen, Koltermann and Sauer, Energies. The release covers 8.1 unit-years of operation and about 1.066 MWh of battery energy (stated).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">200,000 rows, 8 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>Manual, in a web browser</strong> (as of October 2026), from RWTH Publications. The fetch command prints these steps:</p><pre><code>m5bat-pbacid requires a manual download.
+1. Open https://publications.rwth-aachen.de/record/1038622
+2. Download the data files listed below. Do not download papers.
+   - Full_Dataset_M5BAT_Battery_Unit_Pb1.zip (4.33 GB (page display))
+   Note: RWTH Publications needs a web browser; its download links do not work from a script.
+3. Save the files under data/Operational Degradation of Flooded Lead-Acid Storage Under Frequency Containment Reserve/data
+4. Run python -m fielddata.verify m5bat-pbacid to check the saved files.</code></pre>
+<h4>Load a first slice</h4><pre><code>from fielddata.loaders import m5bat_pbacid
+frame = m5bat_pbacid.preview(source=&#x27;bms&#x27;, year=2023, rows=200000)
+frame.head()</code></pre>
+<figure><img src="img/m5bat-pbacid.png" alt="voltage_bat_V_bms stays between 557 and 706 (raw data)" loading="lazy" width="704" height="286"><figcaption>voltage_bat_V_bms stays between 557 and 706 (raw data). One unit, quick-start slice, one point in every 50 drawn. <a href="img/m5bat-pbacid.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="ppl" data-app="grid-scale storage" data-lic="unstated">
+<header><h3>ppl</h3><p class="muted">Utility-Scale Battery Energy Storage Systems - Field Pilot Unit Experience</p></header>
+<p>Field data from 1 grid-scale storage unit in United States with Li-ion cells, released with Kyeremeh et al., IEEE Access. The release covers 8.3 unit-years of operation and about 2 MWh of battery energy (stated).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">525,600 rows, 19 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>Partly manual</strong> (as of October 2026). One command downloads the files on GitHub:</p><pre><code>python -m fielddata.fetch ppl</code></pre><p>The command then prints the manual step for the rest:</p><pre><code>ppl is only partly downloaded by this command. One more step is manual:
+   The cell-level data (about 66.6 GB, one zip per month from December 2016) is not in the GitHub repository.
+   The repository&#x27;s file BESS-Analysis/Cell_Level_Data links to it on a Box share:
+   https://app.box.com/s/s0ns2o1i4q0f7yxcnn96df7e5px5k0s6
+   Download the monthly zips in a web browser and save them in a folder named cell_level next to BESS-Analysis.
+   The ppl loader reads only the GitHub files, so this step is needed only to use the cell-level data yourself.</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;ppl&#x27;, years=[2019])
+frame.head()</code></pre>
+<figure><img src="img/ppl.png" alt="CellVoltAvg stays between 0 and 4.129 (raw data)" loading="lazy" width="704" height="286"><figcaption>CellVoltAvg stays between 0 and 4.129 (raw data). One unit, quick-start slice, one point in every 132 drawn. <a href="img/ppl.csv">Plotted data (CSV)</a>. The authors state no license for this data; the figure and CSV are shown for orientation only.</figcaption></figure>
+</article><article class="card" id="rwth-android" data-app="consumer electronics" data-lic="open">
+<header><h3>rwth-android</h3><p class="muted">Battery Cell Field Data of Multiple Mobile Android Devices</p></header>
+<p>Field data from 33 mobile phones in Germany with Li-ion cells, released with Laufen et al., RWTH Publications. The release covers 3.5 unit-years of operation and about 0.001 MWh of battery energy (computed).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">32,038 rows, 19 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>Manual, in a web browser</strong> (as of October 2026), from RWTH Publications. The fetch command prints these steps:</p><pre><code>rwth-android requires a manual download.
+1. Open https://publications.rwth-aachen.de/record/1002905
+2. Download the data files listed below. Do not download papers.
+   - Dataset_from_Mobile_Battery_Data_Explorer_2026-04.zip (about 76.1 MB)
+   Note: RWTH Publications needs a web browser; its download links do not work from a script.
+3. Save the files under data/Battery Cell Field Data of Multiple Mobile Android Devices/data
+4. Run python -m fielddata.verify rwth-android to check the saved files.</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;rwth-android&#x27;, unit=&#x27;03b3c5a4a5d9a7a3d9829afa52b734c1&#x27;)
+frame.head()</code></pre>
+<figure><img src="img/rwth-android.png" alt="voltage_cell stays between 3.627 and 4.537 (raw data)" loading="lazy" width="704" height="286"><figcaption>voltage_cell stays between 3.627 and 4.537 (raw data). One unit, quick-start slice, one point in every 9 drawn. <a href="img/rwth-android.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="xie" data-app="light electric mobility" data-lic="open">
+<header><h3>xie</h3><p class="muted">Realistic multi-fault diagnostics of millions-scale Li-ion batteries with rapid unsupervised learning</p></header>
+<p>Field data from 271 light electric vehicle packs (country not stated) with LFP cells, released with Xie et al., Cell Reports Physical Science. The release covers 4.8 unit-years of operation.</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">28 rows, 28 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>One command</strong> (as of October 2026), from Zenodo:</p><pre><code>python -m fielddata.fetch xie</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;xie&#x27;, unit=&#x27;0022234cc5964eae8c383cc9032cd51f&#x27;)
+frame.head()</code></pre>
+<figure><img src="img/xie.png" alt="batCoreVoltage1 stays between 3224 and 3389 (raw data)" loading="lazy" width="704" height="286"><figcaption>batCoreVoltage1 stays between 3224 and 3389 (raw data). One unit, quick-start slice. <a href="img/xie.csv">Plotted data (CSV)</a>.</figcaption></figure>
+</article><article class="card" id="zhou2026" data-app="passenger EV, bus" data-lic="unstated">
+<header><h3>zhou2026</h3><p class="muted">Quantifying the impact of cell-to-cell inconsistency on EV battery degradation &amp; utilization</p></header>
+<p>Field data from 3 units in China with NMC, LFP cells, released with Zhou et al., Nature Energy. The release covers 10.4 unit-years of operation and about 0.209 MWh of battery energy (stated).</p>
+<div class="status"><span class="badge ok">Loader verified 2026-10-02</span> <span class="muted">255,909 rows, 6 columns in the sample slice</span></div>
+<h4>Download</h4><p><strong>Manual, in a web browser</strong> (as of October 2026), from OneDrive. The fetch command prints these steps:</p><pre><code>zhou2026 requires a manual download.
+1. Open https://1drv.ms/u/c/909aeacce295a32a/IQCsGxZgHovYTqJEXhfqRIIZAWASy12k6Urytil7VPa0LJY?e=ISLuvO
+2. Download the data files listed below. Do not download papers.
+   - Vehicle data.zip (about 2.2 GB)
+3. Save the files under data/Quantifying the impact of cell-to-cell inconsistency on electric vehicle battery degradation and utilization/data
+4. Run python -m fielddata.verify zhou2026 to check the saved files.</code></pre>
+<h4>Load a first slice</h4><pre><code>import fielddata
+frame = fielddata.load(&#x27;zhou2026&#x27;, unit=&#x27;LFP01&#x27;, part=0, columns=[&#x27;Timestamp&#x27;, &#x27;TotalVoltage&#x27;, &#x27;TotalCurrent&#x27;, &#x27;SOC&#x27;, &#x27;MaxCellVoltage&#x27;, &#x27;MinCellVoltage&#x27;])
+frame.head()</code></pre>
+<figure><img src="img/zhou2026.png" alt="TotalVoltage stays between 100 and 563.3 (raw data)" loading="lazy" width="704" height="286"><figcaption>TotalVoltage stays between 100 and 563.3 (raw data). One unit, quick-start slice, one point in every 64 drawn. <a href="img/zhou2026.csv">Plotted data (CSV)</a>. The authors state no license for this data; the figure and CSV are shown for orientation only.</figcaption></figure>
+</article></div>
+<p class="note">Generated by <code>scripts/make_dashboard.py</code> from the repository; loader status from <code>scripts/dashboard_status.py</code>.</p>
+</main><script>
+(function(){
+  const table=document.getElementById('releases'), tbody=table.tBodies[0];
+  const q=document.getElementById('q'), app=document.getElementById('app'), lic=document.getElementById('lic'), count=document.getElementById('count');
+  function apply(){
+    const term=q.value.trim().toLowerCase(); let shown=0;
+    for(const row of tbody.rows){
+      const ok=(!term||row.textContent.toLowerCase().includes(term))&&(!app.value||row.dataset.app===app.value)&&(!lic.value||row.dataset.lic===lic.value);
+      row.hidden=!ok; if(ok) shown++;
+      const card=document.getElementById(row.cells[2].textContent.trim()); if(card) card.hidden=!ok;
+    }
+    count.textContent=shown+' of '+tbody.rows.length+' releases shown';
+  }
+  [q,app,lic].forEach(el=>el.addEventListener('input',apply));
+  table.tHead.querySelectorAll('th').forEach((th,i)=>th.querySelector('button').addEventListener('click',()=>{
+    const dir=th.getAttribute('aria-sort')==='ascending'?'descending':'ascending';
+    table.tHead.querySelectorAll('th').forEach(h=>h.removeAttribute('aria-sort')); th.setAttribute('aria-sort',dir);
+    const rows=[...tbody.rows], sign=dir==='ascending'?1:-1;
+    rows.sort((a,b)=>{const x=a.cells[i],y=b.cells[i];
+      if(x.dataset.sort!==undefined||y.dataset.sort!==undefined){const p=x.dataset.sort===undefined?Infinity:+x.dataset.sort,r=y.dataset.sort===undefined?Infinity:+y.dataset.sort;return (p-r)*sign||0;}
+      return x.textContent.localeCompare(y.textContent)*sign;});
+    rows.forEach(r=>tbody.appendChild(r));
+  }));
+  apply();
+})();
+</script></body></html>

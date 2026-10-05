@@ -1,0 +1,89 @@
+{
+  "package": "li2026",
+  "facts": {
+    "application": {
+      "value": "grid-scale storage",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "LFP",
+      "basis": "stated",
+      "source": "https://doi.org/10.1016/j.xcrp.2026.103210, experimental system",
+      "note": ""
+    },
+    "units_released": {
+      "value": 1,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('li2026')",
+      "note": "Rule: one series string: in each period the current is identical in all 30 eight-cell groups (scripts/checks/source_audit/li2026_xie_schaeffer_zhou2026/check_li2026_audit.py); the paper refers to stations in the plural and gives no count. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": 240,
+      "basis": "derived",
+      "source": "one cell per measured cell channel in the release",
+      "note": "The paper states 200 cells; the release holds 240 cell channels, and the release value is used in every total."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 240,
+      "basis": "measured",
+      "source": "scripts/facts/li2026.py",
+      "note": ""
+    },
+    "energy_mwh": {
+      "value": 0.156,
+      "basis": "derived",
+      "source": "240 measured cell channels x 200 Ah x 3.25 V / 1,000,000; cell rating from https://doi.org/10.1016/j.xcrp.2026.103210, supplemental Table S1 (mmc1 p. 2, energy storage station column)",
+      "note": "The paper states 200 cells, which would give 0.130 MWh; the release holds 240 cell channels, so 240 is used."
+    },
+    "energy_basis": {
+      "value": "computed",
+      "basis": "derived",
+      "source": "energy_mwh is computed from stated configuration",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Filenames use sample indices and the release has no calendar timestamps."
+    },
+    "obs_hours": {
+      "value": 1203,
+      "basis": "stated",
+      "source": "https://doi.org/10.1016/j.xcrp.2026.103210, dataset description",
+      "note": ""
+    },
+    "size_gb": {
+      "value": 0.019211856,
+      "basis": "measured",
+      "source": "scripts/facts/li2026.py",
+      "note": ""
+    },
+    "files": {
+      "value": 1,
+      "basis": "measured",
+      "source": "scripts/facts/li2026.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "the release contains no labels; the paper reports ESC, SDF and ICF events in the station data (https://doi.org/10.1016/j.xcrp.2026.103210, p. 3-4)",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://zenodo.org/records/18471156; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

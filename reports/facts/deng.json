@@ -1,0 +1,89 @@
+{
+  "package": "deng",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "NMC",
+      "basis": "stated",
+      "source": "https://github.com/BatICM/battery-charging-data-of-on-road-electric-vehicles, README, section 'battery pack information update' (\"equipped with CATL NCM batteries\")",
+      "note": "Stated by the data record (CATL NCM). The paper does not name it."
+    },
+    "units_released": {
+      "value": 20,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('deng')",
+      "note": "Rule: one archive per pack."
+    },
+    "cells_liion": {
+      "value": 1800,
+      "basis": "derived",
+      "source": "20 release packs x 90 series cells stated in the release metadata",
+      "note": ""
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The charging CSVs expose pack extrema, not individual cell channels."
+    },
+    "energy_mwh": {
+      "value": 0.95265,
+      "basis": "derived",
+      "source": "20 packs x 90 cells x 145 Ah x 3.65 V / 1,000,000",
+      "note": "The 3.65 V cell voltage is assumed, not stated; measured mid-SOC voltage is 3.71 V at low current and 3.76 V under charge (source audit 2026-10-04), which would give 0.966 MWh at 3.7 V."
+    },
+    "energy_basis": {
+      "value": "computed",
+      "basis": "derived",
+      "source": "energy_mwh is computed from stated configuration",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 46.19301848049281,
+      "basis": "measured",
+      "source": "scripts/facts/deng.py",
+      "note": ""
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Calendar spans are measurable; sampled rows are charging-only and not continuous watched time."
+    },
+    "size_gb": {
+      "value": 0.230024681,
+      "basis": "measured",
+      "source": "scripts/facts/deng.py",
+      "note": ""
+    },
+    "files": {
+      "value": 20,
+      "basis": "measured",
+      "source": "scripts/facts/deng.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://github.com/BatICM/battery-charging-data-of-on-road-electric-vehicles; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}
