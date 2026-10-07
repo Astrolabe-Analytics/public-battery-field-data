@@ -10,8 +10,6 @@ This example downloads a small public package from its original Zenodo record, c
 python -m pip install "git+https://github.com/Astrolabe-Analytics/public-battery-field-data.git"
 ```
 
-The GitHub repository must be public before this command works without authentication.
-
 ## 2. Fetch the example package
 
 Choose a folder for downloaded data and run:

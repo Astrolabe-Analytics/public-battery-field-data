@@ -223,6 +223,8 @@ def card_html(r: dict) -> str:
                     f'<pre><code>{e(r["partly_manual"])}</code></pre>')
     elif r["automatic"]:
         download = f'<p><strong>One command</strong> (as of {e(fetch.ROUTE_DATE)}), from {e(r["data_text"])}:</p><pre><code>{e(r["download"])}</code></pre>'
+        if r["release"] in fetch.FETCH_NOTES:
+            download += f'<p class="muted">{e(fetch.FETCH_NOTES[r["release"]])}</p>'
     else:
         download = f'<p><strong>Manual, in a web browser</strong> (as of {e(fetch.ROUTE_DATE)}), from {e(r["data_text"])}. The fetch command prints these steps:</p><pre><code>{e(r["download"])}</code></pre>'
     return f'''<article class="card" id="{e(r["release"])}" data-app="{e(r["Service class"])}" data-lic="{e(license_group(r["License"]))}">
@@ -244,6 +246,7 @@ main{max-width:1180px;margin:0 auto;padding:24px 16px 64px}
 h1{font-size:1.9rem;line-height:1.2;margin:.2em 0 .4em}h2{margin-top:2.2em;font-size:1.35rem}h3{margin:0;font-size:1.15rem}h4{margin:1.1em 0 .3em;font-size:.95rem}
 a{color:var(--accent)}.muted{color:var(--muted)}
 .lede{font-size:1.08rem;max-width:62ch}
+.totals{font-size:1.15rem;font-weight:600;margin:.2rem 0 .8rem}
 ol.steps{padding-left:1.3em;max-width:70ch}ol.steps li{margin:.35em 0}
 code,pre{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.86rem}
 pre{background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:10px 12px;overflow-x:auto;white-space:pre}
@@ -299,6 +302,16 @@ JS = """
 """
 
 
+def totals_line(count: int) -> str:
+    """The headline totals from reports/totals.json, rounded as in the paper."""
+    t = json.loads((ROOT / "reports" / "totals.json").read_text(encoding="utf-8"))
+    if t["loader_count"] != count:
+        raise SystemExit(f"reports/totals.json counts {t['loader_count']} releases, the registry {count}: run scripts/totals.py")
+    parts = [f"{count} releases", f"{t['released_units_total']:,.0f} systems", f"{t['unit_years']:,.0f} unit-years",
+             f"{t['energy_total_mwh']:,.1f} MWh", f"{t['size_gb']:,.0f} GB", f"{t['faults']:,} faults"]
+    return " · ".join(parts)
+
+
 def page(data: list[dict]) -> str:
     applications = sorted({r["Service class"] for r in data})
     options = "".join(f'<option value="{e(x)}">{e(x)}</option>' for x in applications)
@@ -310,14 +323,15 @@ def page(data: list[dict]) -> str:
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Battery Field Data Releases</title>
-<meta name="description" content="Twenty-two public battery field-data releases: what they contain, how to download them, and how to load them.">
+<meta name="description" content="{len(data)} public battery field-data releases: what they contain, how to download them, and how to load them.">
 <style>{CSS}</style></head>
 <body><main>
 <h1>Public battery field data</h1>
+<p class="totals">{e(totals_line(len(data)))}</p>
 <p class="lede">{len(data)} public releases of battery data recorded in real use: cars, buses, light electric vehicles, home and grid storage, phones and factory robots. Each was published by its authors with a paper or data record. This collection does not copy their files. It tells you where to download each release and gives one Python loader per release, so every release can be read the same way.</p>
 <h2>Get started</h2>
 <ol class="steps">
-<li>Install Python 3.13 or newer from <a href="https://www.python.org/downloads/">python.org</a>. The Python that comes with macOS is too old.</li>
+<li>Install Python 3.12 or newer from <a href="https://www.python.org/downloads/">python.org</a>. The Python that comes with macOS is too old.</li>
 <li>Get the code, make a virtual environment and install:<pre><code>git clone https://github.com/Astrolabe-Analytics/public-battery-field-data.git
 cd public-battery-field-data
 python3 -m venv .venv
@@ -326,7 +340,7 @@ python -m pip install -r requirements.txt
 python -m pip install -e .</code></pre>On a Mac, the first <code>git</code> command may offer to install Apple's command line tools, which takes several minutes. To skip git, use Code &gt; Download ZIP on the GitHub page and unzip it.</li>
 <li>Choose where the data goes. Copy the example settings file:<pre><code>cp config/local.example.toml config/local.toml      # on Windows: copy config\\local.example.toml config\\local.toml</code></pre>Then open <code>config/local.toml</code> and replace the whole placeholder path <code>PATH_TO_PUBLIC_BATTERY_DATA_HOLDINGS</code> with your folder, keeping the quotes, for example <code>data_root = "~/battery-data"</code>. If you skip this, downloads go to a <code>data</code> folder inside the repository.</li>
 <li>Download one release (each card below says how), then check it by name:<pre><code>python -m fielddata.doctor tsukuba</code></pre>Without a name, doctor checks all {len(data)} releases and lists every one you have not downloaded.</li>
-<li>Open the quick-start notebook and run it from the top. It is set to tsukuba, a single building battery that downloads automatically (2.7 GB); change <code>RELEASE</code> to the one you downloaded.<pre><code>jupyter lab notebooks/quickstart.ipynb</code></pre>In JupyterLab, choose Run &gt; Restart Kernel and Run All Cells (or the double-arrow button in the notebook toolbar).</li>
+<li>Open the quick-start notebook and run it from the top. It is set to cloverleaf, a second-life storage battery whose one 8 MB file downloads with one command; change <code>RELEASE</code> to the one you downloaded. If that release is not downloaded yet, the notebook prints the fetch command.<pre><code>jupyter lab notebooks/quickstart.ipynb</code></pre>In JupyterLab, choose Run &gt; Restart Kernel and Run All Cells (or the double-arrow button in the notebook toolbar).</li>
 </ol>
 <h2>All releases</h2>
 <p class="note">Values are the paper's Tables 1 and 2, generated from the repository. Licenses marked * restrict commercial use; ** state no license. Service time is unit-years where the release has timestamps, otherwise a lower bound in hours. Where a release's count differs from its paper, the paper's count is in brackets. Download says how each release downloads as of {e(fetch.ROUTE_DATE)}: one command, manual in a web browser, or partly manual (ppl, whose cell-level data is on a Box share).</p>

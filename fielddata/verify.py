@@ -241,6 +241,16 @@ def verify_all(packages=None, resume=False):
         reporter.stop()
 
 
+def summary(statuses, problems: int) -> str:
+    """One line for the end of a run. Where the host publishes no checksums, say so rather than "0 match"."""
+    own = statuses.isin(["no publisher checksum", "own hash, no publisher reference"]).sum()
+    matched = (statuses == "match").sum()
+    if own and own == len(statuses) - problems:
+        return f"{len(statuses)} files checked: host publishes no checksums; our SHA-256 recorded. {problems} mismatches or errors."
+    extra = f", {own} with no publisher checksum (our SHA-256 recorded)" if own else ""
+    return f"{len(statuses)} files checked: {matched} match a publisher checksum{extra}, {problems} mismatches or errors."
+
+
 def main(argv=None):
     import argparse
     parser = argparse.ArgumentParser(prog="python -m fielddata.verify", description="Hash held files and compare them with publisher checksums.")
@@ -256,8 +266,7 @@ def main(argv=None):
     empty = rows[rows["status"] == "ERROR: no files"]
     files = rows[rows["status"] != "ERROR: no files"]
     if len(files):
-        print(f"\n{len(files)} files checked: {(files['status'] == 'match').sum()} match a publisher checksum, "
-              f"{len(bad) - len(empty)} mismatches or errors.")
+        print("\n" + summary(files["status"], len(bad) - len(empty)))
     if len(empty):
         print(("\n" if not len(files) else "") + f"No files found for {', '.join(empty['package'])}: nothing to check there.")
     return 1 if len(bad) else 0

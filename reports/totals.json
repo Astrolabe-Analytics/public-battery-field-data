@@ -13,6 +13,8 @@
   "energy_stated_packages": "bilfinger2024, bilfinger2026, ku_leuven_bev, m5bat-2023-04, m5bat-pbacid, ppl, rwth-home, tsukuba, tumftm, zhou2026",
   "energy_total_mwh": 44.357046,
   "energy_total_package_count": 18,
+  "fault_batteries": 751,
+  "faults": 784,
   "files_held": 1311,
   "files_released": 1155.0,
   "files_with_reference": 47,

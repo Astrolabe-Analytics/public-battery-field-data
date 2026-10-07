@@ -155,7 +155,8 @@ def main(argv: list[str] | None = None) -> int:
         print("No data folder is set. Copy config/local.example.toml to config/local.toml and set data_root to the folder that will hold the releases.")
         return 1
     if not root.is_dir():
-        print(f"The data folder {root} does not exist. Create it, or fix data_root in config/local.toml.")
+        print("No data downloaded yet. Run python -m fielddata.fetch <release>; it creates the folder."
+              f" (Data folder: {root})")
         return 1
     print(f"Data folder: {root}\n")
     ready = 0

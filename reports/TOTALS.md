@@ -31,4 +31,5 @@ Stated and computed energy are listed separately and then summed. Counts in the 
 | Archive members with publisher-checksum references | 80 | verification log | measured 1, stated 0, derived 0, not_in_release 0, open 0 |
 | Publisher-checksum matches: physical files | 47 | verification log | measured 1, stated 0, derived 0, not_in_release 0, open 0 |
 | Publisher-checksum matches: archive members | 80 | verification log | measured 1, stated 0, derived 0, not_in_release 0, open 0 |
+| Faults (Table 3) | 784 | in 751 batteries | from docs/descriptor/TABLE3_faults.md |
 | Packages with documented sentinels | 3 | flashbattery-agv, m5bat-pbacid, tsukuba | stated 3 |

@@ -20,6 +20,7 @@ FACTS = ROOT / "fielddata" / "package_facts.csv"
 VERIFY = ROOT / "reports" / "verify_log_ssd_2026-09.csv"
 OUTPUT = ROOT / "reports" / "TOTALS.md"
 JSON_OUTPUT = ROOT / "reports" / "totals.json"
+FAULTS = ROOT / "docs" / "descriptor" / "TABLE3_faults.md"
 BASES = ("measured", "stated", "derived", "not_in_release", "open")
 
 
@@ -103,6 +104,22 @@ def verification_counts(rows: list[dict[str, str]]) -> tuple[int, int, int, int,
 # Releases whose units belong to more than one service class: units per class.
 # zhou2026: two NMC passenger cars and one LFP bus (doi:10.1038/s41560-026-02131-5, Supplementary Table 1, p. 16).
 MIXED_CLASSES = {"zhou2026": {"passenger EV": 2, "bus": 1}}
+
+
+def fault_totals() -> tuple[int, int]:
+    """Faults and batteries from the Total row of Table 3's Fault count section, checked against the rows above it."""
+    section = FAULTS.read_text(encoding="utf-8").split("## Fault count", 1)[1]
+    faults = batteries = 0
+    for line in section.splitlines():
+        cells = [c.strip().strip("*").replace(",", "") for c in line.strip().strip("|").split("|")]
+        if len(cells) < 3 or not cells[1].isdigit():
+            continue
+        if cells[0] == "Total":
+            if (faults, batteries) != (int(cells[1]), int(cells[2])):
+                raise SystemExit(f"Table 3 Total row {cells[1]}/{cells[2]} does not match its rows {faults}/{batteries}")
+            return faults, batteries
+        faults, batteries = faults + int(cells[1]), batteries + int(cells[2])
+    raise SystemExit("Table 3 has no Total row in its Fault count section")
 
 
 def build() -> tuple[str, dict]:
@@ -199,6 +216,8 @@ def build() -> tuple[str, dict]:
     lines.append(f"| Archive members with publisher-checksum references | {members_with_reference:,} | verification log | measured 1, stated 0, derived 0, not_in_release 0, open 0 |")
     lines.append(f"| Publisher-checksum matches: physical files | {checksum_matches_files:,} | verification log | measured 1, stated 0, derived 0, not_in_release 0, open 0 |")
     lines.append(f"| Publisher-checksum matches: archive members | {checksum_matches_members:,} | verification log | measured 1, stated 0, derived 0, not_in_release 0, open 0 |")
+    faults, fault_batteries = fault_totals()
+    lines.append(f"| Faults (Table 3) | {faults:,} | in {fault_batteries:,} batteries | from docs/descriptor/TABLE3_faults.md |")
     lines.append(f"| Packages with documented sentinels | {len(sentinels_documented):,} | {', '.join(sentinels_documented)} | stated {len(sentinels_documented)} |")
 
     data = {
@@ -213,6 +232,7 @@ def build() -> tuple[str, dict]:
         "units_by_class": units_by_class,
         "unit_years": float(spans_total), "unit_years_packages": packages(spans),
         "obs_hours": float(total(hours)), "obs_hours_packages": packages(hours),
+        "faults": faults, "fault_batteries": fault_batteries,
         "size_gb": float(total(sizes)), "files_held": files_held, "files_released": float(total(files)),
         "files_with_reference": files_with_reference,
         "members_with_reference": members_with_reference,

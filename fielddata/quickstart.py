@@ -56,10 +56,16 @@ def sample(package, **overrides):
     for example ``sample("rwth-home", unit="05")``."""
     args = {**example_args(package), **overrides}
     if package in PREVIEW:
-        return fielddata._loader(package).preview(**args)
+        return fielddata._call(package, "preview", **args)
     frame = fielddata.load(package, **args)
     if not hasattr(frame, "columns"):  # a chunk reader: take the first chunk
-        frame = next(iter(frame))
+        try:
+            frame = next(iter(frame))
+        except Exception as err:
+            replacement = fielddata._not_downloaded(package, err)
+            if replacement is None:
+                raise
+            raise replacement from err
     return frame
 
 

@@ -78,6 +78,7 @@ def main() -> None:
     run(ROOT / "scripts" / "totals.py")
     run(ROOT / "scripts" / "table1.py")
     run(ROOT / "scripts" / "tables.py")
+    run(ROOT / "scripts" / "make_dashboard.py")  # its totals line reads reports/totals.json
     filler = ROOT / "scripts" / "fill_descriptor.py"  # fills the working copy of the paper text, not in the public release
     if filler.exists():
         run(filler)

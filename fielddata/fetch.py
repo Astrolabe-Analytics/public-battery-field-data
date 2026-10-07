@@ -82,6 +82,10 @@ def source_kind(url: str) -> str:
     return "manual"
 
 
+# one-command releases that are large or slow to download: shown before the download and on the dashboard card
+FETCH_NOTES = {"aitio": "2.9 GB, slow host (Oxford ORA), allow ~15 min. Each file prints when it is done."}
+
+
 def plan_package(package: str, to: str | Path | None = None) -> FetchPlan:
     metadata = registry_metadata(package)
     record_url = metadata["urls"]["data"]
@@ -363,6 +367,8 @@ def fetch(plan: FetchPlan) -> int:
     if not files:
         raise RuntimeError(f"the {plan.source_kind} record returned no data files")
     print(f"Fetching {plan.package}: {len(files)} data file(s) from {plan.record_url}")
+    if plan.package in FETCH_NOTES:
+        print(f"Note: {FETCH_NOTES[plan.package]}")
     failures = 0
     for index, remote in enumerate(files, start=1):
         destination = plan.destination / Path(*PurePosixPath(remote.name).parts)
