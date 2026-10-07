@@ -6,12 +6,12 @@ from pathlib import Path
 import pandas as pd
 
 from fielddata.config import data_root
-from fielddata.registry import PACKAGES
+from fielddata.registry import metadata
 
 
 def directory(package: str) -> Path:
     """Return the package's released data directory."""
-    return data_root() / PACKAGES[package]["data_directory"]
+    return data_root() / metadata(package)["data_directory"]
 
 
 def as_list(unit, all_units):

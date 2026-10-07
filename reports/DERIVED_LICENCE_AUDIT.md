@@ -8,7 +8,7 @@ Decision (Robert, 2 October 2026): this repository is non-commercial use (free, 
 - The four non-commercial releases (changan and evbattery, CC BY-NC-SA 4.0; schaeffer and tumftm, CC BY-NC 4.0): derived outputs are published for non-commercial use only, each under its release's license. The dashboard prints that license under each preview.
 - The two releases with no stated data license (ppl, zhou2026): previews and facts are published by maintainer decision. Their authors were emailed and did not reply. The dashboard says under each preview that no license is stated.
 
-123 tracked files are derived from releases. Files per note (a file made from several releases counts under each): may publish: 94; may publish non-commercially, under the release's license: 31; published by maintainer decision; no license stated: 15.
+129 tracked files are derived from releases. Files per note (a file made from several releases counts under each): may publish: 95; may publish non-commercially, under the release's license: 36; published by maintainer decision; no license stated: 15.
 
 | Tracked file | Release(s) | Derived-output note(s) |
 |---|---|---|
@@ -56,8 +56,8 @@ Decision (Robert, 2 October 2026): this repository is non-commercial use (free, 
 | `docs/dashboard/img/zhang2023.png` | zhang2023 | may publish |
 | `docs/dashboard/img/zhou2026.csv` | zhou2026 | published by maintainer decision; no license stated |
 | `docs/dashboard/img/zhou2026.png` | zhou2026 | published by maintainer decision; no license stated |
-| `docs/dashboard/index.html` | all 22 releases | may publish; may publish non-commercially, under the release's license; published by maintainer decision; no license stated |
-| `docs/dashboard/status.json` | all 22 releases | may publish; may publish non-commercially, under the release's license; published by maintainer decision; no license stated |
+| `docs/dashboard/index.html` | all 23 releases | may publish; may publish non-commercially, under the release's license; published by maintainer decision; no license stated |
+| `docs/dashboard/status.json` | all 23 releases | may publish; may publish non-commercially, under the release's license; published by maintainer decision; no license stated |
 | `notebooks/bilfinger2024.ipynb` | bilfinger2024 | may publish |
 | `notebooks/bilfinger2026.ipynb` | bilfinger2026 | may publish |
 | `notebooks/cao.ipynb` | cao | may publish |
@@ -73,6 +73,7 @@ Decision (Robert, 2 October 2026): this repository is non-commercial use (free, 
 | `notebooks/m5bat_2023_04.ipynb` | m5bat-2023-04 | may publish |
 | `notebooks/m5bat_pbacid.ipynb` | m5bat-pbacid | may publish |
 | `notebooks/ppl.ipynb` | ppl | published by maintainer decision; no license stated |
+| `notebooks/quickstart.ipynb` | tsukuba | may publish |
 | `notebooks/rwth_android.ipynb` | rwth-android | may publish |
 | `notebooks/rwth_home.ipynb` | rwth-home | may publish |
 | `notebooks/schaeffer.ipynb` | schaeffer | may publish non-commercially, under the release's license |
@@ -82,10 +83,15 @@ Decision (Robert, 2 October 2026): this repository is non-commercial use (free, 
 | `notebooks/zhang2023.ipynb` | zhang2023 | may publish |
 | `notebooks/zhang2023_evbattery_overlap.ipynb` | evbattery, zhang2023 | may publish; may publish non-commercially, under the release's license |
 | `notebooks/zhou2026.ipynb` | zhou2026 | published by maintainer decision; no license stated |
-| `reports/TABLE1_access.md` | all 22 releases | may publish; may publish non-commercially, under the release's license; published by maintainer decision; no license stated |
-| `reports/TOTALS.md` | all 22 releases | may publish; may publish non-commercially, under the release's license; published by maintainer decision; no license stated |
+| `reports/TABLE1_access.md` | all 23 releases | may publish; may publish non-commercially, under the release's license; published by maintainer decision; no license stated |
+| `reports/TOTALS.md` | all 23 releases | may publish; may publish non-commercially, under the release's license; published by maintainer decision; no license stated |
 | `reports/cao_vehicle_profile.csv` | cao | may publish |
 | `reports/cao_vehicle_rows.csv` | cao | may publish |
+| `reports/checks/aitio_gaps.csv` | aitio | may publish non-commercially, under the release's license |
+| `reports/checks/aitio_lifetime.csv` | aitio | may publish non-commercially, under the release's license |
+| `reports/checks/aitio_sub1v.csv` | aitio | may publish non-commercially, under the release's license |
+| `reports/checks/aitio_totals.txt` | aitio | may publish non-commercially, under the release's license |
+| `reports/checks/aitio_units.csv` | aitio | may publish non-commercially, under the release's license |
 | `reports/checks/cao_energy_rerun.txt` | cao | may publish |
 | `reports/checks/cao_regenerate.txt` | cao | may publish |
 | `reports/checks/cao_regenerate_per_vehicle.csv` | cao | may publish |
@@ -132,6 +138,6 @@ Decision (Robert, 2 October 2026): this repository is non-commercial use (free, 
 | `reports/m5bat_pbacid_monthly_profile.csv` | m5bat-pbacid | may publish |
 | `reports/m5bat_pbacid_system_profile.csv` | m5bat-pbacid | may publish |
 | `reports/schaeffer_system_profile.csv` | schaeffer | may publish non-commercially, under the release's license |
-| `reports/totals.json` | all 22 releases | may publish; may publish non-commercially, under the release's license; published by maintainer decision; no license stated |
-| `reports/verify_log.csv` | all 22 releases | may publish; may publish non-commercially, under the release's license; published by maintainer decision; no license stated |
-| `reports/verify_log_ssd_2026-09.csv` | all 22 releases | may publish; may publish non-commercially, under the release's license; published by maintainer decision; no license stated |
+| `reports/totals.json` | all 23 releases | may publish; may publish non-commercially, under the release's license; published by maintainer decision; no license stated |
+| `reports/verify_log.csv` | all 23 releases | may publish; may publish non-commercially, under the release's license; published by maintainer decision; no license stated |
+| `reports/verify_log_ssd_2026-09.csv` | all 23 releases | may publish; may publish non-commercially, under the release's license; published by maintainer decision; no license stated |

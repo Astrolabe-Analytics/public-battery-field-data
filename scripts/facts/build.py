@@ -5,6 +5,7 @@ import csv
 import json
 
 from _common import FIELDS, OUT, ROOT
+from fielddata.registry import PACKAGES
 
 FACTS = ROOT / "fielddata" / "package_facts.csv"
 AUDIT = ROOT / "reports" / "FACTS_AUDIT.md"
@@ -25,8 +26,8 @@ ESTIMATES = {
 
 def load_reports() -> list[dict]:
     reports = [json.loads(path.read_text(encoding="utf-8")) for path in sorted(OUT.glob("*.json"))]
-    if len(reports) != 22:
-        raise ValueError(f"expected 22 package reports, found {len(reports)}")
+    if len(reports) != len(PACKAGES):
+        raise ValueError(f"expected {len(PACKAGES)} package reports, found {len(reports)}")
     return reports
 
 

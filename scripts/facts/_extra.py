@@ -484,6 +484,26 @@ def xie_cells(facts):
                                 "the released cell table holds 5,234 distinct cells in 5,248 rows (14 cells carry two labels).")
 
 
+def aitio(facts, script):
+    # Spans and counts come from the per-battery table written by scripts/checks/aitio_units.py (through the loader).
+    table = pd.read_csv(ROOT / "reports" / "checks" / "aitio_units.csv", dtype={"id": str})
+    paper = "https://doi.org/10.1016/j.joule.2021.11.006"
+    units_source = "scripts/checks/aitio_units.py -> reports/checks/aitio_units.csv"
+    facts["cells_leadacid"] = fact(len(table) * 6, "derived", paper + ", accepted manuscript p. 3: each battery 12 V nominal, 6 cells in series",
+        f"{len(table)} batteries x 6 cells.")
+    facts["cell_channels_measured"] = fact(None, "not_in_release", note="Each battery file has one battery voltage; no cell voltages are released.")
+    facts["energy_mwh"] = fact(round(len(table) * 12 * 20 / 1e6, 5), "derived", paper + ", accepted manuscript p. 3: nominal voltage 12 V, nominal capacity 20 Ah per battery",
+        f"{len(table)} batteries x 12 V x 20 Ah.")
+    facts["energy_basis"] = fact("computed", "derived", "energy_mwh is computed from stated configuration")
+    facts["span_unit_years"] = fact(float(table["span_days"].sum() / 365.25), "measured", units_source,
+        "First to last record per battery, summed over all batteries, as released. The release keeps telemetry after the repair date "
+        "for failed batteries (scripts/checks/aitio_lifetime.py); the paper analysed the data truncated at repair.")
+    failed = int((table["STILL_ALIVE"] == False).sum())  # noqa: E712 (boolean as released)
+    facts["fault_onset_timestamp"] = fact("no", "stated", paper + ", accepted manuscript p. 22, step 3; meta_data.csv",
+        f"{failed} batteries entered repair for capacity loss, diagnosed by the operator at repair; meta_data.csv gives the repair date "
+        "(IN_REPAIR_SYSTEM), not a fault onset. The authors chose the roughly balanced failed/healthy split (p. 22), so it is not a fleet failure rate.")
+
+
 def _pb1_identity() -> dict:
     """Show from the data that m5bat-2023-04 Batt1 is the m5bat-pbacid string: correlate one day of voltage."""
     import fielddata
@@ -540,7 +560,7 @@ def rwth_android(facts, script):
 
 
 EXTRA = {"cloverleaf": cloverleaf, "rwth-home": rwth_home, "ku_leuven_bev": ku_leuven_bev, "xie": xie,
-         "zhang2023": zhang2023, "evbattery": evbattery, "cao": cao, "tumftm": tumftm, "ppl": ppl, "changan": changan, "bilfinger2024": bilfinger2024, "bilfinger2026": bilfinger2026, "zhou2026": zhou2026, "m5bat-2023-04": m5bat_2023_04, "deng": deng, "tsukuba": tsukuba, "li2026": li2026, "rwth-android": rwth_android}
+         "aitio": aitio, "zhang2023": zhang2023, "evbattery": evbattery, "cao": cao, "tumftm": tumftm, "ppl": ppl, "changan": changan, "bilfinger2024": bilfinger2024, "bilfinger2026": bilfinger2026, "zhou2026": zhou2026, "m5bat-2023-04": m5bat_2023_04, "deng": deng, "tsukuba": tsukuba, "li2026": li2026, "rwth-android": rwth_android}
 
 
 def apply(package, facts, script):

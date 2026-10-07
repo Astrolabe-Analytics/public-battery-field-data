@@ -16,7 +16,8 @@ from urllib.parse import quote, urlparse
 from urllib.request import Request, urlopen
 
 from fielddata.config import data_root
-from fielddata.registry import PACKAGES
+from fielddata.registry import CANDIDATES, PACKAGES
+from fielddata.registry import metadata as registry_metadata
 
 ROOT = Path(__file__).resolve().parent.parent
 CHECKSUMS = ROOT / "fielddata" / "reference_checksums.csv"
@@ -82,13 +83,11 @@ def source_kind(url: str) -> str:
 
 
 def plan_package(package: str, to: str | Path | None = None) -> FetchPlan:
-    if package not in PACKAGES:
-        raise KeyError(f"unknown package {package!r}")
-    metadata = PACKAGES[package]
+    metadata = registry_metadata(package)
     record_url = metadata["urls"]["data"]
     expected = metadata.get("data_files") or tuple(metadata.get("archives", {}).keys())
     base = Path(to) if to is not None else default_root()
-    kind = source_kind(record_url)
+    kind = "direct" if metadata.get("direct_files") else source_kind(record_url)
     return FetchPlan(
         package=package,
         title=metadata["title"],
@@ -178,6 +177,8 @@ def resolve_files(plan: FetchPlan) -> list[RemoteFile]:
         return _figshare_files(plan)
     if plan.source_kind == "github":
         return _github_files(plan)
+    if plan.source_kind == "direct":  # a record whose file URLs are listed in the registry
+        return [RemoteFile(name, url, size, None) for name, url, size in registry_metadata(plan.package)["direct_files"]]
     return []
 
 
@@ -273,7 +274,11 @@ def _resolve_lfs(plan: FetchPlan, remote: RemoteFile, destination: Path) -> None
 def verify_file(package: str, remote_name: str, path: Path) -> str:
     reference = _checksum_for(package, remote_name)
     if reference is None:
-        return f"own-hash only (sha256 {_hash(path, 'sha256')})"
+        measured = _hash(path, "sha256")
+        recorded = registry_metadata(package).get("own_sha256", {}).get(PurePosixPath(remote_name).name)
+        if recorded:  # no publisher checksum, but this collection recorded one when it first fetched the file
+            return "matched our recorded sha256 (no publisher checksum)" if measured == recorded else f"MISMATCH (our recorded sha256 {recorded}, measured {measured})"
+        return f"own-hash only (sha256 {measured})"
     algorithm, expected = reference
     measured = _hash(path, algorithm)
     return "matched" if measured == expected else f"MISMATCH ({algorithm} expected {expected}, measured {measured})"
@@ -386,7 +391,7 @@ def list_packages() -> None:
 
 def parser() -> argparse.ArgumentParser:
     result = argparse.ArgumentParser(description=__doc__)
-    result.add_argument("package", nargs="?", choices=sorted(PACKAGES))
+    result.add_argument("package", nargs="?", choices=sorted(PACKAGES) + sorted(CANDIDATES))
     result.add_argument("--to", type=Path, help="download root; defaults to config/local.toml data_root or ./data")
     result.add_argument("--list", action="store_true", help="list packages and download routes")
     return result

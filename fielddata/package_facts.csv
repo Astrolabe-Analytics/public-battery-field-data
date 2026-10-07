@@ -1,4 +1,18 @@
 package,field,value,basis,source,note
+aitio,application,distributed storage,derived,classification mapping required by the facts audit brief,
+aitio,chemistry,lead-acid (VRLA),stated,"https://doi.org/10.1016/j.joule.2021.11.006, accepted manuscript p. 3 (valve-regulated lead-acid, 12 V, 6 cells in series)",
+aitio,units_released,1027,measured,fielddata/counting.py over fielddata.systems('aitio'),Rule: one battery per .npz file. Released unit identifiers require package-specific inspection.
+aitio,cells_liion,,not_in_release,,This package is lead-acid; a lithium-ion cell count does not apply.
+aitio,cells_leadacid,6162,derived,"https://doi.org/10.1016/j.joule.2021.11.006, accepted manuscript p. 3: each battery 12 V nominal, 6 cells in series",1027 batteries x 6 cells.
+aitio,cell_channels_measured,,not_in_release,,Each battery file has one battery voltage; no cell voltages are released.
+aitio,energy_mwh,0.24648,derived,"https://doi.org/10.1016/j.joule.2021.11.006, accepted manuscript p. 3: nominal voltage 12 V, nominal capacity 20 Ah per battery",1027 batteries x 12 V x 20 Ah.
+aitio,energy_basis,computed,derived,energy_mwh is computed from stated configuration,
+aitio,span_unit_years,1664.983950718686,measured,scripts/checks/aitio_units.py -> reports/checks/aitio_units.csv,"First to last record per battery, summed over all batteries, as released. The release keeps telemetry after the repair date for failed batteries (scripts/checks/aitio_lifetime.py); the paper analysed the data truncated at repair."
+aitio,obs_hours,,not_in_release,,Observation-hours are not used when calendar spans are measurable or no cadence is available.
+aitio,size_gb,3.041346432,measured,scripts/facts/aitio.py,
+aitio,files,16,measured,scripts/facts/aitio.py,
+aitio,fault_onset_timestamp,no,stated,"https://doi.org/10.1016/j.joule.2021.11.006, accepted manuscript p. 22, step 3; meta_data.csv","491 batteries entered repair for capacity loss, diagnosed by the operator at repair; meta_data.csv gives the repair date (IN_REPAIR_SYSTEM), not a fault onset. The authors chose the roughly balanced failed/healthy split (p. 22), so it is not a fleet failure rate."
+aitio,sentinels_documented,no,stated,https://doi.org/10.5287/bodleian:aVR4oDV4N; public data record and released documentation state no sentinel convention,
 bilfinger2024,application,passenger EV,derived,classification mapping required by the facts audit brief,
 bilfinger2024,chemistry,NMC and LFP,stated,"https://doi.org/10.1016/j.etran.2024.100356, vehicle descriptions",
 bilfinger2024,units_released,2,measured,fielddata/counting.py over fielddata.systems('bilfinger2024'),Rule: distinct vehicles among vehicle files. Released unit identifiers require package-specific inspection.

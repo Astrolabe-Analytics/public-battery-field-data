@@ -1,0 +1,89 @@
+{
+  "package": "aitio",
+  "facts": {
+    "application": {
+      "value": "distributed storage",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "lead-acid (VRLA)",
+      "basis": "stated",
+      "source": "https://doi.org/10.1016/j.joule.2021.11.006, accepted manuscript p. 3 (valve-regulated lead-acid, 12 V, 6 cells in series)",
+      "note": ""
+    },
+    "units_released": {
+      "value": 1027,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('aitio')",
+      "note": "Rule: one battery per .npz file. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "This package is lead-acid; a lithium-ion cell count does not apply."
+    },
+    "cells_leadacid": {
+      "value": 6162,
+      "basis": "derived",
+      "source": "https://doi.org/10.1016/j.joule.2021.11.006, accepted manuscript p. 3: each battery 12 V nominal, 6 cells in series",
+      "note": "1027 batteries x 6 cells."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Each battery file has one battery voltage; no cell voltages are released."
+    },
+    "energy_mwh": {
+      "value": 0.24648,
+      "basis": "derived",
+      "source": "https://doi.org/10.1016/j.joule.2021.11.006, accepted manuscript p. 3: nominal voltage 12 V, nominal capacity 20 Ah per battery",
+      "note": "1027 batteries x 12 V x 20 Ah."
+    },
+    "energy_basis": {
+      "value": "computed",
+      "basis": "derived",
+      "source": "energy_mwh is computed from stated configuration",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 1664.983950718686,
+      "basis": "measured",
+      "source": "scripts/checks/aitio_units.py -> reports/checks/aitio_units.csv",
+      "note": "First to last record per battery, summed over all batteries, as released. The release keeps telemetry after the repair date for failed batteries (scripts/checks/aitio_lifetime.py); the paper analysed the data truncated at repair."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 3.041346432,
+      "basis": "measured",
+      "source": "scripts/facts/aitio.py",
+      "note": ""
+    },
+    "files": {
+      "value": 16,
+      "basis": "measured",
+      "source": "scripts/facts/aitio.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.1016/j.joule.2021.11.006, accepted manuscript p. 22, step 3; meta_data.csv",
+      "note": "491 batteries entered repair for capacity loss, diagnosed by the operator at repair; meta_data.csv gives the repair date (IN_REPAIR_SYSTEM), not a fault onset. The authors chose the roughly balanced failed/healthy split (p. 22), so it is not a fleet failure rate."
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.5287/bodleian:aVR4oDV4N; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

@@ -1,4 +1,25 @@
 {
+ "aitio": {
+  "date": "2026-10-06",
+  "load_args": {
+   "unit": "0",
+   "clean": true
+  },
+  "status": "ok",
+  "rows": 787789,
+  "columns": [
+   "time_s",
+   "current_A",
+   "voltage_V",
+   "temperature_degC"
+  ],
+  "preview": "img/aitio.png",
+  "preview_data": "img/aitio.csv",
+  "preview_title": "voltage_V stays between 11.55 and 14.53 (cleaned data)",
+  "preview_points": 3999,
+  "preview_step": 197,
+  "preview_license": "CC BY-NC 4.0"
+ },
  "bilfinger2024": {
   "date": "2026-10-02",
   "load_args": {

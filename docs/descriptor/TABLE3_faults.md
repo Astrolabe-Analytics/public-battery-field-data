@@ -16,6 +16,7 @@ This table includes only fault or abnormality kinds that can be traced to a rele
 | zhang2023 | Abnormal, label 1; mechanism not released | Released per-vehicle binary label | 55 vehicles: 30 brand 1, 16 brand 2, 9 brand 3 | `battery_brand1.tar.gz/battery_brand1/label/{train_label.csv,test_label.csv}`; `battery_brand2.tar.gz/battery_brand2/label/{train_label.csv,test_label.csv}`; `battery_brand3.tar.gz/battery_brand3/label/all_label.csv` | no |
 | evbattery | Abnormal, label 1; mechanism not released | Released per-vehicle binary label | 48 vehicles: 31 dataset 1, 1 dataset 2, 16 dataset 3 | `battery_dataset{1,2,3}.tar.gz/.../label/label.csv` (read through `fielddata.systems('evbattery')`) | no |
 | schaeffer | Battery systems returned for warranty claims | Reported in paper; not released as a fault label | 28 released systems; paper discusses 29 analyzed systems | [Schaeffer et al. (2024), p. 3](https://doi.org/10.1016/j.xcrp.2024.102258) | no |
+| aitio | Capacity loss, diagnosed by the operator at repair (lead-acid) | Released per-battery repair label (STILL_ALIVE = FALSE, with the repair date) | 491 batteries; the authors chose a roughly balanced 491 failed / 536 healthy set, so the split is not a fleet failure rate | `meta_data.csv`; [Aitio and Howey (2021), accepted manuscript p. 22, step 3](https://doi.org/10.1016/j.joule.2021.11.006) | no (repair date, not onset) |
 | m5bat-pbacid | Defective cell with elevated internal resistance, recurring protection shutdowns, and cell bypass on 10 August 2023 | Reported in paper; not released as a fault label | One cell bypassed; string changed from 300S to 299S | [Zurmühlen, Koltermann and Sauer (2026), pp. 4 and 10](https://doi.org/10.3390/en19174141) | no |
 | ppl | Planned precautionary outages following prior incidents or for construction personnel safety | Reported in paper; not released as an event label | — | [Kyeremeh et al. (2026), p. 8](https://doi.org/10.1109/ACCESS.2026.3693606) | no |
 | ppl | Unplanned outages associated with thermal management, power conversion, and BMS failure modes | Reported in paper; not released as event labels | — | [Kyeremeh et al. (2026), p. 12](https://doi.org/10.1109/ACCESS.2026.3693606) | no |
@@ -48,7 +49,8 @@ Faults are counted per faulty cell where the release labels cells (xie) and per 
 | evbattery | 32 | 32 | 48 vehicles labeled abnormal, less the 16 that are the same vehicles as zhang2023 brand 2. |
 | schaeffer | 28 | 28 | Systems returned to the manufacturer under warranty (all released systems). |
 | m5bat-pbacid | 1 | 1 | The string with the defective cell bypassed on 10 August 2023. |
-| **Total** | **293** | **260** | 264 faults in 231 batteries from released labels, 29 reported by the authors. |
+| aitio | 491 | 491 | Batteries that entered repair for capacity loss, diagnosed by the operator at repair (lead-acid). The authors chose the roughly balanced 491/536 split; it is not a fleet failure rate. |
+| **Total** | **784** | **751** | 755 faults in 722 batteries from released labels, 29 reported by the authors. |
 
 Not counted, because they are temporary events, data or measurement artifacts, or not faults of a battery:
 

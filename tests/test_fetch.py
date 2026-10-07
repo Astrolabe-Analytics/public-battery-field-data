@@ -28,7 +28,7 @@ class FetchPlanTests(unittest.TestCase):
             with patch("fielddata.fetch._download", side_effect=AssertionError("planning must not download")):
                 plans = {package: plan_package(package, root) for package in PACKAGES}
 
-            self.assertEqual(len(plans), 22)
+            self.assertEqual(len(plans), 23)
             for package, plan in plans.items():
                 metadata = PACKAGES[package]
                 self.assertEqual(plan.record_url, metadata["urls"]["data"])

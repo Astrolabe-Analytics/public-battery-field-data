@@ -32,6 +32,7 @@ RULES = {
     "xie": (len, "one file per device"),
     "zhang2023": (lambda s: int((s["snippets"] > 0).sum()), "labeled vehicles with at least one snippet"),
     "zhou2026": (len, "one row per vin"),
+    "aitio": (len, "one battery per .npz file"),
 }
 
 

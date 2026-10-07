@@ -2,7 +2,7 @@
 
 Every loader answers ``fielddata.systems(package)`` and ``fielddata.load(package, ...)``, but the arguments
 that keep a first load small differ by release (one month, one year, one partition, a few rows). ``EXAMPLES``
-records those arguments so that ``sample(package)`` works the same way for all 22 releases and fits in a
+records those arguments so that ``sample(package)`` works the same way for every release and fits in a
 few GB of memory.
 """
 import itertools
@@ -11,6 +11,7 @@ import fielddata
 
 # package -> keyword arguments for fielddata.load() that return a small, representative slice
 EXAMPLES = {
+    "aitio": {"unit": "0", "clean": True},
     "bilfinger2024": {"unit": None},  # filled from systems(): first vehicle-kind unit
     "bilfinger2026": {"unit": "Cupra_204_JB_8A_CEE7_C45"},
     "cao": {"brand": "QAS", "vehicle": "0", "names": "inferred", "clean": True},
@@ -71,7 +72,7 @@ PLOT = {
     "m5bat-pbacid": ("voltage_bat_V_bms", None), "ppl": ("CellVoltAvg", None), "rwth-android": ("voltage_cell", None),
     "rwth-home": ("V_in_V", None), "schaeffer": ("U_Battery", "Timestamp"), "tsukuba": ("battery_dc_voltage", None),
     "tumftm": ("value", "time"), "xie": ("batCoreVoltage1", None), "zhang2023": ("max_single_volt", "timestamp"),
-    "zhou2026": ("TotalVoltage", None),
+    "zhou2026": ("TotalVoltage", None), "aitio": ("voltage_V", None),
 }
 
 

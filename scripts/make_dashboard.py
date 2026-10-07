@@ -1,7 +1,7 @@
 """Write the static release dashboard, docs/dashboard/index.html.
 
 What it does: builds one self-contained HTML page (inline CSS and JavaScript, no external files except the
-preview images in docs/dashboard/img/) that lists the 22 releases in one sortable, filterable table and
+preview images in docs/dashboard/img/) that lists every release in one sortable, filterable table and
 gives each release a card: a two-sentence description, how to download it, three lines of code to load it,
 and whether its loader was verified on the full holdings.
 
@@ -325,7 +325,7 @@ source .venv/bin/activate          # on Windows: .venv\\Scripts\\activate
 python -m pip install -r requirements.txt
 python -m pip install -e .</code></pre>On a Mac, the first <code>git</code> command may offer to install Apple's command line tools, which takes several minutes. To skip git, use Code &gt; Download ZIP on the GitHub page and unzip it.</li>
 <li>Choose where the data goes. Copy the example settings file:<pre><code>cp config/local.example.toml config/local.toml      # on Windows: copy config\\local.example.toml config\\local.toml</code></pre>Then open <code>config/local.toml</code> and replace the whole placeholder path <code>PATH_TO_PUBLIC_BATTERY_DATA_HOLDINGS</code> with your folder, keeping the quotes, for example <code>data_root = "~/battery-data"</code>. If you skip this, downloads go to a <code>data</code> folder inside the repository.</li>
-<li>Download one release (each card below says how), then check it by name:<pre><code>python -m fielddata.doctor tsukuba</code></pre>Without a name, doctor checks all 22 releases and lists every one you have not downloaded.</li>
+<li>Download one release (each card below says how), then check it by name:<pre><code>python -m fielddata.doctor tsukuba</code></pre>Without a name, doctor checks all {len(data)} releases and lists every one you have not downloaded.</li>
 <li>Open the quick-start notebook and run it from the top. It is set to tsukuba, a single building battery that downloads automatically (2.7 GB); change <code>RELEASE</code> to the one you downloaded.<pre><code>jupyter lab notebooks/quickstart.ipynb</code></pre>In JupyterLab, choose Run &gt; Restart Kernel and Run All Cells (or the double-arrow button in the notebook toolbar).</li>
 </ol>
 <h2>All releases</h2>

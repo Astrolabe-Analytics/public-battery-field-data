@@ -4,6 +4,7 @@ Each cell gives the status of the corresponding value in `fielddata/package_fact
 
 | Package | application | chemistry | units_released | cells_liion | cells_leadacid | cell_channels_measured | energy_mwh | energy_basis | span_unit_years | obs_hours | size_gb | files | fault_onset_timestamp | sentinels_documented |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| aitio | derived | stated | measured | not_in_release | derived | not_in_release | derived | derived | measured | not_in_release | measured | measured | stated | stated |
 | bilfinger2024 | derived | stated | measured | derived | not_in_release | measured | stated | derived | measured | not_in_release | measured | measured | stated | stated |
 | bilfinger2026 | derived | stated | measured | derived | not_in_release | measured | stated | derived | measured | not_in_release | measured | measured | stated | stated |
 | cao | derived | derived | measured | derived | not_in_release | derived | derived | derived | not_in_release | derived | measured | measured | stated | stated |

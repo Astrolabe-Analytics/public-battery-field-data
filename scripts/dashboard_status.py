@@ -1,13 +1,13 @@
 """Check every release's quick-start loader and save a small preview for the dashboard.
 
-What it does: for each of the 22 releases, runs fielddata.quickstart.sample() (one unit, a small slice) and
+What it does: for each release in the registry, runs fielddata.quickstart.sample() (one unit, a small slice) and
 records whether it worked, how many rows and which columns came back, and the error text if it failed.
 For every release it also draws the quick-start signal with
 fielddata.quickstart.plot(), restyles it (DejaVu Sans, one highlighted series, a short title stating the
 range, no legend) and saves the PNG plus the plotted points as a CSV. Long slices are thinned to at most 4,000 evenly spaced points for
 the picture and the CSV; the title's range is taken over the whole slice. For releases under non-commercial terms or
 with no stated license, the record also carries the release's license, which the dashboard prints under the preview
-(decided by the maintainer 2026-10-02: this repository is non-commercial use, and previews of all 22 releases are published).
+(decided by the maintainer 2026-10-02: this repository is non-commercial use, and previews of all releases are published).
 
 Reads: the released files on the configured data root, only through the fielddata loaders.
 Writes: docs/dashboard/status.json, docs/dashboard/img/<release>.png and docs/dashboard/img/<release>.csv.

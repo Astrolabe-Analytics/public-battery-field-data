@@ -27,7 +27,7 @@ APPLICATION = {
     "ppl": "grid-scale storage", "li2026": "grid-scale storage", "m5bat-pbacid": "grid-scale storage",
     "m5bat-2023-04": "grid-scale storage", "tsukuba": "distributed storage", "zhou2026": "passenger EV, bus",
     "flashbattery-agv": "industrial and robotics", "rwth-android": "consumer electronics",
-    "xie": "light electric mobility", "fei_bus": "bus",
+    "xie": "light electric mobility", "fei_bus": "bus", "aitio": "distributed storage",
 }
 APPLICATIONS = {
     "passenger EV", "bus", "light electric mobility", "grid-scale storage",
@@ -47,6 +47,7 @@ CHEMISTRY = {
     "tsukuba": ("lead-acid", "stated", "https://doi.org/10.1038/sdata.2019.20, system description"),
     "xie": ("LFP", "stated", "https://doi.org/10.1016/j.xcrp.2026.103154, Methods"),
     "zhou2026": ("NMC and LFP", "stated", "https://doi.org/10.1038/s41560-026-02131-5, Methods"),
+    "aitio": ("lead-acid (VRLA)", "stated", "https://doi.org/10.1016/j.joule.2021.11.006, accepted manuscript p. 3 (valve-regulated lead-acid, 12 V, 6 cells in series)"),
 }
 ENERGY = {
     "bilfinger2024": (0.1105, "stated", "https://doi.org/10.1016/j.etran.2024.100356, vehicle descriptions"),
@@ -308,7 +309,7 @@ def simple_measurements(package: str, facts: dict[str, dict], script: str) -> No
 
     if package in {"cao", "deng", "evbattery", "ku_leuven_bev", "li2026", "rwth-android", "schaeffer", "tumftm", "xie", "zhang2023", "zhou2026"} and facts["energy_mwh"]["basis"] == "open":
         facts["energy_mwh"] = fact(None, "not_in_release", note="The release does not provide a complete nominal pack-energy rating or configuration from which to compute one.")
-    if package in {"m5bat-pbacid", "tsukuba"}:
+    if package in {"m5bat-pbacid", "tsukuba", "aitio"}:
         facts["cells_liion"] = fact(None, "not_in_release", note="This package is lead-acid; a lithium-ion cell count does not apply.")
 
 
@@ -327,7 +328,7 @@ def measure(package: str) -> Path:
     facts["units_released"] = fact(counting.units(package), "measured",
         f"fielddata/counting.py over fielddata.systems('{package}')",
         (f"Rule: {counting.rule(package)}. " + earlier).strip())
-    if package in {"m5bat-pbacid", "tsukuba"}:
+    if package in {"m5bat-pbacid", "tsukuba", "aitio"}:
         facts["cells_liion"] = fact(None, "not_in_release", note="This package is lead-acid; a lithium-ion cell count does not apply.")
     if package == "zhou2026":
         facts["application"]["note"] = ("The release holds two NMC passenger cars (vehicle45, vehicle69) and one LFP bus (LFP01): "

@@ -81,7 +81,7 @@ def main() -> None:
         "|---|---|---|",
     ]
     for path, packages, notes in rows:
-        shown = "all 22 releases" if packages == ALL else ", ".join(packages)
+        shown = f"all {len(ALL)} releases" if packages == ALL else ", ".join(packages)
         lines.append(f"| `{path}` | {shown} | {'; '.join(notes)} |")
     OUT.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     print(f"wrote {OUT.relative_to(ROOT)}: {len(rows)} files")

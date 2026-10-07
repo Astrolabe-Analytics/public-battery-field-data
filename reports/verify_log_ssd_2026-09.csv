@@ -1373,3 +1373,20 @@ m5bat-pbacid,data/Full_Dataset_M5BAT_Battery_Unit_Pb1.zip,md5+sha256,,md5:35ac89
 m5bat-pbacid,paper/energies-19-04141.pdf,md5+sha256,,md5:698994bc5827bfc7cbef82536bf65bb5 sha256:dea786465bec9f4b63290e98ac8b4b549ff995b6502a434a66857dc5c0f7665d,2528680,"own hash, no publisher reference",0.030
 m5bat-pbacid,supplementary/Description_File.pdf,md5+sha256,,md5:0482ef036d0e1829cb4d092004406878 sha256:c203c7f3e146ee3d9626dc6e1b45bc643c5f641b4ffb38897165ff50ce846e08,77573,"own hash, no publisher reference",0.018
 m5bat-pbacid,supplementary/energies-15-01342.pdf,md5+sha256,,md5:1a86e9493953083ddb3361cce108f156 sha256:69ccca8bf5833d4ac3f88e49feafefe671ab1ca28df7bfc3c99f3293fae53ee1,4704859,"own hash, no publisher reference",0.035
+aitio,data/GITT_OCV.mpt,md5+sha256,,md5:ae6bf68bd5877ef6f634c793ad25aa62 sha256:c6741d932e35414a5c30e34e03a03bf9f011ad6eb10c647e8312deff201151a5,83771698,no publisher checksum,0.163
+aitio,data/LICENSE,md5+sha256,,md5:c3921496317798092cb123529c37c397 sha256:8f93512c89ad9a4519834b315d7aa089bd3b567c805134043f382a27ada0a607,1153,no publisher checksum,0.000
+aitio,data/meta_data.csv,md5+sha256,,md5:4ba448dc0452a441a3f35373da431a25 sha256:3561d90a99b3b07dc8b256bae873cae55ce1183fdcf9538cd46466ebd5025490,30337,no publisher checksum,0.000
+aitio,data/readme.md.txt,md5+sha256,,md5:8f75e14e4424a8de0c9ece5853a48417 sha256:2ebfbb40bd60073dffc6600d32e63b256547aae4ba4d59eb9e61896b28454237,3076,no publisher checksum,0.000
+aitio,data/set_0.zip,md5+sha256,,md5:afcf4fcde3f6f6385d84a2eff10124cc sha256:dc96006e960663f46a6b7dfe331eb8467d067cd3c57f1b041caaca37f60c3fa7,292802485,no publisher checksum,0.581
+aitio,data/set_1.zip,md5+sha256,,md5:e3ebeb92567ab7dd9842e735103c380f sha256:a08ac13f23789ef9d262f5760ebd4021c878b164bda3317679a088f73fbc162b,287351389,no publisher checksum,0.568
+aitio,data/set_10.zip,md5+sha256,,md5:5c03c65a057f24842f052fa7e0477754 sha256:3466d4ecfadab3754432afae518a9abb8384b5b1da780147fb318bd267f849e9,81975272,no publisher checksum,0.161
+aitio,data/set_2.zip,md5+sha256,,md5:cc3a1a89c9793bb00951606392400966 sha256:2b479e45853358c0f9b1ede5a54b20f3780c8bed7cfc978577d185266e27a5eb,284543563,no publisher checksum,0.564
+aitio,data/set_3.zip,md5+sha256,,md5:062e49e7937bdb0f25a5f234762c6fad sha256:e95beb1cd12d57d1655d3675410e452dbbd029f12795a38c3cb69c14a165fa4c,288562736,no publisher checksum,0.620
+aitio,data/set_4.zip,md5+sha256,,md5:51b1e5ef10b682d896e7f65bd962efe9 sha256:b7d80036afef0df71ddbbaa63b7d09045013cd35e55c8a8cbeb3ccbc2018e905,291836884,no publisher checksum,0.591
+aitio,data/set_5.zip,md5+sha256,,md5:84151078f64788a156036e86bdabb435 sha256:2502d02227cb2268cb0b83764d3a1121c796a8bf9ce22f4d9996dc5e3d341615,280380830,no publisher checksum,0.558
+aitio,data/set_6.zip,md5+sha256,,md5:b46715707a0e860f6e1c6aac0b027c99 sha256:f480305949a13a86575b017e7446258b08650114b8b83b6144f5b4625692da38,300798725,no publisher checksum,0.599
+aitio,data/set_7.zip,md5+sha256,,md5:1ada4559c7cd8ccd6e8d26ad3bb79cec sha256:541227e780cc47652bfa1292025b4e5fbf61cf52234cb6b61d58d83128cb80cd,264814532,no publisher checksum,0.527
+aitio,data/set_8.zip,md5+sha256,,md5:5bf6eb9944fd489426425b0b4045b163 sha256:abc241c3b6b31dc4afb8580c1441916fb8c5f7bf50aff80f53634979c1914eef,283778513,no publisher checksum,0.566
+aitio,data/set_9.zip,md5+sha256,,md5:db0fe0876671010bf81d5fd2fd686ca8 sha256:39805140844500eb203d64c4166c4b583a3bfb7a0f6a1ba0cce6c3da05feaae2,300694522,no publisher checksum,0.602
+aitio,data/zip_to_npy.py,md5+sha256,,md5:55ce4965352e7c4e148e7fcc82ef6088 sha256:7fe486cf8c4b21442ecee7708e6533578581e60f34a250722774b7e0eae4aa72,717,no publisher checksum,0.000
+aitio,paper/aitio_howey_2021_joule_AAM.pdf,md5+sha256,,md5:1e37e4efb21377047a9a8cf1c3d9fd3d sha256:58dd4627ba491cf2e1a7b2895307b416b1755bc2292e4cd496f94db7d637e5a8,9378051,"own hash, no publisher reference",0.019

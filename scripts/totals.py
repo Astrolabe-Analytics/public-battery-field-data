@@ -32,8 +32,8 @@ def validate(rows: list[dict[str, str]]) -> None:
     required = {"package", "field", "value", "basis", "source", "note"}
     if not rows or set(rows[0]) != required:
         raise ValueError("package_facts.csv has the wrong columns")
-    if len(rows) != 22 * 14:
-        raise ValueError("package_facts.csv must contain 14 facts for each of 22 packages")
+    if len(rows) != len(PACKAGES) * 14:
+        raise ValueError(f"package_facts.csv must contain 14 facts for each of {len(PACKAGES)} packages")
     if {row["package"] for row in rows} != set(PACKAGES):
         raise ValueError("package_facts.csv packages do not match registry")
     if any(row["basis"] not in {"measured", "stated", "derived", "not_in_release", "open"} for row in rows):
@@ -194,7 +194,7 @@ def build() -> tuple[str, dict]:
         if label in adjusted:
             value = adjusted[label]
         lines.append(f"| {label} | {fmt(value, places)} | {packages(selected)} | {coverage(selected)} |")
-    lines.append(f"| Files held and verified | {files_held:,} | all 22 packages | measured 22, stated 0, derived 0, open 0 |")
+    lines.append(f"| Files held and verified | {files_held:,} | all {len(PACKAGES)} packages | measured {len(PACKAGES)}, stated 0, derived 0, open 0 |")
     lines.append(f"| Physical files with publisher-checksum references | {files_with_reference:,} | verification log | measured 1, stated 0, derived 0, not_in_release 0, open 0 |")
     lines.append(f"| Archive members with publisher-checksum references | {members_with_reference:,} | verification log | measured 1, stated 0, derived 0, not_in_release 0, open 0 |")
     lines.append(f"| Publisher-checksum matches: physical files | {checksum_matches_files:,} | verification log | measured 1, stated 0, derived 0, not_in_release 0, open 0 |")
@@ -202,7 +202,7 @@ def build() -> tuple[str, dict]:
     lines.append(f"| Packages with documented sentinels | {len(sentinels_documented):,} | {', '.join(sentinels_documented)} | stated {len(sentinels_documented)} |")
 
     data = {
-        "title_tail": "a curated and verifiable collection of 22 releases",
+        "title_tail": f"a curated and verifiable collection of {len(PACKAGES)} releases",
         "cells_liion": float(cells_total), "cells_liion_packages": packages(cells_liion),
         "cells_leadacid": float(total(cells_leadacid)), "cells_leadacid_packages": packages(cells_leadacid),
         "cell_channels": float(channels_total), "released_units_total": float(units_total),

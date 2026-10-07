@@ -156,6 +156,16 @@ SPECS = {
         plot="ax = frame['V_in_V'].resample('10min').mean().plot(figsize=(7, 3.5))\nax.set_xlabel('')\nax.set_ylabel('battery voltage (V, 10 min mean)')\nplt.show()",
         plot_note="Battery voltage follows a daily cycle, rising while the system charges during the day and falling as it discharges in the evening and night.",
     ),
+    "aitio": dict(
+        title="BBOXX solar-home-system batteries",
+        intro="This notebook lists the released batteries with their repair labels, loads one battery as released, and plots its voltage over one week. It makes no diagnosis.",
+        systems_note="Each row is one battery, one .npz file inside one of the shipped zips, joined with meta_data.csv. STILL_ALIVE is FALSE for the 491 batteries that entered repair for capacity loss. The authors chose this roughly balanced split, so it is not a failure rate.",
+        load="frame = load('aitio', unit='0')",
+        load_note="One battery at a median 60 s interval, indexed by UTC time. Current is negative while charging, as the readme states.",
+        cols="['current_A', 'voltage_V', 'temperature_degC']",
+        plot="week = frame.loc['2019-06-01':'2019-06-07']\nax = week['voltage_V'].plot(figsize=(7, 3.5))\nax.set_xlabel('')\nax.set_ylabel('battery voltage (V)')\nplt.show()",
+        plot_note="Over the week of 1 to 7 June 2019 the raw voltage of battery 0 stays between 12.0 and 14.4 V, with a median of 12.9 V.",
+    ),
     "tsukuba": dict(
         title="Tsukuba research-building microgrid",
         intro="This notebook shows the one released system and its per-second files, loads two days, and plots battery SOC. It makes no diagnosis.",

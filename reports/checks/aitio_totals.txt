@@ -1,0 +1,7 @@
+units (batteries with a data file): 1027
+unit-years (sum of first-to-last spans): 1664.984
+nominal kWh (1027 x 12 V x 20 Ah): 246.48
+bytes (16 shipped files): 3,041,346,432
+STILL_ALIVE = FALSE: 491
+rows: 619,511,328
+flag start_vs_activated: 17; flag span_vs_lifetime: 999

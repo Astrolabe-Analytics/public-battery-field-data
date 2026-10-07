@@ -96,3 +96,50 @@ for _slug, _source in _LICENSE_SOURCES.items():
         PACKAGES[_slug]["derived_outputs"] = "may publish non-commercially, under the release's license"
     else:
         PACKAGES[_slug]["derived_outputs"] = "may publish"
+
+# Package 23, aitio (admitted 2026-10-06 for v1.1). Its files are listed one by one because the ORA record has no
+# file API the downloader knows.
+_AITIO_RECORD = "https://ora.ox.ac.uk/objects/uuid:e41d3d4c-f74e-4d76-81fd-0caa77ec6cec"
+_AITIO_FILES = {  # name: (ORA file id, bytes as listed in the record)
+    "GITT_OCV.mpt": ("dw0892b24g", 83771698), "meta_data.csv": ("dtd96k277p", 30337),
+    "zip_to_npy.py": ("dxp68kg603", 717), "LICENSE": ("r3b591896q", 1153), "readme.md.txt": ("rkw52j8536", 3076),
+    "set_0.zip": ("d3b591882v", 292802485), "set_1.zip": ("d7d278t433", 287351389), "set_2.zip": ("dqj72p736b", 284543563),
+    "set_3.zip": ("d8049g533x", 288562736), "set_4.zip": ("df7623c86j", 291836884), "set_5.zip": ("dcz30ps94w", 280380830),
+    "set_6.zip": ("dgt54kn28c", 300798725), "set_7.zip": ("drx913q19w", 264814532), "set_8.zip": ("dp8418n53w", 283778513),
+    "set_9.zip": ("dfq977v07k", 300694522), "set_10.zip": ("d9g54xh85t", 81975272),
+}
+PACKAGES.update({
+    "aitio": {
+        "slug": "aitio",
+        "title": "Predicting battery end of life from solar off-grid system field data using machine learning",
+        "urls": {"data": "https://doi.org/10.5287/bodleian:aVR4oDV4N", "record": _AITIO_RECORD, "code": None,
+                 "paper": "https://doi.org/10.1016/j.joule.2021.11.006",
+                 "paper_accepted_manuscript": "https://ora.ox.ac.uk/objects/uuid:8ecbff88-f21a-40da-b36b-532966c81673"},
+        "license": "CC BY-NC 4.0",
+        # catalog fields, as recorded when aitio was a candidate
+        "catalog": {"class": "stationary (off-grid solar home systems)", "chemistry": "lead-acid (VRLA)", "units": 1027,
+                    "unit_rating": "12 V, 20 Ah (paper p. 3: nominal voltage 12 V, 6 cells in series, nominal capacity 20 Ah)",
+                    "authors": "Aitio, A.; Howey, D. A.", "year": 2021, "venue": "Joule"},
+        "data_directory": "Predicting battery end of life from solar off-grid system field data using machine learning/data",
+        "data_files": list(_AITIO_FILES),
+        # direct file URLs on the record: (name, url, bytes)
+        "direct_files": [(name, f"{_AITIO_RECORD}/files/{fid}", size) for name, (fid, size) in _AITIO_FILES.items()],
+        # our SHA-256 of each file as fetched on 2026-10-06; the record publishes none, so these are not publisher values
+        "own_sha256": {'GITT_OCV.mpt': 'c6741d932e35414a5c30e34e03a03bf9f011ad6eb10c647e8312deff201151a5', 'meta_data.csv': '3561d90a99b3b07dc8b256bae873cae55ce1183fdcf9538cd46466ebd5025490', 'zip_to_npy.py': '7fe486cf8c4b21442ecee7708e6533578581e60f34a250722774b7e0eae4aa72', 'LICENSE': '8f93512c89ad9a4519834b315d7aa089bd3b567c805134043f382a27ada0a607', 'readme.md.txt': '2ebfbb40bd60073dffc6600d32e63b256547aae4ba4d59eb9e61896b28454237', 'set_0.zip': 'dc96006e960663f46a6b7dfe331eb8467d067cd3c57f1b041caaca37f60c3fa7', 'set_1.zip': 'a08ac13f23789ef9d262f5760ebd4021c878b164bda3317679a088f73fbc162b', 'set_2.zip': '2b479e45853358c0f9b1ede5a54b20f3780c8bed7cfc978577d185266e27a5eb', 'set_3.zip': 'e95beb1cd12d57d1655d3675410e452dbbd029f12795a38c3cb69c14a165fa4c', 'set_4.zip': 'b7d80036afef0df71ddbbaa63b7d09045013cd35e55c8a8cbeb3ccbc2018e905', 'set_5.zip': '2502d02227cb2268cb0b83764d3a1121c796a8bf9ce22f4d9996dc5e3d341615', 'set_6.zip': 'f480305949a13a86575b017e7446258b08650114b8b83b6144f5b4625692da38', 'set_7.zip': '541227e780cc47652bfa1292025b4e5fbf61cf52234cb6b61d58d83128cb80cd', 'set_8.zip': 'abc241c3b6b31dc4afb8580c1441916fb8c5f7bf50aff80f53634979c1914eef', 'set_9.zip': '39805140844500eb203d64c4166c4b583a3bfb7a0f6a1ba0cce6c3da05feaae2', 'set_10.zip': '3466d4ecfadab3754432afae518a9abb8384b5b1da780147fb318bd267f849e9'},
+        "license_source": _AITIO_RECORD,
+        "derived_outputs": "may publish non-commercially, under the release's license",
+    },
+})
+
+# Candidate packages: loaders and downloads work, but they are not in PACKAGES, so they stay out of the
+# collection's totals, tables and dashboard until they are admitted. None at present.
+CANDIDATES: dict = {}
+
+
+def metadata(package: str) -> dict:
+    """Registry entry for an admitted package or a candidate."""
+    if package in PACKAGES:
+        return PACKAGES[package]
+    if package in CANDIDATES:
+        return CANDIDATES[package]
+    raise KeyError(f"unknown package {package!r}")
