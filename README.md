@@ -5,6 +5,8 @@
 
 This repository provides a consistent Python interface, verification notebooks, and reproducible summary tables for 23 public battery field-data packages. Raw publisher files are not redistributed.
 
+Found an error, or know a public battery field dataset we missed? Please open an issue: https://github.com/Astrolabe-Analytics/public-battery-field-data/issues
+
 Python 3.12 or newer is required (the pinned environment is tested on 3.12, 3.13 and 3.14, so it also runs in Google Colab); the Python that comes with macOS is too old.
 
 First get the code, either with git:
