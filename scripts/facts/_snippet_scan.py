@@ -56,7 +56,7 @@ def scan(package: str, archive_name: str) -> dict:
         "vmax_p99": float(np.percentile(vmax, 99)),
     }
     CACHE.mkdir(parents=True, exist_ok=True)
-    (CACHE / f"{package}__{archive_name}.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    (CACHE / f"{package}__{archive_name}.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8", newline="\n")
     return result
 
 

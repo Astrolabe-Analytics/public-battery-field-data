@@ -145,4 +145,4 @@ lines.append(f"[other] rows with nonzero U_CR or I_CR: {int(s['cr_nonzero_rows']
 lines.append("[per system] " + s[["system", "rows", "first", "last", "i_min", "i_max"]].to_string(index=False).replace("\n", "\n  "))
 text = "\n".join(lines)
 print(text)
-(out_dir / "schaeffer_audit_checks.txt").write_text(text + "\n", encoding="utf-8")
+(out_dir / "schaeffer_audit_checks.txt").write_text(text + "\n", encoding="utf-8", newline="\n")

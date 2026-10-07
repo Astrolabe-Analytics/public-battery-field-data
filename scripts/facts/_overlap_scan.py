@@ -94,7 +94,7 @@ def compare() -> dict:
         "rule": "Vehicles are counted once when their archives form one shared fleet; the overlap counted is the smaller fleet size of each matched archive pair.",
     }
     RESULT.parent.mkdir(parents=True, exist_ok=True)
-    RESULT.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    RESULT.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8", newline="\n")
     return result
 
 
@@ -156,7 +156,7 @@ def refine() -> dict:
         fleet["unconfirmed_evbattery_vehicles"] = sorted(c for c in eexact if c not in taken)
     result["overlap_vehicles_confirmed"] = sum(v["confirmed_one_to_one"] for v in result["archive_pairs"].values())
     result["rule"] = RULE
-    RESULT.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    RESULT.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8", newline="\n")
     return result
 
 
@@ -168,7 +168,7 @@ def pairs() -> dict:
         strong, _, _ = _confirmed(pair)
         out.update({str(z): int(b[0]) for z, b in strong.items()})
         out.update({str(z): int(e) for z, e in result["archive_pairs"][pair].get("tolerance_matched", {}).items()})
-    PAIRS.write_text(json.dumps({"pairs": out}, indent=1) + "\n", encoding="utf-8")
+    PAIRS.write_text(json.dumps({"pairs": out}, indent=1) + "\n", encoding="utf-8", newline="\n")
     return out
 
 
@@ -223,7 +223,7 @@ def tolerance() -> dict:
         fleet["unconfirmed_evbattery_vehicles"] = sorted(free)
     result["overlap_vehicles_confirmed"] = sum(v["confirmed_one_to_one"] for v in result["archive_pairs"].values())
     result["rule"] = RULE
-    RESULT.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    RESULT.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8", newline="\n")
     return result
 
 

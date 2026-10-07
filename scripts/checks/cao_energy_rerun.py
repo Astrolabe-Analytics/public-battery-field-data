@@ -53,7 +53,7 @@ def main():
         lines.append(f"{brand}: {len(o)} vehicles, {o.notna().sum()} usable, median kWh cache {o.median():.3f}, rerun {n.median():.3f}")
     lines.append(f"total MWh: cache {total_mwh(old, counts):.2f}, rerun {total_mwh(new, counts):.2f}")
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    OUT.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     print("\n".join(lines))
 
 

@@ -49,7 +49,7 @@ def collapse_details(notebook: Path, html: Path) -> None:
                  'font-size: var(--jp-content-font-size1)"><summary style="margin-left: calc(var(--jp-cell-prompt-width) + 22px)">'
                  f'{title}</summary>\n' + text[body_start:end] + "</details>\n")
         text = text[:head_start] + block + text[end:]
-    html.write_text(text, encoding="utf-8")
+    html.write_text(text, encoding="utf-8", newline="\n")
 
 
 def export_notebooks() -> None:

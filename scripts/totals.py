@@ -249,8 +249,8 @@ def build() -> tuple[str, dict]:
 
 def main() -> None:
     markdown, data = build()
-    OUTPUT.write_text(markdown, encoding="utf-8")
-    JSON_OUTPUT.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    OUTPUT.write_text(markdown, encoding="utf-8", newline="\n")
+    JSON_OUTPUT.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
     print(f"wrote {OUTPUT.relative_to(ROOT)}")
     print(f"wrote {JSON_OUTPUT.relative_to(ROOT)}")
 

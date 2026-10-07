@@ -179,4 +179,4 @@ vp = vv[vv > 0]
 say(f"  positive cell voltages: min {vp.min()}, max {vp.max()}; outside 2,500 to 3,630 mV: "
     f"{int(((vp < 2500) | (vp > 3630)).sum())} of {len(vp)}")
 
-(out_dir / "xie_audit_checks.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
+(out_dir / "xie_audit_checks.txt").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")

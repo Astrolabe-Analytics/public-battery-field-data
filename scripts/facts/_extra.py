@@ -522,7 +522,7 @@ def _pb1_identity() -> dict:
         joined = pb.join(unit[~unit.index.duplicated()], how="inner").dropna()
         out[f"{name.lower()}_voltage_corr"] = float(np.corrcoef(joined["voltage_bat_V_bms"], joined["U_DC_Batt"])[0, 1])
     OUT_CACHE.mkdir(parents=True, exist_ok=True)
-    cache.write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
+    cache.write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8", newline="\n")
     return out
 
 

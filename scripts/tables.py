@@ -315,10 +315,10 @@ def download_routes() -> str:
 
 def main() -> None:
     facts = load_facts()
-    TABLE2.write_text(table2(facts), encoding="utf-8")
-    TABLE4.write_text(table4(facts), encoding="utf-8")
-    TABLE4_DIFF.write_text(table4_differences(facts), encoding="utf-8")
-    TABLE1.write_text(table1(), encoding="utf-8")
+    TABLE2.write_text(table2(facts), encoding="utf-8", newline="\n")
+    TABLE4.write_text(table4(facts), encoding="utf-8", newline="\n")
+    TABLE4_DIFF.write_text(table4_differences(facts), encoding="utf-8", newline="\n")
+    TABLE1.write_text(table1(), encoding="utf-8", newline="\n")
     print(f"wrote {TABLE2.relative_to(ROOT)} and {TABLE4.relative_to(ROOT)}")
 
 

@@ -121,7 +121,7 @@ def compare() -> None:
         lines.append(f"{c:14} {diff.max():14.6g} {differing:19d}")
     lines.append(f"unit-years: held {held['span_days'].sum() / 365.25:.4f}, rebuilt {new['span_days'].sum() / 365.25:.4f}")
     REPORT.parent.mkdir(parents=True, exist_ok=True)
-    REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     print("\n".join(lines))
 
 

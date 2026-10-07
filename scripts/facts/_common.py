@@ -345,7 +345,7 @@ def measure(package: str) -> Path:
         output[key] = facts[key]
     OUT.mkdir(parents=True, exist_ok=True)
     path = OUT / f"{package}.json"
-    path.write_text(json.dumps(output, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
+    path.write_text(json.dumps(output, indent=2, ensure_ascii=True) + "\n", encoding="utf-8", newline="\n")
     print(f"{package}: wrote {path.relative_to(ROOT)}")
     return path
 

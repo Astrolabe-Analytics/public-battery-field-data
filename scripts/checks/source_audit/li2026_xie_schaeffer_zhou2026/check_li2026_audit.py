@@ -149,4 +149,4 @@ for p in periods:
     say(f"  {p}: voltage {v.min():.3f} to {v.max():.3f} V (outside 2.2 to 3.8 V: {int(((v < 2.2) | (v > 3.8)).sum())}); "
         f"temperature {t.min():.1f} to {t.max():.1f} (outside 0 to 60: {int(((t < 0) | (t > 60)).sum())})")
 
-(out_dir / "li2026_audit_checks.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
+(out_dir / "li2026_audit_checks.txt").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")

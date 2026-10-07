@@ -113,7 +113,7 @@ def build() -> str:
 
 
 def main() -> None:
-    OUTPUT.write_text(build(), encoding="utf-8")
+    OUTPUT.write_text(build(), encoding="utf-8", newline="\n")
     print(f"wrote {OUTPUT.relative_to(ROOT)}")
 
 

@@ -109,4 +109,4 @@ for vin in m.systems()["unit"]:
         f"{(vw.min(axis=1) == p['MinCellVoltage']).mean():.1%}")
     del p
 
-(out_dir / "zhou2026_audit_checks.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
+(out_dir / "zhou2026_audit_checks.txt").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")

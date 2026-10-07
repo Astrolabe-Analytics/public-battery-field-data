@@ -49,7 +49,7 @@ def pages(package: str) -> list[tuple[str, int, str]]:
                 out.append((pdf.parent.name + "/" + pdf.name, number, " ".join((page.extract_text() or "").split())))
         except Exception as exc:  # unreadable PDF
             out.append((pdf.name, 0, f"UNREADABLE {exc}"))
-    cached.write_text(json.dumps(out), encoding="utf-8")
+    cached.write_text(json.dumps(out), encoding="utf-8", newline="\n")
     return out
 
 
@@ -129,7 +129,7 @@ def main() -> None:
         bad += not where
         lines.append(f"| {row['package']} | {row['first_author']} | {', '.join(where) if where else '**not found**'} |")
     lines += ["", f"{bad} first authors not found."]
-    OUTPUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    OUTPUT.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     print(f"wrote {OUTPUT.relative_to(ROOT)}: {len(checked)} checked, {found} found")
 
 

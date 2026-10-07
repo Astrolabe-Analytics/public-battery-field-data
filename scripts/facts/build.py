@@ -67,7 +67,7 @@ def main() -> None:
             lines.append(f"- `{package}.{field}`: {item['note']} To close: {estimate}")
     overlap = by_package["evbattery"].get("overlap_identifiers", {}).get("value")
     lines.extend(["", "## Cross-package overlap", "", f"EVBattery and Zhang2023 share **{overlap} vehicles**: zhang2023 brand 2 and evbattery dataset 3 are one fleet under different vehicle numbers. The overlap is tested by content (identical snippets) by `scripts/facts/_overlap_scan.py`; see `reports/facts/_cache/zhang2023_evbattery_overlap.json`.", ""])
-    AUDIT.write_text("\n".join(lines), encoding="utf-8")
+    AUDIT.write_text("\n".join(lines), encoding="utf-8", newline="\n")
     print(f"wrote {FACTS.relative_to(ROOT)} ({len(rows)} rows)")
     print(f"wrote {AUDIT.relative_to(ROOT)}")
 
