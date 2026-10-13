@@ -1,0 +1,65 @@
+name: Suggest a dataset
+description: Tell us about a public battery field dataset we should look at.
+title: "Dataset suggestion: "
+labels: ["dataset suggestion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion. Please check SCREENING.md first to see if we have already looked at it. Fill in what you know and leave the rest blank.
+  - type: input
+    id: name
+    attributes:
+      label: Dataset name
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link or DOI
+      placeholder: https://doi.org/...
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License
+      placeholder: For example CC BY 4.0, or not stated
+  - type: dropdown
+    id: application
+    attributes:
+      label: Application
+      options:
+        - EV
+        - Grid storage
+        - E-bike
+        - Off-grid
+        - Other
+  - type: dropdown
+    id: setting
+    attributes:
+      label: Field or lab
+      options:
+        - Field operation
+        - Lab tests
+        - Both
+        - Not sure
+  - type: checkboxes
+    id: signals
+    attributes:
+      label: Battery signals available
+      options:
+        - label: Voltage
+        - label: Current
+        - label: Temperature
+        - label: SOC
+        - label: Faults
+  - type: input
+    id: size
+    attributes:
+      label: Approximate size
+      placeholder: For example 40 GB, 300 vehicles, 2 years
+  - type: textarea
+    id: other
+    attributes:
+      label: Anything else

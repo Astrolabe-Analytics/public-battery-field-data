@@ -1,0 +1,52 @@
+name: Report an error
+description: A wrong number, a broken link, a failed download or a loader error.
+title: "Error: "
+labels: ["error report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Fill in what you know and leave the rest blank.
+  - type: input
+    id: release
+    attributes:
+      label: Release
+      description: The release name, for example cloverleaf or tumftm.
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of error
+      options:
+        - Wrong number or value
+        - Broken link
+        - Download fails
+        - Loader error
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: ran
+    attributes:
+      label: What you ran or where you looked
+      description: A command, a notebook cell, or a page and section.
+      render: shell
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+  - type: textarea
+    id: saw
+    attributes:
+      label: What you saw
+      description: Paste the error message or output. For a loader error, the output of python -m fielddata.doctor <release> helps.
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Your system
+      placeholder: For example Windows 11, Python 3.12
