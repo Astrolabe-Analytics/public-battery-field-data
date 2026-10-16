@@ -1,0 +1,89 @@
+{
+  "package": "cell_to_pack",
+  "facts": {
+    "application": {
+      "value": "grid-scale storage",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "LFP; NMC",
+      "basis": "stated",
+      "source": "https://doi.org/10.5281/zenodo.20132842, record description (LiFePO4 and NMC)",
+      "note": ""
+    },
+    "units_released": {
+      "value": 16,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('cell_to_pack')",
+      "note": "Rule: the 16 field packs; laboratory cells and packs are held but not units. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": 6656,
+      "basis": "measured",
+      "source": "V1 to V416 in each of the 16 field packs' converted time series, through fielddata.loaders.cell_to_pack",
+      "note": "Counted from the released channels (DESCRIPTOR.md 3.4)."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 6656,
+      "basis": "measured",
+      "source": "V1 to V416 in each of the 16 field packs' converted time series, through fielddata.loaders.cell_to_pack",
+      "note": ""
+    },
+    "energy_mwh": {
+      "value": 6.500498322823901,
+      "basis": "measured",
+      "source": "scripts/checks/v12_energy.py -> reports/checks/v12/cell_to_pack_energy.csv",
+      "note": "Present usable energy computed from the data: coulomb counting over runs of at least 40 points of SOC with no gap over 300 s, ampere-hours per 100 percent SOC times mean pack voltage, median per unit, summed. "
+    },
+    "energy_basis": {
+      "value": "computed",
+      "basis": "derived",
+      "source": "energy_mwh is computed from the released data",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The release has no calendar timestamps."
+    },
+    "obs_hours": {
+      "value": 54749.625,
+      "basis": "measured",
+      "source": "scripts/checks/ondeck_deltas.py -> reports/checks/v12/cell_to_pack_deltas.json",
+      "note": "no calendar dates in the release: service time is observation-hours, the recorded duration of every cycle of the 16 field packs, summed; laboratory cells and packs are held but not units"
+    },
+    "size_gb": {
+      "value": 3.537987783,
+      "basis": "measured",
+      "source": "scripts/facts/cell_to_pack.py",
+      "note": ""
+    },
+    "files": {
+      "value": 20,
+      "basis": "measured",
+      "source": "scripts/facts/cell_to_pack.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.5281/zenodo.20132842; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

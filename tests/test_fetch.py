@@ -10,9 +10,9 @@ from fielddata.registry import PACKAGES
 
 MANUAL_PACKAGES = {
     "bilfinger2024",
+    "bilfinger2025",
     "bilfinger2026",
     "changan",
-    "fei_bus",
     "ku_leuven_bev",
     "m5bat-2023-04",
     "m5bat-pbacid",
@@ -28,7 +28,7 @@ class FetchPlanTests(unittest.TestCase):
             with patch("fielddata.fetch._download", side_effect=AssertionError("planning must not download")):
                 plans = {package: plan_package(package, root) for package in PACKAGES}
 
-            self.assertEqual(len(plans), 23)
+            self.assertEqual(len(plans), len(PACKAGES))
             for package, plan in plans.items():
                 metadata = PACKAGES[package]
                 self.assertEqual(plan.record_url, metadata["urls"]["data"])

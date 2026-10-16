@@ -4,7 +4,7 @@ from __future__ import annotations
 import csv
 import json
 
-from _common import FIELDS, OUT, ROOT
+from _common import ENERGY_COVERAGE_PARTIAL, FIELDS, OUT, ROOT
 from fielddata.registry import PACKAGES
 
 FACTS = ROOT / "fielddata" / "package_facts.csv"
@@ -31,6 +31,19 @@ def load_reports() -> list[dict]:
     return reports
 
 
+def energy_coverage(report: dict) -> dict:
+    """The 15th fact: how many of the counted units the release's energy value covers (maintainer, 2026-10-16)."""
+    package, facts = report["package"], report["facts"]
+    units, energy = facts["units_released"]["value"], facts["energy_mwh"]["value"]
+    row = {"package": package, "field": "energy_coverage", "source": "units_released and the energy_mwh note in this table"}
+    if package in ENERGY_COVERAGE_PARTIAL:
+        n, why = ENERGY_COVERAGE_PARTIAL[package]
+        return {**row, "value": "partial", "basis": "derived", "note": f"{n} of {units} units have energy: {why}."}
+    if energy is not None:
+        return {**row, "value": "full", "basis": "derived", "note": f"Energy covers all {units} counted units."}
+    return {**row, "value": None, "basis": "not_in_release", "source": "", "note": "No energy value for this release."}
+
+
 def main() -> None:
     reports = load_reports()
     rows = []
@@ -42,6 +55,7 @@ def main() -> None:
                 "basis": item["basis"], "source": item["source"],
                 "note": item["note"],
             })
+        rows.append(energy_coverage(report))
     with FACTS.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=["package", "field", "value", "basis", "source", "note"])
         writer.writeheader()

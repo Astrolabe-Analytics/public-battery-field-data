@@ -19,13 +19,27 @@ def _kind(member: str) -> str:
 
 
 def vehicle(member: str):
+    """The vehicle a recording belongs to, named the same across bilfinger2024, 2025 and 2026.
+
+    bilfinger2025 adds vehicles of other models and a second VW ID.3. Its paper (arXiv 2508.15517, p. 13) has two
+    VW ID.3s, the second "has a defective cell" (the release's GB file), two Porsche Taycans "from different sources"
+    and two Tesla Model Y. Their file names carry a site code (FTM, AMS, MI, TW, GB), which tells the vehicles apart.
+    """
     if not _kind(member).startswith("vehicle"):
         return None
     base = PurePosixPath(member).name
+    if base.startswith("Cupra_Born_"):  # bilfinger2025 names: Cupra_Born_<plate>_...
+        return "Cupra " + base.split("_")[2]
     if base.startswith("Cupra_"):
         return "Cupra " + base.split("_")[1]
+    if base.startswith("Porsche_Taycan"):
+        return "Porsche Taycan (" + ("AMS" if "_AMS_" in base else "FTM") + ")"
+    if base.startswith("Tesla_Model_Y"):
+        return "Tesla Model Y (" + ("MI" if "_MI_" in base else "TW") + ")"
     if base.startswith("Tesla"):
         return "Tesla Model 3 SR+"
+    if base.startswith("VW_ID3") and "_GB_" in base:
+        return "VW ID.3 (GB, defective cell)"
     if base.startswith("VW_ID3") or base.startswith("VW_FTM"):
         return "VW ID.3"
     return None

@@ -20,6 +20,8 @@ archives = [
   "libarchive-c==5.3",
   "inflate64==1.0.4",
   "openpyxl==3.1.5",
+  "py7zr",  # ved candidate: the weekly data are solid 7z archives
+  "scipy",  # stanford_ev candidate: MATLAB v5 files
 ]
 
 [tool.setuptools.packages.find]

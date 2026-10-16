@@ -41,7 +41,7 @@
       "value": 0.000666,
       "basis": "derived",
       "source": "scripts/facts/rwth-android.py",
-      "note": "Sum over 33 devices of nominal_capacity (Ah, data paper p. 4) times median cell voltage; for 10 devices without a usable nominal_capacity (7 report 0 and 3 leave it empty), the charge counter near full charge is used."
+      "note": "Basis: nominal, from each device's reported nominal capacity, not measured usable energy, except the 10 devices noted below. Sum over 33 devices of nominal_capacity (Ah, data paper p. 4) times median cell voltage; for 10 devices without a usable nominal_capacity (7 report 0 and 3 leave it empty), the charge counter near full charge is used."
     },
     "energy_basis": {
       "value": "computed",

@@ -41,7 +41,7 @@
       "value": 0.0797,
       "basis": "derived",
       "source": "scripts/facts/cloverleaf.py",
-      "note": "Computed from the data: 65.7 Ah over a 71 percent SOC swing (coulomb counting, typical-day sheet), divided by SOH 0.89, times mean pack voltage 360 V, times 3 HV packs. An 84 kWh figure used earlier, attributed to a trade-press article (pv-magazine, 21 January 2022) that was not checked, agrees within about 5 percent. Assumes the released SOC and SOH are accurate BMS estimates and that the three packs are identical; no source states the pack rating (the Zenodo record 10.5281/zenodo.6373656 description defines no columns)."
+      "note": "Basis: computed from the data and divided by the released SOH, so it approximates the packs' rated (beginning-of-life) energy, not present usable energy. Computed from the data: 65.7 Ah over a 71 percent SOC swing (coulomb counting, typical-day sheet), divided by SOH 0.89, times mean pack voltage 360 V, times 3 HV packs. An 84 kWh figure used earlier, attributed to a trade-press article (pv-magazine, 21 January 2022) that was not checked, agrees within about 5 percent. Assumes the released SOC and SOH are accurate BMS estimates and that the three packs are identical; no source states the pack rating (the Zenodo record 10.5281/zenodo.6373656 description defines no columns)."
     },
     "energy_basis": {
       "value": "computed",

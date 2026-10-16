@@ -1,0 +1,89 @@
+{
+  "package": "stanford_ev",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Neither the release nor its paper or record states the cell chemistry."
+    },
+    "units_released": {
+      "value": 1,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('stanford_ev')",
+      "note": "Rule: one vehicle. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": 108,
+      "basis": "measured",
+      "source": "the 108 columns of V_cell_bms, through fielddata.loaders.stanford_ev",
+      "note": "The release's 108 cell-voltage channels, counted as released. The record does not name the vehicle, and it is not taken to be the Audi e-tron of the group's companion paper (doi:10.1109/OJPEL.2026.3691252, 4P108S, 432 cells): the paper says that car's pack was taken apart after January 2024, but this release shows one pack in use, with the same cell-voltage pattern and a rising odometer, from September 2021 to April 2025 (scripts/checks/stanford_ev_timeline.py). Maintainer, 2026-10-16: the match cannot be shown, so the data's count is used."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 108,
+      "basis": "measured",
+      "source": "the 108 columns of V_cell_bms, through fielddata.loaders.stanford_ev",
+      "note": ""
+    },
+    "energy_mwh": {
+      "value": 0.09144433776333663,
+      "basis": "measured",
+      "source": "scripts/checks/v12_energy.py -> reports/checks/v12/stanford_ev_energy.csv",
+      "note": "Present usable energy computed from the data: coulomb counting over runs of at least 40 points of SOC with no gap over 300 s, ampere-hours per 100 percent SOC times mean pack voltage, median per unit, summed. The record does not name the vehicle."
+    },
+    "energy_basis": {
+      "value": "computed",
+      "basis": "derived",
+      "source": "energy_mwh is computed from the released data",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 3.547442598169696,
+      "basis": "measured",
+      "source": "scripts/checks/ondeck_deltas.py -> reports/checks/v12/stanford_ev_deltas.json",
+      "note": "unit-years is first session start to last session end; CC BY-NC-ND: only these counts are recorded, no derived data files"
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Calendar spans are measurable, so observation-hours are not used."
+    },
+    "size_gb": {
+      "value": 18.300308228,
+      "basis": "measured",
+      "source": "scripts/facts/stanford_ev.py",
+      "note": ""
+    },
+    "files": {
+      "value": 5516,
+      "basis": "measured",
+      "source": "scripts/facts/stanford_ev.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.25740/yx490wc6642; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

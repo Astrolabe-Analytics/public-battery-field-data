@@ -37,7 +37,7 @@ PACKAGES.update({
     "bilfinger2024": _entry("bilfinger2024", "Battery pack diagnostics for EVs: Transfer of differential voltage and incremental capacity", "https://mediatum.ub.tum.de/1737452", "https://github.com/TUMFTM/Battery-Pack-Diagnostics", "https://doi.org/10.1016/j.etran.2024.100356", "CC BY 4.0", "Battery pack diagnostics for electric vehicles - Transfer of differential voltage and incremental capacity analysis from cell to vehicle level/data", ["data.zip"]),
     "bilfinger2026": _entry("bilfinger2026", "Battery pack diagnostics for EVs: Robustness of SOH and differential voltage", "https://mediatum.ub.tum.de/1840112", "https://github.com/TUMFTM/EV_DVA_robustness", "https://doi.org/10.1016/j.etran.2026.100589", "CC BY 4.0", "Battery pack diagnostics for electric vehicles - Robustness of the state of health measurement and differential voltage analysis at the vehicle level/data", ["data.zip"]),
     "changan": _entry("changan", "Multi-modal framework for battery SOH evaluation using open-source EV data", "http://ivstskl.changan.com.cn/?p=2697", "https://github.com/HoraceLiu1010/Multi-modal-SOH-estimation", "https://doi.org/10.1038/s41467-025-56485-7", "CC BY-NC-SA 4.0", "Multi-modal framework for battery state of health evaluation using open-source electric vehicle data/data", ["raw/RAW_DATA.z01", "raw/RAW_DATA.zip"]),
-    "cloverleaf": _entry("cloverleaf", "Monitoring data second-life battery at Cloverleaf", "https://doi.org/10.5281/zenodo.6373656", None, "pv-magazine 2022-01-21", "CC BY 4.0", "Monitoring data second-life battery at Cloverleaf/data", ["Monitoring data 2nd life battery.zip"]),
+    "cloverleaf": _entry("cloverleaf", "Monitoring data second-life battery at Cloverleaf", "https://doi.org/10.5281/zenodo.6373656", None, "Voets and Ben-Al-Lal, pv magazine, 21 Jan 2022", "CC BY 4.0", "Monitoring data second-life battery at Cloverleaf/data", ["Monitoring data 2nd life battery.zip"]),
     "deng": _entry("deng", "Prognostics of battery capacity based on charging data for on-road vehicles", "https://github.com/BatICM/battery-charging-data-of-on-road-electric-vehicles", "https://github.com/BatICM/battery-charging-data-of-on-road-electric-vehicles", "https://doi.org/10.1016/j.apenergy.2023.120954", "MIT (repository)", "Prognostics of battery capacity based on charging data and data-driven methods for on-road vehicles/data", ["#1.rar through #20.rar"]),
     "evbattery": _entry("evbattery", "EVBattery - Large-Scale EV Dataset for Battery Health & Capacity", "https://doi.org/10.6084/m9.figshare.23301881", "https://github.com/thinkenergy/dynamic_vae", "arXiv:2201.12358", "CC BY-NC-SA 4.0", "EVBattery - A Large-Scale Electric Vehicle Dataset for Battery Health and Capacity Estimation/data", ["battery_dataset1.tar.gz", "battery_dataset2.tar.gz", "battery_dataset3.tar.gz"]),
     "fei_bus": _entry("fei_bus", "Real EV dataset - Commercial Electric Buses", "https://doi.org/10.17632/j9ky68gnd3.3", None, "Mendeley", "CC BY 4.0", "Real EV dataset - Commercial Electric Buses/data", ["vin1.csv", "vin5.csv", "vin12.csv", "vin19.csv"]),
@@ -132,9 +132,158 @@ PACKAGES.update({
 })
 
 # Candidate packages: loaders and downloads work, but they are not in PACKAGES, so they stay out of the
-# collection's totals, tables and dashboard until they are admitted. None at present.
-CANDIDATES: dict = {}
+# collection's totals, tables and dashboard until they are admitted.
+_PNNL_EPRI_SYSTEMS = ["Avista", "ENW", "EPRI_LFP1", "EPRI_LFP2", "EPRI_LFP3", "EPRI_NMC1", "EPRI_NMC2", "EPRI_VRF1",
+                      "OPALCO", "PSE", "SnoPUDMESA1", "SnoPUDMESA2"]
+CANDIDATES: dict = {
+    "pnnl_epri": {
+        "slug": "pnnl_epri",
+        "title": "Grid-Scale BESS Operational Datasets for Battery Modeling Research",
+        "urls": {"data": "https://doi.org/10.5281/zenodo.22947521", "code": "https://doi.org/10.5281/zenodo.22947521",
+                 # data record only: the paper slot names the context source, as for cloverleaf
+                 "paper": "DOE OE peer-review poster, Crawford 2026-05",
+                 "context": "https://doepeerreview.sandia.gov/app/uploads/sites/82/2026/05/Crawford_Alasdair_Analytics.pdf"},
+        "license": "CC BY 4.0",
+        "license_source": "https://zenodo.org/records/22947521",
+        "data_directory": "Grid-Scale BESS Operational Datasets for Battery Modeling Research/data",
+        # one .feather per system (the unit) and one R script per system, plus _common.R and _epri_channels.R
+        "data_files": [f"{s}.feather" for s in _PNNL_EPRI_SYSTEMS] + [f"{s}.R" for s in _PNNL_EPRI_SYSTEMS]
+                      + ["_common.R", "_epri_channels.R"],
+        "checksum_source": "https://zenodo.org/api/records/22947521 retrieved 2026-10-09",
+        "derived_outputs": "may publish",
+        "status": "approved for v1.2",
+        "catalog": {"application": "grid storage", "chemistry": "LFP, NMC, LMO/NMC, vanadium flow",
+                    "units": "12 (11 counted, EPRI_NMC2 is ppl)", "span": "60 days to 5.1 years per system, from 2015"},
+    },
+}
 
+
+# On-deck candidates (v1.2 prep, intake phase 1, 2026-10-12): downloaded and checked against the record, no loader
+# yet. Like pnnl_epri they stay out of the totals, tables and dashboard counts. "catalog" holds what the record or
+# paper states, for the dashboard's On deck section.
+def _ondeck(slug, title, data, paper, license, directory, files, catalog, *, code=None, license_source=None,
+            checksum_source=None, derived="may publish", context=None):
+    # A release without a paper is "data record only", as for cloverleaf and fei_bus. The paper slot then holds a
+    # short note naming the context source (cloverleaf: "pv-magazine 2022-01-21"), and urls["context"] links to it.
+    urls = {"data": data, "code": code, "paper": paper}
+    if context:
+        urls["paper"], urls["context"] = context
+    return {"slug": slug, "title": title, "urls": urls, "license": license,
+            "license_source": license_source or data, "data_directory": f"{directory}/data", "data_files": files,
+            "checksum_source": checksum_source, "derived_outputs": derived, "status": "on deck", "catalog": catalog}
+
+
+_CELL_TO_PACK_FILES = ["ESSL1.zip", "ESSL2.zip", "ESSH1.zip", "PBSL1.zip"] + [f"Pack_field#{i}.zip" for i in range(1, 17)]
+CANDIDATES.update({
+    "stanford_ev": _ondeck(
+        "stanford_ev", "Feedback control bounds variability in large-scale electrochemical systems",
+        "https://doi.org/10.25740/yx490wc6642", None, "CC BY-NC-ND 4.0",
+        "Feedback control bounds variability in large-scale electrochemical systems",
+        ["Field Dataset/**", "Laboratory Dataset/**"],
+        {"application": "EV (passenger car)", "chemistry": None, "units": 1, "span": "2021-09 to 2025-04"},
+        license_source="https://purl.stanford.edu/yx490wc6642", checksum_source="https://purl.stanford.edu/yx490wc6642.json",
+        derived="loader only: no converted or derived data files may be published (CC BY-NC-ND)",
+        context=("companion paper on the same vehicle, arXiv 2603.29107 (2026)", "https://arxiv.org/abs/2603.29107")),
+    "cell_to_pack": _ondeck(
+        "cell_to_pack", "Resolving inter-cell heterogeneity to mitigate degradation amplification in battery packs",
+        "https://doi.org/10.5281/zenodo.20132842", None, "CC BY 4.0",
+        "Resolving inter-cell heterogeneity to mitigate degradation amplification in battery packs", _CELL_TO_PACK_FILES,
+        {"application": "grid storage (field packs) and lab cells and packs", "chemistry": "LFP (field packs), NMC (lab)", "units": "16 field packs of 416 cells", "span": "575 to 617 equivalent full cycles per pack"},
+        checksum_source="https://zenodo.org/api/records/20132842",
+        code="https://doi.org/10.5281/zenodo.21105057",
+        context=("manuscript unpublished, authors' code record, Zenodo 21105057 (2026-07)", "https://github.com/BatICM/cell-to-pack-degradation")),
+    "rise_conbat": _ondeck(
+        "rise_conbat", "Data-driven State-of-Health prediction for reused batteries in new applications",
+        "https://doi.org/10.5281/zenodo.17287096", None, "CC BY 4.0",
+        "Data-driven State-of-Health prediction for reused batteries in new applications",
+        ["Data-driven State-of-Health prediction for reused batteries in new applications.zip", "Conbat_clean.ipynb",
+         "conbat_utils.py", "README.md", "CITATION.cff", "LICENSE"],
+        {"application": "stationary storage (second-life)", "chemistry": None, "units": "106 modules from 11 cars", "span": "2023-04 to 2024-11"},
+        checksum_source="https://zenodo.org/api/records/17287096",
+        context=("project README (RISE, Swedish Energy Agency)", "https://zenodo.org/records/17287096")),
+    "birds_cubesat": _ondeck(
+        "birds_cubesat", "On-orbit Electrical Power System Dataset of 1U CubeSat constellation for Machine Learning Models",
+        "https://doi.org/10.17632/8kp25ycf63.1", "https://doi.org/10.1016/j.dib.2022.108697", "CC BY 4.0",
+        "On-orbit Electrical Power System Dataset of 1U CubeSat constellation for Machine Learning Models",
+        ["NEPALISAT.xlsx", "RAAVANA.xlsx", "TSURU.xlsx", "UGUISU.xlsx"],
+        {"application": "space (1U CubeSat)", "chemistry": None, "units": 4, "span": "2 to 42 ground-station downloads per satellite, 2020 to 2021"},
+        checksum_source="https://data.mendeley.com/public-api/datasets/8kp25ycf63/files?folder_id=root&version=1"),
+    "ved": _ondeck(
+        "ved", "Vehicle Energy Dataset (VED), A Large-scale Dataset for Vehicle Energy Consumption Research",
+        "https://github.com/gsoh/VED", "https://doi.org/10.1109/TITS.2020.3035596", "Apache 2.0",
+        "Vehicle Energy Dataset (VED), A Large-scale Dataset for Vehicle Energy Consumption Research", ["VED/**"],
+        {"application": "EV and PHEV (passenger cars), plus ICE and HEV", "chemistry": None, "units": "384 (static sheets; README says 383)",
+         "span": "2017-11 to 2018-11"},
+        code="https://github.com/gsoh/VED", license_source="https://github.com/gsoh/VED/blob/master/LICENSE"),
+    "shenzhen_charging": _ondeck(
+        "shenzhen_charging", "Privacy-preserving collaborative battery fault warning for massive electric vehicles by heterogeneous data from charging stations",
+        "https://doi.org/10.17632/c7gg94tmvz.3", "https://doi.org/10.1038/s41467-025-67703-7", "CC BY 4.0",
+        "Privacy-preserving collaborative battery fault warning for massive electric vehicles by heterogeneous data from charging stations",
+        ["processed_data.xlsx", "processed_data_longer_than_30.xlsx", "Readme.txt"],
+        {"application": "EV (public charging)", "chemistry": "LFP, NMC, LMO, LCO, LP", "units": "18,531 charging sessions (no vehicle ID)", "span": "2020-09 to 2024-03"},
+        checksum_source="https://data.mendeley.com/public-api/datasets/c7gg94tmvz/files?folder_id=root&version=3"),
+    "tum_id3_2022": _ondeck(
+        "tum_id3_2022", "Quantifying the state of the art of electric powertrains in battery electric vehicles - Range, efficiency, and lifetime from component to system level of the Volkswagen ID.3",
+        "https://doi.org/10.14459/2022mp1656313", "https://doi.org/10.1016/j.etran.2022.100167", "CC BY 4.0",
+        "Quantifying the state of the art of electric powertrains in battery electric vehicles - Range, efficiency, and lifetime from component to system level of the Volkswagen ID.3",
+        ["Data/Tracks/**", "Data/value_definitions.csv", "Data.sha512"],
+        {"application": "EV (passenger car)", "chemistry": None, "units": "1 (same car as tumftm ID1)", "span": "2021-02 to 2021-12, 148 drives"},
+        license_source="https://mediatum.ub.tum.de/1656313",
+        checksum_source="https://dataserv.ub.tum.de/index.php/s/m1656313 (Data.sha512)"),
+    "brazil_star": _ondeck(
+        "brazil_star", "Brazil STAR Project Microgrid Monitoring Data",
+        "https://doi.org/10.5281/zenodo.3959739", None, "CC BY 4.0",
+        "Brazil STAR Project Microgrid Monitoring Data", ["Brazil_STAR_Microgrid_Monitoring.zip"],
+        {"application": "off-grid solar (household microgrids)", "chemistry": None, "units": 4, "span": "2018-01 to 2019-02"},
+        checksum_source="https://zenodo.org/api/records/3959739",
+        context=("Coventry University STAR Energy project page", "https://www.coventry.ac.uk/research/research-directories/completed-projects/2019/star-energy/")),
+    "tongji_rest": _ondeck(
+        "tongji_rest", "Cross-Domain Feature-Based Battery State-of-Health Estimation from Rest Period for Real-World Electric Vehicles",
+        "https://doi.org/10.5281/zenodo.16868546", "https://doi.org/10.1016/j.etran.2025.100471", "CC BY 4.0",
+        "Cross-Domain Feature-Based Battery State-of-Health Estimation from Rest Period for Real-World Electric Vehicles",
+        ["data.zip"], {"application": "EV", "chemistry": "NMC, LFP", "units": "4 field EVs (raw segments)", "span": "not read (pickled)"},
+        checksum_source="https://zenodo.org/api/records/16868546"),
+    "beijing_ev": _ondeck(
+        "beijing_ev", "Online estimation of driving range for battery electric vehicles based on SOC-segmented actual driving cycle",
+        "https://doi.org/10.17632/mm9rvfvmrb.3", "https://doi.org/10.1016/j.est.2022.104091", "CC BY 4.0",
+        "Online estimation of driving range for battery electric vehicles based on SOC-segmented actual driving cycle",
+        ["2018/**", "2019/**"], {"application": "EV (passenger car)", "chemistry": None, "units": 1, "span": "12 days, 2018-01 to 2019-08"},
+        checksum_source="https://data.mendeley.com/public-api/datasets/mm9rvfvmrb (folders/3)"),
+})
+
+# v1.2 (2026-10-13): the eleven candidates admitted to the collection. They keep their registry entries, without the
+# candidate status; CANDIDATES is left empty for the next intake.
+V12_ADMITTED = ["pnnl_epri", "beijing_ev", "brazil_star", "birds_cubesat", "ved", "shenzhen_charging", "tongji_rest",
+                "rise_conbat", "tum_id3_2022", "cell_to_pack", "stanford_ev"]
+for _name in V12_ADMITTED:
+    _entry_v12 = CANDIDATES.pop(_name)
+    _entry_v12.pop("status", None)
+    PACKAGES[_name] = _entry_v12
+
+# Related sources for releases without a paper (maintainer, 2026-10-16): shown as "related" next to the author citation.
+PACKAGES["cloverleaf"]["urls"]["context"] = ("https://www.pv-magazine.com/2022/01/21/economic-and-technical-feasibility-of-a-storage-as-a-"
+                                             "service-model-using-second-life-batteries-for-a-commercial-end-user/")
+PACKAGES["brazil_star"]["urls"]["paper"] = "Trindade et al. 2022, Environ. Sci. Proc. 15, 16"
+PACKAGES["brazil_star"]["urls"]["context"] = "https://doi.org/10.3390/environsciproc2022015016"
+PACKAGES["brazil_star"]["urls"]["project_page"] = "https://www.coventry.ac.uk/research/research-directories/completed-projects/2019/star-energy/"
+PACKAGES["pnnl_epri"]["urls"]["paper"] = "Crawford 2026, DOE OE peer-review poster"
+PACKAGES["fei_bus"]["urls"]["paper"] = None
+
+# v1.2 (maintainer, 2026-10-15): the 35th release, screened 2026-10-15 (reports/checks/v12/bilfinger2025_screen.md). Same
+# group and layout as bilfinger2024 and 2026: one "Download all" data.zip from the mediaTUM data server, so its
+# download is manual like theirs (the data-server route fetches single files, not data.zip).
+PACKAGES["bilfinger2025"] = {
+    **_entry("bilfinger2025", "Why we need a standardized SOH measurement procedure for EV battery packs",
+             "https://mediatum.ub.tum.de/1765567", "https://github.com/TUMFTM/nature_soh",
+             "https://doi.org/10.1038/s44406-025-00010-8", "CC BY 4.0",
+             "Why we need a standardized state of health measurement procedure for electric vehicle battery packs - "
+             "A proposal for energy- and capacity-based metrics/data", ["data.zip"]),
+    "license_source": "https://mediatum.ub.tum.de/1765567",
+    "derived_outputs": "may publish",
+    "checksum_source": "checksums.sha512 inside data.zip (publisher, zip-internal); mediaTUM 1765567",
+}
+PACKAGES["bilfinger2025"]["urls"]["dataset_doi"] = "https://doi.org/10.14459/2024mp1765567"
+PACKAGES["bilfinger2025"]["urls"]["preprint"] = "https://arxiv.org/abs/2508.15517"
 
 def metadata(package: str) -> dict:
     """Registry entry for an admitted package or a candidate."""

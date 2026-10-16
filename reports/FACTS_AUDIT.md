@@ -5,9 +5,14 @@ Each cell gives the status of the corresponding value in `fielddata/package_fact
 | Package | application | chemistry | units_released | cells_liion | cells_leadacid | cell_channels_measured | energy_mwh | energy_basis | span_unit_years | obs_hours | size_gb | files | fault_onset_timestamp | sentinels_documented |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | aitio | derived | stated | measured | not_in_release | derived | not_in_release | derived | derived | measured | not_in_release | measured | measured | stated | stated |
+| beijing_ev | derived | not_in_release | measured | not_in_release | not_in_release | not_in_release | measured | derived | measured | not_in_release | measured | measured | stated | stated |
 | bilfinger2024 | derived | stated | measured | derived | not_in_release | measured | stated | derived | measured | not_in_release | measured | measured | stated | stated |
+| bilfinger2025 | derived | stated | measured | derived | not_in_release | measured | stated | derived | measured | not_in_release | measured | measured | stated | stated |
 | bilfinger2026 | derived | stated | measured | derived | not_in_release | measured | stated | derived | measured | not_in_release | measured | measured | stated | stated |
+| birds_cubesat | derived | stated | measured | not_in_release | not_in_release | not_in_release | derived | derived | not_in_release | measured | measured | measured | stated | stated |
+| brazil_star | derived | not_in_release | measured | not_in_release | not_in_release | not_in_release | measured | derived | measured | not_in_release | measured | measured | stated | stated |
 | cao | derived | derived | measured | derived | not_in_release | derived | derived | derived | not_in_release | derived | measured | measured | stated | stated |
+| cell_to_pack | derived | stated | measured | measured | not_in_release | measured | measured | derived | not_in_release | measured | measured | measured | stated | stated |
 | changan | derived | stated | measured | derived | not_in_release | measured | derived | derived | derived | not_in_release | measured | measured | stated | stated |
 | cloverleaf | derived | derived | measured | not_in_release | not_in_release | not_in_release | derived | derived | measured | not_in_release | measured | measured | stated | stated |
 | deng | derived | stated | measured | derived | not_in_release | not_in_release | derived | derived | measured | not_in_release | measured | measured | stated | stated |
@@ -18,18 +23,26 @@ Each cell gives the status of the corresponding value in `fielddata/package_fact
 | li2026 | derived | stated | measured | derived | not_in_release | measured | derived | derived | not_in_release | stated | measured | measured | stated | stated |
 | m5bat-2023-04 | derived | stated | measured | derived | derived | not_in_release | derived | derived | measured | not_in_release | measured | measured | stated | stated |
 | m5bat-pbacid | derived | stated | measured | not_in_release | stated | not_in_release | stated | derived | measured | not_in_release | measured | measured | stated | stated |
+| pnnl_epri | derived | stated | measured | not_in_release | not_in_release | not_in_release | derived | derived | measured | not_in_release | measured | measured | stated | stated |
 | ppl | derived | stated | measured | stated | not_in_release | measured | stated | derived | measured | not_in_release | measured | measured | stated | stated |
+| rise_conbat | derived | not_in_release | measured | derived | not_in_release | open | stated | derived | measured | not_in_release | measured | measured | stated | stated |
 | rwth-android | derived | stated | measured | derived | not_in_release | derived | derived | derived | measured | not_in_release | measured | measured | stated | stated |
 | rwth-home | derived | stated | measured | stated | not_in_release | not_in_release | stated | derived | measured | not_in_release | measured | measured | stated | stated |
 | schaeffer | derived | stated | measured | derived | not_in_release | derived | derived | derived | measured | not_in_release | measured | measured | stated | stated |
+| shenzhen_charging | derived | stated | measured | not_in_release | not_in_release | not_in_release | not_in_release | derived | not_in_release | measured | measured | measured | stated | stated |
+| stanford_ev | derived | not_in_release | measured | measured | not_in_release | measured | measured | derived | measured | not_in_release | measured | measured | stated | stated |
+| tongji_rest | derived | stated | measured | measured | not_in_release | measured | measured | derived | measured | not_in_release | measured | measured | stated | stated |
 | tsukuba | derived | stated | measured | not_in_release | not_in_release | not_in_release | stated | derived | stated | not_in_release | measured | measured | stated | stated |
+| tum_id3_2022 | derived | not_in_release | measured | derived | not_in_release | measured | not_in_release | derived | measured | not_in_release | measured | measured | stated | stated |
 | tumftm | derived | stated | measured | derived | not_in_release | not_in_release | stated | derived | measured | not_in_release | measured | measured | stated | stated |
+| ved | derived | not_in_release | measured | not_in_release | not_in_release | not_in_release | stated | derived | measured | not_in_release | measured | measured | stated | stated |
 | xie | derived | stated | measured | derived | not_in_release | measured | not_in_release | derived | measured | not_in_release | measured | measured | stated | stated |
 | zhang2023 | derived | derived | measured | not_in_release | not_in_release | not_in_release | not_in_release | derived | not_in_release | measured | measured | measured | stated | stated |
 | zhou2026 | derived | stated | measured | derived | not_in_release | measured | stated | derived | measured | not_in_release | measured | measured | stated | stated |
 
 ## Open values
 
+- `rise_conbat.cell_channels_measured`: Cell files hold per-cell voltages for the modules reporting in each window; counting distinct cell channels needs a pass over the 12 windows. To close: 1-4 h: inspect the package-specific metadata named below.
 
 ## Cross-package overlap
 

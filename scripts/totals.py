@@ -33,8 +33,8 @@ def validate(rows: list[dict[str, str]]) -> None:
     required = {"package", "field", "value", "basis", "source", "note"}
     if not rows or set(rows[0]) != required:
         raise ValueError("package_facts.csv has the wrong columns")
-    if len(rows) != len(PACKAGES) * 14:
-        raise ValueError(f"package_facts.csv must contain 14 facts for each of {len(PACKAGES)} packages")
+    if len(rows) != len(PACKAGES) * 15:
+        raise ValueError(f"package_facts.csv must contain 15 facts for each of {len(PACKAGES)} packages")
     if {row["package"] for row in rows} != set(PACKAGES):
         raise ValueError("package_facts.csv packages do not match registry")
     if any(row["basis"] not in {"measured", "stated", "derived", "not_in_release", "open"} for row in rows):
@@ -59,6 +59,16 @@ def coverage(rows: list[dict[str, str]]) -> str:
 
 def packages(rows: list[dict[str, str]]) -> str:
     return ", ".join(sorted(row["package"] for row in rows if row["value"]))
+
+
+def energy_split(package: str, facts: dict[str, dict[str, str]]) -> dict[str, dict[str, str]]:
+    """A release's energy row by basis. A release with a split basis ("stated and computed", maintainer 2026-10-16:
+    pnnl_epri) has its two parts in the energy_split_* facts of reports/facts/<package>.json."""
+    basis = facts["energy_basis"]["value"]
+    if basis == "stated and computed":
+        extra = json.loads((ROOT / "reports" / "facts" / f"{package}.json").read_text(encoding="utf-8"))
+        return {part: {**facts["energy_mwh"], "value": str(extra[f"energy_split_{part}_mwh"]["value"])} for part in ("stated", "computed")}
+    return {basis: facts["energy_mwh"]} if basis in ("stated", "computed") else {}
 
 
 def total(rows: list[dict[str, str]]) -> Decimal:
@@ -101,15 +111,39 @@ def verification_counts(rows: list[dict[str, str]]) -> tuple[int, int, int, int,
     return len(physical), len(referenced_files), len(referenced_members), matches_files, matches_members
 
 
+# Research groups: v1.1 counted 17 (DESCRIPTOR.md abstract). Groups new in v1.2, one per entry (pnnl_epri counts as two,
+# PNNL and EPRI, maintainer 2026-10-13). tum_id3_2022 (TUM) and cell_to_pack (the deng release's group, BatICM) are existing.
+RESEARCH_GROUPS_V11 = 17
+RESEARCH_GROUPS_NEW_V12 = {
+    "PNNL": "pnnl_epri", "EPRI": "pnnl_epri", "Southwest Forestry University": "beijing_ev", "Coventry University": "brazil_star",
+    "Kyushu Institute of Technology": "birds_cubesat", "University of Michigan": "ved",
+    "Hong Kong Polytechnic University and Autosun": "shenzhen_charging", "Tongji University": "tongji_rest",
+    "RISE Research Institutes of Sweden": "rise_conbat", "Stanford University": "stanford_ev",
+}
+
+
+def charging_group(facts_dir) -> tuple[int, int]:
+    """Charging sessions and their fault labels: sessions are a separate group, not systems. Since 2026-10-13 the labels are
+    counted as battery faults (Table 3, per session, batteries not identified)."""
+    sessions = labels = 0
+    for path in sorted(facts_dir.glob("*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        sessions += int(data.get("charging_sessions", {}).get("value") or 0)
+        labels += int(data.get("charging_fault_labels", {}).get("value") or 0)
+    return sessions, labels
+
+
 # Releases whose units belong to more than one service class: units per class.
 # zhou2026: two NMC passenger cars and one LFP bus (doi:10.1038/s41560-026-02131-5, Supplementary Table 1, p. 16).
 MIXED_CLASSES = {"zhou2026": {"passenger EV": 2, "bus": 1}}
 
 
-def fault_totals() -> tuple[int, int]:
-    """Faults and batteries from the Total row of Table 3's Fault count section, checked against the rows above it."""
+def fault_totals(sessions: bool = False):
+    """Faults and batteries from the Total row of Table 3's Fault count section, checked against the rows above it.
+    A row whose batteries are not identified (shenzhen_charging, per-session labels without vehicle ID) adds faults only;
+    with sessions=True those faults are also returned, as a third value."""
     section = FAULTS.read_text(encoding="utf-8").split("## Fault count", 1)[1]
-    faults = batteries = 0
+    faults = batteries = unidentified = 0
     for line in section.splitlines():
         cells = [c.strip().strip("*").replace(",", "") for c in line.strip().strip("|").split("|")]
         if len(cells) < 3 or not cells[1].isdigit():
@@ -117,8 +151,12 @@ def fault_totals() -> tuple[int, int]:
         if cells[0] == "Total":
             if (faults, batteries) != (int(cells[1]), int(cells[2])):
                 raise SystemExit(f"Table 3 Total row {cells[1]}/{cells[2]} does not match its rows {faults}/{batteries}")
-            return faults, batteries
-        faults, batteries = faults + int(cells[1]), batteries + int(cells[2])
+            return (faults, batteries, unidentified) if sessions else (faults, batteries)
+        if cells[2].isdigit():
+            batteries += int(cells[2])
+        else:
+            unidentified += int(cells[1])
+        faults += int(cells[1])
     raise SystemExit("Table 3 has no Total row in its Fault count section")
 
 
@@ -132,11 +170,22 @@ def build() -> tuple[str, dict]:
     units = [facts[p]["units_released"] for p in sorted(facts)]
     bilfinger_overlap = int(json.loads((ROOT / "reports" / "facts" / "bilfinger2026.json").read_text(encoding="utf-8")).get("overlap_identifiers", {}).get("value") or 0)
     bilfinger_facts = json.loads((ROOT / "reports" / "facts" / "bilfinger2026.json").read_text(encoding="utf-8"))
-    # bilfinger2026's row counts all seven vehicles; two are also in bilfinger2024, so totals subtract them once
-    bilfinger_dup = {key: Decimal(str(bilfinger_facts.get(f"overlap_{key}", {}).get("value") or 0))
-                     for key in ["cells_liion", "cell_channels_measured", "energy_mwh", "span_unit_years"]}
+    # Dedup rule (fielddata/counting.py): a release whose row holds cells, channels, energy or time already counted under
+    # another release records them in overlap_* facts, and totals subtract them once. bilfinger2026 (the two bilfinger2024
+    # vehicles) and tum_id3_2022 (tumftm's ID1 cells) have them as of 2026-10-16.
+    bilfinger_dup = {key: Decimal(0) for key in ["cells_liion", "cell_channels_measured", "energy_mwh", "span_unit_years"]}
+    dedup_rows = []
+    for path in sorted((ROOT / "reports" / "facts").glob("*.json")):
+        extra = json.loads(path.read_text(encoding="utf-8"))
+        for key in bilfinger_dup:
+            value = (extra.get(f"overlap_{key}") or {}).get("value")
+            if value:
+                bilfinger_dup[key] += Decimal(str(value))
+                dedup_rows.append((path.stem, key, value))
     m5bat_overlap = int(json.loads((ROOT / "reports" / "facts" / "m5bat-2023-04.json").read_text(encoding="utf-8")).get("overlap_identifiers", {}).get("value") or 0)
-    units_total = total(units) - Decimal(overlap) - Decimal(bilfinger_overlap) - Decimal(m5bat_overlap)
+    # evbattery's row is net of the 49 vehicles it shares with zhang2023 (home zhang2023, 2026-10-16), so only the
+    # bilfinger and m5bat overlaps are subtracted here
+    units_total = total(units) - Decimal(bilfinger_overlap) - Decimal(m5bat_overlap)
     application_rows: dict[str, list[dict[str, str]]] = defaultdict(list)
     for package in sorted(facts):
         if package in MIXED_CLASSES:
@@ -152,8 +201,10 @@ def build() -> tuple[str, dict]:
     hours = [facts[p]["obs_hours"] for p in sorted(facts)]
     sizes = [facts[p]["size_gb"] for p in sorted(facts)]
     files = [facts[p]["files"] for p in sorted(facts)]
-    stated_energy = [facts[p]["energy_mwh"] for p in sorted(facts) if facts[p]["energy_basis"]["value"] == "stated"]
-    computed_energy = [facts[p]["energy_mwh"] for p in sorted(facts) if facts[p]["energy_basis"]["value"] == "computed"]
+    energy_parts = {p: energy_split(p, facts[p]) for p in sorted(facts)}
+    stated_energy = [parts["stated"] for parts in energy_parts.values() if "stated" in parts]
+    computed_energy = [parts["computed"] for parts in energy_parts.values() if "computed" in parts]
+    all_energy = [facts[p]["energy_mwh"] for p in sorted(facts) if energy_parts[p]]
     files_held, files_with_reference, members_with_reference, checksum_matches_files, checksum_matches_members = verification_counts(verify)
     loaders = loader_packages()
     sentinels_documented = sorted(package for package in facts if facts[package]["sentinels_documented"]["value"] == "yes")
@@ -181,8 +232,8 @@ def build() -> tuple[str, dict]:
         value = total(selected)
         note = ""
         if application == "passenger EV":
-            value -= Decimal(overlap) + Decimal(bilfinger_overlap)
-            note = "; overlap adjustments (EVBattery/Zhang, bilfinger2024/2026) measured 2"
+            value -= Decimal(bilfinger_overlap)
+            note = "; overlap adjustment (bilfinger2024/2026) measured 1; evbattery's row is net of its 49 zhang2023 vehicles"
         if application == "grid-scale storage":
             value -= Decimal(m5bat_overlap)
             note = "; overlap adjustment (m5bat-2023-04 Pb1 is m5bat-pbacid) derived 1"
@@ -201,7 +252,7 @@ def build() -> tuple[str, dict]:
         ("Measured cell channels", total(channels), channels, 0),
         ("Energy (stated basis), MWh", total(stated_energy), stated_energy, 5),
         ("Energy (computed basis), MWh", total(computed_energy), computed_energy, 5),
-        ("Energy, all packages with a value, MWh", total(stated_energy) + total(computed_energy), stated_energy + computed_energy, 5),
+        ("Energy, all packages with a value, MWh", total(stated_energy) + total(computed_energy), all_energy, 5),
         ("Released unit-years", total(spans), spans, 3),
         ("Observation-hours", total(hours), hours, 1),
         ("Held size, decimal GB", total(sizes), sizes, 3),
@@ -216,8 +267,15 @@ def build() -> tuple[str, dict]:
     lines.append(f"| Archive members with publisher-checksum references | {members_with_reference:,} | verification log | measured 1, stated 0, derived 0, not_in_release 0, open 0 |")
     lines.append(f"| Publisher-checksum matches: physical files | {checksum_matches_files:,} | verification log | measured 1, stated 0, derived 0, not_in_release 0, open 0 |")
     lines.append(f"| Publisher-checksum matches: archive members | {checksum_matches_members:,} | verification log | measured 1, stated 0, derived 0, not_in_release 0, open 0 |")
-    faults, fault_batteries = fault_totals()
-    lines.append(f"| Faults (Table 3) | {faults:,} | in {fault_batteries:,} batteries | from docs/descriptor/TABLE3_faults.md |")
+    faults, fault_batteries, fault_sessions = fault_totals(sessions=True)
+    sessions, session_labels = charging_group(ROOT / "reports" / "facts")
+    if fault_sessions != session_labels:
+        raise SystemExit(f"Table 3 counts {fault_sessions} per-session faults, the facts {session_labels} labelled sessions")
+    lines.append(f"| Faults (Table 3) | {faults:,} | {faults - fault_sessions:,} in {fault_batteries:,} batteries, plus {fault_sessions:,} fault-labelled charging sessions without vehicle ID (shenzhen_charging) | from docs/descriptor/TABLE3_faults.md |")
+    research_groups = RESEARCH_GROUPS_V11 + len(RESEARCH_GROUPS_NEW_V12)
+    lines.append(f"| Charging sessions (separate group, not systems) | {sessions:,} | shenzhen_charging | measured 1 |")
+    lines.append(f"| Fault-labelled charging sessions (in the faults above) | {session_labels:,} | shenzhen_charging | measured 1 |")
+    lines.append(f"| Research groups | {research_groups} | {RESEARCH_GROUPS_V11} in v1.1 plus {', '.join(RESEARCH_GROUPS_NEW_V12)} | stated |")
     lines.append(f"| Packages with documented sentinels | {len(sentinels_documented):,} | {', '.join(sentinels_documented)} | stated {len(sentinels_documented)} |")
 
     data = {
@@ -228,11 +286,14 @@ def build() -> tuple[str, dict]:
         "energy_stated_mwh": float(stated_total), "energy_stated_packages": packages(stated_energy),
         "energy_computed_mwh": float(total(computed_energy)), "energy_computed_packages": packages(computed_energy),
         "energy_total_mwh": float(stated_total + total(computed_energy)),
-        "energy_total_package_count": len(stated_energy) + len(computed_energy),
+        "energy_total_package_count": len(all_energy),
         "units_by_class": units_by_class,
         "unit_years": float(spans_total), "unit_years_packages": packages(spans),
         "obs_hours": float(total(hours)), "obs_hours_packages": packages(hours),
-        "faults": faults, "fault_batteries": fault_batteries,
+        "faults": faults, "fault_batteries": fault_batteries, "faults_in_batteries": faults - fault_sessions,
+        "faults_session_labels": fault_sessions, "faults_session_labels_package": "shenzhen_charging",
+        "faults_session_labels_note": "per-session fault labels without vehicle ID, batteries not identified",
+        "charging_sessions": sessions, "charging_fault_labels": session_labels, "research_groups": research_groups,
         "size_gb": float(total(sizes)), "files_held": files_held, "files_released": float(total(files)),
         "files_with_reference": files_with_reference,
         "members_with_reference": members_with_reference,

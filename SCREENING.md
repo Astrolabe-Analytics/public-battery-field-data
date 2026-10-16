@@ -19,23 +19,11 @@ To suggest a dataset, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Of the Battery Data Commons field datasets, these are already in our collection: BBOXX off-grid solar (aitio), EV pack AC-charging diagnostics (bilfinger2026), Beihang EV fault diagnosis (cao), Changan new energy vehicles (changan), BAIC EU500 on-road charging (deng), EVBattery (evbattery), M5BAT grid storage (m5bat-2023-04), Android smartphone batteries (rwth-android), residential home storage (rwth-home), 28 LFP battery systems (schaeffer), VW ID.3 and CUPRA Born UDS data (tumftm), EV charging and fault data (zhang2023).
 
+Added in v1.2: PNNL/EPRI grid battery energy storage (pnnl_epri), Stanford passenger EV BMS (stanford_ev), LFP and NMC cell-to-pack field packs (cell_to_pack), RISE second-life BESS (rise_conbat), BIRDS CubeSat (birds_cubesat), Vehicle Energy Dataset (ved), Shenzhen public EV charging sessions (shenzhen_charging), VW ID.3 TUM 2022 (tum_id3_2022), Brazil STAR microgrid (brazil_star), Tongji EV rest periods (tongji_rest), Beijing EV (beijing_ev) and the TUM EV pack state-of-health procedure (bilfinger2025, admitted after screening on 2026-10-15).
+
 ## On deck (help welcome)
 
-These qualify. We plan to add them in a future release. If you know one of them well, we would like to hear from you.
-
-| Dataset | Link | Why |
-|---|---|---|
-| PNNL/EPRI grid battery energy storage | [https://zenodo.org/records/22947521](https://zenodo.org/records/22947521) | 12 grid storage systems with voltage, current, temperature and SOC over time. CC BY 4.0. One of the 12 is the same system as our ppl package, so we count it once. Accepted for the next release, v1.2. |
-| Stanford passenger EV BMS | [https://doi.org/10.25740/yx490wc6642](https://doi.org/10.25740/yx490wc6642) | One passenger EV from Sep 2021 to Apr 2025, with cell and pack voltage, current, SOC, and module and pack temperature. 18 GB. The license is CC BY-NC-ND, so we will publish a loader that reads the original files and no converted or derived data files. |
-| LFP and NMC cell-to-pack lab and field aging | [https://zenodo.org/records/20132842](https://zenodo.org/records/20132842) | 16 grid storage packs in the field, plus lab cells and packs from the same batches. CC BY 4.0. We will take the lab parts too. |
-| RISE second-life BESS (Conbat) | [https://zenodo.org/records/17287096](https://zenodo.org/records/17287096) | 106 second-life VW Passat modules from 11 cars, in containers at 3 sites, Apr 2023 to Nov 2024. Cell voltage, module voltage and temperature, string current and AC power at 1-minute rows. CC BY 4.0. The record does not describe the use case in words. |
-| BIRDS CubeSat | [https://doi.org/10.17632/8kp25ycf63.1](https://doi.org/10.17632/8kp25ycf63.1) | Battery voltage, current and temperature from 4 small satellites in orbit, from deployment to end of life, recorded during ground station passes. CC BY 4.0. A new application for us: space. |
-| VED (Vehicle Energy Dataset) | [https://github.com/gsoh/VED](https://github.com/gsoh/VED) | 27 plug-in hybrid and electric vehicles in Ann Arbor, 2017 to 2018, with pack current, voltage and SOC on trips. Apache 2.0. We will take the whole release, including the 356 combustion and hybrid vehicles. |
-| Shenzhen public EV charging (Yang/Autosun) | [https://doi.org/10.17632/c7gg94tmvz.3](https://doi.org/10.17632/c7gg94tmvz.3) | Real charging voltage, current and SOC at 1 minute for 10,154 EVs, 2020 to 2023, each session labeled normal or fault by the charger. CC BY 4.0. There is no vehicle ID, so each charging session is a separate snapshot and one battery cannot be followed over time. |
-| VW ID.3 (TUM 2022) | [https://doi.org/10.14459/2022mp1656313](https://doi.org/10.14459/2022mp1656313) | One ID.3, 148 drives up to Dec 2021, with pack current, voltage, temperature and SOC. CC BY 4.0. 2.8 GB. |
-| Brazil STAR microgrid | [https://zenodo.org/records/3959739](https://zenodo.org/records/3959739) | 4 off-grid homes in Amazonas, Jan 2018 to Mar 2019, with battery voltage, current, SOC, Ah and cycle counts. CC BY 4.0. |
-| Tongji EV rest periods | [https://zenodo.org/records/16868546](https://zenodo.org/records/16868546) | Raw cell voltage, pack current and mean temperature for 4 field EVs, and derived features for about 80 more. CC BY 4.0. |
-| Beijing EV | [https://doi.org/10.17632/mm9rvfvmrb.3](https://doi.org/10.17632/mm9rvfvmrb.3) | One battery EV over 12 days in 2018 and 2019, with pack voltage, current and SOC at about 10 seconds. CC BY 4.0. |
+None at present. The eleven datasets that were on deck, and Bilfinger 2025, screened later, were added in v1.2 and are listed above. Suggestions are welcome, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Adjacent, maybe later
 

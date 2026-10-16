@@ -1,0 +1,89 @@
+{
+  "package": "ved",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Neither the release nor its paper or record states the cell chemistry."
+    },
+    "units_released": {
+      "value": 28,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('ved')",
+      "note": "Rule: the 28 vehicles with battery signals: the 27 of the PHEV and EV workbook and vehicle 439, listed as an HEV but carrying battery signals (maintainer, 2026-10-13); the other 356 are held but not units. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The release gives pack- or system-level signals and no cell topology."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No individual cell-voltage channels are released."
+    },
+    "energy_mwh": {
+      "value": 0.072,
+      "basis": "stated",
+      "source": "https://github.com/gsoh/VED, README ('2013 Nissan Leaf with an advertised battery capacity of 24 kWh')",
+      "note": "The 3 EVs only. The 24 PHEVs and vehicle 439 have no stated rating; 13 PHEVs are computable from the data (reports/checks/v12/ved_energy.csv) but are not added, one basis per release."
+    },
+    "energy_basis": {
+      "value": "stated",
+      "basis": "derived",
+      "source": "energy_mwh uses the stated basis",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 23.9356285022387,
+      "basis": "measured",
+      "source": "scripts/checks/ondeck_deltas.py -> reports/checks/v12/ved_deltas.json",
+      "note": "28 units: the 27 PHEV and EV and vehicle 439 (maintainer, 2026-10-13); unit-years is first to last DayNum per vehicle, summed; 356 ICE and HEV vehicles are held but not units"
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Calendar spans are measurable, so observation-hours are not used."
+    },
+    "size_gb": {
+      "value": 0.176432025,
+      "basis": "measured",
+      "source": "scripts/facts/ved.py",
+      "note": ""
+    },
+    "files": {
+      "value": 6,
+      "basis": "measured",
+      "source": "scripts/facts/ved.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://github.com/gsoh/VED; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

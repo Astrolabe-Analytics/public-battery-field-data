@@ -34,6 +34,7 @@ CLASSES = {
     "distributed storage": ("Distributed storage", "#CC79A7", "v"),
     "consumer electronics": ("Consumer electronics", "#56B4E9", "h"),
     "industrial and robotics": ("Industrial and robotics", "#000000", "P"),
+    "satellite": ("Satellite", "#F0E442", "X"),  # v1.2, birds_cubesat (maintainer, 2026-10-13; label without "provisional" since 2026-10-16)
 }
 INK, GRID, MUTED = "#000000", "#dddddd", "#555555"
 

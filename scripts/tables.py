@@ -6,6 +6,7 @@ Outputs: docs/descriptor/TABLE2_packages.md, docs/descriptor/TABLE4_release_vs_p
 from __future__ import annotations
 
 import csv
+import json
 import sys
 from pathlib import Path
 
@@ -13,6 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from fielddata import counting  # noqa: E402
 from fielddata.registry import PACKAGES  # noqa: E402
 
 FACTS = ROOT / "fielddata" / "package_facts.csv"
@@ -38,6 +40,9 @@ _CHEM_TOKENS = [
     (r"NMC-class", "NMC-class"), (r"(?<!LMO/)\bNMC\b(?!-class)|\bNCM\b", "NMC"), (r"\bNCA\b", "NCA"), (r"\bLFP\b", "LFP"),
     (r"\bLMO/NMC\b", "LMO/NMC"), (r"\bLMO\b(?!/NMC)", "LMO"),
     (r"\bLTO\b", "LTO"), (r"lead-acid|\bOCSM\b|\bOPzV\b", "lead-acid"), (r"lithium-ion|Li-ion|Li-poly", "Li-ion"),
+    (r"\bLCO\b", "LCO"), (r"\bNiMH\b", "NiMH"), (r"vanadium flow", "vanadium flow"),
+    # shenzhen_charging's LiPo (Yang et al. 2025). Which code holds it is in docs/DECISIONS.md S2 (taken as 05, the Readme says 07)
+    (r"\bLP\b", "lithium polymer (cell format, chemistry not stated)"),
 ]
 
 
@@ -93,8 +98,11 @@ COUNTRY = {
     "flashbattery-agv": "Italy", "zhang2023": "China", "bilfinger2024": "Germany", "fei_bus": "not stated",
     "m5bat-2023-04": "Germany", "rwth-home": "Germany", "schaeffer": "not stated", "cao": "China",
     "changan": "China", "ku_leuven_bev": "Belgium", "rwth-android": "Germany", "tumftm": "Germany",
-    "bilfinger2026": "Germany", "li2026": "not stated", "m5bat-pbacid": "Germany", "ppl": "United States",
+    "bilfinger2026": "Germany", "bilfinger2025": "Germany", "li2026": "not stated", "m5bat-pbacid": "Germany", "ppl": "United States",
     "xie": "not stated", "zhou2026": "China", "aitio": "sub-Saharan Africa",
+    "pnnl_epri": "United States", "beijing_ev": "China", "brazil_star": "Brazil", "birds_cubesat": "in orbit (ISS orbit)",
+    "ved": "United States", "shenzhen_charging": "China", "tongji_rest": "China", "rise_conbat": "Sweden",
+    "tum_id3_2022": "Germany", "cell_to_pack": "not stated", "stanford_ev": "United States",
 }
 # Paper-versus-release differences shown in Table 2 (agreed 2026-10-01); the full comparison is Table 4 in the repo.
 # Maps (package, Table 2 field) to the paper_claims.csv field that holds the paper's figure.
@@ -110,10 +118,15 @@ def table2(facts) -> str:
         "Service time is unit-years where the release has timestamps (calendar dates, except changan, whose timestamps the publisher made relative, so its span is time elapsed, not a calendar period), "
         "otherwise a lower bound on observation-hours (h). "
         "Energy basis: stated means a rating from the paper or record; computed means from stated configuration or from the released data. "
+        "§ pnnl_epri: 23.87 MWh stated (eight rated systems) and 40 MWh computed (EPRI_LFP3, from the data's peak power at the poster's 10 MW); totals count each part under its basis. "
         "Chemistry: NMC-class is inferred from cell voltage (NMC, NCA and LMO cannot be told apart this way); Li-ion means the cathode chemistry is not stated; "
         "lead-acid includes flooded, gel and valve-regulated designs. How each value was established is in the facts table.",
         "",
         "Where a release's unit or cell count differs from its paper, the release value is shown with the paper's in brackets.",
+        "",
+        "Units are each release's gross count. † marks a release that shares some units with another release. The totals count each unit once. "
+        + " ".join(f"{k}: {v}" for k, v in counting.SHARED.items())
+        + " shenzhen_charging has no vehicle identifier, so it shows charging sessions, which are not counted as systems.",
         "",
         "| Package | Service class | Country | Chemistry | Units | Cells | Service time | Energy, MWh (basis) | Size, GB |",
         "|---|---|---|---|---|---|---|---|---|",
@@ -125,6 +138,14 @@ def table2(facts) -> str:
             return ""
         claim = claims[(package, PAPER_IN_TABLE2[(package, field)])]
         return f" (paper: {fmt(float(claim['paper_value']), field)})"
+
+    def units_cell(package, v):
+        extra = json.loads((ROOT / "reports" / "facts" / f"{package}.json").read_text(encoding="utf-8"))
+        if extra.get("charging_sessions"):
+            return f"{fmt(num(extra['charging_sessions']['value']), 'units_released')} charging sessions"
+        gross = num(extra["units_gross"]["value"]) if "units_gross" in extra else v["units_released"]
+        mark = " †" if package in counting.SHARED else ""
+        return f"{fmt(gross, 'units_released')}{mark}{paper_note(package, 'units_released')}"
 
     for package in release_order(facts):
         f = facts[package]
@@ -144,10 +165,12 @@ def table2(facts) -> str:
         energy = "not available"
         if v.get("energy_mwh") is not None:
             energy = f"{fmt(v['energy_mwh'], 'energy_mwh')} ({f['energy_basis']['value']})"
+            if f["energy_basis"]["value"] == "stated and computed":
+                energy += " §"
         chemistry = chemistry_label(f["chemistry"]["value"])
         lines.append(
             f"| {package} | {f['application']['value']} | {COUNTRY[package]} | {chemistry} | "
-            f"{fmt(v['units_released'], 'units_released')}{paper_note(package, 'units_released')} | "
+            f"{units_cell(package, v)} | "
             f"{'; '.join(cells) or 'not in release'} | {service} | {energy} | {fmt(v['size_gb'], 'size_gb')} |"
         )
     lines += ["", "Totals, with shared units counted once, are in `reports/TOTALS.md`.", ""]
@@ -195,7 +218,7 @@ def table4(facts) -> str:
         "",
         f"Summary: {len(claims)} comparisons over {len(covered)} packages; {counts['match']} match, {counts['differs']} differ, "
         f"{counts['not in release']} not in release. "
-        + (f"No paper count to compare for: {', '.join(missing)} (data record only)." if missing else ""),
+        + (f"No paper count to compare for: {', '.join(missing)} (no paper)." if missing else ""),
         "",
     ]
     return "\n".join(lines)
@@ -249,12 +272,11 @@ CODE_IN_DEPOSIT = {"tsukuba": "in deposit"}
 # References that are not journal papers with a first author.
 OTHER_REFERENCES = {
     "m5bat-2023-04": ("Evaluation operation report, RWTH Publications", "https://doi.org/10.18154/RWTH-2024-04895"),
-    "cloverleaf": ("data record only", None),
-    "fei_bus": ("data record only", None),
 }
 _HOSTS = [("zenodo", "Zenodo"), ("figshare", "figshare"), ("10.5287/bodleian", "Oxford ORA"), ("ora.ox.ac.uk", "Oxford ORA"), ("10.6084", "figshare"), ("mediatum", "mediaTUM"),
           ("github", "GitHub"), ("changan", "Changan portal"), ("10.17632", "Mendeley Data"), ("mendeley", "Mendeley Data"),
-          ("10.48804", "KU Leuven RDR"), ("publications.rwth", "RWTH Publications"),
+          ("10.48804", "KU Leuven RDR"), ("publications.rwth", "RWTH Publications"), ("10.14459", "mediaTUM"),
+          ("10.25740", "Stanford Digital Repository"), ("purl.stanford", "Stanford Digital Repository"),
           ("1drv.ms", "OneDrive")]
 
 
@@ -282,7 +304,8 @@ def table1() -> str:
         urls = PACKAGES[package]["urls"]
         if package in cites:
             c = cites[package]
-            authors = c["first_author"] + (" et al." if c["et_al"] == "yes" else (" " if c["et_al"].startswith("and ") else ", ") + c["et_al"])
+            authors = c["first_author"] + ("" if c["et_al"] in ("", "no") else " et al." if c["et_al"] == "yes"
+                                           else (" " if c["et_al"].startswith("and ") else ", ") + c["et_al"])
             reference = f"[{authors}, {c['venue']}]({c['doi_or_url']})"
         else:
             text, link = OTHER_REFERENCES[package]

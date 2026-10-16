@@ -18,6 +18,7 @@ This table includes only fault or abnormality kinds that can be traced to a rele
 | schaeffer | Battery systems returned for warranty claims | Reported in paper; not released as a fault label | 28 released systems; paper discusses 29 analyzed systems | [Schaeffer et al. (2024), p. 3](https://doi.org/10.1016/j.xcrp.2024.102258) | no |
 | aitio | Capacity loss, diagnosed by the operator at repair (lead-acid) | Released per-battery repair label (STILL_ALIVE = FALSE, with the repair date) | 491 batteries; the authors chose a roughly balanced 491 failed / 536 healthy set, so the split is not a fleet failure rate | `meta_data.csv`; [Aitio and Howey (2021), accepted manuscript p. 22, step 3](https://doi.org/10.1016/j.joule.2021.11.006) | no (repair date, not onset) |
 | m5bat-pbacid | Defective cell with elevated internal resistance, recurring protection shutdowns, and cell bypass on 10 August 2023 | Reported in paper; not released as a fault label | One cell bypassed; string changed from 300S to 299S | [Zurmühlen, Koltermann and Sauer (2026), pp. 4 and 10](https://doi.org/10.3390/en19174141) | no |
+| bilfinger2025 | Defective cell limiting the overall battery pack performance (second VW ID.3) | Reported in paper; the release names the recording `VW_ID3_JB_8A_CEE7_GB_2024_cell_defect` but labels no cell | One vehicle, one defective cell | [Bilfinger et al. (2025), arXiv 2508.15517v1 p. 13 and p. 11, Fig. 4d](https://doi.org/10.1038/s44406-025-00010-8) | no |
 | ppl | Planned precautionary outages following prior incidents or for construction personnel safety | Reported in paper; not released as an event label | — | [Kyeremeh et al. (2026), p. 8](https://doi.org/10.1109/ACCESS.2026.3693606) | no |
 | ppl | Unplanned outages associated with thermal management, power conversion, and BMS failure modes | Reported in paper; not released as event labels | — | [Kyeremeh et al. (2026), p. 12](https://doi.org/10.1109/ACCESS.2026.3693606) | no |
 | m5bat-2023-04 | Pb3 cell-voltage measurement problems; inspection found no defective cell | Reported in operating report; not released as an event label | 8–18 April 2023 | [M5BAT Evaluation Operation Report 04/2023, p. 5](https://doi.org/10.18154/RWTH-2024-04895) | no |
@@ -28,18 +29,21 @@ This table includes only fault or abnormality kinds that can be traced to a rele
 | zhou2026 | Cell aging knee and accelerated degradation beyond approximately 240,000 km | Reported in paper; not released as a fault label | Demonstrated EV cell and fleet-level weakest-cell trends | [Zhou et al. (2026), pp. 4–6](https://doi.org/10.1038/s41560-026-02131-5) | no |
 | tumftm | Company vehicle intentionally discharged until shutdown for experimental purposes | Reported in paper; not released as an event label | Repeated events for vehicle ID1 | [Schreiber et al. (2025), p. 10](https://doi.org/10.1016/j.etran.2025.100518) | no |
 | li2026 | Internal short circuit, external short circuit, poor connection, self-discharge, and inconsistency faults | Reported in paper as laboratory-emulated fault classes; not released as labels in the held field-data archive | Five fault types, each graded at three severity levels | [Li et al. (2026), p. 4 and Supplementary Table S2](https://doi.org/10.1016/j.xcrp.2026.103210) | no |
+| shenzhen_charging | Faults reported by engineering personnel, such as thermal runaway, unbalanced cell voltages and short circuit | Released per-session binary label (label 1), shared with the next kind; the kind is not released | 5,680 charging sessions (both kinds) | `processed_data.xlsx`, column `label`; `Readme.txt` | no |
+| shenzhen_charging | Excessively high temperature causing disconnection by the charging station | Released per-session binary label (label 1), shared with the previous kind; the kind is not released | in the 5,680 above | `Readme.txt` | no |
 
 ## Label-file audit notes
 
 - The Xie processed cell table contains 5,248 rows: 5,132 label 5 rows plus the 116 fault-labeled cells above. The released `dataProcess.ipynb` maps cases 1–4 to the four named fault classes and case 5 to normal. Label 5 is the non-fault reference class and is not a fault-kind row.
 - The Cao sheets contain 473 binary-labeled vehicles: 61 label 1 and 412 label 0. The release does not map those binary labels to TR, EL, ISC, or EA.
 - The Zhang label CSVs contain 348 rows: 55 label 1 and 293 label 0. One labeled car (battery_brand2 car 230, label 0) has no snippets, so 347 vehicles carry data, which is the released unit count in `fielddata/package_facts.csv` and the paper's count. The publisher removed abnormal data at or near battery failures (https://doi.org/10.1038/s41467-023-41226-5, p. 3), so abnormal vehicles hold only pre-failure history.
+- The shenzhen_charging workbook processed_data.xlsx contains 31,449 distinct charging sessions: 5,680 label 1 and 25,769 label 0. Its Readme describes the labelled sessions as battery faults of two kinds (reported by engineering personnel, or over-temperature disconnection by the station) but does not release the kind. The release has no vehicle identifier, so labelled sessions cannot be assigned to batteries.
 - None of these label tables contains an onset-time field. Ordinary telemetry indices or timestamps do not constitute a fault-onset annotation.
 - The EVBattery label tables list 465 cars: 48 label 1 and 417 label 0, among the 464 cars with snippets. Dataset 3 is the same fleet as zhang2023 brand 2. All 49 vehicles are matched by content (`reports/facts/_cache/zhang2023_evbattery_pairs.json`: 44 by identical snippets, 5 by tolerance matching with agreeing charging-session numbers), and labels agree for all 49: the 16 abnormal vehicles in each release are the same 16 vehicles.
 
 ## Fault count
 
-Faults are counted per faulty cell where the release labels cells (xie) and per battery otherwise; each battery (vehicle, device or system) is counted once.
+Faults are counted per faulty cell where the release labels cells (xie) and per battery otherwise; each battery (vehicle, device or system) is counted once. One exception: shenzhen_charging releases no vehicle identifier, so each fault-labelled charging session counts once and its batteries are not identified.
 
 | Package | Faults | Batteries | Basis |
 |---|---:|---:|---|
@@ -49,8 +53,10 @@ Faults are counted per faulty cell where the release labels cells (xie) and per 
 | evbattery | 32 | 32 | 48 vehicles labeled abnormal, less the 16 that are the same vehicles as zhang2023 brand 2. |
 | schaeffer | 28 | 28 | Systems returned to the manufacturer under warranty (all released systems). |
 | m5bat-pbacid | 1 | 1 | The string with the defective cell bypassed on 10 August 2023. |
+| bilfinger2025 | 1 | 1 | The second VW ID.3, whose defective cell limits the pack (paper p. 13 of arXiv 2508.15517v1); reported by the authors, one fault per battery because the release does not say which cell. |
 | aitio | 491 | 491 | Batteries that entered repair for capacity loss, diagnosed by the operator at repair (lead-acid). The authors chose the roughly balanced 491/536 split; it is not a fleet failure rate. |
-| **Total** | **784** | **751** | 755 faults in 722 batteries from released labels, 29 reported by the authors. |
+| shenzhen_charging | 5,680 | not identified | Charging sessions labelled faulty (label 1), of the two kinds the Readme describes. No vehicle identifier, so counted per session (maintainer, 2026-10-13). To be separated by kind and per battery in later work. |
+| **Total** | **6,465** | **752** | 785 faults in 752 batteries (755 in 722 from released labels, 30 reported by the authors), plus 5,680 fault-labelled charging sessions from one release without vehicle identifiers, whose batteries are not identified. |
 
 Not counted, because they are temporary events, data or measurement artifacts, or not faults of a battery:
 

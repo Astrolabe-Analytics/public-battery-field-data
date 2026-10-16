@@ -1,0 +1,89 @@
+{
+  "package": "brazil_star",
+  "facts": {
+    "application": {
+      "value": "distributed storage",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": "Off-grid household solar and battery systems, classed with aitio's off-grid systems (maintainer, 2026-10-13)."
+    },
+    "chemistry": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Neither the release nor its paper or record states the cell chemistry."
+    },
+    "units_released": {
+      "value": 4,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('brazil_star')",
+      "note": "Rule: one battery per household. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The release gives pack- or system-level signals and no cell topology."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No individual cell-voltage channels are released."
+    },
+    "energy_mwh": {
+      "value": 0.0012453819210143473,
+      "basis": "measured",
+      "source": "scripts/checks/v12_energy.py -> reports/checks/v12/brazil_star_energy.csv",
+      "note": "Present usable energy computed from the data: coulomb counting over runs of at least 40 points of SOC with no gap over 300 s, ampere-hours per 100 percent SOC times mean pack voltage, median per unit, summed. STAR-A only: the other three households never swing 40 percent SOC."
+    },
+    "energy_basis": {
+      "value": "computed",
+      "basis": "derived",
+      "source": "energy_mwh is computed from the released data",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 2.790441763632215,
+      "basis": "measured",
+      "source": "scripts/checks/ondeck_deltas.py -> reports/checks/v12/brazil_star_deltas.json",
+      "note": "unit-years is first to last valid battery time per household (clock-reset times left out), summed; PV Battery_state 2 (Fault) is the charge controller's state, not a battery fault label, so faults stay 0"
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Calendar spans are measurable, so observation-hours are not used."
+    },
+    "size_gb": {
+      "value": 0.006674556,
+      "basis": "measured",
+      "source": "scripts/facts/brazil_star.py",
+      "note": ""
+    },
+    "files": {
+      "value": 1,
+      "basis": "measured",
+      "source": "scripts/facts/brazil_star.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.5281/zenodo.3959739; public data record and released documentation state no sentinel convention",
+      "note": "Observed, not documented: battery times reset to 1969-12-31 20:00 and 1987, SOC outside 0 to 1000 and currents above 32,767 mA (unsigned 16-bit); clean=True masks the times and SOC values (fielddata/loaders/brazil_star_SCHEMA.md)."
+    }
+  }
+}

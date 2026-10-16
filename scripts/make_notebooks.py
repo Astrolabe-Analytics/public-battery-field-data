@@ -56,6 +56,16 @@ SPECS = {
         plot="ax = frame.plot(x='time_h', y='U', legend=False, figsize=(7, 3.5))\nax.set_xlabel('elapsed time (h)')\nax.set_ylabel('pack voltage (V)')\nplt.show()",
         plot_note="Pack voltage rises through the charge, the shape the paper's differential voltage analysis starts from.",
     ),
+    "bilfinger2025": dict(
+        title="Bilfinger 2025 standard state-of-health charging recordings",
+        intro="This notebook lists the files in the mediaTUM release, opens one Tesla Model Y charging recording as released, and plots its pack voltage. It makes no diagnosis.",
+        systems_note="Each row is one released file, with the vehicle it belongs to: two VW ID.3 (the second, file code GB, has a defective cell), five CUPRA Born, a Tesla Model 3, two Porsche Taycan and two Tesla Model Y. The first ID.3, the Model 3 and the five CUPRA Born are vehicles of bilfinger2024 and bilfinger2026 and count once in the collection totals. The four VW cell files are laboratory reference curves, not field units.",
+        load="frame = load('bilfinger2025', unit='Tesla_Model_Y_JB_8A_CEE7_MI_2025')",
+        load_note="The recording is one slow AC charge of a Tesla Model Y. Column order differs between files, so columns are selected by name.",
+        cols="['U', 'I', 'SOC']",
+        plot="ax = frame['U'].plot(legend=False, figsize=(7, 3.5))\nax.set_xlabel('row')\nax.set_ylabel('pack voltage (V)')\nplt.show()",
+        plot_note="Pack voltage rises through the slow charge, the measurement the paper proposes as a standard.",
+    ),
     "changan": dict(
         title="Changan 300-vehicle raw telemetry",
         intro="This notebook lists the 300 vehicle files inside the split archive, streams the first 20,000 rows of one vehicle without unpacking the archive, and plots pack voltage. It makes no diagnosis.",
@@ -216,6 +226,107 @@ SPECS = {
         plot="ax = frame['SOC'].resample('1D').median().plot(figsize=(7, 3.5), style='.', color='0.4')\nax.set_xlabel('')\nax.set_ylabel('SOC (%, daily median)')\nplt.show()",
         plot_note="Daily median SOC of vehicle45 over nearly three years of operation, with gaps where the vehicle did not report.",
     ),
+    # v1.2
+    "pnnl_epri": dict(
+        title="PNNL and EPRI grid-scale battery systems",
+        intro="This notebook lists the 12 released systems, loads the battery DC meter of one system, and plots its SOC. It makes no diagnosis.",
+        systems_note="Each row is one system, one .feather file. EPRI_NMC2 is the same system as the ppl release and is counted once, under ppl. The authors normalised power and current by ratings they do not release.",
+        load="frame = load('pnnl_epri', unit='ENW', meter='PDC', columns=['Voltage', 'Current', 'SOC', 'Power'])",
+        load_note="ENW's battery DC meter over 1,431 hours of elapsed time. Power and current are C-rates (1/h), voltage is per cell, and SOC is a fraction.",
+        cols="['Voltage', 'Current', 'SOC', 'Power']",
+        plot="ax = frame.plot(x='HoursElapsed', y='SOC', figsize=(7, 3.5), lw=0.5, legend=False)\nax.set_xlabel('hours elapsed')\nax.set_ylabel('SOC (fraction)')\nplt.show()",
+        plot_note="Over ENW's 1,431 hours SOC moves between 0.05 and 0.96, with a median of 0.71.",
+    ),
+    "beijing_ev": dict(
+        title="Beijing battery electric vehicle",
+        intro="This notebook lists the 12 released days of one car, loads one day, and plots pack voltage. It makes no diagnosis.",
+        systems_note="Each row is one day of the same car, one workbook, with its first and last time and the odometer at the start and end of the day.",
+        load="frame = load('beijing_ev', unit='2018-01-17')",
+        load_note="17 January 2018, one row about every 10 s. Time is a yyyymmddHHMMSS integer, as released.",
+        cols="['speed', 'voltage', 'current', 'soc']",
+        plot="ax = frame['voltage'].plot(figsize=(7, 3.5), lw=0.6)\nax.set_xlabel('row')\nax.set_ylabel('pack voltage (V)')\nplt.show()",
+        plot_note="Over the day pack voltage ranges from 310 to 372 V while SOC ranges from 100 down to 20 percent. Values are raw, as released.",
+    ),
+    "brazil_star": dict(
+        title="Brazil STAR household microgrids",
+        intro="This notebook lists the four released households, loads one household's battery files, and plots battery voltage. It makes no diagnosis.",
+        systems_note="Each row is one household with its days of battery, PV and appliance files and its first and last valid battery time. Times before 2017 are clock resets and are left out of the span.",
+        load="frame = load('brazil_star', unit='STAR-A', system='Battery')",
+        load_note="All 138 daily battery files of STAR-A, one row per minute, with the file name added. Current is in mA, voltage in mV and SOC in tenths of a percent, as the data show.",
+        cols="['Current', 'AmpereHours', 'SOC', 'Voltage', 'Power']",
+        plot="ax = frame['Voltage'].plot(figsize=(7, 3.5), lw=0.4)\nax.set_xlabel('row')\nax.set_ylabel('battery voltage (mV)')\nplt.show()",
+        plot_note="STAR-A's battery voltage sits near 24,600 mV (24.6 V, the median) over the 138 days, with some zero readings left as released.",
+    ),
+    "birds_cubesat": dict(
+        title="BIRDS CubeSat electrical power system",
+        intro="This notebook lists the four released satellites, loads one data collection of one satellite, and plots its battery voltage. It makes no diagnosis.",
+        systems_note="Each row is one satellite with its downloads, test sheets and first and last download date. Each sheet is one collection over one orbit.",
+        load="frame = load('birds_cubesat', unit='TSURU', sheet='March 28')",
+        load_note="One collection of TSURU, with the 37 columns named by position because header spelling varies between sheets. time_s counts seconds within the collection.",
+        cols="['Vbat_V', 'Ibatt_mA', 'Tbatt_C']",
+        plot="ax = frame.plot(x='time_s', y='Vbat_V', figsize=(7, 3.5), legend=False)\nax.set_xlabel('seconds in the collection')\nax.set_ylabel('battery voltage (V)')\nplt.show()",
+        plot_note="Over this collection of about 3.4 hours TSURU's battery voltage stays between 3.92 and 4.20 V while the battery cycles with the orbit.",
+    ),
+    "ved": dict(
+        title="Vehicle Energy Dataset (VED)",
+        intro="This notebook lists the vehicles of the two static workbooks, loads one week of one electric vehicle, and plots its battery SOC. It makes no diagnosis.",
+        systems_note="Each row is one vehicle. battery_signals is True for the 27 PHEV and EV. Vehicle 439, listed as an HEV, also carries battery signals.",
+        load="frame = load('ved', unit=10, week='171101')",
+        load_note="The week from 1 November 2017 for vehicle 10, a 2013 Nissan Leaf. Signals update at different rates, so many cells are empty between updates.",
+        cols="['HV Battery Current[A]', 'HV Battery SOC[%]', 'HV Battery Voltage[V]']",
+        plot="soc = frame['HV Battery SOC[%]'].dropna().reset_index(drop=True)\nax = soc.plot(figsize=(7, 3.5))\nax.set_xlabel('SOC update')\nax.set_ylabel('SOC (%)')\nplt.show()",
+        plot_note="Over the eight trips of that week vehicle 10's SOC ranges from 47 to 100 percent. Values are raw, as released.",
+    ),
+    "shenzhen_charging": dict(
+        title="Shenzhen public EV charging sessions",
+        intro="This notebook lists the charging sessions, loads one session, and plots its charging voltage. It makes no diagnosis.",
+        systems_note="Each row is one charging session. There is no vehicle identifier, so sessions are not batteries followed over time. Sessions of Sheet1 repeat in Sheet7.",
+        load="from fielddata.loaders import shenzhen_charging\nsession = shenzhen_charging.systems('processed_data_longer_than_30')['unit'].iloc[0]\nframe = load('shenzhen_charging', unit=session, file='processed_data_longer_than_30')",
+        load_note="One session at one row per minute, returned once from Sheet1 and once from Sheet7, as released.",
+        cols="['chargingv', 'charginga', 'out_power', 'current_soc']",
+        plot="one = frame[frame['sheet'] == 'Sheet1']\nax = one['chargingv'].reset_index(drop=True).plot(figsize=(7, 3.5))\nax.set_xlabel('minute')\nax.set_ylabel('charging voltage (V)')\nplt.show()",
+        plot_note="During the session the charging voltage ranges from 332 to 369 V while SOC ranges from 45 to 95 percent. Values are raw, as released.",
+    ),
+    "tongji_rest": dict(
+        title="Tongji EV rest periods",
+        intro="This notebook lists the released vehicles and cells, loads the rest segments of one field vehicle, and plots pack voltage. It makes no diagnosis.",
+        systems_note="The four field vehicles have raw segments. The other rows appear only in derived feature workbooks, as vehicles or laboratory cells.",
+        load="frame = load('tongji_rest', unit='NMC02', kind='rest')",
+        load_note="The 440 rest segments of NMC02, read from the Parquet copies made once in a throwaway environment, because the release's pickles are never unpickled here.",
+        cols="['totalVoltage', 'totalCurrent', 'soc', 'temp_mean']",
+        plot="ax = frame.plot(x='reqDate', y='totalVoltage', style='.', ms=1, figsize=(7, 3.5), legend=False)\nax.set_xlabel('')\nax.set_ylabel('pack voltage at rest (V)')\nplt.show()",
+        plot_note="Across the rest segments from September 2020 to December 2023 the pack voltage at rest ranges from 334 to 395 V. Values are raw, as released.",
+    ),
+    "rise_conbat": dict(
+        title="RISE second-life BESS (Conbat)",
+        intro="This notebook lists the released modules, loads one module in one collection window, and plots its voltage. It makes no diagnosis.",
+        systems_note="Each row is one distinct module id with its car, model and installations. Modules were swapped through the same positions over time.",
+        load="frame = load('rise_conbat', window='9. 240210-240215', level='module', unit='H400788-1')",
+        load_note="One module over the window 10 to 15 February 2024, one row per minute, with filler flags as released.",
+        cols="['voltage', 'temperature']",
+        plot="ax = frame['voltage'].plot(figsize=(7, 3.5), lw=0.6)\nax.set_xlabel('minute')\nax.set_ylabel('module voltage (V)')\nplt.show()",
+        plot_note="Over the window the module voltage ranges from 37.6 to 50.1 V and its temperature from 22.0 to 27.5 degC. Values are raw, as released.",
+    ),
+    "tum_id3_2022": dict(
+        title="TUM 2022 Volkswagen ID.3 powertrain data",
+        intro="This notebook lists the one vehicle and its drives, loads one drive, and plots pack voltage. It makes no diagnosis.",
+        systems_note="The one vehicle is tumftm's ID1, counted once there. This release adds pack current and the 108 cell voltages for the same car.",
+        load="frame = load('tum_id3_2022', track=0)",
+        load_note="Drive 0 at one row per 0.1 s. Drives differ in their columns.",
+        cols="['hv_battery_current', 'hv_battery_voltage', 'hv_soc']",
+        plot="ax = frame.plot(x='time', y='hv_battery_voltage', figsize=(7, 3.5), legend=False)\nax.set_xlabel('time (ms since 1970)')\nax.set_ylabel('pack voltage (V)')\nplt.show()",
+        plot_note="During this drive pack voltage ranges from 425.5 to 448.5 V while SOC goes from 95.6 to 92.8 percent. Values are raw, as released.",
+    ),
+    "cell_to_pack": dict(
+        title="LFP and NMC cell-to-pack field packs",
+        intro="This notebook lists the field packs and laboratory cells and packs, loads one field pack, and plots its voltage over one cycle. It makes no diagnosis.",
+        systems_note="The 16 field packs are the units. The laboratory packs and cells are held but not counted. All are read from Parquet copies made once in a throwaway environment.",
+        load="from fielddata.loaders import cell_to_pack\nframe = cell_to_pack.load('Pack_field#1', columns=['time(s)', 'current(A)', 'Vpack', 'SOC'])",
+        load_note="All 604 released cycles of Pack_field#1, one row per sample, with item marking the cycle.",
+        cols="['current(A)', 'Vpack', 'SOC']",
+        plot="first = frame[frame['item'] == 0]\nax = first.plot(x='time(s)', y='Vpack', figsize=(7, 3.5), legend=False)\nax.set_xlabel('seconds in the cycle')\nax.set_ylabel('pack voltage (V)')\nplt.show()",
+        plot_note="Over all cycles the pack voltage of Pack_field#1 ranges from 1,209 to 1,456 V. The plot shows the first released cycle. Values are raw, as released.",
+    ),
 }
 
 
@@ -250,6 +361,39 @@ def build(package: str) -> Path:
     return path
 
 
+def build_metadata_only(package: str = "stanford_ev") -> Path:
+    """stanford_ev is CC BY-NC-ND 4.0 (maintainer, 2026-10-13: originals only, no derived files, no preview): its notebook
+    shows what the release holds, sessions and signal names, and no values or plots drawn from the data."""
+    md, code = nbformat.v4.new_markdown_cell, nbformat.v4.new_code_cell
+    cells = [
+        md("# Stanford passenger EV BMS field data\n\nThis notebook lists what the release holds: the vehicle, its sessions, the signals and the laboratory files. "
+           "The release is licensed CC BY-NC-ND 4.0, so the notebook shows no values or plots drawn from the data. It makes no diagnosis."),
+        md("## 1. Released unit"),
+        md("This step lists what `systems('stanford_ev')` reports for the release."),
+        code(SETUP + "\nreleased = systems('stanford_ev')\ndisplay(released)"),
+        md("The release is one passenger EV, with its charging and driving sessions and their first and last start time. The record does not name the vehicle."),
+        md("## 2. Field sessions"),
+        md("This step lists the field session files, one per charging or driving session, named by their start time."),
+        code("from fielddata.loaders import stanford_ev\nsessions = stanford_ev.sessions()\nprint(sessions['kind'].value_counts().to_dict())\ndisplay(sessions[['session', 'kind', 'start']].head())"),
+        md("There are 4,322 driving and 1,094 charging sessions, from 21 September 2021 to 9 April 2025."),
+        md("## 3. Signals"),
+        md("This step lists the signals each session file holds, from the loader's signal list."),
+        code("print(stanford_ev.SIGNALS)"),
+        md("Each session holds pack current, voltage and SOC, 108 cell voltages, 72 module temperatures and pack temperature, each with its own time base. `load(session, signal)` reads one of them from the original file."),
+        md("## 4. Laboratory files"),
+        md("This step lists the laboratory files by campaign."),
+        code("lab = stanford_ev.lab_files()\ndisplay(lab.groupby('campaign').size())"),
+        md("The two laboratory campaigns hold 48 and 52 module files. Five files of the first campaign are empty, as released."),
+    ]
+    nb = nbformat.v4.new_notebook(cells=cells)
+    nb.metadata["kernelspec"] = {"name": "python3", "display_name": "Python 3", "language": "python"}
+    NotebookClient(nb, timeout=900, kernel_name="python3", resources={"metadata": {"path": str(ROOT / "notebooks")}}).execute()
+    nb.metadata.pop("kernelspec", None)
+    path = ROOT / "notebooks" / f"{package}.ipynb"
+    nbformat.write(nb, path)
+    return path
+
+
 if __name__ == "__main__":
     for name in sys.argv[1:]:
-        print(build(name))
+        print(build_metadata_only(name) if name == "stanford_ev" else build(name))

@@ -14,6 +14,7 @@ EXAMPLES = {
     "aitio": {"unit": "0", "clean": True},
     "bilfinger2024": {"unit": None},  # filled from systems(): first vehicle-kind unit
     "bilfinger2026": {"unit": "Cupra_204_JB_8A_CEE7_C45"},
+    "bilfinger2025": {"unit": "Tesla_Model_Y_JB_8A_CEE7_MI_2025"},
     "cao": {"brand": "QAS", "vehicle": "0", "names": "inferred", "clean": True},
     "changan": {"unit": "vin1", "nrows": 200_000, "clean": True},
     "cloverleaf": {"unit": "SNAM HV - 2100173"},
@@ -35,6 +36,18 @@ EXAMPLES = {
     "zhang2023": {"unit": "battery_brand1:1"},
     "zhou2026": {"unit": "LFP01", "part": 0,
                  "columns": ["Timestamp", "TotalVoltage", "TotalCurrent", "SOC", "MaxCellVoltage", "MinCellVoltage"]},
+    # v1.2
+    "pnnl_epri": {"unit": "ENW", "meter": "PDC", "columns": ["Voltage", "Current", "SOC", "Power"]},
+    "beijing_ev": {"unit": "2018-01-17"},
+    "brazil_star": {"unit": "STAR-A", "system": "Battery"},
+    "birds_cubesat": {"unit": "TSURU", "sheet": "March 28"},
+    "ved": {"unit": 10, "week": "171101"},
+    "shenzhen_charging": {"unit": None, "file": "processed_data_longer_than_30"},  # filled from systems(): one session
+    "tongji_rest": {"unit": "NMC02", "kind": "rest"},
+    "rise_conbat": {"window": "9. 240210-240215", "level": "module", "unit": "H400788-1"},
+    "tum_id3_2022": {"track": 0},
+    "cell_to_pack": {"unit": "Pack_field#1", "columns": ["time(s)", "current(A)", "Vpack", "SOC"]},
+    "stanford_ev": {"session": "20210921_234539", "signal": "V_pack_bms"},
 }
 
 
@@ -44,7 +57,18 @@ def example_args(package):
     if package == "bilfinger2024":
         units = fielddata.systems(package)
         args["unit"] = units.loc[units["kind"] == "vehicle", "unit"].iloc[0]
+    if package == "shenzhen_charging":  # one charging session of the longer-than-30-minutes file
+        args["unit"] = _shenzhen_session(args["file"])
     return args
+
+
+def _shenzhen_session(file):
+    """The first session of the file, or None when the release is not downloaded (load() then says how to fetch it)."""
+    from fielddata.loaders import shenzhen_charging
+    try:
+        return shenzhen_charging.systems(file)["unit"].iloc[0]
+    except (FileNotFoundError, ValueError):
+        return None
 
 
 # releases whose loader has a preview() that reads only the first rows of a file
@@ -71,7 +95,7 @@ def sample(package, **overrides):
 
 # package -> (column to plot, column for the x axis or None to use the frame's index)
 PLOT = {
-    "bilfinger2024": ("U", None), "bilfinger2026": ("U", None), "cao": ("cell_v_001", None),
+    "bilfinger2024": ("U", None), "bilfinger2025": ("U", None), "bilfinger2026": ("U", None), "cao": ("cell_v_001", None),
     "changan": ("totalvoltage", "terminaltime"), "cloverleaf": ("Vpack", "epoch_ms"), "deng": ("pack_voltage", "number"),
     "evbattery": ("volt", "timestamp"), "fei_bus": ("SOH", "mileage"), "flashbattery-agv": ("cycletime", "counter"),
     "ku_leuven_bev": ("BattVoltage132", None), "li2026": ("cell_001_V", None), "m5bat-2023-04": ("U_DC_Batt", None),
@@ -79,6 +103,10 @@ PLOT = {
     "rwth-home": ("V_in_V", None), "schaeffer": ("U_Battery", "Timestamp"), "tsukuba": ("battery_dc_voltage", None),
     "tumftm": ("value", "time"), "xie": ("batCoreVoltage1", None), "zhang2023": ("max_single_volt", "timestamp"),
     "zhou2026": ("TotalVoltage", None), "aitio": ("voltage_V", None),
+    "pnnl_epri": ("SOC", "HoursElapsed"), "beijing_ev": ("voltage", None), "brazil_star": ("Voltage", None),
+    "birds_cubesat": ("Vbat_V", "time_s"), "ved": ("HV Battery SOC[%]", "Timestamp(ms)"), "shenzhen_charging": ("chargingv", None),
+    "tongji_rest": ("totalVoltage", "reqDate"), "rise_conbat": ("voltage", None), "tum_id3_2022": ("hv_battery_voltage", "time"),
+    "cell_to_pack": ("Vpack", None), "stanford_ev": ("V_pack_bms", "t"),
 }
 
 

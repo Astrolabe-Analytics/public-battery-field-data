@@ -1,0 +1,95 @@
+{
+  "package": "bilfinger2025",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "NMC and LFP",
+      "basis": "stated",
+      "source": "https://doi.org/10.1038/s44406-025-00010-8 (open access; read in arXiv 2508.15517v1), p. 20, Table 1: VW ID.3 and Cupra Born NMC532, Porsche Taycan NMC622, Tesla Model 3 SR+ LFP, Tesla Model Y LR NMC811",
+      "note": ""
+    },
+    "units_released": {
+      "value": 5,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('bilfinger2025')",
+      "note": "Rule: distinct vehicles among vehicle files, less the VW ID.3, the Tesla Model 3 and the five Cupra Born already counted under bilfinger2024 and bilfinger2026 (maintainer, 2026-10-15). Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": 9840,
+      "basis": "derived",
+      "source": "https://doi.org/10.1038/s44406-025-00010-8 (open access; read in arXiv 2508.15517v1), p. 20, Table 1: VW ID.3 and Cupra Born 108s2p (216 cells), Porsche Taycan 198s2p (396), Tesla Model 3 SR+ 106s1p (106), Tesla Model Y LR 96s46p (4,416); vehicles counted: Porsche Taycan (AMS), Porsche Taycan (FTM), Tesla Model Y (MI), Tesla Model Y (TW), VW ID.3 (GB, defective cell)",
+      "note": "Already counted: Cupra 204, Cupra 213, Cupra 288, Cupra 349, Cupra 397, Tesla Model 3 SR+, VW ID.3."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 522,
+      "basis": "measured",
+      "source": "scripts/facts/bilfinger2025.py",
+      "note": "Cell-voltage columns per new vehicle: Porsche Taycan (AMS) 0, Porsche Taycan (FTM) 192, Tesla Model Y (MI) 111, Tesla Model Y (TW) 111, VW ID.3 (GB, defective cell) 108. Already counted: Cupra 204, Cupra 213, Cupra 288, Cupra 349, Cupra 397, Tesla Model 3 SR+, VW ID.3."
+    },
+    "energy_mwh": {
+      "value": 0.3726,
+      "basis": "stated",
+      "source": "https://doi.org/10.1038/s44406-025-00010-8 (open access; read in arXiv 2508.15517v1), p. 20, Table 1, net energy: VW ID.3 58 kWh, Porsche Taycan 82.3 kWh, Tesla Model Y LR 75 kWh; the five vehicles not counted under bilfinger2024 or bilfinger2026 (58 + 2 x 82.3 + 2 x 75 kWh)",
+      "note": ""
+    },
+    "energy_basis": {
+      "value": "stated",
+      "basis": "derived",
+      "source": "energy_mwh uses the stated basis",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 6.9180069270974025,
+      "basis": "measured",
+      "source": "scripts/facts/bilfinger2025.py",
+      "note": "First to last measurement date per vehicle, the calendar span between discrete charge tests: Cupra 204 1.3954 years after or before its earlier dates (2022-11-16 to 2022-11-18; here 2024-04-09 to 2024-04-11); Cupra 213 1.3547 years after or before its earlier dates (2022-11-29 to 2022-12-11; here 2024-04-17 to 2024-04-19); Cupra 288 1.3291 years after or before its earlier dates (2022-11-23 to 2022-12-15; here 2024-04-12 to 2024-04-14); Cupra 349 1.4094 years after or before its earlier dates (2022-11-25 to 2022-11-27; here 2024-04-23 to 2024-04-25); Cupra 397 1.4163 years after or before its earlier dates (2022-11-11 to 2022-11-13; here 2024-04-12 to 2024-04-13); Porsche Taycan (AMS) 0.0046 years (2024-06-12 to 2024-06-14); Porsche Taycan (FTM) 0.0040 years (2023-12-01 to 2023-12-02); VW ID.3 (GB, defective cell) 0.0045 years (2024-04-03 to 2024-04-05). Tesla files carry no timestamps and are left out. For the held vehicles only the time outside their dates in bilfinger2024 and bilfinger2026 counts."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 0.3055683,
+      "basis": "measured",
+      "source": "scripts/facts/bilfinger2025.py",
+      "note": ""
+    },
+    "files": {
+      "value": 1,
+      "basis": "measured",
+      "source": "scripts/facts/bilfinger2025.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://mediatum.ub.tum.de/1765567; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  },
+  "units_gross": {
+    "value": 12,
+    "basis": "measured",
+    "source": "fielddata/counting.py GROSS over fielddata.systems('bilfinger2025')",
+    "note": "Gross: all 12 distinct vehicles, including the VW ID.3 and Tesla Model 3 of bilfinger2024 and the five Cupra Born of bilfinger2026. Not used in totals."
+  }
+}

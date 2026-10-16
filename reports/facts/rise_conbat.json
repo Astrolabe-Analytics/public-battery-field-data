@@ -1,0 +1,89 @@
+{
+  "package": "rise_conbat",
+  "facts": {
+    "application": {
+      "value": "grid-scale storage",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": "Second-life modules from VW Passat cars in grid-tied containers (maintainer, 2026-10-13: grid-scale storage, noted as second-life)."
+    },
+    "chemistry": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Neither the release nor its paper or record states the cell chemistry."
+    },
+    "units_released": {
+      "value": 88,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('rise_conbat')",
+      "note": "Rule: one distinct second-life module id (88); the record's 106 are installation rows, some modules installed twice. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": 1056,
+      "basis": "derived",
+      "source": "88 distinct modules x 12 cells in series (cells_in_series in the release's module-info tables)",
+      "note": ""
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "open",
+      "source": "",
+      "note": "Cell files hold per-cell voltages for the modules reporting in each window; counting distinct cell channels needs a pass over the 12 windows."
+    },
+    "energy_mwh": {
+      "value": 0.1151,
+      "basis": "stated",
+      "source": "https://doi.org/10.5281/zenodo.17287096, module-info tables (nominal_energy_conversion, the VW Passat GTE pack rating, 9.9 or 13.0 kWh) / 8 modules per pack",
+      "note": "88 distinct modules: 72 from 9.9 kWh packs and 16 from 13.0 kWh packs, each pack rating divided by 8 modules per pack (maintainer, 2026-10-13). Not computable from the data (no SOC signal)."
+    },
+    "energy_basis": {
+      "value": "stated",
+      "basis": "derived",
+      "source": "energy_mwh uses the stated basis",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 56.508156992288896,
+      "basis": "measured",
+      "source": "scripts/checks/ondeck_deltas.py -> reports/checks/v12/rise_conbat_deltas.json",
+      "note": "unit is the distinct module id (88); the record's 106 are installation rows, and 24 positions report at a time; unit-years is each installation's start to end date from the module-info tables, clipped to the data period 2023-04-20 to 2024-11-04, summed; telemetry covers only the 11 export windows, and three exports are truncated"
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Calendar spans are measurable, so observation-hours are not used."
+    },
+    "size_gb": {
+      "value": 0.708130651,
+      "basis": "measured",
+      "source": "scripts/facts/rise_conbat.py",
+      "note": ""
+    },
+    "files": {
+      "value": 6,
+      "basis": "measured",
+      "source": "scripts/facts/rise_conbat.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.5281/zenodo.17287096; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

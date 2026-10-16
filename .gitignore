@@ -14,3 +14,6 @@ reports/notebooks/*.html
 
 # verify writes its run log here (see fielddata/verify.py)
 reports/local/
+
+# derived from changan (CC BY-NC-SA 4.0): local cache only, not published
+reports/facts/_cache/changan_fleet_meta.csv

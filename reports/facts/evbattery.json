@@ -14,10 +14,10 @@
       "note": "Snippet maximum cell voltage, 99th percentile per archive: battery_dataset1.tar.gz 4.164 V, battery_dataset2.tar.gz 4.147 V, battery_dataset3.tar.gz 4.300 V."
     },
     "units_released": {
-      "value": 464,
+      "value": 415,
       "basis": "measured",
       "source": "fielddata/counting.py over fielddata.systems('evbattery')",
-      "note": "Rule: labeled vehicles with at least one snippet. Vehicles with at least one snippet; the label tables list 465 cars, and battery_dataset3.tar.gz car 545 has no snippets."
+      "note": "Rule: labeled vehicles with at least one snippet, less the 49 dataset 3 vehicles, which are zhang2023 brand 2 vehicles and count there (home release, maintainer, 2026-10-16). Vehicles with at least one snippet; the label tables list 465 cars, and battery_dataset3.tar.gz car 545 has no snippets."
     },
     "cells_liion": {
       "value": null,
@@ -59,7 +59,7 @@
       "value": 57265.42222222222,
       "basis": "measured",
       "source": "scripts/facts/_snippet_scan.py (cached in reports/facts/_cache/)",
-      "note": "Lower bound over battery_dataset1.tar.gz, battery_dataset2.tar.gz; battery_dataset3.tar.gz is left out because it is the same fleet as zhang2023 brand 2. Each snippet's clock restarts at zero, so overlapping snippets count once per charge segment. Snippet clocks step by exactly 10 in every archive. The paper (arXiv:2201.12358v3, Sec. 3) says timestamps were randomly shifted and scaled for anonymization, but on the shared fleet the charge per snippet agrees with zhang2023, whose 10 s sampling is stated (SI Note 2, p. 11), to a median ratio of 0.9994, so hours are counted at 10 s per step."
+      "note": "Lower bound over battery_dataset1.tar.gz, battery_dataset2.tar.gz, the 415 vehicles that are not shared; battery_dataset3.tar.gz is left out because its 49 vehicles are zhang2023 brand 2 vehicles, whose hours count once, under zhang2023 (home release, 2026-10-16). Each snippet's clock restarts at zero, so overlapping snippets count once per charge segment. Snippet clocks step by exactly 10 in every archive. The paper (arXiv:2201.12358v3, Sec. 3) says timestamps were randomly shifted and scaled for anonymization, but on the shared fleet the charge per snippet agrees with zhang2023, whose 10 s sampling is stated (SI Note 2, p. 11), to a median ratio of 0.9994, so hours are counted at 10 s per step."
     },
     "size_gb": {
       "value": 1.408209405,
@@ -91,5 +91,11 @@
     "basis": "measured",
     "source": "scripts/facts/_overlap_scan.py -> reports/facts/_cache/zhang2023_evbattery_overlap.json",
     "note": "Content match, not vehicle numbers: 49 vehicles confirmed one-to-one between zhang2023 battery_brand2 and evbattery battery_dataset3 (all vehicles with data in each archive; 44 by identical snippets, 5 by tolerance matching with agreeing charging-session numbers); no snippets shared between any other archives; none matched under the same number. The confirmed vehicles count once in the unit total."
+  },
+  "units_gross": {
+    "value": 464,
+    "basis": "measured",
+    "source": "fielddata/counting.py GROSS over fielddata.systems('evbattery')",
+    "note": "Gross: all 464 labeled vehicles with at least one snippet, including the 49 of dataset 3, which are zhang2023 brand 2 vehicles. Not used in totals."
   }
 }

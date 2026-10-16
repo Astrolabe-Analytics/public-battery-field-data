@@ -62,6 +62,7 @@ def cloverleaf(facts, script):
     volts = day["Vpack"].iloc[i:j].mean()
     energy = 3 * capacity / soh * volts / 1e6
     facts["energy_mwh"] = fact(round(energy, 4), "derived", script,
+        f"Basis: computed from the data and divided by the released SOH, so it approximates the packs' rated (beginning-of-life) energy, not present usable energy. "
         f"Computed from the data: {capacity:.1f} Ah over a {dsoc:.0f} percent SOC swing (coulomb counting, typical-day sheet), divided by SOH {soh:.2f}, times mean pack voltage {volts:.0f} V, times 3 HV packs. An 84 kWh figure used earlier, attributed to a trade-press article (pv-magazine, 21 January 2022) that was not checked, agrees within about 5 percent. Assumes the released SOC and SOH are accurate BMS estimates and that the three packs are identical; no source states the pack rating (the Zenodo record 10.5281/zenodo.6373656 description defines no columns).")
     facts["energy_basis"] = fact("computed", "derived", "energy_mwh is computed from the released data")
     vmax, spans, packs = [], 0.0, 0
@@ -204,7 +205,7 @@ def evbattery(facts, script):
     facts["overlap_identifiers"] = fact(overlap["overlap_vehicles_confirmed"], "measured", "scripts/facts/_overlap_scan.py -> reports/facts/_cache/zhang2023_evbattery_overlap.json",
         f"Content match, not vehicle numbers: {overlap['overlap_vehicles_confirmed']} vehicles confirmed one-to-one between zhang2023 battery_brand2 and evbattery battery_dataset3 (all vehicles with data in each archive; 44 by identical snippets, 5 by tolerance matching with agreeing charging-session numbers); no snippets shared between any other archives; none matched under the same number. The confirmed vehicles count once in the unit total.")
     facts["obs_hours"] = fact(hours, "measured", "scripts/facts/_snippet_scan.py (cached in reports/facts/_cache/)",
-        f"Lower bound over {', '.join(r['archive'] for r in kept)}; {', '.join(sorted(shared_archives))} is left out because it is the same fleet as zhang2023 brand 2. Each snippet's clock restarts at zero, so overlapping snippets count once per charge segment. Snippet clocks step by exactly 10 in every archive. The paper (arXiv:2201.12358v3, Sec. 3) says timestamps were randomly shifted and scaled for anonymization, but on the shared fleet the charge per snippet agrees with zhang2023, whose 10 s sampling is stated (SI Note 2, p. 11), to a median ratio of 0.9994, so hours are counted at 10 s per step.")
+        f"Lower bound over {', '.join(r['archive'] for r in kept)}, the {sum(r['vehicles'] for r in kept)} vehicles that are not shared; {', '.join(sorted(shared_archives))} is left out because its 49 vehicles are zhang2023 brand 2 vehicles, whose hours count once, under zhang2023 (home release, 2026-10-16). Each snippet's clock restarts at zero, so overlapping snippets count once per charge segment. Snippet clocks step by exactly 10 in every archive. The paper (arXiv:2201.12358v3, Sec. 3) says timestamps were randomly shifted and scaled for anonymization, but on the shared fleet the charge per snippet agrees with zhang2023, whose 10 s sampling is stated (SI Note 2, p. 11), to a median ratio of 0.9994, so hours are counted at 10 s per step.")
 
 
 def tumftm(facts, script):
@@ -342,8 +343,10 @@ def _bilfinger(package, facts, script):
     source = {
         "bilfinger2024": "https://doi.org/10.1016/j.etran.2024.100356, Sec. 3.1 and Appendix A Table 1: VW ID.3 108s2p NMC pouch (216 cells), Tesla Model 3 SR+ 106s1p LFP (106 cells)",
         "bilfinger2026": "https://doi.org/10.1016/j.etran.2026.100589, p. 3, Sec. 2.1 and p. 12, Table 1: CUPRA Born and VW ID.3 108s2p NMC pouch (216 cells each), Tesla Model 3 SR+ 106s1p LFP (106 cells)",
+        "bilfinger2025": "https://doi.org/10.1038/s44406-025-00010-8 (open access; read in arXiv 2508.15517v1), p. 20, Table 1: VW ID.3 and Cupra Born 108s2p (216 cells), Porsche Taycan 198s2p (396), Tesla Model 3 SR+ 106s1p (106), Tesla Model Y LR 96s46p (4,416)",
     }[package]
-    topology = {"Tesla Model 3 SR+": 106}
+    topology = {"Tesla Model 3 SR+": 106, "Porsche Taycan (FTM)": 396, "Porsche Taycan (AMS)": 396,
+                "Tesla Model Y (MI)": 4416, "Tesla Model Y (TW)": 4416}
     channels, spans, fingerprints = {}, {}, {}
     for name, frame in _bilfinger_vehicle_files(package):
         key = _bilfinger_loader.vehicle(name)
@@ -395,6 +398,43 @@ def bilfinger2026(facts, script):
     facts["overlap_cell_channels_measured"] = fact(sum(first_channels[k] for k in shared), "measured", script, note)
     facts["overlap_energy_mwh"] = fact(round(sum(energy_kwh.get(k, 58.0) for k in shared) / 1000, 4), "stated", "https://doi.org/10.1016/j.etran.2024.100356, vehicle descriptions (VW ID.3 58 kWh, Tesla Model 3 SR+ 52.5 kWh net)", note)
     facts["overlap_span_unit_years"] = fact(doubled, "measured", script, "Time inside both releases' date ranges for the shared vehicles: " + ("; ".join(parts) or "none") + ".")
+
+
+def bilfinger2025(facts, script):
+    # Maintainer, 2026-10-15: one unit per distinct vehicle, and vehicles already counted under bilfinger2024 or bilfinger2026
+    # (the FTM VW ID.3, the Tesla Model 3 and the five Cupra Born) count once there. As for pnnl_epri, this row holds only
+    # what is not counted elsewhere: the five new vehicles, plus the time of the held vehicles outside the earlier releases'
+    # first-to-last dates (the overlap rule; "time outside the earlier release still counts").
+    from fielddata.counting import BILFINGER_HELD
+    _, s24, _ = _bilfinger("bilfinger2024", {k: dict(v) for k, v in facts.items()}, script)
+    _, s26, _ = _bilfinger("bilfinger2026", {k: dict(v) for k, v in facts.items()}, script)
+    _, s25, c25 = _bilfinger("bilfinger2025", facts, script)
+    topology = {"Porsche Taycan (FTM)": 396, "Porsche Taycan (AMS)": 396, "Tesla Model Y (MI)": 4416, "Tesla Model Y (TW)": 4416}
+    new = sorted(k for k in c25 if k not in BILFINGER_HELD)
+    held_note = "Already counted: " + ", ".join(sorted(k for k in c25 if k in BILFINGER_HELD)) + "."
+    facts["cells_liion"] = fact(sum(topology.get(k, 216) for k in new), "derived",
+        facts["cells_liion"]["source"].split("; vehicles counted")[0] + f"; vehicles counted: {', '.join(new)}", held_note)
+    facts["cell_channels_measured"] = fact(sum(c25[k] for k in new), "measured", script,
+        f"Cell-voltage columns per new vehicle: {', '.join(f'{k} {c25[k]}' for k in new)}. " + held_note)
+    years, parts = 0.0, []
+    for key in sorted(s25):
+        lo, hi = s25[key]
+        if key in BILFINGER_HELD:
+            earlier = [s for s in (s24.get(key), s26.get(key)) if s]
+            if not earlier:
+                continue
+            e_lo, e_hi = min(s[0] for s in earlier), max(s[1] for s in earlier)
+            outside = (max((e_lo - lo).total_seconds(), 0.0) + max((hi - e_hi).total_seconds(), 0.0)) / 31557600
+            if outside:
+                parts.append(f"{key} {outside:.4f} years after or before its earlier dates ({e_lo.date()} to {e_hi.date()}; here {lo.date()} to {hi.date()})")
+            years += outside
+        else:
+            span = (hi - lo).total_seconds() / 31557600
+            parts.append(f"{key} {span:.4f} years ({lo.date()} to {hi.date()})")
+            years += span
+    facts["span_unit_years"] = fact(years, "measured", script,
+        "First to last measurement date per vehicle, the calendar span between discrete charge tests: " + "; ".join(parts)
+        + ". Tesla files carry no timestamps and are left out. For the held vehicles only the time outside their dates in bilfinger2024 and bilfinger2026 counts.")
 
 
 def zhou2026(facts, script):
@@ -555,12 +595,13 @@ def rwth_android(facts, script):
         if ah > 0:
             total_wh += ah * float(frame["voltage_cell"].median())
     facts["energy_mwh"] = fact(round(total_wh / 1e6, 6), "derived", script,
+        f"Basis: nominal, from each device's reported nominal capacity, not measured usable energy, except the {from_counter} devices noted below. "
         f"Sum over 33 devices of nominal_capacity (Ah, data paper p. 4) times median cell voltage; for {from_counter} devices without a usable nominal_capacity (7 report 0 and 3 leave it empty), the charge counter near full charge is used.")
     facts["energy_basis"] = fact("computed", "derived", "energy_mwh is computed from the released data")
 
 
 EXTRA = {"cloverleaf": cloverleaf, "rwth-home": rwth_home, "ku_leuven_bev": ku_leuven_bev, "xie": xie,
-         "aitio": aitio, "zhang2023": zhang2023, "evbattery": evbattery, "cao": cao, "tumftm": tumftm, "ppl": ppl, "changan": changan, "bilfinger2024": bilfinger2024, "bilfinger2026": bilfinger2026, "zhou2026": zhou2026, "m5bat-2023-04": m5bat_2023_04, "deng": deng, "tsukuba": tsukuba, "li2026": li2026, "rwth-android": rwth_android}
+         "aitio": aitio, "zhang2023": zhang2023, "evbattery": evbattery, "cao": cao, "tumftm": tumftm, "ppl": ppl, "changan": changan, "bilfinger2024": bilfinger2024, "bilfinger2026": bilfinger2026, "bilfinger2025": bilfinger2025, "zhou2026": zhou2026, "m5bat-2023-04": m5bat_2023_04, "deng": deng, "tsukuba": tsukuba, "li2026": li2026, "rwth-android": rwth_android}
 
 
 def apply(package, facts, script):

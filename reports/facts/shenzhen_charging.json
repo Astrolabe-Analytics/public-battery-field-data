@@ -1,0 +1,101 @@
+{
+  "package": "shenzhen_charging",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": "Charging sessions at 30 public stations in Shenzhen; vehicle types are not stated. The release is a separate charging-sessions group: no systems are counted (maintainer, 2026-10-13)."
+    },
+    "chemistry": {
+      "value": "LFP; NMC; LMO; LCO; LP",
+      "basis": "stated",
+      "source": "https://doi.org/10.17632/c7gg94tmvz.3, Readme.txt (types 03 LFP, 06 NMC, 04 LMO, 05 LCO, 07 LP); https://doi.org/10.1038/s41467-025-67703-7 (Yang et al. 2025, the five types including Li polymer, LiPo)",
+      "note": "LP is lithium polymer (maintainer, 2026-10-13): the source paper names the five types LFP, NMC, LMO, LCO and Li polymer (LiPo), 0.07 percent of the data. Lithium polymer is a cell format, not a chemistry, so the chemistry of code 07 is not stated. Its charging-voltage shape is steep like LCO and NMC, not flat like LFP (34 sessions, no vehicle identifier, so the number of batteries is unknown; scripts/checks/shenzhen_lp_chemistry.py). The type codes match the Chinese charging protocol GB/T 27930, which the paper does not cite. Maintainer's view (2026-10-16): codes 05 and 07 are swapped relative to the Readme. The paper's battery-type shares (LCO 0.19 percent, LiPo 0.07 percent; Yang et al. 2025, Fig. 1a) match the data's code 07 and code 05 shares by rows (0.20 and 0.05 percent, over-30-minutes workbook), so code 05 is taken to be lithium polymer and code 07 LCO. The release's Readme says 05 LCO, 07 LP. The set of chemistry labels does not change."
+    },
+    "units_released": {
+      "value": 0,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('shenzhen_charging')",
+      "note": "Rule: no systems: its 31,449 charging sessions (no vehicle identifier) form a separate charging-sessions group (maintainer, 2026-10-13). Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The release gives pack- or system-level signals and no cell topology."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No individual cell-voltage channels are released."
+    },
+    "energy_mwh": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Not counted in MWh (maintainer, 2026-10-13): charging sessions without vehicle identity."
+    },
+    "energy_basis": {
+      "value": "none",
+      "basis": "derived",
+      "source": "energy_mwh is not available",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The release has no calendar timestamps."
+    },
+    "obs_hours": {
+      "value": 21478.65,
+      "basis": "measured",
+      "source": "scripts/checks/ondeck_deltas.py -> reports/checks/v12/shenzhen_charging_deltas.json",
+      "note": "charging-sessions group: sessions are not systems; observation-hours (distinct session-minutes / 60) count in the observation-hours total"
+    },
+    "size_gb": {
+      "value": 0.219783502,
+      "basis": "measured",
+      "source": "scripts/facts/shenzhen_charging.py",
+      "note": ""
+    },
+    "files": {
+      "value": 3,
+      "basis": "measured",
+      "source": "scripts/facts/shenzhen_charging.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.17632/c7gg94tmvz.3; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  },
+  "charging_fault_labels": {
+    "value": 5680,
+    "basis": "measured",
+    "source": "scripts/checks/ondeck_deltas.py -> reports/checks/v12/shenzhen_charging_deltas.json",
+    "note": "Sessions labelled faulty (label 1). The Readme describes two kinds of battery fault: faults reported by engineering personnel (thermal runaway, unbalanced cell voltages, short circuit) and over-temperature disconnections by the stations. Counted as battery faults, per session, batteries not identified (maintainer, 2026-10-13; docs/descriptor/TABLE3_faults.md)."
+  },
+  "charging_sessions": {
+    "value": 31449,
+    "basis": "measured",
+    "source": "scripts/checks/ondeck_deltas.py -> reports/checks/v12/shenzhen_charging_deltas.json",
+    "note": "Distinct transaction_id in processed_data.xlsx; 4,538 sessions repeated in Sheet1 and Sheet7 are counted once."
+  }
+}

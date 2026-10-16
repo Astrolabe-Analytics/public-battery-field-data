@@ -89,6 +89,11 @@ def _preview(package: str, frame: pd.DataFrame, basis: str) -> dict:
             "preview_points": int(len(y)), "preview_step": int(step)}
 
 
+# Releases whose license forbids derived files: the loader check runs, but no preview image or points are saved
+# (stanford_ev, CC BY-NC-ND 4.0; maintainer's decision 2026-10-13).
+NO_PREVIEW = {"stanford_ev": "No preview: the release's license (CC BY-NC-ND 4.0) does not allow derived files."}
+
+
 def check(package: str) -> dict:
     args = quickstart.example_args(package)
     record = {"date": dt.date.today().isoformat(), "load_args": {k: v for k, v in args.items()}}
@@ -98,6 +103,9 @@ def check(package: str) -> dict:
     except Exception as error:
         detail = traceback.format_exception_only(type(error), error)[-1].strip()
         record.update(status="failed", error=_public_text(detail))
+        return record
+    if package in NO_PREVIEW:
+        record["preview_withheld"] = NO_PREVIEW[package]
         return record
     try:
         record.update(_preview(package, frame, "cleaned" if args.get("clean") else "raw"))

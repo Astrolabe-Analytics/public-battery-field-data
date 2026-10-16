@@ -22,6 +22,14 @@ FIELDS = [
     "obs_hours", "size_gb", "files", "fault_onset_timestamp", "sentinels_documented",
 ]
 BASIS = {"measured", "stated", "derived", "not_in_release", "open"}
+# energy_coverage (maintainer, 2026-10-16), written by build.py as a 15th fact per release: "partial" where energy_mwh covers
+# only some of the counted units, "full" where it covers all of them, none where the release has no energy value.
+ENERGY_COVERAGE_PARTIAL = {
+    "ved": (3, "the 3 EVs (2013 Nissan Leaf, 24 kWh advertised, README); the 24 PHEVs and vehicle 439 are unrated"),
+    "brazil_star": (1, "STAR-A only; the other three households never swing 40 percent SOC (reports/checks/v12/brazil_star_energy.csv)"),
+    "cao": (473, "DTI 80 and QAS 393 vehicles; the 41 GIS vehicles are excluded because their channel layout is unresolved"),
+    "pnnl_epri": (9, "nine rated systems; EPRI_LFP1 and EPRI_LFP2 are unrated (reports/candidates/pnnl_epri/pnnl_epri_ratings.csv)"),
+}
 APPLICATION = {
     "schaeffer": "distributed storage", "rwth-home": "distributed storage", "cloverleaf": "distributed storage",
     "ppl": "grid-scale storage", "li2026": "grid-scale storage", "m5bat-pbacid": "grid-scale storage",
@@ -32,10 +40,12 @@ APPLICATION = {
 APPLICATIONS = {
     "passenger EV", "bus", "light electric mobility", "grid-scale storage",
     "distributed storage", "consumer electronics", "industrial and robotics",
+    "satellite",  # v1.2 (birds_cubesat)
 }
 CHEMISTRY = {
     "bilfinger2024": ("NMC and LFP", "stated", "https://doi.org/10.1016/j.etran.2024.100356, vehicle descriptions"),
     "bilfinger2026": ("NMC and LFP", "stated", "https://doi.org/10.1016/j.etran.2026.100589, vehicle descriptions"),
+    "bilfinger2025": ("NMC and LFP", "stated", "https://doi.org/10.1038/s44406-025-00010-8 (open access; read in arXiv 2508.15517v1), p. 20, Table 1: VW ID.3 and Cupra Born NMC532, Porsche Taycan NMC622, Tesla Model 3 SR+ LFP, Tesla Model Y LR NMC811"),
     "changan": ("NCM", "stated", "https://doi.org/10.1038/s41467-025-56485-7, p. 4, Results ('300 EVs equipped with NCM lithium-ion batteries')"),
     "deng": ("NMC", "stated", "https://github.com/BatICM/battery-charging-data-of-on-road-electric-vehicles, README, section 'battery pack information update' (\"equipped with CATL NCM batteries\")"),
     "flashbattery-agv": ("lithium-ion", "stated", "https://doi.org/10.1109/CCNC51644.2023.10060391, p. 1 (Flash Battery lithium-ion packs in AGV applications)"),
@@ -52,6 +62,9 @@ CHEMISTRY = {
 ENERGY = {
     "bilfinger2024": (0.1105, "stated", "https://doi.org/10.1016/j.etran.2024.100356, vehicle descriptions"),
     "bilfinger2026": (0.4005, "stated", "https://doi.org/10.1016/j.etran.2026.100589, vehicle descriptions"),
+    # bilfinger2025: the five vehicles not already counted (maintainer, 2026-10-15): VW ID.3 (GB) 58, two Porsche Taycan 82.3 each,
+    # two Tesla Model Y LR 75 each, net energy in kWh
+    "bilfinger2025": (0.3726, "stated", "https://doi.org/10.1038/s44406-025-00010-8 (open access; read in arXiv 2508.15517v1), p. 20, Table 1, net energy: VW ID.3 58 kWh, Porsche Taycan 82.3 kWh, Tesla Model Y LR 75 kWh; the five vehicles not counted under bilfinger2024 or bilfinger2026 (58 + 2 x 82.3 + 2 x 75 kWh)"),
     "cloverleaf": (0.084, "stated", "https://doi.org/10.5281/zenodo.6373656, record description"),
     "m5bat-pbacid": (1.066, "stated", "https://doi.org/10.3390/en19174141, Section 2"),
     "ppl": (2.0, "stated", "https://doi.org/10.1109/ACCESS.2026.3693606, Section II"),
@@ -204,7 +217,7 @@ def profile_measurements(package: str, facts: dict[str, dict], script: str) -> N
 
 
 def simple_measurements(package: str, facts: dict[str, dict], script: str) -> None:
-    if package in {"bilfinger2024", "bilfinger2026"}:
+    if package in {"bilfinger2024", "bilfinger2025", "bilfinger2026"}:
         for field in ("cells_liion", "cell_channels_measured", "span_unit_years"):
             facts[field] = fact(None, "open", note="Measured in scripts/facts/_extra.py.")
     elif package == "cloverleaf":
@@ -322,12 +335,18 @@ def measure(package: str) -> Path:
         simple_measurements(package, facts, script)
     import _extra
     _extra.apply(package, facts, script)
+    import _v12
+    if package in _v12.V12:
+        _v12.apply(package, facts, script)
     # Units always come from the package loader, through the one shared definition in fielddata/counting.py.
     from fielddata import counting
     earlier = facts["units_released"].get("note", "")
     facts["units_released"] = fact(counting.units(package), "measured",
         f"fielddata/counting.py over fielddata.systems('{package}')",
         (f"Rule: {counting.rule(package)}. " + earlier).strip())
+    if package in counting.GROSS:  # display only: tables and dashboards show the gross count with a dagger (maintainer, 2026-10-16)
+        facts["units_gross"] = fact(counting.gross_units(package), "measured", f"fielddata/counting.py GROSS over fielddata.systems('{package}')",
+                                    f"Gross: {counting.GROSS[package][1]}. Not used in totals.")
     if package in {"m5bat-pbacid", "tsukuba", "aitio"}:
         facts["cells_liion"] = fact(None, "not_in_release", note="This package is lead-acid; a lithium-ion cell count does not apply.")
     if package == "zhou2026":
@@ -341,7 +360,7 @@ def measure(package: str) -> Path:
     for field in FIELDS:
         current = facts[field]
         output["facts"][field] = {**current, "note": current.get("note", "")}
-    for key in sorted(k for k in facts if k.startswith("overlap_")):
+    for key in sorted(k for k in facts if k.startswith("overlap_") or k.startswith("charging_") or k.startswith("energy_split_") or k == "units_gross"):
         output[key] = facts[key]
     OUT.mkdir(parents=True, exist_ok=True)
     path = OUT / f"{package}.json"

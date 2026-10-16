@@ -1,5 +1,6 @@
 package,first_author,et_al,year,venue,doi_or_url
 bilfinger2024,Bilfinger,yes,2024,eTransportation,https://doi.org/10.1016/j.etran.2024.100356
+bilfinger2025,Bilfinger,yes,2025,npj Clean Energy,https://doi.org/10.1038/s44406-025-00010-8
 bilfinger2026,Bilfinger,yes,2026,eTransportation,https://doi.org/10.1016/j.etran.2026.100589
 cao,Cao,yes,2025,Nature Communications,https://doi.org/10.1038/s41467-025-56832-8
 changan,Liu,yes,2025,Nature Communications,https://doi.org/10.1038/s41467-025-56485-7
@@ -19,3 +20,16 @@ xie,Xie,yes,2026,Cell Reports Physical Science,https://doi.org/10.1016/j.xcrp.20
 zhang2023,Zhang,yes,2023,Nature Communications,https://doi.org/10.1038/s41467-023-41226-5
 zhou2026,Zhou,yes,2026,Nature Energy,https://doi.org/10.1038/s41560-026-02131-5
 aitio,Aitio,and Howey,2021,Joule,https://doi.org/10.1016/j.joule.2021.11.006
+birds_cubesat,Jara,yes,2022,Data in Brief,https://doi.org/10.1016/j.dib.2022.108697
+ved,Oh,LeBlanc and Peng,2022,IEEE Trans. Intell. Transp. Syst.,https://doi.org/10.1109/TITS.2020.3035596
+shenzhen_charging,Yang,yes,2026,Nature Communications,https://doi.org/10.1038/s41467-025-67703-7
+tongji_rest,Tao,yes,2025,eTransportation,https://doi.org/10.1016/j.etran.2025.100471
+beijing_ev,Wei,yes,2022,Journal of Energy Storage,https://doi.org/10.1016/j.est.2022.104091
+tum_id3_2022,Wassiliadis,yes,2022,eTransportation,https://doi.org/10.1016/j.etran.2022.100167
+brazil_star,Gaura,yes,2020,Zenodo,https://doi.org/10.5281/zenodo.3959739
+cloverleaf,Gaukema,yes,2022,Zenodo,https://doi.org/10.5281/zenodo.6373656
+fei_bus,Fei,no,2024,Mendeley Data,https://doi.org/10.17632/j9ky68gnd3.3
+rise_conbat,Fast,yes,2025,Zenodo,https://doi.org/10.5281/zenodo.17287096
+cell_to_pack,He,yes,2026,Zenodo,https://doi.org/10.5281/zenodo.20132842
+pnnl_epri,Crawford,and Thompson,2026,Zenodo,https://doi.org/10.5281/zenodo.22947521
+stanford_ev,Lanubile,yes,2026,Stanford Digital Repository,https://doi.org/10.25740/yx490wc6642

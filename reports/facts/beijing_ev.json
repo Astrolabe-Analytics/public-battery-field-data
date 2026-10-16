@@ -1,0 +1,89 @@
+{
+  "package": "beijing_ev",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Neither the release nor its paper or record states the cell chemistry."
+    },
+    "units_released": {
+      "value": 1,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('beijing_ev')",
+      "note": "Rule: one vehicle (the twelve files are days of the same car). Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The release gives pack- or system-level signals and no cell topology."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No individual cell-voltage channels are released."
+    },
+    "energy_mwh": {
+      "value": 0.03203591762178591,
+      "basis": "measured",
+      "source": "scripts/checks/v12_energy.py -> reports/checks/v12/beijing_ev_energy.csv",
+      "note": "Present usable energy computed from the data: coulomb counting over runs of at least 40 points of SOC with no gap over 300 s, ampere-hours per 100 percent SOC times mean pack voltage, median per unit, summed. "
+    },
+    "energy_basis": {
+      "value": "computed",
+      "basis": "derived",
+      "source": "energy_mwh is computed from the released data",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 1.6138123621568181,
+      "basis": "measured",
+      "source": "scripts/checks/ondeck_deltas.py -> reports/checks/v12/beijing_ev_deltas.json",
+      "note": "one car on 12 separate days: unit-years is first to last record (the v1.1 rule for releases with calendar timestamps); the 12 days' recorded time is given for reference"
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Calendar spans are measurable, so observation-hours are not used."
+    },
+    "size_gb": {
+      "value": 0.0011653,
+      "basis": "measured",
+      "source": "scripts/facts/beijing_ev.py",
+      "note": ""
+    },
+    "files": {
+      "value": 12,
+      "basis": "measured",
+      "source": "scripts/facts/beijing_ev.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.17632/mm9rvfvmrb.3; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "package": "birds_cubesat",
+  "facts": {
+    "application": {
+      "value": "satellite",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": "Satellite (maintainer, 2026-10-13 and 2026-10-16): batteries of 1U CubeSats in orbit, a class of its own, kept separate from eVTOL and aerospace."
+    },
+    "chemistry": {
+      "value": "NiMH",
+      "basis": "stated",
+      "source": "https://doi.org/10.1016/j.dib.2022.108697, Section 2 and Table 2 (Eneloop BK-3MCCE)",
+      "note": ""
+    },
+    "units_released": {
+      "value": 4,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('birds_cubesat')",
+      "note": "Rule: one battery per satellite. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The batteries are NiMH; a lithium-ion cell count does not apply."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No individual cell-voltage channels are released."
+    },
+    "energy_mwh": {
+      "value": 5.7600000000000004e-05,
+      "basis": "derived",
+      "source": "4 satellites x 6 NiMH cells (3S2P) x 2.0 Ah x 1.2 V, paper Table 2 / 1,000,000",
+      "note": "Computed from the stated configuration; not computable from the data (no SOC)."
+    },
+    "energy_basis": {
+      "value": "computed",
+      "basis": "derived",
+      "source": "energy_mwh is computed from stated configuration",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The release has no calendar timestamps."
+    },
+    "obs_hours": {
+      "value": 77.55675,
+      "basis": "measured",
+      "source": "scripts/checks/ondeck_deltas.py -> reports/checks/v12/birds_cubesat_deltas.json",
+      "note": "records have no calendar timestamps (time is seconds within one orbit's collection), so service time is observation-hours: sum of sheet spans, test sheets left out"
+    },
+    "size_gb": {
+      "value": 0.008028165,
+      "basis": "measured",
+      "source": "scripts/facts/birds_cubesat.py",
+      "note": ""
+    },
+    "files": {
+      "value": 4,
+      "basis": "measured",
+      "source": "scripts/facts/birds_cubesat.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.17632/8kp25ycf63.1; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  }
+}

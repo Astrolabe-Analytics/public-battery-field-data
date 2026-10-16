@@ -1,0 +1,107 @@
+{
+  "package": "pnnl_epri",
+  "facts": {
+    "application": {
+      "value": "grid-scale storage",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": "LFP; NMC; LMO/NMC; vanadium flow",
+      "basis": "stated",
+      "source": "Crawford 2026 DOE OE peer-review poster, alias table (https://doepeerreview.sandia.gov/app/uploads/sites/82/2026/05/Crawford_Alasdair_Analytics.pdf); per system in fielddata/loaders/pnnl_epri.py",
+      "note": ""
+    },
+    "units_released": {
+      "value": 11,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('pnnl_epri')",
+      "note": "Rule: one per system, EPRI_NMC2 left out (it is the ppl E.W. Brown system, counted once, under ppl). Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The release gives pack- or system-level signals and no cell topology."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No individual cell-voltage channels are released."
+    },
+    "energy_mwh": {
+      "value": 63.87,
+      "basis": "derived",
+      "source": "PNNL reports for the six WACEF systems (ENW at its 4 MWh nameplate) and the Crawford 2026 poster for the EPRI systems; per system in reports/candidates/pnnl_epri/pnnl_epri_ratings.csv",
+      "note": "Nine systems: Avista 3.2, ENW 4.0, OPALCO 2.0, PSE 4.4, SnoPUDMESA1 1.0, SnoPUDMESA2 8.0, EPRI_LFP3 40.0, EPRI_NMC1 1.0, EPRI_VRF1 0.27 MWh. EPRI_LFP1 and EPRI_LFP2 are unrated, and EPRI_NMC2 is ppl's system, counted there. ENW: PNNL's 5.5 MWh designed usable is noted, the nameplate is used (maintainer, 2026-10-13). Split basis: 23.87 MWh stated (the eight other rated systems) and 40.0 MWh computed (EPRI_LFP3). EPRI_LFP3: 40 MWh computed from the data's peak power of 0.25 C, a 4-hour ratio, at the poster's 10 MW, which matches the poster's printed E/P of 4.0 (maintainer, 2026-10-16: trust the data; computed, not stated). The poster also states 30,000 kWh (3 hours); the poster's 30 MWh is noted as a discrepancy. The data are normalised, so they fix the ratio, not the absolute size: 30 MWh run at no more than 7.5 MW would also fit. EPRI_NMC1 and EPRI_VRF1 rest on the poster alone. The data are normalised by unreleased ratings, so energy is not computable from them (usable fractions in reports/checks/v12/pnnl_epri_energy.csv)."
+    },
+    "energy_basis": {
+      "value": "stated and computed",
+      "basis": "derived",
+      "source": "energy_mwh is 23.87 MWh stated (eight rated systems) and 40.0 MWh computed (EPRI_LFP3); totals count each part under its basis",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 17.221165107612745,
+      "basis": "measured",
+      "source": "fielddata.loaders.pnnl_epri (first to last HoursElapsed per system, scripts/checks/pnnl_epri_units.py)",
+      "note": "Eleven systems, plus EPRI_NMC2's 304 days before ppl's first file (0.832 unit-years): EPRI_NMC2 is ppl's E.W. Brown system, counted once, and its time outside ppl still counts."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Observation-hours are not used when calendar spans are measurable or no cadence is available."
+    },
+    "size_gb": {
+      "value": 3.427742424,
+      "basis": "measured",
+      "source": "scripts/facts/pnnl_epri.py",
+      "note": ""
+    },
+    "files": {
+      "value": 26,
+      "basis": "measured",
+      "source": "scripts/facts/pnnl_epri.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.5281/zenodo.22947521; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  },
+  "energy_split_computed_mwh": {
+    "value": 40.0,
+    "basis": "derived",
+    "source": "reports/candidates/pnnl_epri/NOTES.md (EPRI_LFP3 at 40 MWh)",
+    "note": "EPRI_LFP3: the data's 0.25 C peak power (a 4-hour ratio) at the poster's 10 MW"
+  },
+  "energy_split_stated_mwh": {
+    "value": 23.87,
+    "basis": "stated",
+    "source": "reports/candidates/pnnl_epri/pnnl_epri_ratings.csv",
+    "note": "Avista 3.2, ENW 4.0, OPALCO 2.0, PSE 4.4, SnoPUDMESA1 1.0, SnoPUDMESA2 8.0, EPRI_NMC1 1.0, EPRI_VRF1 0.27 MWh"
+  },
+  "units_gross": {
+    "value": 12,
+    "basis": "measured",
+    "source": "fielddata/counting.py GROSS over fielddata.systems('pnnl_epri')",
+    "note": "Gross: all 12 systems, including EPRI_NMC2, which is ppl's system. Not used in totals."
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "package": "tum_id3_2022",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": ""
+    },
+    "chemistry": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Neither the release nor its paper or record states the cell chemistry."
+    },
+    "units_released": {
+      "value": 0,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('tum_id3_2022')",
+      "note": "Rule: the same vehicle as tumftm ID1, already counted there: its extra signals belong to that unit. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": 216,
+      "basis": "derived",
+      "source": "https://doi.org/10.1016/j.etran.2022.100167 (paper/Wassiliadis_2022_eTransportation.pdf): nine modules (p. 9), each 12s2p with cells \"joined in parallel pairs\" (p. 4), 216 cells in the battery system (p. 5); 108s2p",
+      "note": "The release's 108 cell-voltage channels are the 108 series pairs. The vehicle is tumftm's ID1, whose 216 cells tumftm already counts, so totals subtract them once (overlap_cells_liion)."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 108,
+      "basis": "measured",
+      "source": "cell_voltage_1 to cell_voltage_108 in the drives, through fielddata.loaders.tum_id3_2022 (tumftm ID1, whose release has no cell channels)",
+      "note": ""
+    },
+    "energy_mwh": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The vehicle is tumftm ID1, counted once there. 58.8 kWh computed from the data (ratio 1.01 to the stated 58 kWh net) is a cross-check, not added (reports/checks/v12/tum_id3_2022_energy.csv)."
+    },
+    "energy_basis": {
+      "value": "none",
+      "basis": "derived",
+      "source": "energy_mwh is not available",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 0.0,
+      "basis": "measured",
+      "source": "scripts/checks/ondeck_deltas.py -> reports/checks/v12/tum_id3_2022_deltas.json",
+      "note": "Same vehicle as tumftm ID1 (scripts/checks/tum_id3_vs_tumftm.py), counted once: no time falls outside ID1's span (2021-02-11 to 2021-12-08 lies inside 2021-02-01 to 2023-06-13)."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Calendar spans are measurable, so observation-hours are not used."
+    },
+    "size_gb": {
+      "value": 2.905494492,
+      "basis": "measured",
+      "source": "scripts/facts/tum_id3_2022.py",
+      "note": ""
+    },
+    "files": {
+      "value": 298,
+      "basis": "measured",
+      "source": "scripts/facts/tum_id3_2022.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.14459/2022mp1656313; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  },
+  "overlap_cells_liion": {
+    "value": 216,
+    "basis": "derived",
+    "source": "tumftm counts 7 vehicles x 216 cells, ID1 among them (https://doi.org/10.1016/j.etran.2025.100518, p. 3)",
+    "note": "Dedup rule (fielddata/counting.py): ID1's cells count once, under tumftm."
+  },
+  "units_gross": {
+    "value": 1,
+    "basis": "measured",
+    "source": "fielddata/counting.py GROSS over fielddata.systems('tum_id3_2022')",
+    "note": "Gross: its one vehicle, tumftm's ID1. Not used in totals."
+  }
+}

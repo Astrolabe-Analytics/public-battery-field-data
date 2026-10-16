@@ -76,9 +76,11 @@ def export_notebooks() -> None:
 
 def main() -> None:
     run(ROOT / "scripts" / "totals.py")
+    # docs/DECISIONS.md: the counting decisions; stops the rebuild (non-zero exit) if the facts or totals break one
+    run(ROOT / "scripts" / "checks" / "test_decisions.py")
     run(ROOT / "scripts" / "table1.py")
     run(ROOT / "scripts" / "tables.py")
-    run(ROOT / "scripts" / "make_dashboard.py")  # its totals line reads reports/totals.json
+    run(ROOT / "scripts" / "make_dashboard.py")  # its KPI tiles read reports/totals.json
     filler = ROOT / "scripts" / "fill_descriptor.py"  # fills the working copy of the paper text, not in the public release
     if filler.exists():
         run(filler)
