@@ -53,8 +53,8 @@ Then open `config/local.toml` and replace the whole placeholder path `PATH_TO_PU
 
 How each release downloads, as of October 2026 (`python -m fielddata.fetch --list` shows the same):
 
-- One command (`python -m fielddata.fetch <release>`): aitio, beijing_ev, birds_cubesat, brazil_star, cao, cell_to_pack, cloverleaf, deng, evbattery, flashbattery-agv, li2026, pnnl_epri, rise_conbat, rwth-home, schaeffer, shenzhen_charging, stanford_ev, tongji_rest, tsukuba, tum_id3_2022, tumftm, ved, xie, zhang2023.
-- Manual, in a web browser (the fetch command prints the steps): bilfinger2024, bilfinger2026, changan, fei_bus, ku_leuven_bev, m5bat-2023-04, m5bat-pbacid, rwth-android, zhou2026.
+- One command (`python -m fielddata.fetch <release>`): aitio, beijing_ev, birds_cubesat, brazil_star, cao, cell_to_pack, cloverleaf, deng, evbattery, fei_bus, flashbattery-agv, li2026, pnnl_epri, rise_conbat, rwth-home, schaeffer, shenzhen_charging, stanford_ev, tongji_rest, tsukuba, tum_id3_2022, tumftm, ved, xie, zhang2023.
+- Manual, in a web browser (the fetch command prints the steps): bilfinger2024, bilfinger2025, bilfinger2026, changan, ku_leuven_bev, m5bat-2023-04, m5bat-pbacid, rwth-android, zhou2026.
 - Partly manual: ppl. The command downloads the 0.95 GB on GitHub. The 66.6 GB of cell-level data is on a Box share linked from the repository's `Cell_Level_Data` file; the command prints the link as a manual step. The ppl loader does not read the cell-level data.
 
 ## Rebuild the published numbers
@@ -94,4 +94,4 @@ Derived outputs (previews, facts, profiles and notebooks made from a release) fo
 
 ## Citation
 
-Cite this repository as: Masse, R. (2026). Public Battery Field Data. Zenodo. https://doi.org/10.5281/zenodo.23150592 (this DOI covers all versions; v1.0.0 is https://doi.org/10.5281/zenodo.23150593). Citation metadata is provided in [`CITATION.cff`](CITATION.cff). Cite the original dataset and paper alongside this repository when using a package.
+Cite this repository as: Masse, R. (2026). Public Battery Field Data. Zenodo. https://doi.org/10.5281/zenodo.23150592 (this DOI covers all versions; v1.2.0 is https://doi.org/10.5281/zenodo.23422151). Citation metadata is provided in [`CITATION.cff`](CITATION.cff). Cite the original dataset and paper alongside this repository when using a package.

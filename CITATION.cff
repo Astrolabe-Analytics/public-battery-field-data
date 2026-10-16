@@ -4,6 +4,13 @@ title: "Public Battery Field Data"
 version: 1.2.0
 date-released: 2026-10-16
 doi: 10.5281/zenodo.23150592
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23150592
+    description: "Concept DOI, all versions"
+  - type: doi
+    value: 10.5281/zenodo.23422151
+    description: "Version DOI, v1.2.0"
 type: software
 authors:
   - family-names: "Masse"
