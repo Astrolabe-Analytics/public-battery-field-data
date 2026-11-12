@@ -15,6 +15,18 @@ jobs:
           cache: pip
       - name: Install pinned dependencies
         run: python -m pip install -r requirements.txt
+      - name: Write private guard policy from secret
+        env:
+          TERMS: ${{ secrets.PUBLIC_GUARD_TERMS }}
+        run: |
+          umask 077
+          printf '%s\n' "$TERMS" > "$RUNNER_TEMP/public_blocked_terms.txt"
+          while IFS= read -r line; do
+            line="${line%$'\r'}"; term="${line#"${line%%[![:space:]]*}"}"; term="${term%"${term##*[![:space:]]}"}"
+            case "$term" in ''|'#'*) continue ;; esac
+            for form in "$term" "${term,,}" "${term^^}"; do echo "::add-mask::$form"; done
+          done < "$RUNNER_TEMP/public_blocked_terms.txt"
+          echo "PUBLIC_GUARD_TERMS=$RUNNER_TEMP/public_blocked_terms.txt" >> "$GITHUB_ENV"
       - name: Run tests
         run: python -m pytest -q
       - name: Check for private paths and internal wording
