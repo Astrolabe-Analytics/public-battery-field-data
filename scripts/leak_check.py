@@ -6,7 +6,7 @@ import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SAFE_EMAILS = {"data@astrolabe-analytics.com"}
+SAFE_EMAILS = {"data@astrolabe-analytics.com", "guard@example.invalid"}  # the second is a reserved-domain test address
 ALLOWLIST = {
     "AGENTS.md": {"coordination-rule"},
     "SHIP.md": {"coordination-record"},
