@@ -26,3 +26,9 @@ def iter_snippets(archive):
 def load(unit, clean=False):
     """Load all snippets of one vehicle ("<archive stem>:<car>"); streams its archive. ``clean`` has no effect."""
     return _snippets.load(_PACKAGE, unit, clean=clean)
+
+
+def standard(unit, **kwargs):
+    """Common view of charging snippets; encoded volt is never called pack_voltage."""
+    from fielddata._standard import standard as view
+    return view(_PACKAGE, unit, **kwargs)

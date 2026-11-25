@@ -1,0 +1,13 @@
+package,unit,loader_rows,processed_rows,basis,result
+tumftm,CUP1,8659492,8659492,raw loader systems inventory,matched
+tumftm,CUP2,3743488,3743488,raw loader systems inventory,matched
+tumftm,CUP3,986864,986864,raw loader systems inventory,matched
+tumftm,CUP4,4943471,4943471,raw loader systems inventory,matched
+tumftm,CUP5,3305981,3305981,raw loader systems inventory,matched
+tumftm,ID1,40401700,40401700,raw loader systems inventory,matched
+tumftm,ID2,36020218,36020218,raw loader systems inventory,matched
+m5bat-pbacid,Pb1:bms,249423269,249423269,"full raw loader stream, measurement columns excluded",matched
+m5bat-pbacid,Pb1:bsc,251662700,251662700,"full raw loader stream, measurement columns excluded",matched
+zhou2026,LFP01,5118176,5118176,raw loader systems inventory,matched
+zhou2026,vehicle45,6103094,6103094,raw loader systems inventory,matched
+zhou2026,vehicle69,5015309,5015309,raw loader systems inventory,matched

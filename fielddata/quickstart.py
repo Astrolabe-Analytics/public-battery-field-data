@@ -48,6 +48,8 @@ EXAMPLES = {
     "tum_id3_2022": {"track": 0},
     "cell_to_pack": {"unit": "Pack_field#1", "columns": ["time(s)", "current(A)", "Vpack", "SOC"]},
     "stanford_ev": {"session": "20210921_234539", "signal": "V_pack_bms"},
+    "li2026_evfault": {"window": 2243},  # v1.3: one voltage snapshot (two cells labelled internal short circuit)
+    "giu_ebike": {"recording": "raw/jk_001_before_repair"},  # v1.3: the ride before the faulty parallel group was replaced
 }
 
 
@@ -107,6 +109,7 @@ PLOT = {
     "birds_cubesat": ("Vbat_V", "time_s"), "ved": ("HV Battery SOC[%]", "Timestamp(ms)"), "shenzhen_charging": ("chargingv", None),
     "tongji_rest": ("totalVoltage", "reqDate"), "rise_conbat": ("voltage", None), "tum_id3_2022": ("hv_battery_voltage", "time"),
     "cell_to_pack": ("Vpack", None), "stanford_ev": ("V_pack_bms", "t"),
+    "li2026_evfault": ("V 7", "sample"), "giu_ebike": ("cell08", "utc_time"),
 }
 
 

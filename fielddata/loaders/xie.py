@@ -102,3 +102,9 @@ def load(unit, clean=False):
         frame["unit"] = n
         frames.append(finish(frame.set_index("dateTime").sort_index(kind="stable"), _PACKAGE, clean, masked, unit=n))
     return concat(frames, _PACKAGE, clean)
+
+
+def standard(unit, **kwargs):
+    """Common view with cell voltages in V; inferred A and degC units remain documented."""
+    from fielddata._standard import standard as view
+    return view("xie", unit, **kwargs)

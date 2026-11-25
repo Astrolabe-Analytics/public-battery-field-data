@@ -1,0 +1,41 @@
+package,standard_done,processed_done,rows,size_bytes,verified,checkpoint
+cao,yes,yes,17656309,17285612993,yes,validated all supported units; spot rows=4 on DTI:0
+schaeffer,yes,yes,132777059,1993041829,yes,validated all supported units; spot rows=4 on 1
+ppl,yes,yes,4339805,121022024,yes,validated all supported units; spot rows=4 on E_W_Brown_BESS
+xie,yes,yes,20780,6858967,yes,validated all supported units; spot rows=4 on 0022234cc5964eae8c383cc9032cd51f
+zhang2023,yes,yes,89674496,1556583966,yes,validated all supported units; spot rows=4 on battery_brand1:1
+evbattery,yes,yes,163619456,2888303437,yes,validated all supported units; spot rows=4 on battery_dataset1:0
+aitio,yes,yes,619511328,7392682798,yes,validated all supported units; spot rows=4 on 0
+fei_bus,yes,yes,662,37060,yes,validated all supported units; spot rows=4 on vin1
+beijing_ev,yes,yes,31990,495231,yes,validated all supported units; spot rows=4 on 2018-01-03
+flashbattery-agv,yes,yes,57880,2603251,yes,validated all supported units; spot rows=4 on FB-0
+brazil_star,yes,yes,499966,2772177,yes,validated all supported units; spot rows=4 on STAR-A
+cloverleaf,yes,yes,1561,269237,yes,validated all supported units; spot rows=4 on SNAM HV - 2100173
+birds_cubesat,yes,no,0,0,no,"build failed: (""Expected bytes, got a 'int' object"", 'Conversion failed for column source__Vpy_raw with type object')"
+li2026,yes,yes,2229030,26788050,yes,validated all supported units; spot rows=4 on real_world_02-03/battery_01
+rwth-android,yes,yes,7407934,89749581,yes,validated all supported units; spot rows=4 on 03b3c5a4a5d9a7a3d9829afa52b734c1
+m5bat-2023-04,yes,yes,25920000,204377281,yes,validated all supported units; spot rows=4 on Batt1
+shenzhen_charging,yes,yes,1556000,559099111,yes,validated all supported units; spot rows=4 on 44020100400000012010151800001210
+tongji_rest,yes,no,0,0,no,"build failed: tongji_rest NMC01_Car02: invalid calendar timestamp, no rows dropped"
+ku_leuven_bev,yes,no,0,0,no,"build failed: ku_leuven_bev BEV1: invalid calendar timestamp, no rows dropped"
+ved,yes,yes,3719680,37350404,yes,validated all supported units; spot rows=4 on 9
+deng,yes,yes,16100728,322786115,yes,validated all supported units; spot rows=4 on #1
+bilfinger2026,yes,yes,1762286,197379680,yes,validated all supported units; spot rows=4 on Cupra_204_JB_8A_CEE7_C45
+bilfinger2024,yes,yes,183524,121170929,yes,validated all supported units; spot rows=4 on Tesla_JB_8A_CEE7_C57_2021
+bilfinger2025,yes,no,0,0,no,build failed: bilfinger2025 data/data.zip: no committed checksum to verify against
+rise_conbat,yes,no,0,0,no,no supported units
+tumftm,yes,no,0,0,no,build failed: tumftm data/electric-vehicle-uds-dataset/data/uds_data/CUP1.parquet: no committed checksum to verify against
+zhou2026,yes,yes,16236579,2769178604,no,"verification failed: DataFrame.iloc[:, 0] (column name=""time"") are different
+
+DataFrame.iloc[:, 0] (column name=""time"") values are different (100.0 %)
+[index]: [0, 1, 2, 3]
+[left]:  [1557058331000000000, 1557062671000000000, 1702424063000000000, 1702423933000000000]
+[right]: [1557058170000000000, 1557058351000000000, 1646397233000000000, 1702424163000000000]"
+tsukuba,yes,yes,103507200,1407183344,yes,validated all supported units; spot rows=4 on tsukuba
+tum_id3_2022,yes,yes,2168330,77095822,yes,validated all supported units; spot rows=4 on ID3
+pnnl_epri,yes,yes,194004088,1097923693,yes,validated all supported units; spot rows=4 on Avista
+cell_to_pack,yes,no,0,0,no,no supported units
+m5bat-pbacid,yes,no,0,0,no,"build failed: Unable to allocate 10.3 GiB for an array with shape (11, 251662700) and data type float32"
+stanford_ev,yes,yes,1320549781,11398243375,yes,validated all supported units; spot rows=4 on EV1
+rwth-home,yes,yes,2786182929,42081040559,yes,validated all supported units; spot rows=4 on 01
+changan,yes,no,0,0,no,build failed: changan data/raw/RAW_DATA.z01: no committed checksum to verify against

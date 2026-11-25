@@ -45,3 +45,20 @@ def test_clean_masks_only_odometer_placeholder(root, package_directory):
     assert clean.attrs["masked_value_count"] == 1 and len(clean) == 2
     assert clean["SOCave292"].tolist() == [51.3, 51.4]
     assert clean.index[0] == pd.Timestamp("2024-08-10 06:39:51", tz="UTC")
+
+
+def test_invalid_timestamp_keeps_source_value_and_session(root, package_directory):
+    d = package_directory("ku_leuven_bev")
+    body = ("Timestamp,SOCave292,RawBattCurrent132,Odometer3B6\n"
+            ",51.3,-25.7,39473.033\n")
+    inner = io.BytesIO()
+    member = "BEV energy dynamic data_V2/fast charging sessions/BEV1_2024-08-10_fast_1.csv"
+    with zipfile.ZipFile(inner, "w") as z:
+        z.writestr(member, body)
+    with zipfile.ZipFile(d / "doi-10.48804-8kpdtw.zip", "w") as z:
+        z.writestr("BEV energy dynamic data_V2.zip", inner.getvalue())
+
+    raw = fielddata.load("ku_leuven_bev", unit="BEV1", session=member)
+    assert raw.index.isna().tolist() == [True]
+    assert raw["Timestamp_raw"].isna().tolist() == [True]
+    assert raw["session"].tolist() == ["BEV1_2024-08-10_fast_1.csv"]

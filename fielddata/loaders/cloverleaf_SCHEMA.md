@@ -30,3 +30,23 @@ Chemistry is not stated in any held source; the facts table infers NMC-class fro
 - They are run as one system. Pack current correlates at 1.000 between 2100173 and 2100177 and at 0.971 with 2100179, and pack voltage at 1.000 and 0.978 (raw data, 20,000 s averages). The Zenodo record describes "the second-life battery system", singular.
 
 Decision (maintainer, 2026-10-03): cloverleaf counts three units, one per pack, the same rule as for m5bat-2023-04. `fielddata/counting.py` counts the rows of `systems()` whose kind is `pack`. Service time is the first-to-last span of each pack sheet, summed over the three packs (1.00 unit-years). The energy (0.0797 MWh) was already computed for the whole system: one pack's capacity from the typical-day sheet, divided by its state of health, times the mean pack voltage, times three packs.
+
+## Standard view
+
+`fielddata.standard("cloverleaf", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `max-min` by default; call `fielddata.standard_systems("cloverleaf")` for each unit's recorded tier and status.
+
+Native current sign: charge positive (inferred from SOC). Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `Vpack` | `pack_voltage` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `Ipack` | `pack_current` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `SOC` | `soc` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `SOH` | `soh` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `Vcavg` | `cell_v_mean` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `Vcmax` | `cell_v_max` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `Vcmin` | `cell_v_min` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `Vcdif` | `cell_v_spread` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

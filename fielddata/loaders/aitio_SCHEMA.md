@@ -1,5 +1,24 @@
 # aitio
 
+## Standard view
+
+Source baseline: committed audits as of d447b9eed0206f139d0a9bca6ece5fb0c8c6bc36; not a fresh full reread of paper, supplement and author code.
+
+`fielddata.standard("aitio", unit)` has tier `pack-only`. The authors explicitly state negative charging current in `readme.md.txt`, item 1. The common view reverses that sign. The original raw loader is unchanged.
+
+Native current sign: charge negative, as explicitly stated by the authors. Where GB/T 32960 has a semantic match, standard names follow its vocabulary; columns absent from a release remain absent.
+
+| Authors' array column, raw-loader name | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| Column 0, `time_s` / UTC index | `time` | UNIX seconds parsed as UTC, no assumed calendar origin | Full held README reread, item 1; existing schema, Columns of each battery; `scripts/checks/aitio_lifetime.py` held-time checks. |
+| Column 1, `current_A` | `pack_current` | A multiplied by -1, charge positive | Full held README reread, item 1; targeted paper Fig. 2 reread; fixed [charge period](../../reports/checks/standard_layers/charge_periods.csv). |
+| Column 2, `voltage_V` | `pack_voltage` | V unchanged | Full held README reread, item 1; targeted paper Section 2 and Fig. 2 reread; existing sub-1 V check and held [round trip](../../reports/checks/standard_layers/roundtrip.csv). |
+| Column 3, `temperature_degC` | `temperature` | Degrees Celsius unchanged | Full held README reread, item 1, and targeted paper Fig. 2 reread establish the channel and unit; held round trip preserves values. |
+
+No mapped meaning here rests only on the inherited audit. The held README was reread in full and the paper's physical axes were checked in the targeted reread, rather than inferred from value ranges.
+
+No SOC, cell voltages, cell extrema or charge/rest/discharge labels are invented. Nonuniform sampling and post-repair rows stay as released unless the caller explicitly requests an existing loader option. Processed copies use the default raw, untruncated basis and calendar-month partitions.
+
 Aitio, A. and Howey, D. A. (2021), "Predicting battery end of life from solar off-grid system field data using machine learning", Joule. Data record: ORA, https://ora.ox.ac.uk/objects/uuid:e41d3d4c-f74e-4d76-81fd-0caa77ec6cec. License: CC BY-NC 4.0 (data/LICENSE). Package 23, admitted for v1.1.
 
 ## Files

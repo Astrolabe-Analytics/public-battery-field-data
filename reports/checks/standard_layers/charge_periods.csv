@@ -1,0 +1,8 @@
+package,unit,start_row,stop_row,start,stop,independent_increase,min_charging_current_A,basis,evidence
+cao,DTI:1,634,642,19020,19260,1.0,10.299999999999956,raw after documented unit/sign conversion,SOC rises
+schaeffer,3,141690,141698,2013-05-25 03:01:20,2013-05-25 03:02:00,1.0,1.9420291185379,raw after documented unit/sign conversion,SOC rises
+ppl,E_W_Brown_BESS,534,542,2022-01-01 08:54:00,2022-01-01 09:02:00,1.472630500000001,142.4232178,raw after documented unit/sign conversion,SOC rises
+xie,00dc55c44bcf46bd817a8cb6d77bceb5,4,5,2024-10-04 11:53:29.174000+00:00,2024-10-04 16:25:50.491000+00:00,0.031999999999999584,4.77,raw after documented unit/sign conversion,terminal/cell voltage rises
+zhang2023,battery_brand1:1,2432,2440,0.0,80.0,1.7999999999999972,5.308333333333334,raw after documented unit/sign conversion,SOC rises
+evbattery,battery_dataset1:0,0,8,0.0,80.0,1.9999999999999964,107.5,raw after documented unit/sign conversion,SOC rises
+aitio,0,12,20,2019-01-31 13:21:23.299999952+00:00,2019-01-31 13:28:23.299999952+00:00,1.6293583581292435,0.1569390402075226,raw after documented unit/sign conversion,terminal/cell voltage rises

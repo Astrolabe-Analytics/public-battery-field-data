@@ -19,8 +19,10 @@ Each cell gives the status of the corresponding value in `fielddata/package_fact
 | evbattery | derived | derived | measured | not_in_release | not_in_release | not_in_release | not_in_release | derived | not_in_release | measured | measured | measured | stated | stated |
 | fei_bus | derived | not_in_release | measured | not_in_release | not_in_release | not_in_release | not_in_release | derived | not_in_release | not_in_release | measured | measured | stated | stated |
 | flashbattery-agv | derived | stated | measured | not_in_release | not_in_release | not_in_release | not_in_release | derived | measured | not_in_release | measured | measured | stated | stated |
+| giu_ebike | derived | derived | measured | stated | not_in_release | measured | derived | derived | measured | not_in_release | measured | measured | stated | stated |
 | ku_leuven_bev | derived | stated | measured | not_in_release | not_in_release | not_in_release | stated | derived | measured | not_in_release | measured | measured | stated | stated |
 | li2026 | derived | stated | measured | derived | not_in_release | measured | derived | derived | not_in_release | stated | measured | measured | stated | stated |
+| li2026_evfault | derived | stated | stated | stated | not_in_release | measured | not_in_release | derived | not_in_release | derived | measured | measured | stated | stated |
 | m5bat-2023-04 | derived | stated | measured | derived | derived | not_in_release | derived | derived | measured | not_in_release | measured | measured | stated | stated |
 | m5bat-pbacid | derived | stated | measured | not_in_release | stated | not_in_release | stated | derived | measured | not_in_release | measured | measured | stated | stated |
 | pnnl_epri | derived | stated | measured | not_in_release | not_in_release | not_in_release | derived | derived | measured | not_in_release | measured | measured | stated | stated |

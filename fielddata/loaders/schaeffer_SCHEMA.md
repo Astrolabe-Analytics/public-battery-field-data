@@ -1,5 +1,28 @@
 # Schaeffer field-data schema
 
+## Standard view
+
+Source baseline: committed audits as of d447b9eed0206f139d0a9bca6ece5fb0c8c6bc36; not a fresh full reread of paper, supplement and author code.
+
+`fielddata.standard("schaeffer", "3")` returns tier `per-cell`. Native current is already charge positive, as established by the final article's discharge-only negative-current selection, Table 3. The raw loader is unchanged.
+
+Native current sign: charge positive. Where GB/T 32960 has a semantic match, standard names follow its vocabulary; columns absent from a release remain absent.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `Timestamp` | `time` | Parsed wall clock, timezone remains unknown, no UTC invented | Existing schema, Measured on the raw release; [audit](../../reports/source_audit_2026-10-04/schaeffer.md), sampling checks. |
+| `U_Battery` | `pack_voltage` | V unchanged | **AUDIT-ONLY MEANING:** existing schema sensor table and record README. Held [round trip](../../reports/checks/standard_layers/roundtrip.csv) tests identity conversion, not physical sensor identity. |
+| `I_Battery` | `pack_current` | A unchanged, charge positive | Targeted final-article Table 3 reread; [audit](../../reports/source_audit_2026-10-04/schaeffer.md), current sign check; fixed [charge period](../../reports/checks/standard_layers/charge_periods.csv). |
+| `SOC_Battery` | `soc` | Percent unchanged | Existing schema sensor table, final article p. 4; audit sign/SOC check and fixed charge-period rise. BMS-estimate provenance is the article's statement. |
+| `U_Cell_1` onward | `cell_v_001` onward | V unchanged, same series-position order | Existing schema sensor table and raw zero-value checks; held round trip. |
+| `Temperature_1` onward | `temp_001` onward | Degrees Celsius unchanged, same paired-cell probes | Targeted full read of BattGP `data_columns.py`; article Fig. 1. Probe-to-cell placement is code evidence, not independently measured here. |
+| `I_CNV_Cell_1` through `I_CNV_Cell_8` | `balance_current_001` through `balance_current_008` | Values unchanged; unit not stated | Final article Figure 3E, p. 6 identifies active cell-balancing converter currents; the common names retain the source's eight channel positions. |
+| All remaining columns | `source__<author column>` | Values and unspecified units unchanged | Targeted BattGP `data_columns.py` and `batt_data.py` reread; existing sensor table. `U_CR` and `I_CR` remain unidentified, not assigned a meaning. |
+
+**AUDIT-ONLY MEANING** flags a semantic interpretation inherited from the baseline without independent data corroboration. A numerical round trip is not proof of physical identity.
+
+The standard view does not manufacture cell extrema, temperature extrema or charge/discharge labels. Calendar partitions retain the released wall-clock month, not a claimed UTC month. The processed builder uses the existing source-order chunk reader, so its ordering can differ from the ordinary timestamp-sorted raw loader at the documented backward timestamp steps.
+
 The released `field_data.zip` archive contains 28 CSV files named `field_data/data_sys_1.csv` through `field_data/data_sys_28.csv`. Each file is one portable 24 V LFP battery system of about 160 Ah with eight prismatic cells in series. Each file has a `Timestamp` column, which the loader parses without assigning a time zone; the time zone is not stated in any source.
 
 Sources: the final article (Cell Reports Physical Science 5, 102258, 2024; held as `supplementary/Document S2 - Article plus supplemental information (mmc2).pdf`), its SI, the record README and the authors' BattGP code. The held `paper/Paper.pdf` is the arXiv v3 preprint, which the authors mark as outdated; it says 29 systems, 232 cells and 131 million rows. The final article says 28 systems, 224 cells and 133 million rows (Summary p. 1; Table 1, p. 4). The record README says 28 systems but 232 cells.

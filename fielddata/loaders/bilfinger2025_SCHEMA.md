@@ -43,3 +43,23 @@ The Tesla files also hold decoded CAN signals (`UnixTimeSeconds528`, `RawBattCur
 ## Out of scope here
 
 The paper's Supplementary Table 1 and its Author Correction (doi:10.1038/s44406-025-00018-0) could not be read from scripts (nature.com refuses them). The code repository is https://github.com/TUMFTM/nature_soh. Its LICENSE file is GPL-3.0, while its README says LGPL-3.0.
+
+## Standard view
+
+`fielddata.standard("bilfinger2025", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `assigned per unit by standard_systems()` by default; call `fielddata.standard_systems("bilfinger2025")` for each unit's recorded tier and status.
+
+Native current sign: charge positive in observed charging records; mixed signs in one balancing file. Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `I` | `pack_current` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `U` | `pack_voltage` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `SOC` | `soc` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `time_ms` | `elapsed_time_s` | multiply by 0.001 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `time_s` | `elapsed_time_s` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `time_min` | `elapsed_time_s` | multiply by 60 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `time_h` | `elapsed_time_s` | multiply by 3600 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `cell_voltage_N` | `cell_v_NNN` | V unchanged | Meaning follows the source-column descriptions in this schema note. Channel order is preserved; the round-trip test checks values, not physical placement. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

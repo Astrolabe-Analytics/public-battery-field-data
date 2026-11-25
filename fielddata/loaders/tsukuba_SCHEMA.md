@@ -53,3 +53,19 @@ The cleaned files also set negative total PV power at night (code 10307) to 0; t
 Two cleaned rows lost their seconds: "2015/11/14 20:13" (between 20:13:36 and 20:13:38) and "2017/3/13 0:00" (the first row of its file, before 00:00:01). The loader gives each the second implied by its neighbours. The cleaned file 20180401-20180412 ends every line with two empty fields, which the loader drops.
 
 The full span is about 100 million rows, so pass a date range.
+
+## Standard view
+
+`fielddata.standard("tsukuba", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `assigned per unit by standard_systems()` by default; call `fielddata.standard_systems("tsukuba")` for each unit's recorded tier and status.
+
+Native current sign: discharge positive (observed). Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `battery_dc_current` | `pack_current` | multiply by -1 (reverse sign) | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `battery_dc_voltage` | `pack_voltage` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `battery_active_power` | `pack_power` | multiply by -1 (reverse sign) | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `battery_soc` | `soc` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

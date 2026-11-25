@@ -1,5 +1,25 @@
 # xie schema
 
+## Standard view
+
+Source baseline: committed audits as of d447b9eed0206f139d0a9bca6ece5fb0c8c6bc36; not a fresh full reread of paper, supplement and author code.
+
+`fielddata.standard("xie", unit)` has tier `per-cell`. It retains the existing documented inference of current in A, positive charging, and temperature in degrees Celsius. These are not newly promoted to author-stated facts. The source citations and the observed sign-transition check are below. SI Fig. S9 uses mV while Fig. S3's axis prints V for a similar-scale signal. The mapping follows the paper's Table 1 and the existing loader schema's mV interpretation and explicitly records that source inconsistency.
+
+Native current sign: charge positive, inferred from the source data. Where GB/T 32960 has a semantic match, standard names follow its vocabulary; columns absent from a release remain absent.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `dateTime` index | `time` | Existing UNIX-millisecond interpretation, parsed UTC | Existing schema, Time series and time-zone paragraph; [audit](../../reports/source_audit_2026-10-04/xie.md), sampling check. Epoch interpretation remains an interpretation of held values, not an author timezone statement. |
+| `totalCurrent` | `pack_current` | Unchanged, A and charge-positive sign inferred from the data | Audit finding 5 and data check 4; existing schema, Units and sign; fixed [charge period](../../reports/checks/standard_layers/charge_periods.csv). |
+| `batCoreVoltage1` onward | `cell_v_001` onward | mV divided by 1000 | Targeted paper Table 1 and SI Fig. S9 reread; existing schema, Cell count; held [round trip](../../reports/checks/standard_layers/roundtrip.csv). SI Fig. S3's V label is a documented source inconsistency. |
+| `batCoreTemp1` onward | `temp_001` onward | Unchanged, degrees Celsius inferred | Audit finding 5 and data check 4, observed temperature range; existing schema, Units and sign. Range corroborates plausibility but does not make the inferred unit author-stated. |
+| `batCoreTempCount` | `source__batCoreTempCount` | Count unchanged | **AUDIT-ONLY MEANING:** existing schema, Time series table. This task preserves the field without independently validating the probe count. |
+
+**AUDIT-ONLY MEANING** marks inherited interpretation without a recorded independent data check of that meaning.
+
+Released empty and zero-filled reserved sensor slots remain as released, rather than being replaced with measurements. No SOC, physical pack voltage, cell extrema or operating labels are invented. Source-order and raw values are preserved by conversion. The raw loader is unchanged.
+
 Source file: `DataForPub.rar`. `predefinedDataset/data/` holds 271 device CSVs (the paper's pilot dataset); `predefinedDataset/processedData/` holds `predefinedFeatures.json`, `predefined_device_records.csv` and `predefined_device_cell_level.csv`; `fullDataset/` holds `fullDataset.json`, `deviceFeature.csv` and `cellFeature.csv`, features for all 131,269 devices but no time series. The record readme names the two tables `device_level_info.csv` and `cell_level_info.csv` and lists only `fullDataset.json` under `fullDataset/`; the archive's names differ. `predefinedFeatures.json` holds the full per-device features. The loader streams the RAR with libarchive (on Windows set `LIBARCHIVE` to a libarchive DLL); `members(prefix)` lists the archive members.
 
 One device is one swappable LFP battery pack of a commercial battery-swapping service provider (paper p. 2: "battery packs designed for swapping services"). E-scooter use is implied, not stated: the paper names "BSSs for e-scooters" only as "A typical example" (p. 2). Packs have 16 to 20 cells in series (paper Table 1, p. 3).

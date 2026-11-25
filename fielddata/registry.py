@@ -260,6 +260,85 @@ for _name in V12_ADMITTED:
     _entry_v12.pop("status", None)
     PACKAGES[_name] = _entry_v12
 
+CANDIDATES.update({
+    "rwth_commercial_fleet": _ondeck(
+        "rwth_commercial_fleet",
+        'Dataset to "Battery Electric Vehicles in Commercial Fleets: Use profiles, battery aging, and open-access data"',
+        "https://doi.org/10.18154/RWTH-2024-01907", None, "not confirmed",
+        "RWTH commercial fleet EVs", ["Electric_Vehicle_and_Battery_Data.zip"],
+        {"application": "EV (commercial geriatric-care fleet)", "chemistry": None,
+         "units": "9 vehicles (publisher abstract)", "span": "2014 to 2016 (publisher abstract)",
+         "screening_notes": "Field-aged EVs with periodic chassis-dynamometer capacity tests; candidate SOX truth data alongside rwth-home.",
+         "license_note": "CC BY 4.0 was supplied at intake but is not independently confirmed. The DOI deposit has no rights field and the publisher record was inaccessible during screening.",
+         "checksum_note": "Publisher checksum and exact byte size not confirmed. Indexed publisher file listing reports 82.0 MB. No data downloaded."},
+        license_source="https://publications.rwth-aachen.de/record/979878",
+        checksum_source="https://publications.rwth-aachen.de/record/979878/files/",
+        derived="license unconfirmed: do not redistribute original or derived data until publisher terms are verified",
+        context=("publisher-deposited dataset abstract and capacity-test description",
+                 "https://api.datacite.org/dois/10.18154/RWTH-2024-01907")),
+    "cornejo_stabl": _ondeck(
+        "cornejo_stabl", "BatteryRecursiveGPs.jl",
+        "https://doi.org/10.5281/zenodo.22281621", None, "MIT",
+        "Cornejo STABL second-life storage",
+        ["martincornejo/BatteryRecursiveGPs.jl-v0.1.0.zip"],
+        {"application": "stationary storage (second-life)", "chemistry": "LMO (supplied screening context, unverified)",
+         "units": "1 system, 27 modules, 324 logical cells (author README; not a physical-cell census)",
+         "span": "2025-12-10/11 analysis window; 2026-01-31 and 2026-02-01 validation filenames",
+         "version": "v0.1.0", "concept_doi": "10.5281/zenodo.22281620",
+         "source_files": [{"name": "martincornejo/BatteryRecursiveGPs.jl-v0.1.0.zip",
+                           "bytes": 19516459, "checksum": "md5:3c8b7980e24692039e9f61f83e4d780f"}],
+         "screening_notes": "Short field-operation case study inside a code release, not long-term aging data. Author tree lists cycle CSVs, validation parquet logs and reference OCV in yuasa/data/. Supplied context identifies a STABL Energy MMC prototype with 2P GS Yuasa LEV50N cells and 20 s cycle logs; these details await source/data screening. No data downloaded."},
+        code="https://github.com/martincornejo/BatteryRecursiveGPs.jl/tree/v0.1.0",
+        license_source="https://zenodo.org/records/22281621",
+        checksum_source="https://zenodo.org/api/records/22281621",
+        context=("author README: Estimating the Health and State of Charge of Each Cell in a Second-Life Battery System from Field Data",
+                 "https://github.com/martincornejo/BatteryRecursiveGPs.jl/tree/v0.1.0")),
+})
+
+# v1.3 intake (2026-11-20): three releases admitted with loader, schema note, synthetic-data test, facts script and
+# basic notebook. Their unit counts and counting decisions wait for the maintainer's approval
+# (reports/candidates/<name>/NOTES.md), so they stay in CANDIDATES, out of the totals, tables and dashboards, until then.
+V13_PENDING = "admitted, counts pending approval"
+CANDIDATES.update({
+    "lin_agv": {**_ondeck(
+        "lin_agv", 'Raw Dataset for "Beyond SOH-Based Monitoring: Early Detection of Cell-Level Anomalies Preceding Thermal Runaway in AGV Lithium-Ion Batteries"',
+        "https://doi.org/10.5281/zenodo.22731857", None, "CC BY 4.0",
+        "Beyond SOH-Based Monitoring - Early Detection of Cell-Level Anomalies Preceding Thermal Runaway in AGV Lithium-Ion Batteries",
+        ["Accident_AGV_Battery_Raw_Dataset.csv", "AGV_Anomaly_Detection_Case1_Battery_Raw_Dataset.csv",
+         "AGV_Anomaly_Detection_Case2_Battery_Raw_Dataset.csv", "README_AGV_Battery_Raw_Dataset.md"],
+        {"application": "industrial (AGV)", "chemistry": None, "units": "3 packs of 16 cells, each read by two 8-cell BMS boards",
+         "span": "2024-07 to 2026-01"},
+        checksum_source="https://zenodo.org/api/records/22731857 (record JSON held in record/zenodo_record.json, retrieved 2026-11-19)",
+        context=("data record only; the study it names is not yet published", "https://zenodo.org/records/22731857")),
+        "status": V13_PENDING},
+    "li2026_evfault": {**_ondeck(
+        "li2026_evfault", "Cross-modal topology decodes battery faults from sparse voltage snapshots",
+        "https://doi.org/10.5281/zenodo.23980122", "https://doi.org/10.1016/j.ensm.2026.105638", "CC BY 4.0",
+        "Cross-modal topology decodes battery faults from sparse voltage snapshots", ["Data & Code.rar"],
+        {"application": "EV (in service)", "chemistry": "NMC (ternary), paper",
+         "units": "voltage snapshots of 14 cells with per-cell fault labels; no vehicle identifiers", "span": "no timestamps"},
+        code="https://doi.org/10.5281/zenodo.23980122",
+        checksum_source="https://zenodo.org/api/records/23980122 (record held in record/, retrieved 2026-11-19)"),
+        "status": V13_PENDING},
+    "giu_ebike": {**_ondeck(
+        "giu_ebike", "Real-road cell-level dataset of a 13S4P e-bike battery pack",
+        "https://doi.org/10.5281/zenodo.24138446", None, "CC BY 4.0",
+        "Real-road cell-level dataset of a 13S4P e-bike battery pack", ["ebike-pack-dataset.zip"],
+        {"application": "light electric mobility (e-bike)", "chemistry": None, "units": "1 pack, 13S4P", "span": "2026"},
+        checksum_source="https://zenodo.org/api/records/24138446 (record held in record/, retrieved 2026-11-19)",
+        context=("data record only; no paper found", "https://zenodo.org/records/24138446")),
+        "status": V13_PENDING},
+})
+CANDIDATES["li2026_evfault"]["urls"]["preprint"] = "https://arxiv.org/abs/2608.10825"
+
+# v1.3 (maintainer, 2026-11-20, admitted 2026-11-24): li2026_evfault and giu_ebike join the collection with the counts
+# approved in reports/candidates/<name>/NOTES.md and docs/DECISIONS.md. lin_agv stays a candidate until its paper is out.
+V13_ADMITTED = ["li2026_evfault", "giu_ebike"]
+for _name in V13_ADMITTED:
+    _entry_v13 = CANDIDATES.pop(_name)
+    _entry_v13.pop("status", None)
+    PACKAGES[_name] = _entry_v13
+
 # Related sources for releases without a paper (maintainer, 2026-10-16): shown as "related" next to the author citation.
 PACKAGES["cloverleaf"]["urls"]["context"] = ("https://www.pv-magazine.com/2022/01/21/economic-and-technical-feasibility-of-a-storage-as-a-"
                                              "service-model-using-second-life-batteries-for-a-commercial-end-user/")

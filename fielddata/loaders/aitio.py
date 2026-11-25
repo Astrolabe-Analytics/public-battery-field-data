@@ -109,3 +109,9 @@ def load(unit=None, clean=False, truncate_at_repair=False):
                              rows_dropped_after_repair=dropped))
     return concat(frames, _PACKAGE, clean, truncate_at_repair=truncate_at_repair,
                   rows_dropped_after_repair=sum(f.attrs["rows_dropped_after_repair"] for f in frames))
+
+
+def standard(unit, **kwargs):
+    """Common view with charge-positive current; no SOC or cell voltage is invented."""
+    from fielddata._standard import standard as view
+    return view(_PACKAGE, unit, **kwargs)

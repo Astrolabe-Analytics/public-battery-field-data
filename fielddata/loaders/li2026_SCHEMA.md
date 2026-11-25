@@ -23,3 +23,18 @@ Processing before release: the paper does not say whether the released station f
 Faults and labels: the paper reports ESC, SDF and ICF events in the station data (p. 3 to 4) and an inconsistency fault in "cell 2" of its Figure 4 example (p. 4), but the release carries no fault labels, event times or cell identities for them. No file has a column other than `vol_*`, `temp_*` and `cur`.
 
 Time: no calendar timestamps; time zone not stated. Location: the paper does not locate the stations (p. 3); the authors' institutions are in China (p. 1). `clean=True` changes nothing.
+
+## Standard view
+
+`fielddata.standard("li2026", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `per-cell` by default; call `fielddata.standard_systems("li2026")` for each unit's recorded tier and status.
+
+Native current sign: discharge positive (paper). Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `cur` | `pack_current` | multiply by -1 (reverse sign) | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `cell_NNN_V` | `cell_v_NNN` | V unchanged | Meaning follows the source-column descriptions in this schema note. Channel order is preserved; the round-trip test checks values, not physical placement. |
+| `cell_NNN_T` | `temp_NNN` | degC unchanged | Meaning follows the source-column descriptions in this schema note. Channel order is preserved; the round-trip test checks values, not physical placement. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

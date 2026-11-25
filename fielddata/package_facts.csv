@@ -224,6 +224,21 @@ flashbattery-agv,files,2,measured,scripts/facts/flashbattery-agv.py,
 flashbattery-agv,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
 flashbattery-agv,sentinels_documented,yes,stated,"https://doi.org/10.1109/CCNC51644.2023.10060391, Sec. IV, p. 3 (reset date 1st January 2000, temperatures -40 °C and 215 °C)","Documented for the fleet data the release is drawn from; the release contains none of them (dates 2019-12-16 to 2022-02-07, temperatures 10 to 48 °C, no missing values; scripts/checks/source_audit/changan_cloverleaf_fei_agv/flashbattery_agv_audit_checks.py). The paper says its data were filtered and missing values imputed; whether the release was is not stated."
 flashbattery-agv,energy_coverage,,not_in_release,,No energy value for this release.
+giu_ebike,application,light electric mobility,derived,classification mapping required by the facts audit brief,E-bike pack (README).
+giu_ebike,chemistry,NMC-class,derived,"scripts/checks/giu_ebike_group8.py -> GROUP8_CHEMISTRY.md (parallel groups charge to 4.17 to 4.25 V, raw)","Inferred from the charge voltage, as the _extra.py rule (above 3.95 V: NMC-class): groups charge to 4.17 to 4.25 V, while LFP ends charge near 3.6 V. Not LFP. The README names the cell (Samsung INR18650-30Q) but not its chemistry."
+giu_ebike,units_released,1,measured,fielddata/counting.py over fielddata.systems('giu_ebike'),"Rule: the one 13S4P e-bike pack; its recordings, before and after the group 8 repair, are the same pack. Released unit identifiers require package-specific inspection."
+giu_ebike,cells_liion,52,stated,"ebike-pack-dataset.zip/ebike-pack-dataset/README.md (https://doi.org/10.5281/zenodo.24138446) ('52 Samsung INR18650-30Q cells, 13S4P')",The four cells of group 8 were replaced on 6 November 2026 (README). The four replacement cells are not added: the pack holds 52 cells at any time.
+giu_ebike,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+giu_ebike,cell_channels_measured,13,measured,"scripts/facts/giu_ebike.py: cell01 to cell13, one per parallel group of 4 cells",
+giu_ebike,energy_mwh,0.00045312,derived,ebike-pack-dataset.zip/ebike-pack-dataset/README.md (https://doi.org/10.5281/zenodo.24138446): 48 V nominal x 9.44 Ah usable capacity from BMS cutoff to full charge,"Computed from the README's stated nominal voltage and its stated usable capacity (which the authors measured). No pack rating in kWh is stated. The cell maker's 3.0 Ah rating would give 13 x 4 x 3.0 Ah x 3.6 V = 0.56 kWh, but it is not in the release."
+giu_ebike,energy_basis,computed,derived,energy_mwh is computed from stated configuration,
+giu_ebike,span_unit_years,0.02791441681243187,measured,"scripts/facts/giu_ebike.py -> giu_ebike_profile.csv (first to last time over all recordings, cleaned files shifted from UTC+2 to UTC)","One pack, 10.2 days from the raw log of 29 October 2026 to the last cleaned file on 9 November 2026. Recorded time is 28.4 h."
+giu_ebike,obs_hours,,not_in_release,,"Calendar spans are measurable, so observation-hours are not used."
+giu_ebike,size_gb,0.001717062,measured,scripts/facts/giu_ebike.py,
+giu_ebike,files,1,measured,scripts/facts/giu_ebike.py,
+giu_ebike,fault_onset_timestamp,no,stated,docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field,
+giu_ebike,sentinels_documented,no,stated,https://doi.org/10.5281/zenodo.24138446; public data record and released documentation state no sentinel convention,
+giu_ebike,energy_coverage,full,derived,units_released and the energy_mwh note in this table,Energy covers all 1 counted units.
 ku_leuven_bev,application,passenger EV,derived,classification mapping required by the facts audit brief,
 ku_leuven_bev,chemistry,"LFP, NCA",stated,"https://doi.org/10.1038/s41597-025-06148-5, Table 3 (p. 4) and p. 9","Stated: BEV1 Tesla Model Y SR LFP, BEV2 Model Y LR NCA. The voltage-ratio rule agrees but cannot tell NCA from NMC: BEV1: LFP (ratio 1.020); BEV2: NMC-class (ratio 1.143)."
 ku_leuven_bev,units_released,2,measured,fielddata/counting.py over fielddata.systems('ku_leuven_bev'),Rule: one row per vehicle.
@@ -254,6 +269,21 @@ li2026,files,1,measured,scripts/facts/li2026.py,
 li2026,fault_onset_timestamp,no,stated,"the release contains no labels; the paper reports ESC, SDF and ICF events in the station data (https://doi.org/10.1016/j.xcrp.2026.103210, p. 3-4)",
 li2026,sentinels_documented,no,stated,https://zenodo.org/records/18471156; public data record and released documentation state no sentinel convention,
 li2026,energy_coverage,full,derived,units_released and the energy_mwh note in this table,Energy covers all 1 counted units.
+li2026_evfault,application,passenger EV,derived,classification mapping required by the facts audit brief,In-service EVs (readme; paper Note S1). The vehicle type is not disclosed.
+li2026_evfault,chemistry,NMC (ternary),stated,"https://doi.org/10.1016/j.ensm.2026.105638 (read in arXiv 2608.10825), Supplementary Note 1 ('14 series-connected ternary cells') and Discussion ('ternary chemistries')",
+li2026_evfault,units_released,99,stated,"release readme ('real-world data from 99 in-service EVs') and https://doi.org/10.1016/j.ensm.2026.105638 (read in arXiv 2608.10825), p. 3 and Supplementary Note 1","Counted as stated (maintainer, 2026-11-20). Vehicle identifiers are not released, and snapshots cannot be linked to vehicles reliably (scripts/checks/li2026_evfault_link.py, reports/candidates/li2026_evfault/LINKING.md), so the files cannot rebuild the 99. Observation time is counted as system-hours from the snapshots."
+li2026_evfault,cells_liion,1386,stated,"release readme ('99 in-service EVs') and https://doi.org/10.1016/j.ensm.2026.105638 (read in arXiv 2608.10825), Supplementary Note 1 (each pack 14 series-connected cells)",Follows the 99 stated vehicles: 99 x 14. No parallel count is stated (ledger C1). Not measurable from the files.
+li2026_evfault,cells_leadacid,,not_in_release,,No lead-acid cell count applies or is exposed in this release.
+li2026_evfault,cell_channels_measured,14,measured,scripts/facts/li2026_evfault.py: V 1 to V 14 in every snapshot,14 channels per snapshot. Which vehicle a snapshot comes from is not released.
+li2026_evfault,energy_mwh,,not_in_release,,"No rating, capacity or current is released."
+li2026_evfault,energy_basis,none,derived,energy_mwh is not available,
+li2026_evfault,span_unit_years,,not_in_release,,The release has no timestamps.
+li2026_evfault,obs_hours,473.19444444444446,derived,"3,407 snapshots x 50 samples x 10 s (0.1 Hz, https://doi.org/10.1016/j.ensm.2026.105638 (read in arXiv 2608.10825), p. 3) / 3600","System-hours from the windows, counted (maintainer, 2026-11-20): snapshot time only, assuming snapshots do not overlap (each is aligned to the end of a different charge, paper p. 6). Not the vehicles' service time."
+li2026_evfault,size_gb,0.020779637,measured,scripts/facts/li2026_evfault.py,
+li2026_evfault,files,1,measured,scripts/facts/li2026_evfault.py,
+li2026_evfault,fault_onset_timestamp,no,stated,"fielddata.loaders.li2026_evfault: labels per snapshot and cell, no time; https://doi.org/10.1016/j.ensm.2026.105638 (read in arXiv 2608.10825), Note S1 (terminal thermal-runaway stage excluded)",
+li2026_evfault,sentinels_documented,no,stated,https://doi.org/10.5281/zenodo.23980122; public data record and released documentation state no sentinel convention,
+li2026_evfault,energy_coverage,,not_in_release,,No energy value for this release.
 m5bat-2023-04,application,grid-scale storage,derived,classification mapping required by the facts audit brief,
 m5bat-2023-04,chemistry,LMO/NMC; LFP; LTO; OCSM; OPzV,stated,"https://doi.org/10.3390/en15041342 (Jacqué, K. et al., Energies 15, 1342, 2022), Sec. 2.1.2: the lithium units 5 to 8 are an LMO/NMC blend; other units from https://doi.org/10.18154/RWTH-2024-04895, p. 3 unit table",
 m5bat-2023-04,units_released,10,measured,fielddata/counting.py over fielddata.systems('m5bat-2023-04'),Rule: battery units; the plant connection point is not a unit. Released unit identifiers require package-specific inspection.

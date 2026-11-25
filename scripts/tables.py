@@ -82,9 +82,9 @@ def fmt(value: float | None, field: str) -> str:
     if value is None:
         return "not in release"
     if field in ("span_unit_years",):
-        return f"{value:,.1f}"
+        return f"{value:,.1f}" if value == 0 or value >= 0.05 else "<0.1"  # giu_ebike, 10 days (v1.3)
     if field == "energy_mwh":
-        return f"{value:,.3f}".rstrip("0").rstrip(".")
+        return f"{value:,.3f}".rstrip("0").rstrip(".") if value == 0 or value >= 0.0005 else "<0.001"  # giu_ebike, 0.45 kWh (v1.3)
     if field in ("obs_hours",):
         return f"{value:,.0f}"
     if field == "size_gb":
@@ -103,6 +103,7 @@ COUNTRY = {
     "pnnl_epri": "United States", "beijing_ev": "China", "brazil_star": "Brazil", "birds_cubesat": "in orbit (ISS orbit)",
     "ved": "United States", "shenzhen_charging": "China", "tongji_rest": "China", "rise_conbat": "Sweden",
     "tum_id3_2022": "Germany", "cell_to_pack": "not stated", "stanford_ev": "United States",
+    "li2026_evfault": "not stated", "giu_ebike": "Egypt",  # v1.3: li2026_evfault operating regions withheld (paper Note S1); giu_ebike New Cairo (README)
 }
 # Paper-versus-release differences shown in Table 2 (agreed 2026-10-01); the full comparison is Table 4 in the repo.
 # Maps (package, Table 2 field) to the paper_claims.csv field that holds the paper's figure.

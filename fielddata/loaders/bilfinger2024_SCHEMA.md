@@ -33,3 +33,23 @@ Vehicle raw logs (`kind` vehicle raw log, VW only) use `hv_battery_voltage`, `hv
 Cells were taken from used modules of unknown history (paper Sec. 3.4) and charged in a thermal chamber at constant temperature on a BaSyTec cycler, CC or CP, matching the vehicle C-rates: VW cell C/45 and C/6 (CC and CP), Tesla cell C/57 (paper Sec. 3.4, 4.1 and Fig. 6). The file names say 20 degC and the `T1[C]` column reads 20.0; the paper gives no chamber temperature. Rows were recorded every 1 s or every 4 mV (paper Sec. 3.4). The release also holds a C/50 CC cell file and C/50 half-cell files (anode, cathode charge, cathode discharge) that the paper text does not describe in detail.
 
 Column order differs between files; select columns by name. The pickles are the publisher's pandas pickles. Unpickling runs code, so load only an archive whose checksum `fielddata.verify` has confirmed.
+
+## Standard view
+
+`fielddata.standard("bilfinger2024", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `assigned per unit by standard_systems()` by default; call `fielddata.standard_systems("bilfinger2024")` for each unit's recorded tier and status.
+
+Native current sign: charge positive (observed on charge records). Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `I` | `pack_current` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `U` | `pack_voltage` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `SOC` | `soc` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `time_ms` | `elapsed_time_s` | multiply by 0.001 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `time_s` | `elapsed_time_s` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `time_min` | `elapsed_time_s` | multiply by 60 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `time_h` | `elapsed_time_s` | multiply by 3600 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `cell_voltage_N` | `cell_v_NNN` | V unchanged | Meaning follows the source-column descriptions in this schema note. Channel order is preserved; the round-trip test checks values, not physical placement. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

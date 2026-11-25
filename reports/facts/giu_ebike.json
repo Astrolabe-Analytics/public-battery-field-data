@@ -1,0 +1,95 @@
+{
+  "package": "giu_ebike",
+  "facts": {
+    "application": {
+      "value": "light electric mobility",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": "E-bike pack (README)."
+    },
+    "chemistry": {
+      "value": "NMC-class",
+      "basis": "derived",
+      "source": "scripts/checks/giu_ebike_group8.py -> GROUP8_CHEMISTRY.md (parallel groups charge to 4.17 to 4.25 V, raw)",
+      "note": "Inferred from the charge voltage, as the _extra.py rule (above 3.95 V: NMC-class): groups charge to 4.17 to 4.25 V, while LFP ends charge near 3.6 V. Not LFP. The README names the cell (Samsung INR18650-30Q) but not its chemistry."
+    },
+    "units_released": {
+      "value": 1,
+      "basis": "measured",
+      "source": "fielddata/counting.py over fielddata.systems('giu_ebike')",
+      "note": "Rule: the one 13S4P e-bike pack; its recordings, before and after the group 8 repair, are the same pack. Released unit identifiers require package-specific inspection."
+    },
+    "cells_liion": {
+      "value": 52,
+      "basis": "stated",
+      "source": "ebike-pack-dataset.zip/ebike-pack-dataset/README.md (https://doi.org/10.5281/zenodo.24138446) ('52 Samsung INR18650-30Q cells, 13S4P')",
+      "note": "The four cells of group 8 were replaced on 6 November 2026 (README). The four replacement cells are not added: the pack holds 52 cells at any time."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 13,
+      "basis": "measured",
+      "source": "scripts/facts/giu_ebike.py: cell01 to cell13, one per parallel group of 4 cells",
+      "note": ""
+    },
+    "energy_mwh": {
+      "value": 0.00045312,
+      "basis": "derived",
+      "source": "ebike-pack-dataset.zip/ebike-pack-dataset/README.md (https://doi.org/10.5281/zenodo.24138446): 48 V nominal x 9.44 Ah usable capacity from BMS cutoff to full charge",
+      "note": "Computed from the README's stated nominal voltage and its stated usable capacity (which the authors measured). No pack rating in kWh is stated. The cell maker's 3.0 Ah rating would give 13 x 4 x 3.0 Ah x 3.6 V = 0.56 kWh, but it is not in the release."
+    },
+    "energy_basis": {
+      "value": "computed",
+      "basis": "derived",
+      "source": "energy_mwh is computed from stated configuration",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": 0.02791441681243187,
+      "basis": "measured",
+      "source": "scripts/facts/giu_ebike.py -> giu_ebike_profile.csv (first to last time over all recordings, cleaned files shifted from UTC+2 to UTC)",
+      "note": "One pack, 10.2 days from the raw log of 29 October 2026 to the last cleaned file on 9 November 2026. Recorded time is 28.4 h."
+    },
+    "obs_hours": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "Calendar spans are measurable, so observation-hours are not used."
+    },
+    "size_gb": {
+      "value": 0.001717062,
+      "basis": "measured",
+      "source": "scripts/facts/giu_ebike.py",
+      "note": ""
+    },
+    "files": {
+      "value": 1,
+      "basis": "measured",
+      "source": "scripts/facts/giu_ebike.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "docs/descriptor/TABLE3_faults.md; released labels and metadata contain no explicit fault-onset timestamp field",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.5281/zenodo.24138446; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  },
+  "faults_counted": {
+    "value": 1,
+    "basis": "stated",
+    "source": "ebike-pack-dataset.zip/ebike-pack-dataset/README.md (https://doi.org/10.5281/zenodo.24138446) ('before a faulty parallel group (group 8) was replaced'; 'The four cells of group 8 were replaced on 6 November 2026')",
+    "note": "One faulty parallel group (4 cells in parallel, one voltage channel), labelled by the release. Under ledger F1 (once per faulty cell where a release labels cells) the release labels the group, not single cells, so 1 (maintainer, 2026-11-20). Recorded in Table 3."
+  }
+}

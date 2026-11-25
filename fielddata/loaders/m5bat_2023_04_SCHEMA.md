@@ -73,3 +73,19 @@ Raw ranges (data check, all of April): battery `SOC` 0 to 1000 (Batt4 to 690, Ba
 - 2023-04-28: full cycle Pb1 (Batt1). 2023-04-29: full cycle Pb3 (Batt3).
 
 M5BAT delivered FCR 99.08 % of the time in April 2023 (p. 9). `clean=True` changes nothing.
+
+## Standard view
+
+`fielddata.standard("m5bat-2023-04", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `assigned per unit by standard_systems()` by default; call `fielddata.standard_systems("m5bat-2023-04")` for each unit's recorded tier and status.
+
+Native current sign: discharge positive (current inferred; power stated). Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `I_DC_Batt` | `pack_current` | multiply by -0.1 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `U_DC_Batt` | `pack_voltage` | multiply by 0.1 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `SOC` | `soc` | multiply by 0.1 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `P_AC` | `pack_power` | multiply by -1 (reverse sign) | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

@@ -1,0 +1,8 @@
+unit,column,types,examples
+TSURU,Vpy_raw,"{""int"": 556, ""str"": 24540}","{""int"": ""362"", ""str"": ""'0365'""}"
+TSURU,Ipy_raw,"{""int"": 1112, ""str"": 23983}","{""int"": ""1"", ""str"": ""'03'""}"
+TSURU,Imz_raw,"{""int"": 1112, ""str"": 23983}","{""int"": ""0"", ""str"": ""'01'""}"
+TSURU,Imx_raw,"{""int"": 1112, ""str"": 23983}","{""int"": ""0"", ""str"": ""'00'""}"
+TSURU,Ipz_raw,"{""int"": 1112, ""str"": 23983}","{""int"": ""1"", ""str"": ""'02'""}"
+TSURU,Tbatt_raw,"{""int"": 923, ""str"": 24169}","{""int"": ""84"", ""str"": ""'A9'""}"
+UGUISU,Ipy_raw,"{""int"": 2159, ""str"": 1111}","{""int"": ""1"", ""str"": ""'01'""}"

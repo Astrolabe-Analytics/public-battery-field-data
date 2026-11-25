@@ -53,7 +53,7 @@ def systems():
     return counts.join(dates).reset_index()
 
 
-def load(unit, session_type=None, clean=False):
+def load(unit, session_type=None, clean=False, session=None):
     """Load all sessions of one vehicle, or only one session type, indexed by ``Timestamp`` (UTC).
 
     ``session_type`` is one of "slow charging", "fast charging", "driving", "parking". Columns are the decoded
@@ -67,11 +67,16 @@ def load(unit, session_type=None, clean=False):
         if session_type not in set(s["type"]):
             raise ValueError(f"{_PACKAGE}: session_type must be one of {sorted(set(s['type']))}")
         s = s[s["type"] == session_type]
+    if session is not None:
+        s = s[s["member"] == session]
+        if s.empty:
+            raise ValueError(f"{_PACKAGE}: no session {session!r} for {name}")
     frames = []
     with _inner() as z:
         for row in s.itertuples():
             frame = pd.read_csv(io.BytesIO(z.read(row.member)))
-            frame["Timestamp"] = pd.to_datetime(frame["Timestamp"], utc=True)
+            frame["Timestamp_raw"] = frame["Timestamp"]
+            frame["Timestamp"] = pd.to_datetime(frame["Timestamp"], utc=True, errors="coerce")
             frame["session"] = row.member.rsplit("/", 1)[-1]
             frame["session_type"] = row.type
             masked = mask_values(frame, {"Odometer3B6": lambda c: c == _ODOMETER_NOT_AVAILABLE}) if clean else 0

@@ -1,0 +1,41 @@
+{
+  "pilot_and_fault": [
+    "cao",
+    "schaeffer",
+    "ppl",
+    "xie",
+    "zhang2023",
+    "evbattery",
+    "aitio"
+  ],
+  "remaining_small_to_large": [
+    "fei_bus",
+    "beijing_ev",
+    "flashbattery-agv",
+    "brazil_star",
+    "cloverleaf",
+    "birds_cubesat",
+    "li2026",
+    "rwth-android",
+    "m5bat-2023-04",
+    "shenzhen_charging",
+    "tongji_rest",
+    "ku_leuven_bev",
+    "ved",
+    "deng",
+    "bilfinger2026",
+    "bilfinger2024",
+    "bilfinger2025",
+    "rise_conbat",
+    "tumftm",
+    "zhou2026",
+    "tsukuba",
+    "tum_id3_2022",
+    "pnnl_epri",
+    "cell_to_pack",
+    "m5bat-pbacid",
+    "stanford_ev",
+    "rwth-home",
+    "changan"
+  ]
+}

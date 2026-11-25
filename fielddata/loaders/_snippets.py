@@ -84,14 +84,35 @@ def load(package: str, unit, clean=False) -> pd.DataFrame:
     for member, array, meta in iter_snippets(package, row["archive"]):
         if int(meta["car"]) != int(row["car"]):
             continue
-        frame = pd.DataFrame(array.astype(float), columns=COLUMNS[: array.shape[1]])
-        frame["snippet"] = member.rsplit("/", 1)[-1].removesuffix(".pkl")
-        for key, value in meta.items():
-            if key != "car":
-                frame[key] = value
+        frame = snippet_frame(member, array, meta)
         frames.append(finish(frame, package, clean, 0))
     if not frames:
         raise ValueError(f"{package}: no snippets found for {name}")
     out = concat(frames, package, clean, unit=name, snippets=len(frames))
     out["unit"] = name
     return out.reset_index(drop=True)
+
+
+def snippet_frame(member, array, meta) -> pd.DataFrame:
+    """One released snippet, shared by the raw loader and the streaming processed builder."""
+    frame = pd.DataFrame(array.astype(float), columns=COLUMNS[: array.shape[1]])
+    frame["snippet"] = member.rsplit("/", 1)[-1].removesuffix(".pkl")
+    for key, value in meta.items():
+        if key != "car":
+            frame[key] = value
+    return frame
+
+
+def snippet_batch(records) -> pd.DataFrame:
+    """Combine released snippets without constructing one DataFrame per pickle."""
+    arrays = [array for _, array, _ in records]
+    widths = {array.shape[1] for array in arrays}
+    if len(widths) != 1:
+        raise ValueError("snippet arrays in a batch have different widths")
+    frame = pd.DataFrame(np.concatenate(arrays).astype(float), columns=COLUMNS[:widths.pop()])
+    lengths = [len(array) for array in arrays]
+    frame["snippet"] = np.repeat([member.rsplit("/", 1)[-1].removesuffix(".pkl") for member, _, _ in records], lengths)
+    keys = dict.fromkeys(key for _, _, meta in records for key in meta if key != "car")
+    for key in keys:
+        frame[key] = np.repeat([meta.get(key, np.nan) for _, _, meta in records], lengths)
+    return frame

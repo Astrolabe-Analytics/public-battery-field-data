@@ -1,5 +1,29 @@
 # PPL E.W. Brown BESS schema
 
+## Standard view
+
+Source baseline: committed audits as of d447b9eed0206f139d0a9bca6ece5fb0c8c6bc36; not a fresh full reread of paper, supplement and author code.
+
+`fielddata.standard("ppl", "E_W_Brown_BESS", years=[2022])` maps the annual ESS telemetry only. It does not read the separate cell-level share. Tier is `max-min` for the older annual schema and `pack-only` for the newer schema. Both the standard view and builder convert each annual input separately, so combined views retain the tier of each input schema. Neither timestamps nor missing measurement values determine the tier. Combined pandas views take the union of columns, but an older measurement is never inserted into a newer Parquet part.
+
+Native current sign: DC current is positive while charging; real AC power is positive on discharge and is reversed for the charge-positive common sign. Where GB/T 32960 has a semantic match, standard names follow its vocabulary; columns absent from a release remain absent.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `Timestamp` index | `time` | Keep wall-clock values, remove the raw loader's unsupported UTC label without shifting | Existing schema, Time stamps; [audit](../../reports/source_audit_2026-10-04/ppl.md), timezone checks. |
+| `DCVoltage` | `pack_voltage` | V unchanged, only where released | Targeted paper Section III reread distinguishes DC from cell voltage; existing annual-column table; held [round trip](../../reports/checks/standard_layers/roundtrip.csv). |
+| `DCCurrent` | `pack_current` | A unchanged, native positive charge, measured rather than author-stated | Existing schema, Sign convention; audit SOC/current check; fixed [charge period](../../reports/checks/standard_layers/charge_periods.csv). |
+| `PowerReal` | `ac_power` | kW multiplied by -1, native positive discharge becomes positive charge, not called DC power | Existing schema, Sign convention; [PPL audit check](../../scripts/checks/source_audit/tsukuba_tumftm_ppl/check_ppl_audit.py). **AUDIT-ONLY MEANING** for the AC-side designation, not independently established by the polarity check. |
+| `AvgSOC`, `SOH` | `soc`, `soh` | Percent unchanged, both BMS estimates | Existing schema, Unit and reference-test capacity sources; audit SOC/power checks. **AUDIT-ONLY MEANING** for SOH's BMS-estimate provenance, paper Fig. 2 rather than a released reference test. |
+| `CellVoltAvg` | `cell_v_mean` | V unchanged, not pack voltage | Targeted paper Section III reread; existing annual-column table and audit outage checks; held round trip. |
+| `CellVoltMax`, `CellVoltMin` | `cell_v_max`, `cell_v_min` | V unchanged, older schema only | Existing schema annual-column table; audit zero/outage checks and annual-header profiles. |
+| `ModuleTempMax`, `ModuleTempMin` | `temp_max`, `temp_min` | Degrees Celsius unchanged, older schema only | Targeted paper Section III reread; existing annual-column table and audit outage checks. |
+| Other columns, including energy counters and container temperatures | `source__<author column>` | Values and author semantics unchanged | Existing schema annual-column table. **AUDIT-ONLY MEANING** where this table gives a meaning not backed by a recorded check. Undocumented Mode/Fault/Running codes remain undocumented. |
+
+**AUDIT-ONLY MEANING** identifies inherited semantics not independently corroborated by a data check. Value preservation does not establish instrument location or provenance.
+
+The current sign evidence is the raw SOC/current/power cross-check described below. Earlier years have power but no DC current, so no current is reconstructed from power. Missing channels stay absent in their annual partition. No timezone or reference-test capacity is invented. The raw loader is unchanged.
+
 Source files: `BESS-Analysis/ESS_2017.csv` through `BESS-Analysis/ESS_2025.csv` inside the package data directory. The loader reads these annual CSV files directly from the held data directory and does not resample or convert units.
 
 The system is one 1 MW / 2 MWh LG Chem lithium-ion battery at the PPL Renewable Integration Research Facility, E.W. Brown Generating Station: 20 racks in two climate-controlled containers, each rack holding 17 modules of 14 cells (51.8 V, 126 Ah per module), 4,760 cells in all, with a 1 MVA bidirectional inverter (paper Section II, Fig. 1, Section IV). The cathode chemistry is not stated.

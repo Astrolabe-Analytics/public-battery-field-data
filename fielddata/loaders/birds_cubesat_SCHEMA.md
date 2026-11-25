@@ -25,6 +25,8 @@ All 50 sheets have the same 37 columns in the same order. Header spelling varies
 - Five solar panels (py, px, mz, mx, pz), each with temperature, voltage and current, as a raw hexadecimal reading and a calibrated value (degC, mV, mA).
 - Battery: `Vbat_raw`, `Vbat_V` (V), `Ibatt_raw`, `Ibatt_mA` (mA), `Tbatt_raw`, `Tbatt_C` (degC). TSURU raw ranges: 0 to 4.22 V, -653 to 1,200 mA, -22.7 to 24.4 degC. Current sign convention is not stated.
 
+In the held workbook, some raw-code columns mix numeric cells and text cells (for example, `Vpy_raw`, `Ibatt_raw` and `Tbatt_raw` in TSURU). The standard view leaves those values unchanged. In processed Parquet, mixed integer/text values are stored as JSON strings tagged with their original type, as recorded in each part's manifest, so both the value and type can be restored.
+
 ## Paper and data disagree
 
 - The paper says each sample was classified as normal or anomaly. The workbooks have no label column.
@@ -34,3 +36,19 @@ All 50 sheets have the same 37 columns in the same order. Header spelling varies
 ## Cleaning
 
 None known. `clean=True` masks nothing.
+
+## Standard view
+
+`fielddata.standard("birds_cubesat", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `assigned per unit by standard_systems()` by default; call `fielddata.standard_systems("birds_cubesat")` for each unit's recorded tier and status.
+
+Native current sign: not stated in the paper. Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `Vbat_V` | `pack_voltage` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `Ibatt_mA` | `source__Ibatt_A` | multiply by 0.001 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `Tbatt_C` | `temperature` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `time_s` | `elapsed_time_s` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

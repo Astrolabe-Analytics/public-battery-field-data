@@ -21,6 +21,11 @@ ALLOWED = {
     # Maintainer's decision (2026-10-13): pickled releases are converted once in a throwaway environment; this script runs
     # only there (never in the project's .venv) and the loaders read its Parquet copies
     "scripts/checks/convert_pickles/convert.py": {"zipfile", "read_pickle(", "pyarrow.parquet"},  # writes the Parquet copies
+    # Layer 2 maintainer build scripts (2026-10-21): they write the SSD processed copies. The Changan script installs a
+    # 7-Zip shim under the libarchive name so its loader can run without the native DLL. The repair script resolves
+    # the data root only to locate converted Tongji inputs for checksum verification.
+    "scripts/checks/layer2_changan_7zip.py": {"libarchive"},
+    "scripts/checks/layer2_failed_releases.py": {"data_root("},
 }
 
 

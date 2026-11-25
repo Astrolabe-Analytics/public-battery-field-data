@@ -1,0 +1,4 @@
+Check: Read five Changan vin1 rows through the package loader using the installed 7-Zip executable as the RAR backend.
+Command: `python scripts/checks/layer2_changan_7zip.py --smoke`
+Result: Passed. The loader returned 5 rows and 13 columns. The temporary RAR stream was removed.
+Mismatch: None.

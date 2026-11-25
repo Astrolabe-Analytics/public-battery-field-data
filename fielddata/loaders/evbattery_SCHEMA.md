@@ -1,5 +1,27 @@
 # evbattery schema
 
+## Standard view
+
+Source baseline: committed audits as of d447b9eed0206f139d0a9bca6ece5fb0c8c6bc36; not a fresh full reread of paper, supplement and author code.
+
+`fielddata.standard("evbattery", unit)` has tier `session`. It retains overlapping charging snippets as separate records. The publisher shifted and scaled timestamps, so the clock cannot establish calendar dates or guaranteed physical elapsed seconds. Processed files use `month=undated`.
+
+Native current sign: charge negative in the released charging records; the standard view reverses it. Where GB/T 32960 has a semantic match, standard names follow its vocabulary; columns absent from a release remain absent.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `timestamp` | `source_time_s`, `elapsed_time_s` | Keep the publisher clock, and subtract the first clock value within each snippet | Targeted paper Section 3 reread, anonymization; [audit](../../reports/source_audit_2026-10-04/evbattery.md) and existing column table, raw step check. |
+| `current` | `pack_current` | A multiplied by -1, observed native charging-negative sign | Existing column table and audit sign scan; fixed [charge period](../../reports/checks/standard_layers/charge_periods.csv). |
+| `volt` | `cell_v_mean` | V unchanged, publisher-perturbed average cell voltage, not pack voltage | Targeted paper Section 3 reread; existing column table, voltage/extrema cross-check; held [round trip](../../reports/checks/standard_layers/roundtrip.csv). |
+| `soc` | `soc` | Percent unchanged | Existing column table citing paper Sections 1 and 3; audit column-order check and fixed charge-period rise. |
+| `max_single_volt`, `min_single_volt` | `cell_v_max`, `cell_v_min` | V unchanged | Targeted paper Section 3 reread; existing column table and audit voltage/extrema cross-check; held round trip. |
+| `max_temp`, `min_temp` | `temp_max`, `temp_min` | Degrees Celsius unchanged | Targeted paper Section 3 reread; existing column table, audit column-order/range checks; held round trip. |
+| `snippet`, `charge_segment`, `label`, `mileage`, `capacity` | Same names | Released metadata unchanged, including zero for an absent capacity label | Existing column table and audit shared-fleet/label checks; targeted `capacity_dataset.py` reread establishes zero as no label. **AUDIT-ONLY MEANING** for fault-report and engineers' capacity-test provenance beyond numerical label checks. |
+
+**AUDIT-ONLY MEANING** marks inherited semantics without an independent data check of the stated provenance. Label preservation does not independently validate that provenance.
+
+Native current polarity comes from the released charging records, not an explicit author declaration. The paper's publisher processing and capacity-label meaning are described below. No physical pack voltage, individual cell channels, calendar times or new operating-state labels are invented. The raw loader is unchanged.
+
 Source files: battery_dataset1.tar.gz, battery_dataset2.tar.gz, battery_dataset3.tar.gz. Each tar.gz holds one pickle per charging snippet (`data/<n>.pkl`, a (128, 8) array plus a metadata dict) and a label table (`label/label.csv`: car and label). The pickles are read with the torch-free reader in `fielddata/_io/torchfree.py`, so PyTorch is not needed.
 
 465 labeled vehicles (217, 198 and 50 per archive) with 1,278,277 snippets. One labeled car, battery_dataset3 car 545, has no snippets, so 464 vehicles carry data, as the paper states. battery_dataset3 is the same fleet as zhang2023 battery_brand2: all 49 vehicles with data in each archive are matched one to one by content under different car numbers (`reports/facts/_cache/zhang2023_evbattery_pairs.json`; 44 by identical snippets, 5 by tolerance matching), and their fault labels agree. The two releases cut that fleet into different snippets: battery_dataset3 has 176,327 snippets and zhang2023 battery_brand2 194,245, every zhang2023 charge segment of the fleet is also in battery_dataset3, and battery_dataset3 has 37 more (checked 2026-10-04).

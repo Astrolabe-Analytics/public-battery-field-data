@@ -71,3 +71,31 @@ def load(package_id, **kwargs):
 def systems(package_id):
     """Return the released monitored systems in a registered package."""
     return _call(package_id, "systems")
+
+
+def standard(package_id, unit=None, **kwargs):
+    """Load standard values, or stream where the standard interface supports it."""
+    loader = _loader(package_id)
+    if hasattr(loader, "standard"):
+        return _call(package_id, "standard", unit=unit, **kwargs)
+    from fielddata._standard import standard as view
+    return view(package_id, unit=unit, **kwargs)
+
+
+def standard_systems(package_id):
+    """List units with their standard-view tier and any explicit conversion block."""
+    from fielddata._standard import standard_systems as tagged_systems
+    return tagged_systems(package_id)
+
+
+def standardize(package_id, unit, raw):
+    """Convert an existing single-unit loader frame without rereading released files."""
+    from fielddata._standard import standardize as convert
+    return convert(package_id, unit, raw)
+
+
+def iter_standard(package_id, unit=None, *, archive=None, chunksize=250_000, clean=False,
+                  signal="V_pack_bms"):
+    """Stream Schaeffer chunks, complete snippets or Stanford sessions."""
+    from fielddata._standard import iter_standard as stream
+    return stream(package_id, unit, archive=archive, chunksize=chunksize, clean=clean, signal=signal)

@@ -1,0 +1,2 @@
+Changan build process PID 3104: STOPPED
+Free space on D:\: 1274804174848 bytes

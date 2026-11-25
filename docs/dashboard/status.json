@@ -959,6 +959,49 @@
   "preview_points": 2111,
   "preview_step": 2
  },
+ "giu_ebike": {
+  "date": "2026-11-24",
+  "load_args": {
+   "recording": "raw/jk_001_before_repair"
+  },
+  "status": "ok",
+  "rows": 1305,
+  "columns": [
+   "recording",
+   "utc_time",
+   "time_source",
+   "uptime_ms",
+   "jk_age_ms",
+   "pack_V",
+   "current_A",
+   "charge_Ah",
+   "t_pack_C",
+   "t_amb_C",
+   "jk_t1_C",
+   "jk_t2_C",
+   "jk_mos_C",
+   "jk_soc_pct",
+   "jk_cap_rem_Ah",
+   "cell01",
+   "cell02",
+   "cell03",
+   "cell04",
+   "cell05",
+   "cell06",
+   "cell07",
+   "cell08",
+   "cell09",
+   "cell10",
+   "cell11",
+   "cell12",
+   "cell13"
+  ],
+  "preview": "img/giu_ebike.png",
+  "preview_data": "img/giu_ebike.csv",
+  "preview_title": "cell08 stays between 0 and 4.08 (raw data)",
+  "preview_points": 1305,
+  "preview_step": 1
+ },
  "ku_leuven_bev": {
   "date": "2026-10-02",
   "load_args": {
@@ -1043,6 +1086,37 @@
   "preview_title": "cell_001_V stays between 3.131 and 3.436 (raw data)",
   "preview_points": 3995,
   "preview_step": 8
+ },
+ "li2026_evfault": {
+  "date": "2026-11-24",
+  "load_args": {
+   "window": 2243
+  },
+  "status": "ok",
+  "rows": 50,
+  "columns": [
+   "window",
+   "sample",
+   "V 1",
+   "V 2",
+   "V 3",
+   "V 4",
+   "V 5",
+   "V 6",
+   "V 7",
+   "V 8",
+   "V 9",
+   "V 10",
+   "V 11",
+   "V 12",
+   "V 13",
+   "V 14"
+  ],
+  "preview": "img/li2026_evfault.png",
+  "preview_data": "img/li2026_evfault.csv",
+  "preview_title": "V 7 stays between 3937 and 3962 (raw data)",
+  "preview_points": 50,
+  "preview_step": 1
  },
  "m5bat-2023-04": {
   "date": "2026-10-02",

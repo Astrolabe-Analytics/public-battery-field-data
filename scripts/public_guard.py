@@ -3,7 +3,10 @@
 Reads the staged zero-context diff by default. --tree reads tracked and non-ignored untracked files,
 without following symlinks. It never reads external data folders. An optional
 --audit-output writes findings only to an explicitly supplied external path.
-The policy is external and must never be copied into this repository.
+The policy is external and must never be copied into this repository. In the policy file, a line starting
+with "!" names an exact phrase that is always allowed, such as the published ID of a public release that contains a
+blocked word. Allowed phrases are removed from each line before the blocked terms are matched, and only where they
+stand alone (not inside a longer word or ID), so every other use of a blocked term still blocks.
 """
 from __future__ import annotations
 
@@ -26,16 +29,35 @@ def git(*args: str) -> bytes:
     ).stdout
 
 
-def terms() -> list[str]:
+def _policy_lines() -> list[str]:
     path = Path(os.environ.get("PUBLIC_GUARD_TERMS", str(DEFAULT_TERMS)))
-    values = [
+    return [
         line.strip().casefold()
         for line in path.read_text(encoding="utf-8-sig").splitlines()
         if line.strip() and not line.lstrip().startswith("#")
     ]
+
+
+def terms() -> list[str]:
+    values = [line for line in _policy_lines() if not line.startswith("!")]
     if not values:
         raise ValueError("The private policy is empty.")
     return list(dict.fromkeys(values))
+
+
+def allowed() -> list[str]:
+    """Exact phrases from "!" lines of the policy, always allowed (longest first)."""
+    values = {line[1:].strip() for line in _policy_lines() if line.startswith("!") and line[1:].strip()}
+    return sorted(values, key=len, reverse=True)
+
+
+ALLOW: list[str] = []  # set by main() from the policy
+
+
+def _strip_allowed(line: str) -> str:
+    for phrase in ALLOW:
+        line = re.sub(r"(?<![\w-])" + re.escape(phrase) + r"(?![\w-])", " ", line, flags=re.IGNORECASE)
+    return line
 
 
 def matches(raw: bytes, policy: list[str]) -> list[tuple[int, str]]:
@@ -48,7 +70,7 @@ def matches(raw: bytes, policy: list[str]) -> list[tuple[int, str]]:
         (number, term)
         for number, line in enumerate(text.splitlines(), 1)
         for term, pattern in patterns
-        if pattern.search(line)
+        if pattern.search(_strip_allowed(line))
     ]
 
 
@@ -132,6 +154,7 @@ def main() -> int:
         parser.error("--audit-output requires --tree.")
     try:
         policy = terms()
+        ALLOW[:] = allowed()
         count, findings = scan(args.tree, policy)
         if args.audit_output:
             audit(args.audit_output, count, findings)

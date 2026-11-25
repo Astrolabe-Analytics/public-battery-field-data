@@ -34,3 +34,24 @@ Sampling and gaps: "a nominal frequency of 0.1 Hz" (paper p. 2). Steps of exactl
 Cells can be replaced in service: in one car "six of the 95 cells" were replaced (SI Note 2, p. 7). A cell channel is a position in the pack, not a fixed cell.
 
 `expand_cells(frame, column)` splits the per-cell strings into one numeric column per entry. `clean=True` changes nothing.
+
+## Standard view
+
+`fielddata.standard("zhou2026", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `per-cell` by default; call `fielddata.standard_systems("zhou2026")` for each unit's recorded tier and status.
+
+Native current sign: discharge positive (paper). Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `TotalCurrent` | `pack_current` | multiply by -1 (reverse sign) | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `TotalVoltage` | `pack_voltage` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `SOC` | `soc` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `MaxCellVoltage` | `cell_v_max` | multiply by 0.001 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `MinCellVoltage` | `cell_v_min` | multiply by 0.001 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `MaxTemp` | `temp_max` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `MinTemp` | `temp_min` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `CellVoltages entry N (expanded from CellVoltages string)` | `cell_v_NNN` | mV divided by 1000 | Meaning follows the source-column descriptions in this schema note. Channel order is preserved; the round-trip test checks values, not physical placement. |
+| `CellTemperatures entry N (expanded from CellTemperatures string)` | `temp_NNN` | cars: subtract 40; LFP01: unchanged | Meaning follows the source-column descriptions in this schema note. Channel order is preserved; the round-trip test checks values, not physical placement. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

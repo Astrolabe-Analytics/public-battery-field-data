@@ -84,3 +84,26 @@ The authors release positive = discharge for Power, RequestedPower and Current (
 - SnoPUDMESA1 `PGCP`: 71 rows with |Power| above 2.5 C (up to 6.75 C), all with QualityFlag; the authors flag them as power spikes and keep the values.
 - Temperature exactly 0.0 degC, kept as released: Avista (TempMax 7.6 M, TempMin 8.9 M rows), EPRI_VRF1 (about 202,000 each), EPRI_NMC1 (50,868 each), EPRI_LFP2 (28,316 to 36,000), EPRI_NMC2 (1,983 max/min, 42,595 avg), PSE (399, 893), ENW (7 TempMin). The authors scrubbed 0 as a sentinel only in SnoPUDMESA1 and SnoPUDMESA2; in the others 0 coincides with offline periods but is not documented as a code, so `clean=True` leaves it.
 - EPRI_NMC2 is the ppl E.W. Brown system (see `reports/candidates/pnnl_epri/NOTES.md`): its hour 0 is 2017-01-01 00:00 UTC.
+
+## Standard view
+
+`fielddata.standard("pnnl_epri", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `max-min` by default; call `fielddata.standard_systems("pnnl_epri")` for each unit's recorded tier and status.
+
+Native current sign: discharge positive (author code). Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `Current` | `current_c_rate` | multiply by -1 (reverse sign) | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `Power` | `power_c_rate` | multiply by -1 (reverse sign) | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `HoursElapsed` | `elapsed_time_s` | multiply by 3600 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `SOC` | `soc` | multiply by 100 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `Voltage` | `cell_v_mean` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `VoltageMax` | `cell_v_max` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `VoltageMin` | `cell_v_min` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `VoltageAvg` | `cell_v_mean` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `TempMax` | `temp_max` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `TempMin` | `temp_min` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `TempAvg` | `temp_mean` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

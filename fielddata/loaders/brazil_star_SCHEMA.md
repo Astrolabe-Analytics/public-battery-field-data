@@ -31,3 +31,18 @@ IAM: Time, Real_Power (W), Reactive_Power (W), Voltage (unit unknown, per the re
 ## Cleaning
 
 `clean=True` masks single values, never rows: Time outside 2017 to 2029, and in Battery files SOC outside 0 to 1000. On all four households' battery files this masks 3,763 values.
+
+## Standard view
+
+`fielddata.standard("brazil_star", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `assigned per unit by standard_systems()` by default; call `fielddata.standard_systems("brazil_star")` for each unit's recorded tier and status.
+
+Native current sign: not established; negative current may be unsigned-encoded. Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `Voltage` | `pack_voltage` | multiply by 0.001 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `Current` | `source__current_A` | multiply by 0.001 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `SOC` | `soc` | multiply by 0.1 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

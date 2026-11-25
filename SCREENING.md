@@ -21,9 +21,32 @@ Of the Battery Data Commons field datasets, these are already in our collection:
 
 Added in v1.2: PNNL/EPRI grid battery energy storage (pnnl_epri), Stanford passenger EV BMS (stanford_ev), LFP and NMC cell-to-pack field packs (cell_to_pack), RISE second-life BESS (rise_conbat), BIRDS CubeSat (birds_cubesat), Vehicle Energy Dataset (ved), Shenzhen public EV charging sessions (shenzhen_charging), VW ID.3 TUM 2022 (tum_id3_2022), Brazil STAR microgrid (brazil_star), Tongji EV rest periods (tongji_rest), Beijing EV (beijing_ev) and the TUM EV pack state-of-health procedure (bilfinger2025, admitted after screening on 2026-10-15).
 
+Added in v1.3: in-service EV fault voltage snapshots with per-cell labels (li2026_evfault, Li et al. 2026, Energy Storage Materials) and a real-road 13S4P e-bike pack with a repaired faulty parallel group (giu_ebike, Nour 2026, Zenodo).
+
 ## On deck (help welcome)
 
-None at present. The eleven datasets that were on deck, and Bilfinger 2025, screened later, were added in v1.2 and are listed above. Suggestions are welcome, see [CONTRIBUTING.md](CONTRIBUTING.md).
+These candidates do not contribute to collection totals. rwth_commercial_fleet and
+cornejo_stabl are metadata only: not downloaded and without loaders. Their publisher
+evidence and unresolved items are recorded in [the intake note](reports/checks/ondeck_metadata.md).
+lin_agv is held with a loader, schema note, test and notebook, and its counts wait for its
+paper (maintainer, 2026-11-20). Its proposed counts are in `reports/candidates/lin_agv/NOTES.md`.
+
+| Registry name | Dataset | License and screening context |
+|---|---|---|
+| rwth_commercial_fleet | [RWTH commercial fleet EVs](https://publications.rwth-aachen.de/record/979878), DOI 10.18154/RWTH-2024-01907 | License **unconfirmed**. CC BY 4.0 was supplied at intake but could not be substantiated from accessible publisher metadata. The publisher-deposited abstract describes nine care-service EVs in daily commercial use and periodic chassis-dynamometer capacity tests, making this candidate SOX truth data alongside rwth-home. The indexed file listing names `Electric_Vehicle_and_Battery_Data.zip` (82.0 MB), but the exact byte size and checksum remain unconfirmed. |
+| cornejo_stabl | [BatteryRecursiveGPs.jl v0.1.0](https://zenodo.org/records/22281621), Cornejo/STABL second-life storage | MIT, confirmed by the Zenodo software record. Version DOI 10.5281/zenodo.22281621, concept DOI 10.5281/zenodo.22281620. A short second-life field-operation case study embedded in a code release, not long-term aging data. Author README: 27 modules and 324 logical cells. The publisher ZIP is 19,516,459 bytes, MD5 `3c8b7980e24692039e9f61f83e4d780f`. |
+| lin_agv | [AGV battery thermal-runaway precursor BMS data](https://zenodo.org/records/22731857), Lin, raw data for "Beyond SOH-Based Monitoring: Early Detection of Cell-Level Anomalies Preceding Thermal Runaway in AGV Lithium-Ion Batteries" (Battery Data Commons bdc_000405) | CC BY 4.0. Three 16-cell AGV packs (LFP by their voltages, not stated), each read by two 8-cell BMS boards every 30 s, July 2024 to January 2026: one pack from a thermal-runaway accident and two anomaly-detection cases. Cell voltages, current, SOC, SOH and three temperatures. Downloaded 2026-11-19; all four files match the publisher MD5. Paper not yet found. **Admitted pending count approval** (2026-11-20). |
+
+Cornejo's author-published tree lists cycle CSVs, validation parquet logs dated
+2026-01-31 and 2026-02-01, and reference OCV under `yuasa/data/`. The analysis
+script selects 2025-12-10/11, roughly thirteen hours. Intake context identifies
+20 s cycle logs and a STABL Energy MMC prototype with 2P GS Yuasa LEV50N LMO
+cells. These supplied details are not yet independently verified from the
+data or a complete paper review. Logical channels are not a new physical-cell
+count. No files were downloaded to inspect internal data or validate coverage.
+
+The previous on-deck datasets were admitted in v1.2 and are listed above.
+Suggestions are welcome, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Adjacent, maybe later
 
@@ -52,6 +75,7 @@ These need a login or a paid subscription to download, so others could not repro
 | BMW i3 driving data | [https://doi.org/10.21227/6jr9-5235](https://doi.org/10.21227/6jr9-5235) | IEEE DataPort, login required. |
 | EVECS Renault operating data | [https://ieee-dataport.org/documents/ev-energy-consumption-and-speed-profiles-dataset-evecs](https://ieee-dataport.org/documents/ev-energy-consumption-and-speed-profiles-dataset-evecs) | IEEE DataPort, subscription required. |
 | NCUE megawatt-scale BESS | [https://doi.org/10.21227/jv22-8x07](https://doi.org/10.21227/jv22-8x07) | IEEE DataPort, login required. Field voltage, current and kWh from a pilot system in Taiwan. |
+| ZJU-o BESS operational data and reports | [https://doi.org/10.5281/zenodo.23768097](https://doi.org/10.5281/zenodo.23768097) | Zenodo restricted access: files need a login and an approved access request. CC BY-NC-ND 4.0. Field data from 28 grid-storage modules of 16 cells, one-minute samples, December 2023 to May 2024 (Battery Data Commons bdc_000424). |
 
 ## Out of scope for now
 

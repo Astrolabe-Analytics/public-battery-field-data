@@ -1,0 +1,8 @@
+package,unit,rows_raw_checked,mapped_columns,roundtrip,charging_sign
+cao,DTI:1,55320,88,pass,pass
+schaeffer,3,250000,15,pass,pass
+ppl,E_W_Brown_BESS,525601,6,pass,pass
+xie,00dc55c44bcf46bd817a8cb6d77bceb5,41,26,pass,pass
+zhang2023,battery_brand1:1,350208,6,pass,pass
+evbattery,battery_dataset1:0,258176,7,pass,pass
+aitio,0,787789,3,pass,pass

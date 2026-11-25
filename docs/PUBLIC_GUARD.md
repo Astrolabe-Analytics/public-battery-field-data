@@ -35,6 +35,16 @@ virtual environments, Git metadata or external data folders. Existing matches
 are not deleted and do not block commits unless added in staged lines. Save audit
 findings only outside this public repository with `--audit-output PATH`.
 
+## Allowed phrases
+
+A line in the private policy that starts with `!` names an exact phrase that is
+always allowed, for example the published ID of a public release that happens to
+contain a blocked word. The guard removes allowed phrases from each line before
+matching, and only where they stand alone, so every other use of a blocked term
+still blocks. Add such a line only for published, public material, with
+maintainer approval. The phrases stay in the private policy, not in this
+repository.
+
 ## Reviewed exception
 
 Only after reviewing the exact staged match list and obtaining explicit

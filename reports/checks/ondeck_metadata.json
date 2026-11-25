@@ -1,0 +1,103 @@
+{
+  "scope": "Publisher/author metadata only. No data downloaded or measured.",
+  "rwth": {
+    "metadata_source": "https://api.datacite.org/dois/10.18154/RWTH-2024-01907",
+    "publisher_record": "https://publications.rwth-aachen.de/record/979878",
+    "title": "Dataset to \u201eBattery Electric Vehicles in Commercial Fleets: Use profiles, battery aging, and open-access data\u201c",
+    "abstract_claims": {
+      "vehicles": 9,
+      "field_test_period": "2014 to 2016",
+      "capacity_test_method": "chassis dynamometer"
+    },
+    "rights_in_doi_deposit": [],
+    "license_status": "unconfirmed; intake supplied CC BY 4.0, not substantiated",
+    "file_listing_basis": "Indexed publisher files page, direct access blocked by browser challenge",
+    "files": [
+      {
+        "name": "Electric_Vehicle_and_Battery_Data.zip",
+        "display_size": "82.0 MB",
+        "bytes": null,
+        "checksum": null
+      }
+    ]
+  },
+  "cornejo": {
+    "metadata_source": "https://zenodo.org/api/records/22281621",
+    "title": "BatteryRecursiveGPs.jl",
+    "version": "v0.1.0",
+    "license": "mit-license",
+    "concept_doi": "10.5281/zenodo.22281620",
+    "version_doi": "10.5281/zenodo.22281621",
+    "files": [
+      {
+        "name": "martincornejo/BatteryRecursiveGPs.jl-v0.1.0.zip",
+        "bytes": 19516459,
+        "checksum": "md5:3c8b7980e24692039e9f61f83e4d780f"
+      }
+    ],
+    "author_file_listing_source": "https://api.github.com/repos/martincornejo/BatteryRecursiveGPs.jl/git/trees/v0.1.0?recursive=1",
+    "author_data_file_listing": [
+      {
+        "path": "yuasa/data/cycles/battery_temperature.csv",
+        "bytes": 1297969
+      },
+      {
+        "path": "yuasa/data/cycles/cell_soc.csv",
+        "bytes": 8389107
+      },
+      {
+        "path": "yuasa/data/cycles/cell_voltages.csv",
+        "bytes": 21162695
+      },
+      {
+        "path": "yuasa/data/cycles/derating_currents.csv",
+        "bytes": 1823861
+      },
+      {
+        "path": "yuasa/data/cycles/module_current_average.csv",
+        "bytes": 8729699
+      },
+      {
+        "path": "yuasa/data/cycles/module_current_rms.csv",
+        "bytes": 8870254
+      },
+      {
+        "path": "yuasa/data/cycles/module_voltage.csv",
+        "bytes": 8495673
+      },
+      {
+        "path": "yuasa/data/cycles/oscilloscope_p1_m9.csv",
+        "bytes": 3868872
+      },
+      {
+        "path": "yuasa/data/hyperparams/cell_hyperparams.json",
+        "bytes": 32163
+      },
+      {
+        "path": "yuasa/data/hyperparams/module_hyperparams.json",
+        "bytes": 2621
+      },
+      {
+        "path": "yuasa/data/validation/combined_log_20260131_200948.parquet",
+        "bytes": 7078606
+      },
+      {
+        "path": "yuasa/data/validation/combined_log_20260201_181000.parquet",
+        "bytes": 7178225
+      },
+      {
+        "path": "yuasa/data/validation/reference_ocv.csv",
+        "bytes": 1903
+      },
+      {
+        "path": "yuasa/data/validation/reference_refs.json",
+        "bytes": 105
+      },
+      {
+        "path": "yuasa/data/validation/validation_cells.json",
+        "bytes": 3622627
+      }
+    ]
+  },
+  "check_errors": []
+}

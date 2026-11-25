@@ -78,6 +78,18 @@ def test_word_boundaries_and_multiple_lines(repository):
     assert "example.txt:1:" not in result.stdout and "example.txt:2:" in result.stdout
 
 
+def test_allowed_phrase_passes_and_other_uses_still_block(repository):
+    root, policy, _, run = repository
+    policy.write_text("sensitive-example\nsecond marker\n!sensitive-example-public\n", encoding="utf-8")
+    stage(root, run, "releases: a, sensitive-example-public, b\n(#Sensitive-Example-Public)\n")
+    result = run("python", "scripts/public_guard.py")
+    assert result.returncode == 0, result.stdout
+    stage(root, run, "sensitive-example-public and sensitive-example plant\nsensitive-example-public-two\n")
+    result = run("python", "scripts/public_guard.py")
+    assert result.returncode == 1
+    assert "example.txt:1:" in result.stdout and "example.txt:2:" in result.stdout
+
+
 def test_unchanged_historical_match_is_allowed(repository):
     root, _, environment, run = repository
     stage(root, run, "SENSITIVE-EXAMPLE\noriginal\n")
@@ -121,7 +133,7 @@ def test_real_policy_terms_inside_longer_words_do_not_match(repository):
     )).resolve()
     values = [
         line.strip() for line in policy.read_text(encoding="utf-8-sig").splitlines()
-        if line.strip() and not line.lstrip().startswith("#")
+        if line.strip() and not line.lstrip().startswith(("#", "!"))  # "!" lines are allowed phrases, not terms
     ]
     stage(root, run, "\n".join("prefix" + term + "suffix" for term in values) + "\n")
     result = run(

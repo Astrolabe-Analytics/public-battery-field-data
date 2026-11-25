@@ -11,6 +11,13 @@ ALLOWLIST = {
     "AGENTS.md": {"coordination-rule"},
     "SHIP.md": {"coordination-record"},
     "notebooks/deng.ipynb": {"saved-output-debt"},
+    # Internal-only: scripts/export_release.py never ships these (EXCLUDE_FILES or EXCLUDE_PREFIXES).
+    "reports/candidates/": {"candidate-intake-notes"},  # on-deck fetch and facts logs written on the maintainer's machine
+    "reports/checks/v12/": {"v12-working-notes"},  # v1.2 intake and paper-check working outputs
+    "reports/V12_PAPER_DELTAS.md": {"v12-working-notes"},  # v1.2 paper deltas that brief the maintainer's sessions
+    "reports/screening_decisions_2026-10-13.md": {"v12-working-notes"},  # v1.2 screening notes for the maintainer
+    "reports/drive_mirror_2026-10-13.md": {"internal-drive-mirror"},  # report of the team shared-drive mirror
+    "scripts/drive_mirror.py": {"internal-drive-mirror"},  # mirrors releases to the team shared drive
 }
 
 

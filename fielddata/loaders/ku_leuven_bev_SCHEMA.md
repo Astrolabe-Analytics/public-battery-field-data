@@ -27,7 +27,9 @@ BEV1 runs past the paper's stated end date (2025-02-18): 36 BEV1 files (16 drivi
 
 ## Columns
 
-`load(unit, session_type=None)` returns all sessions of one vehicle, or one type, as one table indexed by `Timestamp`, with `session` (file name), `session_type` and `unit` columns. Paper Table 5 (p. 12) describes every column. The main ones:
+`load(unit, session_type=None, session=None)` returns all sessions of one vehicle, or one type or named session, as one table indexed by `Timestamp`, with `Timestamp_raw` (the released timestamp field before parsing), `session` (file name), `session_type` and `unit` columns. Unparseable or empty timestamps become `NaT` while the original value remains in `Timestamp_raw`; the standard processed copy preserves these rows in the `undated` partition and reports them in `reports/checks/layer2_failed_releases/timestamp_issues.csv`. Paper Table 5 (p. 12) describes every column. The main ones:
+
+The held CSVs contain 8,635 rows with an empty `Timestamp` field across eight fast-charging sessions. They remain in the processed copy with `time = NaT`; the report lists each session and its preserved row count.
 
 | column | unit | role |
 |---|---|---|
@@ -48,3 +50,20 @@ BEV1 runs past the paper's stated end date (2025-02-18): 36 BEV1 files (16 drivi
 `Odometer3B6` holds 4294967.295 (0xFFFFFFFF scaled by 0.001 km) where no odometer frame was received: in all non-null odometer rows of charging and parking files of both cars except one row each in BEV2 slow-charging and parking files, and in 592 of 590,909 BEV1 and 1,005 of 1,425,728 BEV2 driving rows (6,196 and 7,302 rows per car in all, raw data, source-audit check). The publisher does not document it; it cannot be a reading. `clean=True` masks that value only; nothing else is changed.
 
 No cell-level signals are released.
+
+## Standard view
+
+`fielddata.standard("ku_leuven_bev", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `max-min` by default; call `fielddata.standard_systems("ku_leuven_bev")` for each unit's recorded tier and status.
+
+Native current sign: discharge positive (observed). Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `RawBattCurrent132` | `pack_current` | multiply by -1 (reverse sign) | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `BattVoltage132` | `pack_voltage` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `SOCave292` | `soc` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `BMSminPackTemperature` | `temp_min` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `BMSmaxPackTemperature` | `temp_max` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

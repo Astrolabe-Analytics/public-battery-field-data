@@ -34,3 +34,18 @@ The record's "106 modules" are installation rows. Window 11's table has 106 rows
 ## Cleaning
 
 None. The `is_filler` flags (README: "synthetic or gap-filled values") are returned for the caller to use, and nothing is masked.
+
+## Standard view
+
+`fielddata.standard("rise_conbat", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `assigned per unit by standard_systems()` by default; call `fielddata.standard_systems("rise_conbat")` for each unit's recorded tier and status.
+
+This release is not built into Layer 2. Module identities rotate through telemetry positions across collection windows, so a module-only unit view needs an explicit time-window and position selection before a stable standard mapping is possible.
+
+Native current sign: not established in the available sources. Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| ? | ? | No physical mapping is enabled | The release-specific loader/schema limitations above are not resolved by inference; standard units are explicitly blocked or not telemetry. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

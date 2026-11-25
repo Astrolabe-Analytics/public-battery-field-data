@@ -63,3 +63,22 @@ The CSV files are read with the following column names, matching the held code's
 The release has no state-of-health column, and no source defines `available_capacity` or `available_energy`. In the raw data both rise with `soc` inside each charging session, so they hold remaining charge and remaining energy. Do not use `available_capacity` itself as a capacity or SOH estimate. The ratio `available_capacity / (soc/100)` behaves like a BMS full-capacity value (about 136 Ah at the start, 131 to 135 Ah at the end of each pack's record), but that reading is an inference from the data, not a documented field.
 
 Charge capacity can be coulomb-counted as the authors do (paper Eq. (1), capacity_extract.py): split sessions at gaps over 10 s, keep sessions of at least 100 rows without SOC steps above 2 or below -0.1, and divide the charge (negative current integral) by the SOC change. Because SOC is a BMS estimate, single-session values scatter, and the authors use monthly mean or median values (paper Sec. 2.1). With a SOC swing of at least 20 points, the per-pack median of this capacity is 120.5 to 125.0 Ah, and the monthly median falls from about 133 to 135 Ah in the first month to 107 to 118 Ah in the last (raw data, source-audit check).
+
+## Standard view
+
+`fielddata.standard("deng", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `max-min` by default; call `fielddata.standard_systems("deng")` for each unit's recorded tier and status.
+
+Native current sign: charge negative (paper). Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `charge_current` | `pack_current` | multiply by -1 (reverse sign) | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `pack_voltage` | `pack_voltage` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `soc` | `soc` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `max_cell_voltage` | `cell_v_max` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `min_cell_voltage` | `cell_v_min` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `max_temperature` | `temp_max` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `min_temperature` | `temp_min` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

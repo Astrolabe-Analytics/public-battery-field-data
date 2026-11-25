@@ -1,0 +1,125 @@
+{
+  "package": "li2026_evfault",
+  "facts": {
+    "application": {
+      "value": "passenger EV",
+      "basis": "derived",
+      "source": "classification mapping required by the facts audit brief",
+      "note": "In-service EVs (readme; paper Note S1). The vehicle type is not disclosed."
+    },
+    "chemistry": {
+      "value": "NMC (ternary)",
+      "basis": "stated",
+      "source": "https://doi.org/10.1016/j.ensm.2026.105638 (read in arXiv 2608.10825), Supplementary Note 1 ('14 series-connected ternary cells') and Discussion ('ternary chemistries')",
+      "note": ""
+    },
+    "units_released": {
+      "value": 99,
+      "basis": "stated",
+      "source": "release readme ('real-world data from 99 in-service EVs') and https://doi.org/10.1016/j.ensm.2026.105638 (read in arXiv 2608.10825), p. 3 and Supplementary Note 1",
+      "note": "Counted as stated (maintainer, 2026-11-20). Vehicle identifiers are not released, and snapshots cannot be linked to vehicles reliably (scripts/checks/li2026_evfault_link.py, reports/candidates/li2026_evfault/LINKING.md), so the files cannot rebuild the 99. Observation time is counted as system-hours from the snapshots."
+    },
+    "cells_liion": {
+      "value": 1386,
+      "basis": "stated",
+      "source": "release readme ('99 in-service EVs') and https://doi.org/10.1016/j.ensm.2026.105638 (read in arXiv 2608.10825), Supplementary Note 1 (each pack 14 series-connected cells)",
+      "note": "Follows the 99 stated vehicles: 99 x 14. No parallel count is stated (ledger C1). Not measurable from the files."
+    },
+    "cells_leadacid": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No lead-acid cell count applies or is exposed in this release."
+    },
+    "cell_channels_measured": {
+      "value": 14,
+      "basis": "measured",
+      "source": "scripts/facts/li2026_evfault.py: V 1 to V 14 in every snapshot",
+      "note": "14 channels per snapshot. Which vehicle a snapshot comes from is not released."
+    },
+    "energy_mwh": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "No rating, capacity or current is released."
+    },
+    "energy_basis": {
+      "value": "none",
+      "basis": "derived",
+      "source": "energy_mwh is not available",
+      "note": ""
+    },
+    "span_unit_years": {
+      "value": null,
+      "basis": "not_in_release",
+      "source": "",
+      "note": "The release has no timestamps."
+    },
+    "obs_hours": {
+      "value": 473.19444444444446,
+      "basis": "derived",
+      "source": "3,407 snapshots x 50 samples x 10 s (0.1 Hz, https://doi.org/10.1016/j.ensm.2026.105638 (read in arXiv 2608.10825), p. 3) / 3600",
+      "note": "System-hours from the windows, counted (maintainer, 2026-11-20): snapshot time only, assuming snapshots do not overlap (each is aligned to the end of a different charge, paper p. 6). Not the vehicles' service time."
+    },
+    "size_gb": {
+      "value": 0.020779637,
+      "basis": "measured",
+      "source": "scripts/facts/li2026_evfault.py",
+      "note": ""
+    },
+    "files": {
+      "value": 1,
+      "basis": "measured",
+      "source": "scripts/facts/li2026_evfault.py",
+      "note": ""
+    },
+    "fault_onset_timestamp": {
+      "value": "no",
+      "basis": "stated",
+      "source": "fielddata.loaders.li2026_evfault: labels per snapshot and cell, no time; https://doi.org/10.1016/j.ensm.2026.105638 (read in arXiv 2608.10825), Note S1 (terminal thermal-runaway stage excluded)",
+      "note": ""
+    },
+    "sentinels_documented": {
+      "value": "no",
+      "basis": "stated",
+      "source": "https://doi.org/10.5281/zenodo.23980122; public data record and released documentation state no sentinel convention",
+      "note": ""
+    }
+  },
+  "charge_end_sample": {
+    "value": 24,
+    "basis": "measured",
+    "source": "scripts/facts/li2026_evfault.py -> li2026_evfault_profile.csv",
+    "note": "Median over snapshots of the sample at which the 14-cell median voltage peaks (inference for the end of charging; interquartile range 24 to 24)."
+  },
+  "fault_batteries_stated": {
+    "value": 87,
+    "basis": "derived",
+    "source": "scripts/checks/li2026_evfault_fig1d.py -> reports/candidates/li2026_evfault/fig1d_summary.txt (read from the grid of the paper's Fig. 1D)",
+    "note": "87 of the 99 EVs carry at least one fault label; 12 are labelled fault-free only. Counted from the figure, not printed in the paper."
+  },
+  "fault_label_cell_snapshots": {
+    "value": 2896,
+    "basis": "measured",
+    "source": "scripts/facts/li2026_evfault.py via labels()",
+    "note": "Cell-snapshots with a non-zero code: EI 1,659, ASD 426, ACD 503, ISC 308. 2,236 snapshots have at least one labelled cell. Cell 14 carries 1,434 of them."
+  },
+  "faults_stated": {
+    "value": 171,
+    "basis": "stated",
+    "source": "https://doi.org/10.1016/j.ensm.2026.105638 (read in arXiv 2608.10825), p. 3, Fig. 1D (EI 62, ASD 42, ACD 44, ISC 23 EVs); ACD's 44 EVs also on p. 8",
+    "note": "Vehicle-level faults, once per vehicle and fault type (maintainer, 2026-11-24, ledger V1). The grid reading in scripts/checks/li2026_evfault_fig1d.py reproduces the printed counts."
+  },
+  "snapshot_fault_labels": {
+    "value": 2236,
+    "basis": "measured",
+    "source": "scripts/facts/li2026_evfault.py via systems(); scripts/checks/li2026_evfault_link.py",
+    "note": "Snapshots with at least one labelled cell. Not the fault count (maintainer, 2026-11-24, ledger V1): Table 3 uses the paper's vehicle-level faults (faults_stated). Snapshots cannot be linked to vehicles, so each labelled snapshot is standalone. This overstates the number of faulty cells, since one faulty cell appears in many snapshots (paper Fig. 3F: 32 snapshots of one EV). Counted per labelled cell-snapshot it would be 2,896."
+  },
+  "snapshots": {
+    "value": 3407,
+    "basis": "measured",
+    "source": "scripts/facts/li2026_evfault.py: Data/0.csv to Data/3406.csv, none missing",
+    "note": "The readme says 3,408 labelled segments. The paper's 47,968 labelled samples compare with 3,407 x 14 = 47,698 cell-snapshots (digits transposed, probably)."
+  }
+}

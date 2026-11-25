@@ -1,5 +1,26 @@
 # Cao raw-pickle schema check
 
+## Standard view
+
+Source baseline: committed audits as of d447b9eed0206f139d0a9bca6ece5fb0c8c6bc36; not a fresh full reread of paper, supplement and author code.
+
+`fielddata.standard("cao", "DTI:1")` and `standard("cao", "QAS:0")` map only `vin_2`. GIS has no established column meanings and raises `UnsupportedStandard` naming the unit. Its units remain visible as blocked in `standard_systems` and the processed-build summary. Supported units have tier `per-cell`. The mapping builds on the source evidence below, not the model-state columns.
+
+Native current sign: discharge positive in DTI and QAS, converted to charge positive. Where GB/T 32960 has a semantic match, standard names follow its vocabulary; columns absent from a release remain absent.
+
+| Authors' column or block | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `vin_2[:, 2:N+2]`, measured series-position voltage | `cell_v_001` onward | DTI mV divided by 1000, QAS V unchanged | Existing schema, Block meanings, and `scripts/checks/cao_release_quality.py`; held [round trip](../../reports/checks/standard_layers/roundtrip.csv). |
+| `vin_2[:, -1]`, current | `pack_current` | A multiplied by -1, native positive discharge becomes positive charge | Existing schema, Block meanings; targeted reread of `Function_.py::solvers`; fixed DTI [charge period](../../reports/checks/standard_layers/charge_periods.csv). |
+| `vin_2[:, -2]`, onboard SOC | `soc` | DTI percent unchanged, QAS fraction multiplied by 100 by the existing inferred-name loader, documented sentinel codes preserved | Existing schema, Block meanings, and `scripts/checks/cao_vin3_soc.py`; held round trip and charge-period SOC rise. |
+| `vin_2[:, -3]`, temperature | `temperature` | Degrees Celsius unchanged | **AUDIT-ONLY MEANING:** existing schema, Block meanings. The held round trip checks values, not sensor identity or its unit. |
+| Row position | `frame_index`, `elapsed_time_s` | Row index, and row index times the paper's assumed 30 s frame spacing | Targeted SI Note S5 reread, p. 24; existing schema, What the authors say. Spacing is an assumption, not a held-time measurement. |
+| Leading states and deviation block | `source__pack_state_*`, `source__cell_dU_*` | Preserved in native model-output units, not labeled physical pack voltage | Existing schema, Block meanings, and `scripts/checks/cao_release_quality.py`; identities not established there remain unknown rather than renamed physical signals. |
+
+**AUDIT-ONLY MEANING** flags a semantic interpretation inherited from the baseline without an independent data check establishing it. A numerical round trip alone does not establish a column's physical meaning.
+
+Time is relative because the released tensors contain no timestamps. The assumed elapsed axis is not a measured sampling clock and cannot reveal gaps. Processed files use `month=undated`. No pack voltage, cell extrema, extreme-cell IDs or operating state are invented. The native discharge-positive sign follows the existing source/data checks and is consistent with `Function_.py::solvers`, whose SOC decreases under positive current. The ordinary raw loader is unchanged.
+
 ## What the authors say
 
 Sources: Cao et al., *Nature Communications* 16, 1651 (2025), doi:10.1038/s41467-025-56832-8; Zenodo record 10656500 description text displayed 2026-09-10; and the held author-code v1.0.0 archive.

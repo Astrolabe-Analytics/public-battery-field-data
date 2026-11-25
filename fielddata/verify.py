@@ -18,7 +18,7 @@ import zipfile
 import pandas as pd
 
 from fielddata.config import data_root
-from fielddata.registry import PACKAGES
+from fielddata.registry import CANDIDATES, PACKAGES, metadata
 
 _ROOT = Path(__file__).parent.parent
 _REFERENCES = _ROOT / "fielddata" / "reference_checksums.csv"
@@ -108,7 +108,7 @@ def _files(directory):
 
 def _extra_dirs(package_id):
     """Sibling paper/ and supplementary/ folders next to a package's data/ directory, if held."""
-    parent = (data_root() / PACKAGES[package_id]["data_directory"]).parent
+    parent = (data_root() / metadata(package_id)["data_directory"]).parent
     return [(label, parent / label) for label in ("paper", "supplementary") if (parent / label).is_dir()]
 
 
@@ -168,7 +168,7 @@ def verify(package_id, resume=False):
         _replace_package_rows(package_id)
     references = _references()
     completed = _completed() if resume else {}
-    directory = data_root() / PACKAGES[package_id]["data_directory"]
+    directory = data_root() / metadata(package_id)["data_directory"]
     if not directory.is_dir() or not _files(directory):
         row = {"package": package_id, "file": "<package>", "algorithm": "", "expected": "", "bytes": 0, "seconds": "0.000",
                "measured": f"no files in the data folder; download the release first with python -m fielddata.fetch {package_id}",
@@ -257,7 +257,7 @@ def main(argv=None):
     parser.add_argument("packages", nargs="*", help="release names (default: all)")
     parser.add_argument("--resume", action="store_true", help="reuse logged rows for files whose size has not changed")
     args = parser.parse_args(argv)
-    unknown = [p for p in args.packages if p not in PACKAGES]
+    unknown = [p for p in args.packages if p not in PACKAGES and p not in CANDIDATES]  # candidates by name only
     if unknown:
         parser.error(f"unknown release(s): {', '.join(unknown)}")
     results = verify_all(args.packages or None, resume=args.resume)

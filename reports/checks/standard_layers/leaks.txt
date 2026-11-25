@@ -1,0 +1,31 @@
+Repository-wide leak check: fail.
+Task-path findings: 0. Out-of-scope findings: 28.
+Only paths, lines and categories follow. Matched text and allowlisted content are omitted.
+reports/V12_PAPER_DELTAS.md:1: internal collaboration term
+reports/V12_PAPER_DELTAS.md:49: internal collaboration term
+reports/candidates/beijing_ev/facts.txt:2: drive-letter data path
+reports/candidates/beijing_ev/fetch_verify.txt:38: drive-letter data path
+reports/candidates/birds_cubesat/facts.txt:2: drive-letter data path
+reports/candidates/birds_cubesat/fetch_verify.txt:14: drive-letter data path
+reports/candidates/brazil_star/facts.txt:2: drive-letter data path
+reports/candidates/brazil_star/fetch_verify.txt:5: drive-letter data path
+reports/candidates/cell_to_pack/facts.txt:2: drive-letter data path
+reports/candidates/cell_to_pack/fetch_verify.txt:62: drive-letter data path
+reports/candidates/pnnl_epri/fetch_verify.txt:80: drive-letter data path
+reports/candidates/rise_conbat/facts.txt:2: drive-letter data path
+reports/candidates/rise_conbat/fetch_verify.txt:20: drive-letter data path
+reports/candidates/shenzhen_charging/facts.txt:2: drive-letter data path
+reports/candidates/shenzhen_charging/fetch_verify.txt:11: drive-letter data path
+reports/candidates/stanford_ev/facts.txt:2: drive-letter data path
+reports/candidates/stanford_ev/fetch_verify.txt:16550: drive-letter data path
+reports/candidates/tongji_rest/facts.txt:2: drive-letter data path
+reports/candidates/tongji_rest/fetch_verify.txt:5: drive-letter data path
+reports/candidates/tum_id3_2022/facts.txt:2: drive-letter data path
+reports/candidates/tum_id3_2022/fetch_verify.txt:896: drive-letter data path
+reports/candidates/ved/facts.txt:2: drive-letter data path
+reports/candidates/ved/fetch_verify.txt:20: drive-letter data path
+reports/checks/v12/paper_check.md:13: internal collaboration term
+reports/checks/v12/paper_check.md:57: internal collaboration term
+reports/drive_mirror_2026-10-13.md:3: shared-drive path
+reports/screening_decisions_2026-10-13.md:1: internal collaboration term
+scripts/drive_mirror.py:42: shared-drive path

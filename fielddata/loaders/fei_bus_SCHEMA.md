@@ -15,3 +15,18 @@ The only author documentation is the Mendeley Data record (10.17632/j9ky68gnd3.3
 Measured rows: vin1 101, vin5 161, vin12 329, vin19 71. Values above 1 in both SOH columns are kept as released; the record does not say how the estimates were made. `clean=True` changes nothing.
 
 Release order is not a clean time series (raw data, checked 2026-10-04). Mileage rises between most consecutive rows (vin1 69 rises and 8 falls, vin5 100 and 5, vin12 270 and 20, vin19 49 and 5), but each file also has isolated rows with much lower mileage between rows near the maximum (vin1: 443 and 15,372 among rows above 100,000), and vin1 ends on a second rising run (23,344 to 39,434) after reaching 241,515. The largest fall between consecutive rows is 96,097 to 245,216 per file. Within each bus SOH and SOH(OCV) agree only loosely (Spearman 0.43 to 0.72) and their rank correlation with mileage is weak or of mixed sign (SOH: -0.74 to +0.29; SOH(OCV): -0.58 to -0.04). SOH(OCV) is above 1.05 in 2 to 47 percent of a bus's rows (vin12 47 percent).
+
+## Standard view
+
+`fielddata.standard("fei_bus", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `pack-only` by default; call `fielddata.standard_systems("fei_bus")` for each unit's recorded tier and status.
+
+Native current sign: not established in the available sources. Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `SOH` | `soh` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `SOH(OCV)` | `source__SOH_OCV` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `mileage` | `source__mileage` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

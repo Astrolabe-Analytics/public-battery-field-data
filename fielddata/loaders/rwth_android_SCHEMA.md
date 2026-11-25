@@ -34,3 +34,19 @@ Cells: 33, assuming one cell per device; the data paper says "Most mobile device
 Cadence: not stated by the authors. The median step is 10 to 11 s on 30 devices, 17.5 s and 300 s on the two OnePlus OPD2415 tablets, and 3,600 s on one samsung (SM-M356B, 110 rows); long gaps occur (95th percentile up to 5,404 s). No data are recorded while a phone is off (Schimpe 2023, Sec. 2, p. 4, for the same kind of logging).
 
 `clean=True` masks only the value -2147.483648 in `current`, `current_avg` and `charge_counter` (it cannot be a phone current or charge); `nominal_capacity` 0 is left as released.
+
+## Standard view
+
+`fielddata.standard("rwth-android", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `per-cell` by default; call `fielddata.standard_systems("rwth-android")` for each unit's recorded tier and status.
+
+Native current sign: charge positive except OnePlus and Xiaomi devices. Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `current` | `pack_current` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `voltage_cell` | `pack_voltage` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `state_of_charge` | `soc` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `temperature_cell` | `temperature` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

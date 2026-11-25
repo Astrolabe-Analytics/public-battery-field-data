@@ -137,3 +137,21 @@ Single archive `Full_Dataset_M5BAT_Battery_Unit_Pb1.zip`, one directory level, 1
 Both families already carry a `timestamp_utc` UTC-aware pandas index and codebook `column_name`
 values as column names (verified with `pyarrow.parquet.read_schema` on the 2025 file of each
 family, 2026-09-10).
+
+## Standard view
+
+`fielddata.standard("m5bat-pbacid", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `assigned per unit by standard_systems()` by default; call `fielddata.standard_systems("m5bat-pbacid")` for each unit's recorded tier and status.
+
+`fielddata.load()` is available for whole-source reads, and `fielddata.loaders.m5bat_pbacid.iter_load()` yields bounded Parquet batches by source and year. The processed-copy builder uses that streaming interface so peak memory does not scale with the full multi-year array.
+
+Native current sign: discharge positive (codebook). Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `current_A_bms` | `pack_current` | multiply by -1 (reverse sign) | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `voltage_bat_V_bms` | `pack_voltage` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `soc_pct_bms` | `soc` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `power_dc_W_bms` | `pack_power` | multiply by -0.001 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

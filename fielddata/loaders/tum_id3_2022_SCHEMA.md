@@ -23,3 +23,16 @@ What this release adds to tumftm's ID1 over 2021-02 to 2021-12: pack current and
 ## Cleaning
 
 None known. `clean=True` masks nothing.
+
+## Standard view
+
+`fielddata.standard("tum_id3_2022", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `assigned per unit by standard_systems()` by default; call `fielddata.standard_systems("tum_id3_2022")` for each unit's recorded tier and status.
+
+Native current sign: not established in the available sources. Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| ? | ? | No physical mapping is enabled | The release-specific loader/schema limitations above are not resolved by inference; standard units are explicitly blocked or not telemetry. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

@@ -6,7 +6,7 @@ figure1_release_timeline_data.csv (the plotted rows: package, year_first_appeare
 
 Design (the v1.1 paper's figure): one stacked bar per year from the first year to the last, one segment per
 release, colored by application with the Okabe-Ito palette and marked with a white symbol so classes stay apart
-in grayscale; the count above each bar; a legend on the right; "to Oct." under the current, partial year;
+in grayscale; the count above each bar; a legend on the right; "to Nov." under the current, partial year;
 DejaVu Sans; no title (the caption carries it). 13 x 3.3 in at 220 dpi. A release with units in more than one
 class ("passenger EV, bus") is placed by its first class.
 """
@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 YEARS = ROOT / "docs" / "descriptor" / "figure1_releases.csv"
 FACTS = ROOT / "fielddata" / "package_facts.csv"
 OUT = ROOT / "docs" / "descriptor" / "figures"
-PARTIAL_YEAR, PARTIAL_NOTE = 2026, "to Oct."
+PARTIAL_YEAR, PARTIAL_NOTE = 2026, "to Nov."
 # application class: (legend label, Okabe-Ito color, white marker), in stacking and legend order
 CLASSES = {
     "passenger EV": ("Passenger EV", "#0072B2", "o"),

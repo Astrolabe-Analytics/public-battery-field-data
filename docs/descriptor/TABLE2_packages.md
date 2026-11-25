@@ -13,7 +13,7 @@ Units are each release's gross count. † marks a release that shares some units
 | brazil_star | distributed storage | Brazil | not stated | 4 | not in release | 2.8 unit-years | 0.001 (computed) | <0.01 |
 | aitio | distributed storage | sub-Saharan Africa | lead-acid | 1,027 | 6,162 lead-acid | 1,665.0 unit-years | 0.246 (computed) | 3.04 |
 | beijing_ev | passenger EV | China | not stated | 1 | not in release | 1.6 unit-years | 0.032 (computed) | <0.01 |
-| birds_cubesat | satellite | in orbit (ISS orbit) | NiMH | 4 | not in release | at least 78 h | 0 (computed) | <0.01 |
+| birds_cubesat | satellite | in orbit (ISS orbit) | NiMH | 4 | not in release | at least 78 h | <0.001 (computed) | <0.01 |
 | cloverleaf | distributed storage | Belgium | NMC-class | 3 | not in release | 1.0 unit-years | 0.08 (computed) | <0.01 |
 | evbattery | passenger EV | China | NMC-class | 464 † | not in release | at least 57,265 h | not available | 1.41 |
 | tum_id3_2022 | passenger EV | Germany | not stated | 1 † | 216 Li-ion | 0.0 unit-years | not available | 2.91 |
@@ -35,7 +35,9 @@ Units are each release's gross count. † marks a release that shares some units
 | tumftm | passenger EV | Germany | NMC | 7 | 1,512 Li-ion | 6.7 unit-years | 0.406 (stated) | 0.86 |
 | bilfinger2026 | passenger EV | Germany | NMC, LFP | 7 † | 1,402 Li-ion | 0.3 unit-years | 0.401 (stated) | 0.30 |
 | cell_to_pack | grid-scale storage | not stated | LFP, NMC | 16 | 6,656 Li-ion | at least 54,750 h | 6.5 (computed) | 3.54 |
+| giu_ebike | light electric mobility | Egypt | NMC-class | 1 | 52 Li-ion | <0.1 unit-years | <0.001 (computed) | <0.01 |
 | li2026 | grid-scale storage | not stated | LFP | 1 | 240 Li-ion (paper: 200) | 1,203 h | 0.156 (computed) | 0.02 |
+| li2026_evfault | passenger EV | not stated | NMC | 99 | 1,386 Li-ion | at least 473 h | not available | 0.02 |
 | m5bat-pbacid | grid-scale storage | Germany | lead-acid | 1 | 300 lead-acid | 8.1 unit-years | 1.066 (stated) | 4.65 |
 | pnnl_epri | grid-scale storage | United States | LFP, NMC, LMO/NMC, vanadium flow | 12 † | not in release | 17.2 unit-years | 63.87 (stated and computed) § | 3.43 |
 | ppl | grid-scale storage | United States | Li-ion | 1 | 4,760 Li-ion | 8.3 unit-years | 2 (stated) | 67.59 |

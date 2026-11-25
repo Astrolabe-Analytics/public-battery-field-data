@@ -27,3 +27,16 @@ The raw parquets hold values outside the `min_val`/`max_val` ranges of `value_ov
 ## Clean option
 
 CUP1 carries 812 rows dated 2087-03-07 across ten signals (467 of them `hv_battery_voltage`). We observed these in the data; the authors do not describe them. `clean=True` sets every timestamp in or after 2030 to NaT and keeps the rows. `time_bounds(unit, clean=True)` leaves those timestamps out.
+
+## Standard view
+
+`fielddata.standard("tumftm", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `session` by default; call `fielddata.standard_systems("tumftm")` for each unit's recorded tier and status.
+
+Native current sign: not established in the available sources. Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| ? | ? | No physical mapping is enabled | The release-specific loader/schema limitations above are not resolved by inference; standard units are explicitly blocked or not telemetry. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

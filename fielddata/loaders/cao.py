@@ -180,3 +180,9 @@ def load(brand, vehicle, which="vin_2", names="generic", clean=False):
         "schema_status": "GIS layout unknown; generic columns retained" if brand == "GIS" else "author code settles structural groups only; generic columns retained",
     }
     return frame
+
+
+def standard(unit, **kwargs):
+    """Common view for '<brand>:<vehicle>'; GIS fails explicitly pending a verified mapping."""
+    from fielddata._standard import standard as view
+    return view("cao", unit, **kwargs)

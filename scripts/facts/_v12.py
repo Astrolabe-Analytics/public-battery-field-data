@@ -157,5 +157,5 @@ def apply(package: str, facts: dict, script: str) -> None:
         facts["charging_sessions"] = fact(d["charging_sessions"], "measured", DELTAS.format(package),
             "Distinct transaction_id in processed_data.xlsx; 4,538 sessions repeated in Sheet1 and Sheet7 are counted once.")
         facts["charging_fault_labels"] = fact(d["charging_fault_labels"], "measured", DELTAS.format(package),
-            "Sessions labelled faulty (label 1). The Readme describes two kinds of battery fault: faults reported by engineering personnel (thermal runaway, unbalanced cell voltages, short circuit) and over-temperature disconnections by the stations. "
-            "Counted as battery faults, per session, batteries not identified (maintainer, 2026-10-13; docs/descriptor/TABLE3_faults.md).")
+            "Sessions labelled faulty (label 1). The Readme describes two kinds of fault: faults reported by engineering personnel (thermal runaway, unbalanced cell voltages, short circuit) and over-temperature disconnections by the stations. "
+            "Not counted as battery faults (maintainer, 2026-11-24, ledger S1; counted per session from 2026-10-13 to 2026-11-24): the labels mix station over-temperature disconnections with reported faults and cannot be tied to a battery. Reported beside the faults in docs/descriptor/TABLE3_faults.md.")

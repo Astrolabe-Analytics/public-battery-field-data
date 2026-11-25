@@ -344,6 +344,11 @@ def measure(package: str) -> Path:
     facts["units_released"] = fact(counting.units(package), "measured",
         f"fielddata/counting.py over fielddata.systems('{package}')",
         (f"Rule: {counting.rule(package)}. " + earlier).strip())
+    import _v13
+    if package in _v13.V13:  # v1.3: after the unit count, so a stated count (li2026_evfault's 99 vehicles) keeps its basis
+        _v13.apply(package, facts, script)
+        if facts["units_released"]["value"] != counting.units(package):
+            raise ValueError(f"{package}: facts units {facts['units_released']['value']} differ from fielddata/counting.py {counting.units(package)}")
     if package in counting.GROSS:  # display only: tables and dashboards show the gross count with a dagger (maintainer, 2026-10-16)
         facts["units_gross"] = fact(counting.gross_units(package), "measured", f"fielddata/counting.py GROSS over fielddata.systems('{package}')",
                                     f"Gross: {counting.GROSS[package][1]}. Not used in totals.")
@@ -360,7 +365,8 @@ def measure(package: str) -> Path:
     for field in FIELDS:
         current = facts[field]
         output["facts"][field] = {**current, "note": current.get("note", "")}
-    for key in sorted(k for k in facts if k.startswith("overlap_") or k.startswith("charging_") or k.startswith("energy_split_") or k == "units_gross"):
+    for key in sorted(k for k in facts if k.startswith("overlap_") or k.startswith("charging_") or k.startswith("energy_split_") or k == "units_gross"
+                      or k in _v13.EXTRA_KEYS):
         output[key] = facts[key]
     OUT.mkdir(parents=True, exist_ok=True)
     path = OUT / f"{package}.json"

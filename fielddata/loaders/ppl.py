@@ -126,6 +126,12 @@ def time_bounds():
     return pd.Timestamp(first), pd.Timestamp(last)
 
 
+def standard(unit=None, **kwargs):
+    """Common view of the annual ESS telemetry, not the separate cell-level share."""
+    from fielddata._standard import standard as view
+    return view("ppl", unit, **kwargs)
+
+
 def preview(year, rows=1000):
     """The first ``rows`` rows of one annual ESS CSV, as released."""
     path = dict(_ess_files()).get(int(year))

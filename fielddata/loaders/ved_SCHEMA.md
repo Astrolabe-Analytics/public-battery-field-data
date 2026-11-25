@@ -25,3 +25,17 @@ README: "There are 3 pure EV vehicles in the dataset. All of them are 2013 Nissa
 ## Cleaning
 
 None known. `clean=True` masks nothing. Zero voltages and SOC may be logger defaults, and are not masked.
+
+## Standard view
+
+`fielddata.standard("ved", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `session` by default; call `fielddata.standard_systems("ved")` for each unit's recorded tier and status.
+
+Native current sign: not established; retained as a source-named field. Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `HV Battery Voltage[V]` | `pack_voltage` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `HV Battery SOC[%]` | `soc` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

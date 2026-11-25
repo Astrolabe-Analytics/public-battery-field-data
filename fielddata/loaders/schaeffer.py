@@ -114,3 +114,9 @@ def load(system, chunksize=None, clean=False):
         "infinite_value_counts": inf_counts,
     }
     return frame
+
+
+def standard(unit, **kwargs):
+    """Common view with charge-positive current and released per-cell voltages."""
+    from fielddata._standard import standard as view
+    return view("schaeffer", unit, **kwargs)

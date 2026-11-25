@@ -51,6 +51,26 @@ def load(unit, value_id=None, clean=False):
     return concat(frames, _PACKAGE, clean)
 
 
+def iter_load(unit, *, chunksize=250_000, clean=False):
+    """Yield row-group batches from one vehicle's long-format parquet."""
+    if not isinstance(chunksize, int) or isinstance(chunksize, bool) or chunksize < 1:
+        raise ValueError("tumftm: chunksize must be a positive integer")
+    files = _files()
+    names = signals()[["value_id", "variable_name", "unit"]]
+    for item in as_list(unit, files):
+        name = check_unit(item, list(files), _PACKAGE)
+        parquet = pq.ParquetFile(files[name])
+        for batch in parquet.iter_batches(batch_size=chunksize,
+                                          columns=["vehicle_id", "time", "value_id", "value"]):
+            frame = batch.to_pandas().merge(names, on="value_id", how="left")
+            masked = 0
+            if clean:
+                bad = frame["time"].dt.year >= 2030
+                masked = int(bad.sum())
+                frame.loc[bad, "time"] = pd.NaT
+            yield finish(frame, _PACKAGE, clean, masked, unit=name)
+
+
 def time_bounds(unit, clean=True):
     """First and last timestamp of one vehicle from the parquet row-group statistics.
 

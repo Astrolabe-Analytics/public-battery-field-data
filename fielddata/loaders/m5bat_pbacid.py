@@ -7,6 +7,7 @@ deduplicated, and gaps shorter than 5 s were forward-filled, with no flag on fil
 import os
 import tempfile
 import zipfile
+from pathlib import Path
 
 import pandas as pd
 import pyarrow.parquet as pq
@@ -79,6 +80,48 @@ def _read_member(archive, member, columns=None):
         if columns is None:
             return pq.read_table(path).to_pandas()
         return pq.read_table(path, columns=list(columns), use_pandas_metadata=True).to_pandas()
+
+
+def iter_load(source="bms", years=None, clean=False, columns=None, chunksize=250_000):
+    """Yield one bounded Parquet batch at a time for each selected source year."""
+    if source not in _SOURCES:
+        raise ValueError("source must be 'bms' or 'bsc'")
+    if chunksize <= 0:
+        raise ValueError("chunksize must be positive")
+    prefix = _SOURCES[source]
+    scratch_root = data_root() / "_processed" / ".m5bat-pbacid-tmp"
+    scratch_root.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(_archive_path()) as archive:
+        available_years = sorted(_member_year(info.filename, prefix)
+                                 for info in archive.infolist()
+                                 if info.filename.startswith(f"Exide1_{prefix}_"))
+        requested_years = sorted(years) if years is not None else available_years
+        missing = sorted(set(requested_years) - set(available_years))
+        if missing:
+            raise ValueError(f"years not present for {source}: {missing}")
+        for year in requested_years:
+            member = archive.getinfo(f"Exide1_{prefix}_{year}.parquet")
+            with tempfile.TemporaryDirectory(dir=scratch_root) as scratch:
+                archive.extract(member, scratch)
+                path = Path(scratch) / member.filename
+                parquet = pq.ParquetFile(path)
+                try:
+                    for batch in parquet.iter_batches(batch_size=chunksize, columns=columns,
+                                                      use_pandas_metadata=True):
+                        frame = batch.to_pandas()
+                        masked_value_count = _clean_sentinels(frame) if clean else 0
+                        frame.attrs = {
+                            "source": source,
+                            "years": [year],
+                            "n_rows": len(frame),
+                            "codebook_file": "codebook.csv",
+                            "clean": clean,
+                            "masked_value_count": masked_value_count,
+                            "columns": list(columns) if columns is not None else None,
+                        }
+                        yield frame
+                finally:
+                    parquet.close()
 
 
 def systems():

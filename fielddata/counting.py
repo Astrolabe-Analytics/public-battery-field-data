@@ -121,3 +121,27 @@ def candidate_units(package: str) -> int:
 
 def candidate_rule(package: str) -> str:
     return CANDIDATE_RULES[package][1]
+
+
+# v1.3 intake (2026-11-20): DRAFT unit rules for the releases admitted with counts pending the maintainer's approval.
+# They are not merged into RULES, so no total, table or dashboard uses them until approved. Each release's proposed
+# counts and the decisions they need are in reports/candidates/<name>/NOTES.md.
+PROPOSED_RULES = {
+    "lin_agv": (len, "one pack per CSV file (three packs: accident, case 1, case 2); each pack is read by two 8-cell BMS boards, which are one unit"),
+}
+
+
+def proposed_units(package: str) -> int:
+    count, _ = PROPOSED_RULES[package]
+    return int(count(fielddata.systems(package)))
+
+
+def proposed_rule(package: str) -> str:
+    return PROPOSED_RULES[package][1]
+PROPOSED_RULES["li2026_evfault"] = (lambda s: 99, "99 vehicles as stated by the release readme and the paper (Supplementary Note 1), counted as stated (maintainer, 2026-11-20): vehicle identifiers are not released and the 3,407 snapshots cannot be linked to vehicles (scripts/checks/li2026_evfault_link.py), so the count is not measurable from the files. Observation time is counted as system-hours from the snapshots")
+PROPOSED_RULES["giu_ebike"] = (len, "the one 13S4P e-bike pack; its recordings, before and after the group 8 repair, are the same pack")
+
+
+# v1.3 (maintainer, 2026-11-20, admitted 2026-11-24): the approved draft rules join RULES. lin_agv's stays proposed.
+V13_ADMITTED = ["li2026_evfault", "giu_ebike"]
+RULES.update({name: PROPOSED_RULES.pop(name) for name in V13_ADMITTED})

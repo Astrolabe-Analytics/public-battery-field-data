@@ -1,0 +1,65 @@
+{
+  "ac_logging_pdf_pages": [
+    5
+  ],
+  "findings": [
+    {
+      "pdf_page": 2,
+      "terms": [
+        "inverter"
+      ]
+    },
+    {
+      "pdf_page": 3,
+      "terms": [
+        "reactive"
+      ]
+    },
+    {
+      "pdf_page": 5,
+      "terms": [
+        "reactive"
+      ]
+    },
+    {
+      "pdf_page": 8,
+      "terms": [
+        "reactive"
+      ]
+    },
+    {
+      "pdf_page": 9,
+      "terms": [
+        "inverter"
+      ]
+    },
+    {
+      "pdf_page": 11,
+      "terms": [
+        "inverter",
+        "reactive"
+      ]
+    },
+    {
+      "pdf_page": 12,
+      "terms": [
+        "ac power",
+        "inverter",
+        "reactive"
+      ]
+    },
+    {
+      "pdf_page": 13,
+      "terms": [
+        "inverter",
+        "reactive"
+      ]
+    },
+    {
+      "pdf_page": 14,
+      "terms": [
+        "inverter"
+      ]
+    }
+  ]
+}

@@ -41,3 +41,20 @@ time_lab, I_module_lab, V_module_lab, V_Cell_lab (3 cells) and T_module_lab (3 s
 ## Cleaning
 
 None known. `clean=True` masks nothing.
+
+## Standard view
+
+`fielddata.standard("stanford_ev", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `session` by default; call `fielddata.standard_systems("stanford_ev")` for each unit's recorded tier and status.
+
+Native current sign: not established in the available sources. Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `V_pack_bms` | `pack_voltage` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `SOC_pack_bms` | `soc` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `T_pack_bms` | `temperature` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `V_cell_bms_N` | `cell_v_NNN` | V unchanged; signal-specific rate retained | Meaning follows the source-column descriptions in this schema note. Channel order is preserved; the round-trip test checks values, not physical placement. |
+| `T_module_bms_N` | `temp_NNN` | degC unchanged; signal-specific rate retained | Meaning follows the source-column descriptions in this schema note. Channel order is preserved; the round-trip test checks values, not physical placement. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

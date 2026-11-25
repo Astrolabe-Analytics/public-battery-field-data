@@ -34,3 +34,20 @@ No cell voltages are released. `clean=True` changes nothing: the authors already
 `Capacity_Tests.xlsx` lists the start time and system ID of 60 field capacity tests (SI Note 2; SI Note 6). It is not read by the loader.
 
 Measurements ended early for three systems: ID 18 (owner change, 2020) and IDs 14 and 21 (defective after the 2021 flood in western Germany) (SI Note 1, p. 3). Software updates changed control behaviour, power derating and EOD/EOC voltages over time (SI Note 5, p. 8), which affects capacity comparisons across years.
+
+## Standard view
+
+`fielddata.standard("rwth-home", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `assigned per unit by standard_systems()` by default; call `fielddata.standard_systems("rwth-home")` for each unit's recorded tier and status.
+
+Native current sign: charge positive (paper and SI). Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `I_in_A` | `pack_current` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `V_in_V` | `pack_voltage` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `P_in_W` | `pack_power` | multiply by 0.001 | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `T_Bat_in_C` | `temperature` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `T_Room_in_C` | `room_temperature` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

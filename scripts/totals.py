@@ -120,6 +120,9 @@ RESEARCH_GROUPS_NEW_V12 = {
     "Hong Kong Polytechnic University and Autosun": "shenzhen_charging", "Tongji University": "tongji_rest",
     "RISE Research Institutes of Sweden": "rise_conbat", "Stanford University": "stanford_ev",
 }
+# Groups new in v1.3 (2026-11-24). li2026_evfault's corresponding authors are at RWTH ISEA (rwth-home, m5bat) and Chongqing
+# University (taken as the BatICM group of deng and cell_to_pack), so it adds no group; judgement noted in reports/V13_CHANGES.md.
+RESEARCH_GROUPS_NEW_V13 = {"German International University (Egypt)": "giu_ebike"}
 
 
 def charging_group(facts_dir) -> tuple[int, int]:
@@ -131,6 +134,17 @@ def charging_group(facts_dir) -> tuple[int, int]:
         sessions += int(data.get("charging_sessions", {}).get("value") or 0)
         labels += int(data.get("charging_fault_labels", {}).get("value") or 0)
     return sessions, labels
+
+
+def snapshot_group(facts_dir) -> tuple[int, int]:
+    """Voltage snapshots without vehicle identifiers and their fault labels (li2026_evfault, v1.3): one fault per labelled
+    snapshot, batteries not identified (Table 3; maintainer, 2026-11-20)."""
+    snapshots = labels = 0
+    for path in sorted(facts_dir.glob("*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        snapshots += int(data.get("snapshots", {}).get("value") or 0)
+        labels += int(data.get("snapshot_fault_labels", {}).get("value") or 0)
+    return snapshots, labels
 
 
 # Releases whose units belong to more than one service class: units per class.
@@ -267,15 +281,20 @@ def build() -> tuple[str, dict]:
     lines.append(f"| Archive members with publisher-checksum references | {members_with_reference:,} | verification log | measured 1, stated 0, derived 0, not_in_release 0, open 0 |")
     lines.append(f"| Publisher-checksum matches: physical files | {checksum_matches_files:,} | verification log | measured 1, stated 0, derived 0, not_in_release 0, open 0 |")
     lines.append(f"| Publisher-checksum matches: archive members | {checksum_matches_members:,} | verification log | measured 1, stated 0, derived 0, not_in_release 0, open 0 |")
-    faults, fault_batteries, fault_sessions = fault_totals(sessions=True)
+    faults, fault_batteries, unidentified = fault_totals(sessions=True)
     sessions, session_labels = charging_group(ROOT / "reports" / "facts")
-    if fault_sessions != session_labels:
-        raise SystemExit(f"Table 3 counts {fault_sessions} per-session faults, the facts {session_labels} labelled sessions")
-    lines.append(f"| Faults (Table 3) | {faults:,} | {faults - fault_sessions:,} in {fault_batteries:,} batteries, plus {fault_sessions:,} fault-labelled charging sessions without vehicle ID (shenzhen_charging) | from docs/descriptor/TABLE3_faults.md |")
-    research_groups = RESEARCH_GROUPS_V11 + len(RESEARCH_GROUPS_NEW_V12)
+    snapshots, snapshot_labels = snapshot_group(ROOT / "reports" / "facts")
+    # Every counted fault has its batteries counted (ledger S1 and V1, 2026-11-24): shenzhen_charging's session labels are not
+    # counted, and li2026_evfault counts its paper's vehicle-level faults, not its snapshots
+    if unidentified:
+        raise SystemExit(f"Table 3 counts {unidentified} faults without counted batteries; ledger S1 and V1 allow none")
+    lines.append(f"| Faults (Table 3) | {faults:,} | in {fault_batteries:,} batteries; not counted: {session_labels:,} fault-labelled charging sessions (shenzhen_charging, ledger S1) "
+                 f"and {snapshot_labels:,} fault-labelled voltage snapshots (li2026_evfault counts its paper's vehicle-level faults, ledger V1) | from docs/descriptor/TABLE3_faults.md |")
+    research_groups = RESEARCH_GROUPS_V11 + len(RESEARCH_GROUPS_NEW_V12) + len(RESEARCH_GROUPS_NEW_V13)
     lines.append(f"| Charging sessions (separate group, not systems) | {sessions:,} | shenzhen_charging | measured 1 |")
-    lines.append(f"| Fault-labelled charging sessions (in the faults above) | {session_labels:,} | shenzhen_charging | measured 1 |")
-    lines.append(f"| Research groups | {research_groups} | {RESEARCH_GROUPS_V11} in v1.1 plus {', '.join(RESEARCH_GROUPS_NEW_V12)} | stated |")
+    lines.append(f"| Fault-labelled charging sessions (not counted as faults, ledger S1) | {session_labels:,} | shenzhen_charging | measured 1 |")
+    lines.append(f"| Fault-labelled voltage snapshots (not counted as faults, ledger V1) | {snapshot_labels:,} of {snapshots:,} snapshots | li2026_evfault | measured 1 |")
+    lines.append(f"| Research groups | {research_groups} | {RESEARCH_GROUPS_V11} in v1.1 plus {', '.join(RESEARCH_GROUPS_NEW_V12)} (v1.2) and {', '.join(RESEARCH_GROUPS_NEW_V13)} (v1.3) | stated |")
     lines.append(f"| Packages with documented sentinels | {len(sentinels_documented):,} | {', '.join(sentinels_documented)} | stated {len(sentinels_documented)} |")
 
     data = {
@@ -290,9 +309,10 @@ def build() -> tuple[str, dict]:
         "units_by_class": units_by_class,
         "unit_years": float(spans_total), "unit_years_packages": packages(spans),
         "obs_hours": float(total(hours)), "obs_hours_packages": packages(hours),
-        "faults": faults, "fault_batteries": fault_batteries, "faults_in_batteries": faults - fault_sessions,
-        "faults_session_labels": fault_sessions, "faults_session_labels_package": "shenzhen_charging",
-        "faults_session_labels_note": "per-session fault labels without vehicle ID, batteries not identified",
+        "faults": faults, "fault_batteries": fault_batteries, "faults_in_batteries": faults - unidentified,
+        "faults_unidentified_batteries": unidentified,
+        "voltage_snapshots": snapshots, "voltage_snapshot_fault_labels": snapshot_labels,
+        "charging_fault_labels_note": "shenzhen_charging session labels, not counted as battery faults (ledger S1, 2026-11-24)",
         "charging_sessions": sessions, "charging_fault_labels": session_labels, "research_groups": research_groups,
         "size_gb": float(total(sizes)), "files_held": files_held, "files_released": float(total(files)),
         "files_with_reference": files_with_reference,

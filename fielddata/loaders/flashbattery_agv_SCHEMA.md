@@ -21,3 +21,17 @@ The release has no voltage or current series and no cell data. `clean=True` chan
 Fleet context. The paper's method is supported by "a real dataset of more than 2000 batteries provided by Flash Battery" (p. 1); the release is "a subset" of it (README.adoc, Acknowledgement; paper p. 5). The paper's Fig. 6 compares "10 batteries operating on the same application in the same location" and says one battery "underwent failure"; the sources do not say whether those are the ten released packs or which pack failed. The paper's Table II pack (400 Ah, 8S2P) is an idealised simulation example, not the released packs.
 
 Processing and sentinels. The paper (Sec. IV, p. 3) names invalid values in the fleet data, "the reset date 1st January 2000 and the extreme temperatures of -40 °C and 215 °C", and says the data were filtered and "missing values properly imputed" before analysis. Whether the release was filtered or imputed is not stated. The release contains none of those sentinels and no missing values (dates 2019-12-16 to 2022-02-07, temperatures 10 to 48 °C; raw data, checked 2026-10-04). Imputed values, if any, cannot be identified: 8.8 percent of rows have the same totaldischarge step as the next row and 12.8 percent of consecutive rows repeat both temperatures, which integer values alone can explain.
+
+## Standard view
+
+`fielddata.standard("flashbattery-agv", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `session` by default; call `fielddata.standard_systems("flashbattery-agv")` for each unit's recorded tier and status.
+
+Native current sign: not established in the available sources. Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `mintemperature` | `temp_min` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `maxtemperature` | `temp_max` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

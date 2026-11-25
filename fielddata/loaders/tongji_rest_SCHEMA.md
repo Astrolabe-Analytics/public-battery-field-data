@@ -32,3 +32,22 @@ Field vehicles with raw segments are the units (`fielddata.counting.CANDIDATE_RU
 ## Cleaning
 
 None known. `clean=True` masks nothing.
+
+## Standard view
+
+`fielddata.standard("tongji_rest", unit)` converts raw loader values without cleaning, resampling, or filling absent measurements. The unit tier is tagged as `per-cell` by default; call `fielddata.standard_systems("tongji_rest")` for each unit's recorded tier and status.
+
+An unparseable or missing `reqDate` is retained as `source__reqDate`, while standard `time` is `NaT`. The processed copy keeps the row in its `undated` partition and reports its segment, original timestamp value and row count in `reports/checks/layer2_failed_releases/timestamp_issues.csv`.
+
+Native current sign: charge negative (inferred from source data). Current is converted to charge-positive only where the sign mapping is established; otherwise the source-named value is retained or the unit is explicitly blocked.
+Where GB/T 32960 has a semantic match, standard names follow its vocabulary. A column absent from the release remains absent; no measurement column is synthesized.
+
+| Authors' column | Our column | Conversion | Meaning and check evidence |
+|---|---|---|---|
+| `totalCurrent` | `pack_current` | multiply by -1 (reverse sign) | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `totalVoltage` | `pack_voltage` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `soc` | `soc` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `temp_mean` | `temperature` | unchanged | Meaning follows this schema note's source-column descriptions. The synthetic round-trip test verifies numerical conversion, not physical identity. |
+| `cellVoltage_N or cell_voltage_N` | `cell_v_NNN` | V unchanged | Meaning follows the source-column descriptions in this schema note. Channel order is preserved; the round-trip test checks values, not physical placement. |
+
+Other released fields retain their source names or a `source__` prefix with values unchanged; metadata identifiers retain their documented names. A round trip checks value preservation and does not establish an undocumented sensor meaning.

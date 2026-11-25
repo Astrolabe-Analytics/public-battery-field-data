@@ -1,0 +1,11 @@
+progress,release,result,rows,processed_bytes,detail
+1 of 10,cell_to_pack,not built,0,0,no build: 61 entries; converted parquet dependency and unit-part choices are release-specific
+2 of 10,rise_conbat,not built,0,0,no build: 88 entries; load requires window selection before unit filtering
+3 of 10,birds_cubesat,verified,34122,1343367,"built or reused and validated 4 units with loader spot checks, rows=34122, bytes=1343367; new held checksums=0; invalid timestamps preserved=0"
+4 of 10,bilfinger2025,verified,1962393,266254841,"built or reused and validated 17 units with loader spot checks, rows=1962393, bytes=266254841; new held checksums=0; invalid timestamps preserved=0"
+5 of 10,ku_leuven_bev,verified,6722917,171045559,"built or reused and validated 2 units with loader spot checks, rows=6722917, bytes=171045559; new held checksums=0; invalid timestamps preserved=8635"
+6 of 10,tongji_rest,verified,838666,197048554,"built or reused and validated 4 units with loader spot checks, rows=838666, bytes=197048554; new held checksums=0; invalid timestamps preserved=6624"
+7 of 10,tumftm,verified,98061214,3237079736,"built or reused and validated 7 units with loader spot checks, rows=98061214, bytes=3237079736; new held checksums=0; invalid timestamps preserved=0"
+8 of 10,m5bat-pbacid,verified,501085969,4993129835,"built or reused and validated 2 units with loader spot checks, rows=501085969, bytes=4993129835; new held checksums=0; invalid timestamps preserved=0"
+9 of 10,zhou2026,verified,16236579,2769178604,"built or reused and validated 3 units with loader spot checks, rows=16236579, bytes=2769178604; new held checksums=0; invalid timestamps preserved=0"
+,changan,paused,0,0,"Changan: 7-Zip fallback and sensor-token fix done; rebuild paused at 23 of 300 vehicles, resume only when a task needs Changan."
