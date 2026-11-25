@@ -1,7 +1,7 @@
-cff-version: 1.3.0
+cff-version: 1.2.0
 message: "If you use this repository, please cite it using this metadata."
 title: "Public Battery Field Data"
-version: 1.2.0
+version: 1.3.0
 date-released: 2026-11-24
 doi: 10.5281/zenodo.23150592
 identifiers:
@@ -9,8 +9,8 @@ identifiers:
     value: 10.5281/zenodo.23150592
     description: "Concept DOI, all versions"
   - type: doi
-    value: 10.5281/zenodo.23422151
-    description: "Version DOI, v1.2.0"
+    value: 10.5281/zenodo.24518736
+    description: "Version DOI, v1.3.0"
 type: software
 authors:
   - family-names: "Masse"
